@@ -283,6 +283,10 @@ iv) Retrieving Data with view
 	@endsection	
 
 
+iv) Retrieving Data with view foreach 
+
+
+
 
 
 6) Declarando Migraciones 

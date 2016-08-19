@@ -3,11 +3,24 @@
 namespace ShopCart\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use ShopCart\Http\Requests;
+use ShopCart\Product;
 
 class ProductController extends Controller
 {
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getIndex()
+    {
+        $products = Product::all();
+        return view('shop.index', ['products' => $products]);
+    }
+
+
     /**
      * Display a listing of the resource.
      *

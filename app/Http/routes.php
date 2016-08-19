@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('master');
+	return view('master');
 });
 
 Route::auth();
@@ -23,6 +23,17 @@ Route::get('prueba', function(){
 	return view('welcome');
 });
 
+
+Route::get('/shop', [
+	'uses' => 'ProductController@getIndex',
+	'as' => 'product.index'
+]);
+
+
+/*
 Route::get('/shop', function(){
 	return view('shop.index');
 });
+*/
+
+

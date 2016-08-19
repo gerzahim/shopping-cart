@@ -55,7 +55,7 @@ class ProductTableSeeder extends Seeder
         	'sku'=> 'MM104',
         	'title'=> 'Product 4',
         	'description'=>'Lorem Ipsum is simply dummy text of the printing and pesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
-        	'imagepath'=> 'MM105.jpg',
+        	'imagepath'=> 'MM104.jpg',
         	'price'=> '14.5',
         	'quantity'=> '100',
         	'status'=> '1',
