@@ -14,7 +14,7 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('sku');
+            $table->string('sku')->unique();
             $table->string('title');
             $table->text('description')->nullable();
             $table->string('imagepath')->nullable();

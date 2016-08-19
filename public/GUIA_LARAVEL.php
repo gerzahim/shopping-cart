@@ -660,3 +660,21 @@ public function run()
 
 Ejecutar Comando 
 php artisan db:seed 
+
+
+INSERT role
+INSERT users  password 12345
+INSERT categories
+INSERT brand 
+SEED PRODUCTS
+
+
+//////////////////////////////////////////////////////
+
+You may also seed your database using the migrate:refresh command, 
+which will also rollback and re-run all of your migrations. 
+This command is useful for completely re-building your database:
+
+
+php artisan migrate:refresh --seed
+//////////////////////////////////////////////////////
