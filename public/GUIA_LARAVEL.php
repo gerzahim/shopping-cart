@@ -596,4 +596,67 @@ sustituir
     php artisan migrate 
 
 
-13) 
+13) Ajustando las Fechas de los migrates 
+
+si tienes tablas con foreignkeys deben crearse luego de la tabla que hacen index
+
+
+14) Seeder
+
+Add Fillable on Models/Product.php
+    
+
+class Product extends Model
+{
+    protected $fillable = ['sku','title','description','imagepath','price','quantity','status','categories_id','brand_id'];
+}
+
+
+
+
+php artisan make:seed ProductTableSeeder
+
+It'll create 2 seeds Files in database/seeds 
+
+
+
+ProductTableSeeder.php
+
+    public function run()
+    {
+        $product = new \App\Product([
+            'sku'=> 'MM101',
+            'title'=> 'Product 1',
+            'imagepath'=> 'MM101.jpg',
+            'price'=> '10.5',
+            'quantity'=> '100',
+            'status'=> '1',
+            'categories_id'=> '0',
+            'brand_id'=> '0'
+        ]);
+        $product->save();
+
+        $product = new \App\Product([
+            'sku'=> 'MM102',
+            'title'=> 'Product 2',
+            'imagepath'=> 'MM102.jpg',
+            'price'=> '11.5',
+            'quantity'=> '100',
+            'status'=> '1',
+            'categories_id'=> '0',
+            'brand_id'=> '0'
+        ]);
+        $product->save();
+    }
+
+
+DatabaseSeeder.php    
+
+public function run()
+{
+    $this->call(ProductTableSeeder::class);
+}
+
+
+Ejecutar Comando 
+php artisan db:seed 
