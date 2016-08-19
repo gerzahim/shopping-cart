@@ -16,16 +16,15 @@ class CreateProductsTable extends Migration
             $table->increments('id');
             $table->string('sku');
             $table->string('title');
-            $table->text('description');
-            $table->string('imagepath');
-            $table->float('price');
-            $table->string('title');
-            $table->integer('instock');
+            $table->text('description')->nullable();
+            $table->string('imagepath')->nullable();
+            $table->float('price')->nullable();
+            $table->integer('quantity')->nullable();
             $table->integer('status');
             $table->integer('categories_id')->unsigned();
             $table->foreign('categories_id')->references('id')->on('categories');
             $table->integer('brand_id')->unsigned();
-            $table->foreign('brand_id')->references('id')->on('brand');
+            $table->foreign('brand_id')->references('id')->on('brands');
             $table->timestamps();
         });
     }
