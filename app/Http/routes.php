@@ -30,6 +30,11 @@ Route::get('/shop', [
 ]);
 
 
+Route::get('admin', function(){
+	return view('admin.index');
+});
+
+
 /*
 Route::get('/shop', function(){
 	return view('shop.index');

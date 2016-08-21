@@ -71,7 +71,7 @@
     <div class="footer-bottom">
       <div class="container">
         <div class="row">
-          <p class="pull-left">Copyright © 2016. All rights reserved.</p>
+          <p class="pull-left">Copyright &copy; <?php echo date("Y") ?>. All rights reserved.</p>
           <p class="pull-right">Designed by Gerza Salas <span>rasce88@gmail.com</span></p>
         </div>
       </div>

@@ -4,8 +4,5 @@
 
 	@yield('content')
  
- 
-
-
   
  <!-- END CONTENT -->  

@@ -632,3 +632,6 @@ Stack trace:
 #57 C:\xampp\htdocs\shopcart\trunk\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(99): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
 #58 C:\xampp\htdocs\shopcart\trunk\public\index.php(54): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #59 {main}  
+[2016-08-21 13:55:48] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected 'return' (T_RETURN), expecting ']'' in C:\xampp\htdocs\shopcart\trunk\app\Http\routes.php:33
+Stack trace:
+#0 {main}  
