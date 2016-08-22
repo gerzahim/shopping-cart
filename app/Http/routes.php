@@ -30,15 +30,68 @@ Route::get('/shop', [
 ]);
 
 
-Route::get('admin', function(){
-	return view('admin.index');
+Route::get('/useredit', 'UserController@edit');
+
+	
+//Route::post('userupdate', ['as' => 'books_list', 'uses' => 'UserController@update']);
+
+
+Route::post('/userupdate', 'UserController@update');
+
+/*
+
+Route::get('/userupdate', function(){
+	return view('user.form');
 });
 
 
-/*
+Route::get('/signup', [
+	'uses' => 'UserController@getUser',
+	'as' => 'user.signup'
+]);
+
+Route::post('/signup', [
+	'uses' => 'UserController@postUser',
+	'as' => 'user.signup'
+]);
+
+return view('user.signup');
+Route::get('/userupdate', 'UserController@index');
+
+
+Route::get('/userupdate', function(){
+	return view('user.signup');
+});
+
 Route::get('/shop', function(){
 	return view('shop.index');
 });
+
+
+//auth routes
+Route::group(['middleware' => 'auth'], function () {
+
+	Route::get('admin', function(){
+		return view('admin.index');
+	});
+
+    Route::get('user/profile', function () {
+        // Uses Auth Middleware
+    });
+
+	Route::get('admin', function(){
+		return view('admin.index');
+	});    
+});
+
+//auth routes
+Route::group(['middleware' => 'guest'], function () {
+	
+    Route::get('/', function ()    {
+        // Uses Auth Middleware
+    });
+
+
+});
+
 */
-
-

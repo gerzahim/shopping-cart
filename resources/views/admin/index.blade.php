@@ -12,6 +12,12 @@
     <link href="css/custom_admin.css" rel="stylesheet" />
      <!-- GOOGLE FONTS-->
    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="images/favicon.ico">   
 </head>
 <body>
      

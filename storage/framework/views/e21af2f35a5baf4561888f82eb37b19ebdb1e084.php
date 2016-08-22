@@ -77,8 +77,8 @@
                   <li><a href="#"><i class="fa fa-shopping-cart"></i> Cart</a></li>
                   <li><a href="<?php echo e(url('/register')); ?>"><i class="fa fa-user"></i> Join Now</a></li>
                   <li><a href="<?php echo e(url('/login')); ?>"><i class="fa fa-lock"></i> Login</a></li>
-                <?php else: ?>
-                  <li><a href="#"><i class="fa fa-user"></i> Account</a></li>
+                <?php else: ?>                
+                  <li><a href="<?php echo e(url('/userupdate')); ?>"><i class="fa fa-user"></i> Account</a></li>
                   <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
                   <li><a href="#"><i class="fa fa-crosshairs"></i> Checkout</a></li>
                   <li><a href="#"><i class="fa fa-shopping-cart"></i> Cart</a></li>
