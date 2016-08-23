@@ -11,13 +11,13 @@
                     <img src="media/<?php echo e($product->imagepath); ?>" alt="" />
                     <h2>$<?php echo e($product->price); ?></h2>
                     <p><?php echo e($product->title); ?></p>
-                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                    <a href="<?php echo e(route('product.addToCart', ['id' => $product->id])); ?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                   </div>
                   <div class="product-overlay">
                     <div class="overlay-content">
                       <h2>$<?php echo e($product->price); ?></h2>
                       <p><?php echo e($product->title); ?></p>
-                      <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                      <a href="<?php echo e(route('product.addToCart', ['id' => $product->id])); ?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                     </div>
                   </div>
               </div>
@@ -34,7 +34,7 @@
   </div>
 </div>    
 
-
+            
 
 
 <?php $__env->stopSection(); ?>
