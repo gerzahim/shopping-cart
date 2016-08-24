@@ -682,3 +682,6 @@ This command is useful for completely re-building your database:
 
 php artisan migrate:refresh --seed
 //////////////////////////////////////////////////////
+
+
+composer update 

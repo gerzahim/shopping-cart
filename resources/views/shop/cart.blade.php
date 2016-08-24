@@ -26,13 +26,13 @@
 
     <div class="row">
       <div class="col-sm6 col-md6 col-md-offset-3 col-sm-offset3">
-        <strong>Total: {{ $totalPrice}}</strong>        
+        <strong>Total: ${{ $totalPrice}}</strong>        
       </div>
     </div>
     <hr>
     <div class="row">
       <div class="col-sm6 col-md6 col-md-offset-3 col-sm-offset3">
-        <button type="button" class="btn btn-success">Checkout</button>
+        <a href="{{ route('checkout') }}" class="btn btn-success">Checkout</a>
       </div>
     </div>    
   @else
@@ -43,6 +43,9 @@
     </div>  
   @endif
 
+
+
+<hr>
 
   <section id="cart_items">
     <div class="container">
