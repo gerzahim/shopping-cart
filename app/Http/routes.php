@@ -55,6 +55,20 @@ Route::post('/checkout', [
 ]);
 
 
+Route::get('/useredit', [
+	'uses' => 'UserController@editAccount',
+	'as' => 'useredit'
+]);
+
+
+Route::post('/userupdate/{id}', [
+	'uses' => 'UserController@updateAccount',
+	'as' => 'userupdate'
+]);
+
+
+/*
+
 Route::get('/useredit', 'UserController@edit');
 
 	
@@ -62,8 +76,6 @@ Route::get('/useredit', 'UserController@edit');
 
 
 Route::post('/userupdate', 'UserController@update');
-
-/*
 
 Route::get('/userupdate', function(){
 	return view('user.form');

@@ -11,6 +11,13 @@
 				@endforeach
 			</div>
 			@endif
+			
+			@if(Session::has('message'))
+			    <div class="alert alert-success">
+			        {{ Session::get('message') }}
+			    </div>
+			@endif		
+				
 			<div class="step-one">
 				<h2 class="heading">Account</h2>
 			</div>			
@@ -19,50 +26,48 @@
 				<div class="col-sm-3"></div>
 					<div class="col-sm-5">
 						<div class="shopper-info">
-							<p>Personal Information</p>	
-								{!!Form::model($user,['action'=>['UserController@update'],'method'=>'POST'])!!} 
-								<div class="form-group">
-									{!!Form::label('name','Name:')!!}
-									{!!Form::text('name',null,['class'=>'form-control','placeholder'=>'Full Name'])!!}
-								</div>
-								<div class="form-group">
-									{!!Form::label('email','Email:')!!}
-									{!!Form::text('email',null,['class'=>'form-control','placeholder'=>'Email'])!!}
-								</div>
-								<div class="form-group">
-									{!!Form::label('password','Password:')!!}
-									{!!Form::password('password',['class'=>'form-control','placeholder'=>'Password'])!!}
-								</div>							
-								<div class="bill-to">
-									<p>Bill To</p>
-								</div>
-								<div class="form-group">
-									{!!Form::label('address','Address:')!!}
-									{!!Form::text('address',null,['class'=>'form-control','placeholder'=>'Address'])!!}
-								</div>
-								<div class="form-group">
-									{!!Form::label('city','City:')!!}
-									{!!Form::text('city',null,['class'=>'form-control','placeholder'=>'City'])!!}
-								</div>
-								<div class="form-group">
-									{!!Form::label('state','State:')!!}
-									{!!Form::text('state',null,['class'=>'form-control','placeholder'=>'State'])!!}
-								</div>
-								<div class="form-group">
-									{!!Form::label('zip','Zip Code:')!!}
-									{!!Form::text('zip',null,['class'=>'form-control','placeholder'=>'Zip Code'])!!}
-								</div>
-								<div class="form-group">
-									{!!Form::label('country','Country:')!!}
-									{!!Form::text('country',null,['class'=>'form-control','placeholder'=>'Country'])!!}
-								</div>
-								<div class="form-group">
-									{!!Form::label('phone','Telephone:')!!}
-									{!!Form::text('phone',null,['class'=>'form-control','placeholder'=>'Telephone'])!!}
-								</div>
-								{!!Form::submit('Update Info',['class'=>'btn btn-primary'])!!}
+							<p>Personal Information</p>
+								<form action="{{ route('userupdate', $user->id) }}"  method="POST" id="upd-form-user">	
+									<div class="form-group">
+						                <label for="email">Email:</label>
+						                <input type="text" id="email" class="form-control" value="{{ $user['email'] }}" readonly>										
+									</div>
+									<div class="form-group">
+						                <label for="name">Full Name:</label>
+						                <input type="text" id="name" class="form-control" value="{{ $user['name'] }}" required>
+									</div>
+															
+									<div class="bill-to">
+										<p>Bill To</p>
+									</div>
+									<div class="form-group">
+						                <label for="address">Address:</label>
+						                <input type="text" id="address" class="form-control" value="{{ $user['address'] }}" required>		
+									</div>
+									<div class="form-group">
+						                <label for="city">City:</label>
+						                <input type="text" id="city" class="form-control" value="{{ $user['city'] }}" required>		
+									</div>
+									<div class="form-group">
+						                <label for="state">State:</label>
+						                <input type="text" id="state" class="form-control" value="{{ $user['state'] }}" required>		
+									</div>
+									<div class="form-group">
+						                <label for="zip">Zip Code:</label>
+						                <input type="text" id="zip" class="form-control" value="{{ $user['zip'] }}" required>		
+									</div>
+									<div class="form-group">
+						                <label for="country">Country:</label>
+						                <input type="text" id="country" class="form-control" value="{{ $user['country'] }}" required>		
+									</div>
+									<div class="form-group">
+						                <label for="phone">Telephone:</label>
+						                <input type="text" id="phone" class="form-control" value="{{ $user['phone'] }}" required>			
+									</div>
 						
-								{!! Form::close() !!}
+						          {{ csrf_field() }}
+						          <button type="submit" class="btn btn-success">Update Info</button>
+						        </form>
 						</div>
 					</div>						
 				</div>

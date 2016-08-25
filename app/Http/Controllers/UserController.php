@@ -2,9 +2,11 @@
 
 namespace ShopCart\Http\Controllers;
 
-use ShopCart\Http\Requests;
+
 use Illuminate\Http\Request;
+use ShopCart\Http\Requests;
 use ShopCart\User;
+use Session;
 
 
 
@@ -22,10 +24,78 @@ class UserController extends Controller
     }    
 
 
+    public function editAccount(Request $request)
+    {
+
+        $user_id = (auth()->check()) ? auth()->user()->id : null;
+
+        $user = User::find($user_id);
+
+        //dd($user);
+
+        return view('user.form', ['user' => $user]);
+
+    }
+
+    public function updateAccount(Request $request, $id)
+{
+
+        dd($request->input('name'));
+        
+        $price = $request->name;
+        dd($price);        
+
+        dd($request->all());        
+
+        $name = $request->input('name');
+        dd($name);
+        
+        $user = User::find($id);
+        $input = $request->all();
+
+        dd($input);
+        $user->fill($input)->save();
+         
+        //dd($user->fill($input));
+
+        Session::flash('message', 'User successfully updated!');
+
+        return redirect()->back();
+
+        /*
+
+
+        $user = User::find($id);
+        $user->name = $request->get('name');
+        $user->address = $request->get('address');
+        dd($user->name);
+        $user->save();   
+
+        $input = Request::all();
+        $input ['published_at'] = Carbon::now();
+        $input['slug'] =  str_slug($input ['name'], '-');
+
+
+        $user = User::find($id);
+        $user->fill($request->all());
+        $user->save();
+        Session::flash('message','Usuario Actualizado Correctamente');
+        $user = User::FindOrFail(1);
+
+        $input = $request->all();
+        $user->fill($input)->save();
+        return view('user.form', array('user' => $user));
+        //return Redirect::to('user.form');  
+
+        */
+    }
+
+
     public function index()
     {
         return view('user.form');
     }
+
 
 
     /**
@@ -68,17 +138,7 @@ class UserController extends Controller
      */
     public function edit()
     {
-
-        //$user = User::find(1);
-        $user = User::FindOrFail(1);
-
-        //print_r($user);
-        //return $user."usuario"; 
-        //return view('usuario.edit', compact('user'));
-        
-        //return view('user.form', compact('user'));
-        return view('user.form', array('user' => $user));
-
+        //
     }
 
     /**
@@ -91,17 +151,6 @@ class UserController extends Controller
     public function update(Request $request)
     {
         //
-        /*
-        $user = User::find($id);
-        $user->fill($request->all());
-        $user->save();
-        Session::flash('message','Usuario Actualizado Correctamente');*/
-
-        $user = User::FindOrFail(1);
-        $input = $request->all();
-        $user->fill($input)->save();
-        return view('user.form', array('user' => $user));
-        //return Redirect::to('user.form');  
     }
 
     /**
