@@ -62,6 +62,12 @@ a#scrollUp i{
   font-size: 30px;
 }
 
+#rcorners2 {
+    border-radius: 25px;
+    border: 2px solid #FF0000;
+    padding: 20px; 
+    margin-bottom: 15px;
+}
 
 /*************************
 *******Header CSS******

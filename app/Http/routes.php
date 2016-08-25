@@ -54,6 +54,10 @@ Route::post('/checkout', [
 	'as' => 'checkout'
 ]);
 
+Route::get('/account', [
+	'uses' => 'UserController@showAccount',
+	'as' => 'product.account'
+]);
 
 Route::get('/useredit', [
 	'uses' => 'UserController@editAccount',
@@ -65,6 +69,8 @@ Route::post('/userupdate/{id}', [
 	'uses' => 'UserController@updateAccount',
 	'as' => 'userupdate'
 ]);
+
+
 
 
 /*

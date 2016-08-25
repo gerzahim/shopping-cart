@@ -44,57 +44,18 @@ class UserController extends Controller
         $input = $request->all();
         $user->fill($input)->save();
 
-        /*
-        dd($request->all()); 
 
-        dd($request->input('name'));
-        
-        $price = $request->name;
-        dd($price);        
-
-        dd($request->all());        
-
-        $name = $request->input('name');
-        dd($name);
-        
-        $user = User::find($id);
-        $input = $request->all();
-        $user->fill($input)->save();
-         
-        //dd($user->fill($input));
-        */
 
         Session::flash('message', 'User successfully updated!');
         return redirect()->back();
-        
 
-        /*
-
-        return redirect()->('user.form');  
-        $user = User::find($id);
-        $user->name = $request->get('name');
-        $user->address = $request->get('address');
-        dd($user->name);
-        $user->save();   
-
-        $input = Request::all();
-        $input ['published_at'] = Carbon::now();
-        $input['slug'] =  str_slug($input ['name'], '-');
-
-
-        $user = User::find($id);
-        $user->fill($request->all());
-        $user->save();
-        Session::flash('message','Usuario Actualizado Correctamente');
-        $user = User::FindOrFail(1);
-
-        $input = $request->all();
-        $user->fill($input)->save();
-        return view('user.form', array('user' => $user));
-        //return Redirect::to('user.form');  
-
-        */
     }
+
+    public function showAccount(){
+
+        return view('user.account');
+
+    }    
 
 
     public function index()
