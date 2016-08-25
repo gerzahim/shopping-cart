@@ -14,9 +14,9 @@ class ComposerStaticInitd8b534feeeb600bf819f4e29fa5ea60c
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         'e7223560d890eab89cda23685e711e2c' => __DIR__ . '/..' . '/psy/psysh/src/Psy/functions.php',
         '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
+        'f18cc91337d49233e5754e93f3ed9ec3' => __DIR__ . '/..' . '/laravelcollective/html/src/helpers.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
-        'f18cc91337d49233e5754e93f3ed9ec3' => __DIR__ . '/..' . '/laravelcollective/html/src/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -51,6 +51,7 @@ class ComposerStaticInitd8b534feeeb600bf819f4e29fa5ea60c
             'Symfony\\Component\\CssSelector\\' => 30,
             'Symfony\\Component\\Console\\' => 26,
             'SuperClosure\\' => 13,
+            'Stripe\\' => 7,
             'ShopCart\\' => 9,
         ),
         'P' => 
@@ -170,6 +171,10 @@ class ComposerStaticInitd8b534feeeb600bf819f4e29fa5ea60c
         array (
             0 => __DIR__ . '/..' . '/jeremeamia/SuperClosure/src',
         ),
+        'Stripe\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/stripe/stripe-php/lib',
+        ),
         'ShopCart\\' => 
         array (
             0 => __DIR__ . '/../..' . '/app',
@@ -267,10 +272,14 @@ class ComposerStaticInitd8b534feeeb600bf819f4e29fa5ea60c
     );
 
     public static $classMap = array (
-        'CreateBrandsTable' => __DIR__ . '/../..' . '/database/migrations/2016_08_18_194853_create_brands_table.php',
-        'CreateCategoriesTable' => __DIR__ . '/../..' . '/database/migrations/2016_08_18_193101_create_categories_table.php',
+        'BrandTableSeeder' => __DIR__ . '/../..' . '/database/seeds/BrandTableSeeder.php',
+        'CategoriesTableSeeder' => __DIR__ . '/../..' . '/database/seeds/CategoriesTableSeeder.php',
+        'CreateBrandsTable' => __DIR__ . '/../..' . '/database/migrations/2016_08_02_194853_create_brands_table.php',
+        'CreateCategoriesTable' => __DIR__ . '/../..' . '/database/migrations/2016_08_01_193101_create_categories_table.php',
+        'CreateOrdersTable' => __DIR__ . '/../..' . '/database/migrations/2016_08_24_151634_create_orders_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
         'CreateProductsTable' => __DIR__ . '/../..' . '/database/migrations/2016_08_18_193117_create_products_table.php',
+        'CreateRolesTable' => __DIR__ . '/../..' . '/database/migrations/2016_08_18_201356_create_roles_table.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',
@@ -741,6 +750,7 @@ class ComposerStaticInitd8b534feeeb600bf819f4e29fa5ea60c
         'PHP_Token_YIELD' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_YIELD_FROM' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'ProductTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ProductTableSeeder.php',
+        'RoleTableSeeder' => __DIR__ . '/../..' . '/database/seeds/RoleTableSeeder.php',
         'SebastianBergmann\\Comparator\\ArrayComparator' => __DIR__ . '/..' . '/sebastian/comparator/src/ArrayComparator.php',
         'SebastianBergmann\\Comparator\\Comparator' => __DIR__ . '/..' . '/sebastian/comparator/src/Comparator.php',
         'SebastianBergmann\\Comparator\\ComparisonFailure' => __DIR__ . '/..' . '/sebastian/comparator/src/ComparisonFailure.php',
@@ -779,6 +789,7 @@ class ComposerStaticInitd8b534feeeb600bf819f4e29fa5ea60c
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
         'TestCase' => __DIR__ . '/../..' . '/tests/TestCase.php',
         'Text_Template' => __DIR__ . '/..' . '/phpunit/php-text-template/src/Template.php',
+        'UserTableSeeder' => __DIR__ . '/../..' . '/database/seeds/UserTableSeeder.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

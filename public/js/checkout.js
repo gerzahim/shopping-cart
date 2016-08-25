@@ -6,8 +6,7 @@ var $form = $('#checkout-form');
 
 $form.submit(function(event){
 
-    alert('Hola Mundo');
-    
+
     $('charge-error').addClass('hidden');
     $form.find('button').prop('disabled', true);
     Stripe.card.createToken({
@@ -18,6 +17,7 @@ $form.submit(function(event){
       name: $('#card-name').val()
     }, stripeResponseHandler);
     return false;
+
 });
 
 function stripeResponseHandler(status, response){

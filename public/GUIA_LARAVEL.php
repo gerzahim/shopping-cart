@@ -685,3 +685,49 @@ php artisan migrate:refresh --seed
 
 
 composer update 
+
+
+14) Stripe 
+
+A) Install Stripe
+
+https://stripe.com/docs
+
+ composer.json
+
+    "require": {
+        "php": ">=5.5.9",
+        "laravel/framework": "5.2.*",
+        "laravelcollective/html": "5.2.*",
+        "stripe/stripe-php": "3.*"        
+    },
+composer update
+
+use Stripe\Charge;
+use Stripe\Stripe;
+
+
+B) getting Key from Stripe Account 
+
+Your Account -> Account Setting -> API Keys
+
+
+C) setting Keys on Laravel 
+
+
+ setting de Api Public keyss
+ js/checkout.js
+
+ Stripe.setPublishableKey('pk_test_bgDZl3Hlj03zb9UDeQYraAHk');
+
+
+Controllers/ProductController.php
+
+setting de Api Secret key
+
+public function postCheckout(Request $request){
+
+    Stripe::setApiKey('sk_test_HlLliwLgXEFhdQv4WQQamLii');
+
+}
+
