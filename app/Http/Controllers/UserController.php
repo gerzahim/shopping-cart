@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use ShopCart\Http\Requests;
 use ShopCart\User;
 use Session;
+use Auth;
+
 
 
 
@@ -31,14 +33,19 @@ class UserController extends Controller
 
         $user = User::find($user_id);
 
-        //dd($user);
-
         return view('user.form', ['user' => $user]);
 
     }
 
-    public function updateAccount(Request $request, $id)
-{
+    public function updateAccount(Request $request, $id){
+
+        $user = User::find($id);
+        //dd($user); 
+        $input = $request->all();
+        $user->fill($input)->save();
+
+        /*
+        dd($request->all()); 
 
         dd($request->input('name'));
         
@@ -52,19 +59,18 @@ class UserController extends Controller
         
         $user = User::find($id);
         $input = $request->all();
-
-        dd($input);
         $user->fill($input)->save();
          
         //dd($user->fill($input));
+        */
 
         Session::flash('message', 'User successfully updated!');
-
         return redirect()->back();
+        
 
         /*
 
-
+        return redirect()->('user.form');  
         $user = User::find($id);
         $user->name = $request->get('name');
         $user->address = $request->get('address');

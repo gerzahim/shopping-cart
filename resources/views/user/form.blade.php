@@ -27,42 +27,41 @@
 					<div class="col-sm-5">
 						<div class="shopper-info">
 							<p>Personal Information</p>
-								<form action="{{ route('userupdate', $user->id) }}"  method="POST" id="upd-form-user">	
+								<form action="{{ route('userupdate', $user->id) }}"  method="post" id="upd-form-user"> 
 									<div class="form-group">
 						                <label for="email">Email:</label>
-						                <input type="text" id="email" class="form-control" value="{{ $user['email'] }}" readonly>										
+						                <input type="text" id="email" class="form-control" placeholder="{{ $user['email'] }}" readonly>										
 									</div>
 									<div class="form-group">
-						                <label for="name">Full Name:</label>
-						                <input type="text" id="name" class="form-control" value="{{ $user['name'] }}" required>
-									</div>
-															
+										<label for="name">Name</label>
+										<input type="text" id="name" class="form-control" name="name" placeholder="{{ $user['name'] }}">
+									</div>   															
 									<div class="bill-to">
 										<p>Bill To</p>
 									</div>
 									<div class="form-group">
 						                <label for="address">Address:</label>
-						                <input type="text" id="address" class="form-control" value="{{ $user['address'] }}" required>		
+						                <input type="text" id="address" class="form-control" name="address" placeholder="{{ $user['address'] }}">
 									</div>
 									<div class="form-group">
 						                <label for="city">City:</label>
-						                <input type="text" id="city" class="form-control" value="{{ $user['city'] }}" required>		
+						                <input type="text" id="city" class="form-control" name="city" placeholder="{{ $user['city'] }}">
 									</div>
 									<div class="form-group">
 						                <label for="state">State:</label>
-						                <input type="text" id="state" class="form-control" value="{{ $user['state'] }}" required>		
+						                <input type="text" id="state" class="form-control" name="state" placeholder="{{ $user['state'] }}">
 									</div>
 									<div class="form-group">
 						                <label for="zip">Zip Code:</label>
-						                <input type="text" id="zip" class="form-control" value="{{ $user['zip'] }}" required>		
+						                <input type="text" id="zip" class="form-control" name="zip" placeholder="{{ $user['zip'] }}">
 									</div>
 									<div class="form-group">
 						                <label for="country">Country:</label>
-						                <input type="text" id="country" class="form-control" value="{{ $user['country'] }}" required>		
+						                <input type="text" id="country" class="form-control" name="country" placeholder="{{ $user['country'] }}">
 									</div>
 									<div class="form-group">
 						                <label for="phone">Telephone:</label>
-						                <input type="text" id="phone" class="form-control" value="{{ $user['phone'] }}" required>			
+						                <input type="text" id="phone" class="form-control" name="phone" placeholder="{{ $user['phone'] }}">		
 									</div>
 						
 						          {{ csrf_field() }}
