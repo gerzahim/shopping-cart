@@ -5,19 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Administrator | ShopCart</title>
 	<!-- BOOTSTRAP STYLES-->
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="{{ URL::to('css/bootstrap.min.css') }}" rel="stylesheet" />
      <!-- FONTAWESOME STYLES-->
-    <link href="css/font-awesome.min.css" rel="stylesheet" />
+    <link href="{{ URL::to('css/font-awesome.min.css') }}" rel="stylesheet" />
         <!-- CUSTOM STYLES-->
-    <link href="css/custom_admin.css" rel="stylesheet" />
+    <link href="{{ URL::to('css/custom_admin.css') }}" rel="stylesheet" />
      <!-- GOOGLE FONTS-->
    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 
-    <link rel="shortcut icon" href="images/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" href="images/favicon.ico">   
+    <link rel="shortcut icon" href="{{ URL::to('images/favicon.ico') }}images/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ URL::to('images/favicon.ico') }}">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ URL::to('images/favicon.ico') }}">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ URL::to('images/favicon.ico') }}">
+    <link rel="apple-touch-icon-precomposed" href="{{ URL::to('images/favicon.ico') }}">   
 </head>
 <body>
      
@@ -33,7 +33,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="#">
-                        <img height="50px" width="60px" src="images/Logoherbnkulture.png" />
+                        <img height="50px" width="60px" src="{{ URL::to('images/Logoherbnkulture.png') }}" />
                     </a>
                 </div>
               
@@ -84,23 +84,9 @@
 
         </nav>
         <!-- /. NAV SIDE  -->
-        <div id="page-wrapper" >
-            <div id="page-inner">
-                <div class="row">
-                    <div class="col-md-12">
-                     <h2>BLANK PAGE </h2>   
-                    </div>
-                </div>              
-                 <!-- /. ROW  -->
-                  <hr />
-                  @yield('content')
-              
-                 <!-- /. ROW  -->           
+        @include('admin.content')
+        
     </div>
-             <!-- /. PAGE INNER  -->
-            </div>
-         <!-- /. PAGE WRAPPER  -->
-        </div>
     <div class="footer">
       
     
@@ -116,11 +102,11 @@
      <!-- /. WRAPPER  -->
     <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
     <!-- JQUERY SCRIPTS -->
-    <script src="js/jquery-1.10.2.js"></script>
+    <script src="{{ URL::to('js/jquery-1.10.2.js') }}"></script>
       <!-- BOOTSTRAP SCRIPTS -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="{{ URL::to('js/bootstrap.min.js') }}"></script>
       <!-- CUSTOM SCRIPTS -->
-    <script src="js/custom.js"></script>
+    <script src="{{ URL::to('js/custom.js') }}"></script>
     
    
 </body>

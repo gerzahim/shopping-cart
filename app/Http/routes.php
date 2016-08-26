@@ -107,7 +107,14 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 
+Route::resource('categories', 'CategoriesController');
+
 /*
+
+Route::get('/categories', [
+	'uses' => 'CategoriesController@index',
+	'as' => 'admin.categories'
+]);
 
 Route::get('/', function () {
 	return view('master');
