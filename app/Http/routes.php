@@ -45,19 +45,28 @@ Route::get('/shopping-cart', [
 
 Route::get('/checkout', [
 	'uses' => 'ProductController@getCheckout',
-	'as' => 'checkout'
+	'as' => 'checkout',
+	'middleware' => 'auth'
 ]);
 
 
 Route::post('/checkout', [
 	'uses' => 'ProductController@postCheckout',
-	'as' => 'checkout'
+	'as' => 'checkout',
+	'middleware' => 'auth'
 ]);
 
 Route::get('/account', [
 	'uses' => 'UserController@showAccount',
 	'as' => 'product.account'
 ]);
+
+
+Route::get('/account1', [
+	'uses' => 'UserController@getProfile',
+	'as' => 'product.account1'
+]);
+
 
 Route::get('/useredit', [
 	'uses' => 'UserController@editAccount',
@@ -70,7 +79,15 @@ Route::post('/userupdate/{id}', [
 	'as' => 'userupdate'
 ]);
 
+Route::get('/reduceByOne/{id}', [
+	'uses' => 'ProductController@getReduceByOne',
+	'as' => 'product.reduceByOne'
+]);
 
+Route::get('/removeItem/{id}', [
+	'uses' => 'ProductController@getRemoveItem',
+	'as' => 'product.removeItem'
+]);
 
 
 /*

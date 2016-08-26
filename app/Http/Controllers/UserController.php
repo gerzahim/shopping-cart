@@ -51,11 +51,32 @@ class UserController extends Controller
 
     }
 
+
+    public function getProfile(){
+
+        $orders = Auth::user()->orders;
+        $orders->transform(function($order, $key){
+            $order->cart = unserialize($order->cart);
+            return $order;
+        });
+
+        return view('user.profile', ['orders' => $orders]);
+
+    }    
+
     public function showAccount(){
 
         return view('user.account');
 
-    }    
+    } 
+
+
+    public function showAccount1(){
+
+        return view('user.profile');
+
+    }
+
 
 
     public function index()
