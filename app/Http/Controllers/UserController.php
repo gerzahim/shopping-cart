@@ -52,7 +52,7 @@ class UserController extends Controller
     }
 
 
-    public function getProfile(){
+    public function getOrders(){
 
         $orders = Auth::user()->orders;
         $orders->transform(function($order, $key){
@@ -60,7 +60,7 @@ class UserController extends Controller
             return $order;
         });
 
-        return view('user.profile', ['orders' => $orders]);
+        return view('user.myorders', ['orders' => $orders]);
 
     }    
 
@@ -69,15 +69,6 @@ class UserController extends Controller
         return view('user.account');
 
     } 
-
-
-    public function showAccount1(){
-
-        return view('user.profile');
-
-    }
-
-
 
     public function index()
     {

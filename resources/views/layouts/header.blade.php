@@ -103,7 +103,7 @@
             @else
               <div class="pull-right">
               <p>
-                  <h4>Hello, Gerzahim Salas</h4>
+                  <h4>Hello, {{ Auth::user()->name }}</h4>
               </p>  
               </div>
             @endif

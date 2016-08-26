@@ -11,18 +11,19 @@
 |
 */
 
-Route::get('/', function () {
-	return view('master');
-});
-
-Route::auth();
-
-Route::get('/home', 'HomeController@index');
-
 Route::get('prueba', function(){
 	return view('welcome');
 });
 
+
+Route::auth();
+
+Route::get('/', function () {
+	return view('master');
+});
+
+
+Route::get('/home', 'HomeController@index');
 
 Route::get('/shop', [
 	'uses' => 'ProductController@getIndex',
@@ -62,9 +63,9 @@ Route::get('/account', [
 ]);
 
 
-Route::get('/account1', [
-	'uses' => 'UserController@getProfile',
-	'as' => 'product.account1'
+Route::get('/myorders', [
+	'uses' => 'UserController@getOrders',
+	'as' => 'product.myorders'
 ]);
 
 
@@ -90,7 +91,22 @@ Route::get('/removeItem/{id}', [
 ]);
 
 
+//auth routes
+Route::group(['middleware' => 'auth'], function () {
+
+	Route::get('admin', function(){
+		return view('admin.index');
+	});
+  
+});
+
+
+
 /*
+
+Route::get('/', function () {
+	return view('master');
+});
 
 Route::get('/useredit', 'UserController@edit');
 
