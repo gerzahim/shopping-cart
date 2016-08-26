@@ -80,6 +80,11 @@ Route::post('/userupdate/{id}', [
 	'as' => 'userupdate'
 ]);
 
+Route::get('/getAddByOne/{id}', [
+	'uses' => 'ProductController@getAddByOne',
+	'as' => 'product.addByOne'
+]);
+
 Route::get('/reduceByOne/{id}', [
 	'uses' => 'ProductController@getReduceByOne',
 	'as' => 'product.reduceByOne'

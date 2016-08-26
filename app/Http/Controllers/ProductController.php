@@ -39,6 +39,18 @@ class ProductController extends Controller
         
     }
 
+    public function getAddByOne($id)
+    {
+        $product = Product::find($id);
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->add($product, $product->id);
+
+        Session::put('cart', $cart);
+
+        return redirect()->route('product.shoppingCart');
+        
+    } 
 
     public function getReduceByOne($id)
     {
