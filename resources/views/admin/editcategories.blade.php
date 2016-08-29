@@ -5,7 +5,7 @@
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                     <h2>Create a New Categories </h2>   
+                     <h2>Edit Category </h2>   
                     </div>
                 </div>              
                  <!-- /. ROW  -->
@@ -13,12 +13,12 @@
     <div class="container">
       <hr>
       <div class="table-responsive cart_info">
-        <form action="{{ route('categories.store') }}" method="post" id="create-form" enctype="multipart/form-data">
+        <form action="{{ route('categories.update', ['id' => $category['id']]) }}" method="post" id="edit-form" enctype="multipart/form-data">
           <div class="row">
             <div class="col-xs-4">
               <div class="form-group">
                 <label for="name">Name Category</label>
-                <input type="text" id="name" class="form-control" required name="name">
+                <input type="text" id="name" class="form-control" name="name" placeholder="{{ $category['name'] }}" required>
               </div>              
             </div>            
           </div>
@@ -26,14 +26,22 @@
             <div class="col-xs-4">
               <div class="form-group">
                 <label for="address">Description</label>
-                <input type="text" id="description" class="form-control" name="description">
+                <input type="text" id="description" class="form-control" name="description" placeholder="{{ $category['description'] }}">
               </div>              
             </div>            
           </div>
           <div class="row">
             <div class="col-xs-12">
               <div class="form-group">
-                <label for="card-name">Image Category</label>
+                <label for="card-name">Image Category Current</label>
+                
+                @if($category['imagepath'] == '')
+                  <img height="50px" width="50px" src="{{ URL::to('/') }}/images/no-image.jpg" alt="No Images">
+                @else
+                  <img height="50px" width="50px" src="{{ URL::to('/') }}/media/{{ $category['imagepath'] }}" alt="No Images">
+                @endif
+                <br><br>
+                <label for="card-name">If Want To Change Current Image Category</label>
                 <input type="file" id="imagepath" name="imagepath" accept="image/*">
               </div>              
             </div>            
@@ -41,7 +49,7 @@
           <div class="row">
             <div class="col-xs-12">
               <div class="form-group">
-                <label for="card-number">Parent Category</label>
+                <label for="card-number">Parente Category</label>
                   <select id="parent_id" name="parent_id">
                       <option value="0">No Parent</option>
                     @foreach($categories as $category)
@@ -52,8 +60,9 @@
             </div>            
           </div> 
  
-          {{ csrf_field() }}
-          <button type="submit" class="btn btn-success">Create New Category</button>
+          {{ method_field('PUT') }}
+          {{ csrf_field() }}          
+          <button type="submit" class="btn btn-success">Update Category</button>
         </form>
       </div>
     </div>

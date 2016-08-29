@@ -15,9 +15,13 @@
   
 
 
-    <div class="container">
+    <div class="col-md-12">
 <hr>
       <div class="table-responsive cart_info">
+
+       
+
+
         <table class="table table-condensed">
           <thead>
             <tr class="cart_menu">
@@ -30,6 +34,9 @@
             </tr>
           </thead>
           <tbody>
+         {!! $tree !!}
+
+          {{-- 
             @foreach($categories as $category)
             <tr>
               <td class="cart_product">
@@ -52,7 +59,8 @@
                 <a class="cart_quantity_delete" href="{{ route('product.removeItem', ['id' => $category['id']]) }}"><i class="fa fa-times"></i></a>
               </td>
             </tr>
-            @endforeach
+            @endforeach  
+            --}}        
           </tbody>
           <tfoot>
             <tr class="cart_menu">

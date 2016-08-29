@@ -13,10 +13,10 @@ class CategoriesTableSeeder extends Seeder
     {
         $product = new \ShopCart\Categories([
         	'id'=> '1',
-        	'name'=> 'No Categories', no-categories.png
+        	'name'=> 'No Categories', 
         	'description'=> 'No Categories',
             'imagepath'=> 'no-categories.png',
-        	'parentcategory'=> '0',
+        	'parent_id'=> '0',
         ]);
         $product->save();
     }

@@ -27,7 +27,7 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('/shop', [
 	'uses' => 'ProductController@getIndex',
-	'as' => 'product.index'
+	'as' => 'product.shop'
 ]);
 
 
@@ -96,18 +96,38 @@ Route::get('/removeItem/{id}', [
 ]);
 
 
+
 //auth routes
 Route::group(['middleware' => 'auth'], function () {
 
 	Route::get('admin', function(){
-		return view('admin.index');
+		return view('admin.home');
 	});
   
 });
 
 
+Route::resource('/categories', 'CategoriesController');
+Route::resource('/brands', 'BrandsController');
+Route::resource('/product', 'ProductController');
 
-Route::resource('categories', 'CategoriesController');
+
+Route::get('/product/removeProduct/{id}', [
+	'uses' => 'ProductController@getRemoveProduct',
+	'as' => 'product.removeProduct'
+]);
+
+Route::get('/categories/removeCategory/{id}', [
+	'uses' => 'CategoriesController@getRemoveCategory',
+	'as' => 'categories.removeCategory'
+]);
+
+Route::get('/brands/removeBrand/{id}', [
+	'uses' => 'BrandsController@getRemoveBrand',
+	'as' => 'brands.removeBrand'
+]);
+
+Route::get('jquery-tree-view',array('as'=>'jquery.treeview','uses'=>'TreeController@treeView'));
 
 /*
 

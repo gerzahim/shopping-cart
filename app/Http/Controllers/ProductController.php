@@ -7,6 +7,8 @@ use ShopCart\Http\Requests;
 use ShopCart\Cart;
 use ShopCart\Product;
 use ShopCart\Order;
+use ShopCart\Categories;
+use ShopCart\Brand;
 use Session;
 use Auth;
 use Stripe\Charge;
@@ -153,9 +155,48 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index(Request $request){
+
+            $url = $request->url();
+
+            $products = Product::all();
+            $categories = Categories::all();
+            $brands = Brand::all();
+
+            $tree='';  
+            foreach ($products as $product ) {
+                $tree.='<tr>';
+                $tree.='<td class="cart_product">';
+                if ($product->imagepath == Null) {
+                 $tree.='<img height="50px" width="50px" src="images/no-image.jpg"  alt="No Images">';
+                } else {
+                 $tree.='<img height="50px" width="50px" src="media/'.$product->imagepath.'" alt="No Images">';
+                }
+                $tree.='</td>';
+                $tree.='<td class="cart_description">'.$product->sku.'</td>';
+                $tree.='<td class="cart_description">'.$product->title.'</td>';
+                $tree.='<td class="cart_description">'.$product->price.'</td>';
+                $tree.='<td class="cart_description">'.$product->quantity.'</td>';
+               
+                $brands = Brand::Find($product->brand_id);
+                $brandName = $brands['name'];
+                $tree.='<td class="cart_description">'.$brandName.'</td>';
+                $categories = Categories::Find($product->categories_id);
+                $categoryName = $categories['name'];                
+                $tree.='<td class="cart_description">'.$categoryName.'</td>';
+                $tree.='<td class="cart_description">';
+                $tree.='<a class="cart_quantity_delete" href="'.$url.'/'.$product->id.'/edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>';
+                $tree.='</td>';
+                $tree.='<td class="cart_description">';
+                $tree.='<a class="cart_quantity_delete" href="'.$url.'/removeProduct/'.$product->id.'"><i class="fa fa-times" aria-hidden="true"></i></a>';
+                $tree.='</td>';
+                $tree.='</tr>';           
+                
+            }                             
+
+            // return $tree;
+            return view('admin.products', compact('tree'));
+            
     }
 
     /**
@@ -165,7 +206,10 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Categories::all();
+        $brands = Brand::all();           
+
+        return view('admin.createproducts', compact('categories'), compact('brands'));
     }
 
     /**
@@ -176,8 +220,51 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $products = new Product();
+        
+        $input = $request->all();
+
+        //dd($input); 
+        $input['sku'] = strtoupper($input['sku']);
+
+        if ($request->hasFile('imagepath') && $request->file('imagepath')->isvalid()){
+
+            $input['imagepath'] = $request->file('imagepath');
+
+            $file=$request->file('imagepath');
+            $imgrealpath= $file->getRealPath(); 
+            $nameonly=preg_replace('/\..+$/', '', $file->getClientOriginalName());
+            $nameonly = str_replace(' ', '_', $nameonly);            
+            $fullname=$nameonly.'.'.$file->getClientOriginalExtension();
+
+
+            $fileName = $input['sku'].'.'.$file->getClientOriginalExtension();
+
+            $input['imagepath'] = $fileName;
+
+            //$request->file('photo')->move($destinationPath, $fileName); 
+            $request->file('imagepath')->move('media/', $fileName);
+        }else{
+            $input['imagepath'] = Null;    
+        }
+         
+
+        $products->fill($input)->save();
+
+        Session::flash('message', 'Product successfully created!');
+        return redirect()->route('product.index');
     }
+
+    public function getRemoveProduct($id)
+    {
+        $product = new Product();
+        $product->find($id)->delete();
+        return redirect()->route('product.index');
+        
+    }       
+
+http://127.0.0.1/shopcart/trunk/public/categories/removeCategory/1
+http://127.0.0.1/shopcart/trunk/public/product/removeProduct/1
 
     /**
      * Display the specified resource.
