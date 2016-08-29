@@ -44,7 +44,15 @@
                                 <h4>Products</h4>
                               </a>
                         </div>              
-                    </div>                     
+                    </div>
+                   <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                        <div class="div-square">
+                             <a href="{{ url('/banners') }}" >
+                                <i class="fa fa-film fa-5x"></i>
+                                <h4>Banner Home</h4>
+                              </a>
+                        </div>              
+                    </div>                                          
                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
                         <div class="div-square">
                              <a href="#" >
@@ -53,23 +61,14 @@
                               </a>
                         </div>              
                     </div> 
-                     
+                      
                 </div>   
-                  <!-- /. ROW  
+                  <!-- /. ROW  -->
                 <div class="row text-center pad-top">
                    
                  
-                  
-                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
-                      <div class="div-square">
-                           <a href="blank.html" >
- <i class="fa-cog fa-5x"></i>
-                      <h4>New Issues</h4>
-                      </a>
-                      </div>
-                     
-                     
-                  </div>
+
+                  <!-- 
                   <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
                       <div class="div-square">
                            <a href="blank.html" >
@@ -120,11 +119,11 @@
                      
                      
                   </div>
-              </div>
--->  
+              
+                    -->
 
 
-
+ </div>
                  <!-- /. ROW  -->   
           <div class="row">
                     <div class="col-lg-12 ">
@@ -132,12 +131,6 @@
 
                       {{--
 
-                      image
-                      title
-                      sku
-                      price
-                      brand_id
-                      categories_id
 
                         <div class="alert alert-danger">
                              <strong>Want More Icons Free ? </strong> Checkout fontawesome website and use any icon <a target="_blank" href="http://fortawesome.github.io/Font-Awesome/icons/">Click Here</a>.

@@ -731,3 +731,11 @@ public function postCheckout(Request $request){
 
 }
 
+
+
+Quick GUIDE
+create Controller --resource
+create Model -m 
+create migrations
+create table seed 
+create routes

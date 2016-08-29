@@ -49,11 +49,21 @@
           <div class="row">
             <div class="col-xs-12">
               <div class="form-group">
-                <label for="card-number">Parente Category</label>
+                <label for="card-number">Parent Category</label>
                   <select id="parent_id" name="parent_id">
                       <option value="0">No Parent</option>
-                    @foreach($categories as $category)
-                      <option value="{{ $category['id'] }}">{{ $category['name'] }}</option>
+                    @foreach($categories as $categoryy)                      
+                      {{-- <!-- Don't Show itself category --> --}}
+                      @if(!($category['id'] == $categoryy['id']))
+                        {{-- <!-- Mark Select if it's the same one --> --}}
+                        @if($category['parent_id'] == $categoryy['id'])
+                          <option selected="selected" value="{{ $categoryy['id'] }}">{{ $categoryy['name'] }}</option>
+                        @else
+                          <option value="{{ $categoryy['id'] }}">{{ $categoryy['name'] }}</option>
+                        @endif
+
+                      @endif  
+
                     @endforeach
                   </select>                
               </div>              

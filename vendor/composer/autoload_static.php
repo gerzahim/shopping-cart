@@ -272,8 +272,10 @@ class ComposerStaticInitd8b534feeeb600bf819f4e29fa5ea60c
     );
 
     public static $classMap = array (
+        'BannerTableSeeder' => __DIR__ . '/../..' . '/database/seeds/BannerTableSeeder.php',
         'BrandTableSeeder' => __DIR__ . '/../..' . '/database/seeds/BrandTableSeeder.php',
         'CategoriesTableSeeder' => __DIR__ . '/../..' . '/database/seeds/CategoriesTableSeeder.php',
+        'CreateBannersTable' => __DIR__ . '/../..' . '/database/migrations/2016_08_29_175321_create_banners_table.php',
         'CreateBrandsTable' => __DIR__ . '/../..' . '/database/migrations/2016_08_02_194853_create_brands_table.php',
         'CreateCategoriesTable' => __DIR__ . '/../..' . '/database/migrations/2016_08_01_193101_create_categories_table.php',
         'CreateOrdersTable' => __DIR__ . '/../..' . '/database/migrations/2016_08_24_151634_create_orders_table.php',

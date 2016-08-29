@@ -131,6 +131,8 @@ class ProductController extends Controller
               "source" => $request->input('stripeToken'), // obtained with Stripe.js
               "description" => "Charge for ShopCart"
             ));     
+            
+            // Saving Order on Database
             $order = new Order();
             $order->cart = serialize($cart);
             $order->address = $request->input('address');
@@ -138,14 +140,19 @@ class ProductController extends Controller
             $order->payment_id = $charge->id;
 
             Auth::user()->orders()->save($order);
+
+            // Delete Product From Stock 
+            // # code
+
+
         } catch(\Exception $e){
             return redirect()->route('checkout')->with('error', $e->getMessage());
         }
 
-        
-
+    
         //delete cart session
         Session::forget('cart');
+        
         return redirect()->route('product.index')->with('success', 'Successfully Purchased Products!');
     }    
 
@@ -263,8 +270,6 @@ class ProductController extends Controller
         
     }       
 
-http://127.0.0.1/shopcart/trunk/public/categories/removeCategory/1
-http://127.0.0.1/shopcart/trunk/public/product/removeProduct/1
 
     /**
      * Display the specified resource.
@@ -285,7 +290,14 @@ http://127.0.0.1/shopcart/trunk/public/product/removeProduct/1
      */
     public function edit($id)
     {
-        //
+
+        $categories = Categories::all();   
+        $brands = Brand::all();   
+
+        $product = Product::find($id);
+
+        //return view('admin.editproducts', ['product' => $product], compact('categories'), compact('brands'));
+        return view('admin.editproducts', compact('product', 'categories', 'brands'));
     }
 
     /**
@@ -297,7 +309,38 @@ http://127.0.0.1/shopcart/trunk/public/product/removeProduct/1
      */
     public function update(Request $request, $id)
     {
-        //
+        $product = Product::find($id);
+        $input = $request->all();
+
+        $input['sku'] = strtoupper($input['sku']);
+
+        if ($request->hasFile('imagepath') && $request->file('imagepath')->isvalid()){
+
+            $input['imagepath'] = $request->file('imagepath');
+
+            $file=$request->file('imagepath');
+            $imgrealpath= $file->getRealPath(); 
+            $nameonly=preg_replace('/\..+$/', '', $file->getClientOriginalName());
+            $nameonly = str_replace(' ', '_', $nameonly);            
+            $fullname=$nameonly.'.'.$file->getClientOriginalExtension();
+
+
+            $fileName = $input['sku'].'.'.$file->getClientOriginalExtension();
+
+            $input['imagepath'] = $fileName;
+
+            //$request->file('photo')->move($destinationPath, $fileName); 
+            $request->file('imagepath')->move('media/', $fileName);
+        }else{
+            $input['imagepath'] = Null;    
+        }
+
+        //dd($product);
+
+        $product->fill($input)->save();  
+
+        Session::flash('message', 'Product successfully Updated!');
+        return redirect()->route('product.index');
     }
 
     /**
