@@ -13,7 +13,7 @@
             </div>
             <div class="mainmenu pull-left">
               <ul class="nav navbar-nav collapse navbar-collapse">
-                <li><a href="{{ url('/home') }}" class="active">Home</a></li>
+                <li><a href="{{ url('/') }}" class="active">Home</a></li>
                 <li class="dropdown"><a href="{{ url('/shop') }}">Shop<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
                                         <li><a href="shop.html">Products</a></li>

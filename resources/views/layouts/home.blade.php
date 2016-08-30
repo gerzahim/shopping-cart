@@ -53,7 +53,7 @@
           <!-- END SIDEBAR -->
         
           <!-- BEGIN CONTENT -->         
-          @include('layouts.content')
+          @include('layouts.contentstatic')
           <!-- END CONTENT -->  
 
 

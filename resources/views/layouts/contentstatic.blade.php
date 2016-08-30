@@ -164,6 +164,16 @@
             </div>
             
           </div><!--features_items-->
+
+
+
+
+
+
+
+
+
+
           
           <div class="category-tab"><!--category-tab-->
             <div class="col-sm-12">
@@ -452,6 +462,16 @@
               </div>
             </div>
           </div><!--/category-tab-->
+
+
+
+
+
+
+
+
+
+          
           
           <div class="recommended_items"><!--recommended_items-->
             <h2 class="title text-center">recommended items</h2>

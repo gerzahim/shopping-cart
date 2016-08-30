@@ -739,3 +739,7 @@ create Model -m
 create migrations
 create table seed 
 create routes
+
+php artisan db:seed --class=UsersTableSeeder
+
+php artisan migrate:refresh --seed

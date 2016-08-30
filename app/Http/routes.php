@@ -18,12 +18,23 @@ Route::get('prueba', function(){
 
 Route::auth();
 
-Route::get('/', function () {
-	return view('master');
-});
+Route::get('/', [
+	'uses' => 'HomeController@getIndex',
+	'as' => 'principal'
+]);
 
+Route::get('/principal', [
+	'uses' => 'HomeController@getIndex',
+	'as' => 'principal'
+]);
+
+Route::get('/shop', [
+	'uses' => 'ProductController@getIndex',
+	'as' => 'product.shop'
+]);
 
 Route::get('/home', 'HomeController@index');
+
 
 Route::get('/shop', [
 	'uses' => 'ProductController@getIndex',
@@ -110,6 +121,7 @@ Route::group(['middleware' => 'auth'], function () {
 Route::resource('/categories', 'CategoriesController');
 Route::resource('/brands', 'BrandsController');
 Route::resource('/product', 'ProductController');
+Route::resource('/banners', 'BannerController');
 
 
 Route::get('/product/removeProduct/{id}', [

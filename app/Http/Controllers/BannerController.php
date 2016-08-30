@@ -4,7 +4,7 @@ namespace ShopCart\Http\Controllers;
 
 use Illuminate\Http\Request;
 use ShopCart\Http\Requests;
-use ShopCart\Product;
+use ShopCart\Banner;
 use Session;
 
 class BannerController extends Controller
@@ -14,47 +14,32 @@ class BannerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
             $url = $request->url();
 
-            $products = Product::all();
-            $categories = Categories::all();
-            $brands = Brand::all();
+            $banners = Banner::all();
 
             $tree='';  
-            foreach ($products as $product ) {
+            foreach ($banners as $banner ) {
                 $tree.='<tr>';
                 $tree.='<td class="cart_product">';
-                if ($product->imagepath == Null) {
+                if ($banner->imagepath == Null or $banner->imagepath == "") {
                  $tree.='<img height="50px" width="50px" src="images/no-image.jpg"  alt="No Images">';
                 } else {
-                 $tree.='<img height="50px" width="50px" src="media/'.$product->imagepath.'" alt="No Images">';
+                 $tree.='<img height="50px" width="50px" src="media/'.$banner->imagepath.'" alt="No Images">';
                 }
-                $tree.='</td>';
-                $tree.='<td class="cart_description">'.$product->sku.'</td>';
-                $tree.='<td class="cart_description">'.$product->title.'</td>';
-                $tree.='<td class="cart_description">'.$product->price.'</td>';
-                $tree.='<td class="cart_description">'.$product->quantity.'</td>';
-               
-                $brands = Brand::Find($product->brand_id);
-                $brandName = $brands['name'];
-                $tree.='<td class="cart_description">'.$brandName.'</td>';
-                $categories = Categories::Find($product->categories_id);
-                $categoryName = $categories['name'];                
-                $tree.='<td class="cart_description">'.$categoryName.'</td>';
+                $tree.='</td>';             
+                $tree.='<td class="cart_description">'.$banner->title.'</td>';
                 $tree.='<td class="cart_description">';
-                $tree.='<a class="cart_quantity_delete" href="'.$url.'/'.$product->id.'/edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>';
-                $tree.='</td>';
-                $tree.='<td class="cart_description">';
-                $tree.='<a class="cart_quantity_delete" href="'.$url.'/removeProduct/'.$product->id.'"><i class="fa fa-times" aria-hidden="true"></i></a>';
+                $tree.='<a class="cart_quantity_delete" href="'.$url.'/'.$banner->id.'/edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>';
                 $tree.='</td>';
                 $tree.='</tr>';           
                 
             }                             
 
             // return $tree;
-            return view('admin.products', compact('tree'));
+            return view('admin.banners', compact('tree'));
     }
 
     /**
@@ -97,7 +82,8 @@ class BannerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $banner = Banner::find($id);   
+        return view('admin.editbanners', ['banner' => $banner]);
     }
 
     /**
@@ -109,7 +95,58 @@ class BannerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $banner = Banner::find($id);
+        $input = $request->all();
+
+        //dd($input);
+
+        if ($request->hasFile('imagepath') && $request->file('imagepath')->isvalid()){
+
+            $input['imagepath'] = $request->file('imagepath');
+
+            $file=$request->file('imagepath');
+            $imgrealpath= $file->getRealPath(); 
+            $nameonly=preg_replace('/\..+$/', '', $file->getClientOriginalName());
+            $nameonly = str_replace(' ', '_', $nameonly);            
+            $fullname=$nameonly.'.'.$file->getClientOriginalExtension();
+
+            $nameimage = str_replace(' ', '_', $id);  
+            $fileName = "Ban_".$nameimage.'.'.$file->getClientOriginalExtension();
+
+            $input['imagepath'] = $fileName;
+            $fileName = str_replace(' ', '', $fileName);
+            //$request->file('photo')->move($destinationPath, $fileName); 
+            $request->file('imagepath')->move('media/', $fileName);
+        }else{
+            $input['imagepath'] = Null;    
+        } 
+
+        if ($request->hasFile('imagepath_price') && $request->file('imagepath_price')->isvalid()){
+
+            $input['imagepath_price'] = $request->file('imagepath_price');
+
+            $file=$request->file('imagepath_price');
+            $imgrealpath= $file->getRealPath(); 
+            $nameonly=preg_replace('/\..+$/', '', $file->getClientOriginalName());
+            $nameonly = str_replace(' ', '_', $nameonly);            
+            $fullname=$nameonly.'.'.$file->getClientOriginalExtension();
+
+            $nameimage = str_replace(' ', '_', $id);  
+            $fileName = "Banp_".$nameimage.'.'.$file->getClientOriginalExtension();
+
+            $input['imagepath_price'] = $fileName;
+            $fileName = str_replace(' ', '', $fileName);
+            //$request->file('photo')->move($destinationPath, $fileName); 
+            $request->file('imagepath_price')->move('media/', $fileName);
+        }else{
+            $input['imagepath_price'] = Null;    
+        }        
+
+        $banner->fill($input)->save();  
+
+        Session::flash('message', 'Banners successfully created!');
+        return redirect()->route('banners.index');
+
     }
 
     /**
