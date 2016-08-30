@@ -16,17 +16,19 @@ Route::get('prueba', function(){
 });
 
 
-Route::auth();
+
 
 Route::get('/', [
-	'uses' => 'HomeController@getIndex',
+	'uses' => 'ProductController@getHome',
 	'as' => 'principal'
 ]);
 
 Route::get('/principal', [
-	'uses' => 'HomeController@getIndex',
-	'as' => 'principal'
+	'uses' => 'ProductController@getHome',
+	'as' => 'principal2'
 ]);
+
+Route::auth();
 
 Route::get('/shop', [
 	'uses' => 'ProductController@getIndex',
@@ -34,12 +36,6 @@ Route::get('/shop', [
 ]);
 
 Route::get('/home', 'HomeController@index');
-
-
-Route::get('/shop', [
-	'uses' => 'ProductController@getIndex',
-	'as' => 'product.shop'
-]);
 
 
 Route::get('/add-to-cart/{id}', [

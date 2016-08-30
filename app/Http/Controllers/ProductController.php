@@ -9,6 +9,7 @@ use ShopCart\Product;
 use ShopCart\Order;
 use ShopCart\Categories;
 use ShopCart\Brand;
+use ShopCart\Banner;
 use Session;
 use Auth;
 use Stripe\Charge;
@@ -22,11 +23,120 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getIndex()
+    public function getIndex(Request $request)
     {
+        $url = $request->url();
+        
+        // Get info for Banner Section
+        $categories = Categories::all();
+
+        //Get Categories for SideBar        
+        $tree =$this->ParentView($url);
+        $tree1 =$this->getBrands($url);    
+
         $products = Product::all();
-        return view('shop.index', ['products' => $products]);
+        
+        return view('shop.index', compact('products', 'categories', 'tree', 'tree1'));
     }
+
+    public function getHome(Request $request)
+    {
+        $url = $request->url();
+
+        // Get info for Banner Section
+        $banners = Banner::all();
+
+        // Get info for Banner Section
+        $categories = Categories::all();
+
+        //Get Categories for SideBar        
+        $tree =$this->ParentView($url);
+        $tree1 =$this->getBrands($url);         
+
+
+
+        // Get info for Content Section Shop
+        $products = Product::all();
+
+     
+
+        return view('shop.home', compact('products', 'categories', 'banners', 'tree', 'tree1'));
+        //return view('shop.home', ['products' => $products], ['banners' => $banners]);
+    }
+
+    public function ParentView($url){
+
+
+            $Categorys = Categories::where('parent_id', '=', 0)->get();
+            //dd($Categorys);
+                 $tree='';
+                 $flag=0;
+            foreach ($Categorys as $Category) {
+                 //$tree .= $Category->name;
+                if ($flag = 0) {
+                    $flag =1;
+
+                }else{
+                    if(count($Category->childs)) {
+                        $tree.='<div class="panel panel-default">';
+                            $tree.='<div class="panel-heading">';
+                                $tree.='<h4 class="panel-title">';
+                                $tree.='<a data-toggle="collapse" data-parent="#accordian" href="#'.$Category->name.'">';
+                                $tree.='<span class="badge pull-right"><i class="fa fa-plus"></i></span>'.$Category->name;
+                                $tree.='</a>';
+                                $tree.='</h4>';
+                            $tree.='</div>';
+                        $tree.='</div>';                        
+                        $tree.=$this->childView($Category, $url);
+                    }else{
+                        $tree.='<div class="panel panel-default">';
+                            $tree.='<div class="panel-heading">';
+                                $tree.='<h4 class="panel-title"><a href="#">'.$Category->name.'</a></h4>';
+                            $tree.='</div>';
+                        $tree.='</div>';
+                    }                    
+
+                    //$tree.='<a class="cart_quantity_delete" href="'.$url.'/'.$Category->id.'/edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>';
+
+                }
+            }// End Foreach
+                             
+
+            // return $tree;
+            return $tree;
+            
+    }     
+
+    public function childView($Category, $url){
+
+
+
+        $html ='';
+        $html.='<div id="'.$Category->name.'" class="panel-collapse collapse">';
+            $html.='<div class="panel-body">';
+                $html.='<ul>';        
+                foreach ($Category->childs as $arr) {
+                        $html.='<li><a href="#">'.$arr->name.'</a></li>';
+                }                    
+                $html.='</ul>';
+            $html.='</div>';
+        $html.='</div>';                               
+        
+        return $html;
+    }
+
+    public function getBrands($url){
+
+        $brands = Brand::all();
+
+        $html ='';    
+        foreach ($brands as $brand) {
+            $count_brand = Product::where('brand_id', '=', $brand->id)->count();
+            $html.='<li><a href="#"> <span class="pull-right">('.$count_brand.')</span>'.$brand->name.'</a></li>';
+        }                    
+        
+        return $html;
+    }            
 
     public function getAddToCart(Request $request, $id)
     {
@@ -314,26 +424,39 @@ class ProductController extends Controller
 
         $input['sku'] = strtoupper($input['sku']);
 
-        if ($request->hasFile('imagepath') && $request->file('imagepath')->isvalid()){
+        // If Checked for Change Image
+        if ($request->cbox1 == '1') {
+            
+            // Validate File Ok
+            if ($request->hasFile('imagepath') && $request->file('imagepath')->isvalid()){
 
-            $input['imagepath'] = $request->file('imagepath');
+                $input['imagepath'] = $request->file('imagepath');
 
-            $file=$request->file('imagepath');
-            $imgrealpath= $file->getRealPath(); 
-            $nameonly=preg_replace('/\..+$/', '', $file->getClientOriginalName());
-            $nameonly = str_replace(' ', '_', $nameonly);            
-            $fullname=$nameonly.'.'.$file->getClientOriginalExtension();
+                $file=$request->file('imagepath');
+                $imgrealpath= $file->getRealPath(); 
+                $nameonly=preg_replace('/\..+$/', '', $file->getClientOriginalName());
+                $nameonly = str_replace(' ', '_', $nameonly);            
+                $fullname=$nameonly.'.'.$file->getClientOriginalExtension();
 
 
-            $fileName = $input['sku'].'.'.$file->getClientOriginalExtension();
+                $fileName = $input['sku'].'.'.$file->getClientOriginalExtension();
 
-            $input['imagepath'] = $fileName;
+                $input['imagepath'] = $fileName;
 
-            //$request->file('photo')->move($destinationPath, $fileName); 
-            $request->file('imagepath')->move('media/', $fileName);
+                //$request->file('photo')->move($destinationPath, $fileName); 
+                $request->file('imagepath')->move('media/', $fileName);
+            }else{
+                //$input['imagepath'] = Null; 
+                $input['imagepath'] = $product->imagepath;    
+                
+            }         
+
         }else{
-            $input['imagepath'] = Null;    
-        }
+            $input['imagepath'] = $product->imagepath;   
+
+        }         
+
+
 
         //dd($product);
 

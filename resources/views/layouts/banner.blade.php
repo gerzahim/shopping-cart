@@ -1,1 +1,1 @@
-  @yield('banner')
+@yield('banner')

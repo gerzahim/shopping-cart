@@ -1,4 +1,6 @@
-@extends('layouts.shop')
+@extends('layouts.index')
+
+@include('layouts.sidebar1')
 
 @section('content')
   

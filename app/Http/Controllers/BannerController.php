@@ -96,11 +96,14 @@ class BannerController extends Controller
     public function update(Request $request, $id)
     {
         $banner = Banner::find($id);
+
         $input = $request->all();
 
-        //dd($input);
-
-        if ($request->hasFile('imagepath') && $request->file('imagepath')->isvalid()){
+        // If Checked for Change Image
+        if ($request->cbox1 == '1') {
+            
+            // Validate File Ok
+            if ($request->hasFile('imagepath') && $request->file('imagepath')->isvalid()){
 
             $input['imagepath'] = $request->file('imagepath');
 
@@ -117,30 +120,48 @@ class BannerController extends Controller
             $fileName = str_replace(' ', '', $fileName);
             //$request->file('photo')->move($destinationPath, $fileName); 
             $request->file('imagepath')->move('media/', $fileName);
+            }else{
+                //$input['imagepath'] = Null; 
+                $input['imagepath'] = $banner->imagepath;    
+                
+            }         
+
         }else{
-            $input['imagepath'] = Null;    
-        } 
+            $input['imagepath'] = $banner->imagepath;   
 
-        if ($request->hasFile('imagepath_price') && $request->file('imagepath_price')->isvalid()){
+        }
 
-            $input['imagepath_price'] = $request->file('imagepath_price');
 
-            $file=$request->file('imagepath_price');
-            $imgrealpath= $file->getRealPath(); 
-            $nameonly=preg_replace('/\..+$/', '', $file->getClientOriginalName());
-            $nameonly = str_replace(' ', '_', $nameonly);            
-            $fullname=$nameonly.'.'.$file->getClientOriginalExtension();
+        // If Checked for Change Image
+        if ($request->cbox2 == '1') {
+            if ($request->hasFile('imagepath_price') && $request->file('imagepath_price')->isvalid()){
 
-            $nameimage = str_replace(' ', '_', $id);  
-            $fileName = "Banp_".$nameimage.'.'.$file->getClientOriginalExtension();
+                $input['imagepath_price'] = $request->file('imagepath_price');
 
-            $input['imagepath_price'] = $fileName;
-            $fileName = str_replace(' ', '', $fileName);
-            //$request->file('photo')->move($destinationPath, $fileName); 
-            $request->file('imagepath_price')->move('media/', $fileName);
+                $file=$request->file('imagepath_price');
+                $imgrealpath= $file->getRealPath(); 
+                $nameonly=preg_replace('/\..+$/', '', $file->getClientOriginalName());
+                $nameonly = str_replace(' ', '_', $nameonly);            
+                $fullname=$nameonly.'.'.$file->getClientOriginalExtension();
+
+                $nameimage = str_replace(' ', '_', $id);  
+                $fileName = "Banp_".$nameimage.'.'.$file->getClientOriginalExtension();
+
+                $input['imagepath_price'] = $fileName;
+                $fileName = str_replace(' ', '', $fileName);
+                //$request->file('photo')->move($destinationPath, $fileName); 
+                $request->file('imagepath_price')->move('media/', $fileName);
+            }else{
+                //$input['imagepath_price'] = Null;   
+                $input['imagepath_price'] = $banner->imagepath_price;     
+            }             
+
         }else{
-            $input['imagepath_price'] = Null;    
-        }        
+            $input['imagepath_price'] = $banner->imagepath_price; 
+        }
+
+
+      
 
         $banner->fill($input)->save();  
 

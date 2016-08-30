@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use ShopCart\Banner;
 use ShopCart\Product;
+use Session;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -33,17 +35,6 @@ class HomeController extends Controller
 
     }
 
-    public function getIndex()
-    {
 
-        // Get info for Banner Section
-        $banners = Banner::all();
-
-        // Get info for Content Section Shop
-        $products = Product::all();        
-
-        //dd($banners);
-        return view('shop.home', ['products' => $products], ['banners' => $banners]);
-    }
 
 }

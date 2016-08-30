@@ -18,7 +18,7 @@
             <div class="col-xs-4">
               <div class="form-group">
                 <label for="name">Name</label>
-                <input type="text" id="title" class="form-control" required name="title" placeholder="{{ $product['title'] }}">
+                <input type="text" id="title" class="form-control" required name="title" value="{{ $product['title'] }}">
               </div>              
             </div>            
           </div>
@@ -34,7 +34,7 @@
             <div class="col-xs-4">
               <div class="form-group">
                 <label for="name">Sku</label>
-                <input type="text" id="sku" class="form-control" required name="sku" placeholder="{{ $product['sku'] }}">
+                <input type="text" id="sku" class="form-control" required name="sku" value="{{ $product['sku'] }}">
               </div>              
             </div>            
           </div>
@@ -42,7 +42,7 @@
             <div class="col-xs-4">
               <div class="form-group">
                 <label for="name">Price</label>
-                <input type="text" id="price" class="form-control" required name="price" placeholder="{{ $product['price'] }}">
+                <input type="text" id="price" class="form-control" required name="price" value="{{ $product['price'] }}">
               </div>              
             </div>            
           </div>
@@ -50,7 +50,7 @@
             <div class="col-xs-4">
               <div class="form-group">
                 <label for="name">Stock</label>
-                <input type="text" id="quantity" class="form-control" required name="quantity" placeholder="{{ $product['quantity'] }}">
+                <input type="text" id="quantity" class="form-control" required name="quantity" value="{{ $product['quantity'] }}">
               </div>              
             </div>            
           </div>
@@ -102,7 +102,8 @@
                   <img height="300px" width="300px" src="{{ URL::to('/') }}/media/{{ $product['imagepath'] }}" alt="No Images">
                 @endif
                 <br><br>
-                <label for="card-name">If Want To Change Current Image Product</label>
+                <label><input type="checkbox" id="cbox1" name="cbox1" value="1"></label>                                  
+                <label for="card-name">Check If Want To Change Current Image Product</label>
                 <input type="file" id="imagepath" name="imagepath" accept="image/*">
               </div>              
             </div>            

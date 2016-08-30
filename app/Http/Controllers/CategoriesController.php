@@ -259,26 +259,39 @@ class CategoriesController extends Controller
         $category = Categories::find($id);
         $input = $request->all();
 
-        if ($request->hasFile('imagepath') && $request->file('imagepath')->isvalid()){
 
-            $input['imagepath'] = $request->file('imagepath');
+        // If Checked for Change Image
+        if ($request->cbox1 == '1') {
+            
+            // Validate File Ok
+            if ($request->hasFile('imagepath') && $request->file('imagepath')->isvalid()){
 
-            $file=$request->file('imagepath');
-            $imgrealpath= $file->getRealPath(); 
-            $nameonly=preg_replace('/\..+$/', '', $file->getClientOriginalName());
-            $nameonly = str_replace(' ', '_', $nameonly);
-            $fullname=$nameonly.'.'.$file->getClientOriginalExtension();
+                $input['imagepath'] = $request->file('imagepath');
 
-            $nameimage = str_replace(' ', '_', $input['name']);  
-            $fileName = "Cat_".$nameimage.'.'.$file->getClientOriginalExtension();
+                $file=$request->file('imagepath');
+                $imgrealpath= $file->getRealPath(); 
+                $nameonly=preg_replace('/\..+$/', '', $file->getClientOriginalName());
+                $nameonly = str_replace(' ', '_', $nameonly);
+                $fullname=$nameonly.'.'.$file->getClientOriginalExtension();
 
-            $input['imagepath'] = $fileName;
-            $fileName = str_replace(' ', '', $fileName);
-            //$request->file('photo')->move($destinationPath, $fileName); 
-            $request->file('imagepath')->move('media/', $fileName);
+                $nameimage = str_replace(' ', '_', $input['name']);  
+                $fileName = "Cat_".$nameimage.'.'.$file->getClientOriginalExtension();
+
+                $input['imagepath'] = $fileName;
+                $fileName = str_replace(' ', '', $fileName);
+                //$request->file('photo')->move($destinationPath, $fileName); 
+                $request->file('imagepath')->move('media/', $fileName);
+            }else{
+                //$input['imagepath'] = Null; 
+                $input['imagepath'] = $category->imagepath;    
+                
+            }         
+
         }else{
-            $input['imagepath'] = Null;    
-        } 
+            $input['imagepath'] = $category->imagepath;   
+
+        }         
+
 
         $category->fill($input)->save();  
 

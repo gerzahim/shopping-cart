@@ -18,7 +18,7 @@
             <div class="col-xs-4">
               <div class="form-group">
                 <label for="name">Name Category</label>
-                <input type="text" id="name" class="form-control" name="name" placeholder="{{ $category['name'] }}" required>
+                <input type="text" id="name" class="form-control" name="name" value="{{ $category['name'] }}" required>
               </div>              
             </div>            
           </div>
@@ -26,7 +26,7 @@
             <div class="col-xs-4">
               <div class="form-group">
                 <label for="address">Description</label>
-                <input type="text" id="description" class="form-control" name="description" placeholder="{{ $category['description'] }}">
+                <input type="text" id="description" class="form-control" name="description" value="{{ $category['description'] }}">
               </div>              
             </div>            
           </div>
@@ -41,7 +41,8 @@
                   <img height="50px" width="50px" src="{{ URL::to('/') }}/media/{{ $category['imagepath'] }}" alt="No Images">
                 @endif
                 <br><br>
-                <label for="card-name">If Want To Change Current Image Category</label>
+                <label><input type="checkbox" id="cbox1" name="cbox1" value="1"></label>
+                <label for="card-name">Check If Want To Change Current Image Category</label>
                 <input type="file" id="imagepath" name="imagepath" accept="image/*">
               </div>              
             </div>            

@@ -1,3 +1,7 @@
+@yield('sidebar') 
+
+
+{{--      
 <!-- BEGIN SIDEBAR -->
 
           <div class="left-sidebar">
@@ -134,3 +138,5 @@
         </div>
 
         <!-- END sidebar -->    
+
+--}}    
