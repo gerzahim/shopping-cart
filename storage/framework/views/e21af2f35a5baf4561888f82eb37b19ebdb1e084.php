@@ -31,7 +31,7 @@
         <div class="row">
           <div class="col-sm-6">
             <div class="logo pull-left">
-              <a href="<?php echo e(url('/home')); ?>"><img width="150px" height="120px" src="images/Logoherbnkulture.png" alt="" /></a>
+              <a href="<?php echo e(url('/')); ?>"><img width="150px" height="120px" src="images/Logoherbnkulture.png" alt="" /></a>
             </div>
             <div class="lema pull-right">
               <a href="<?php echo e(url('/')); ?>"><img width="380px" height="100px" src="images/Lema1.jpg" alt="" /></a>
