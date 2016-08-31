@@ -173,7 +173,17 @@ class ProductController extends Controller
     public function getContact(){
 
         return view('shop.contact');        
-    }    
+    }   
+
+    public function postContact(Request $request){
+
+        $this->validate($request, [
+            'email' => 'required|email',
+            'subject' => 'min:10',
+            'message' => 'min:10']);
+
+        return view('shop.contact');        
+    } 
 
     public function getAddByOne($id)
     {
