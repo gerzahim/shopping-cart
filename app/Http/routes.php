@@ -37,13 +37,17 @@ Route::get('/shop', [
 
 Route::get('/home', 'HomeController@index');
 
+Route::get('/contact', 'ProductController@getContact');
 
 Route::get('/add-to-cart/{id}', [
 	'uses' => 'ProductController@getAddToCart',
 	'as' => 'product.addToCart'
 ]);
 
-
+Route::get('/see-details/{id}', [
+	'uses' => 'ProductController@getDetails',
+	'as' => 'product.seeDetails'
+]);
 
 Route::get('/shopping-cart', [
 	'uses' => 'ProductController@getCart',

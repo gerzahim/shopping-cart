@@ -743,3 +743,20 @@ create routes
 php artisan db:seed --class=UsersTableSeeder
 
 php artisan migrate:refresh --seed
+
+
+shop.index
+shop.home
+
+<div class="choose">
+    <ul class="nav nav-pills nav-justified">
+        <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
+        <li><a href="{{ route('product.seeDetails', ['id' => $product->id]) }}"><i class="fa fa-eye"></i>See Details</a></li>
+    </ul>
+</div>
+
+No subir 
+
+layouts.index
+shop.index
+shop.home

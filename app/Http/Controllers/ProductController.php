@@ -35,6 +35,7 @@ class ProductController extends Controller
         $tree1 =$this->getBrands($url);    
 
         $products = Product::all();
+
         
         return view('shop.index', compact('products', 'categories', 'tree', 'tree1'));
     }
@@ -56,7 +57,8 @@ class ProductController extends Controller
 
 
         // Get info for Content Section Shop
-        $products = Product::all();
+        //$products = Product::all();
+        $products = Product::paginate(6);
 
      
 
@@ -150,6 +152,22 @@ class ProductController extends Controller
         return redirect()->route('product.shop');
         
     }
+
+    public function getDetails(Request $request, $id)
+    {
+
+        $categories = Categories::all();   
+        $brands = Brand::all();   
+
+        $product = Product::find($id);
+
+        return view('shop.product_details', compact('product', 'categories', 'brands'));        
+    }
+
+    public function getContact(){
+
+        return view('shop.contact');        
+    }    
 
     public function getAddByOne($id)
     {
@@ -252,7 +270,20 @@ class ProductController extends Controller
             Auth::user()->orders()->save($order);
 
             // Delete Product From Stock 
-            // # code
+            //dd($cart);
+            /*
+            foreach ($cart as $items) {
+                foreach ($items as $item) {
+                    $qty=$item['qty'];
+                    $sku=$item['item']->sku;
+                    
+                    $products = Product::where('sku', $sku);
+                    dd($product->quantity);
+                    $product['quantity'] = ($product['quantity'] - $qty);
+                    $product->save();
+                }
+            }
+            */
 
 
         } catch(\Exception $e){
