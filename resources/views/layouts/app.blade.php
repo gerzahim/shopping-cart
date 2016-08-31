@@ -40,7 +40,10 @@
 
                 <!-- Branding Image -->
                 <a class="" href="{{ url('/') }}">
-                    <img width="100px" height="75px" src="images/Logoherbnkulture.png" alt="" />
+                        {{-- 
+                        <img height="50px" width="60px" src="{{ URL::to('images/Logoherbnkulture.png') }}" />
+                        --}}
+                        <img height="80px" width="90px" src="{{ URL::to('images/CrownTrading.png') }}" />
                 </a>
             </div>
 

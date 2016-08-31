@@ -33,7 +33,10 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="#">
+                        {{-- 
                         <img height="50px" width="60px" src="{{ URL::to('images/Logoherbnkulture.png') }}" />
+                        --}}
+                        <img height="80px" width="90px" src="{{ URL::to('images/CrownTrading.png') }}" />
                     </a>
                 </div>
               

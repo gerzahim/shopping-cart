@@ -754,10 +754,18 @@ cambios estrategicos
 public/css/main.css a main1.css
 public/view/layouts/header.blade.php
 public/view/layouts/footer.blade.php 
+public/view/layouts/app.blade.php 
 public/view/shop/contact.blade.php
+public/view/admin/index.blade.php
+<img height="50px" width="60px" src="{{ URL::to('images/Logoherbnkulture.png') }}" />
 
 
-
+MAIL_DRIVER=smtp
+MAIL_HOST=  mailtrap.io
+MAIL_PORT=25
+MAIL_USERNAME=7e55bd37a03ba5
+MAIL_PASSWORD=183cfcaf7436d8
+MAIL_ENCRYPTION=null
 
 
 

@@ -38,6 +38,7 @@ Route::get('/shop', [
 Route::get('/home', 'HomeController@index');
 
 Route::get('/contact', 'ProductController@getContact');
+Route::post('/contact', 'ProductController@getContact');
 
 Route::get('/add-to-cart/{id}', [
 	'uses' => 'ProductController@getAddToCart',

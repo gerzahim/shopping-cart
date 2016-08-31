@@ -40,7 +40,10 @@
 
                 <!-- Branding Image -->
                 <a class="" href="<?php echo e(url('/')); ?>">
-                    <img width="100px" height="75px" src="images/Logoherbnkulture.png" alt="" />
+                        <?php /* 
+                        <img height="50px" width="60px" src="<?php echo e(URL::to('images/Logoherbnkulture.png')); ?>" />
+                        */ ?>
+                        <img height="80px" width="90px" src="<?php echo e(URL::to('images/CrownTrading.png')); ?>" />
                 </a>
             </div>
 
