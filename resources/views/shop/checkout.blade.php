@@ -74,6 +74,8 @@
 
 <hr>
 
+  @if(Session::has('cart'))
+  
   <section id="cart_items">
     <div class="container">
 
@@ -90,90 +92,39 @@
             </tr>
           </thead>
           <tbody>
-          {{--
-          <!-- 
+            @foreach($products as $product)
             <tr>
               <td class="cart_product">
-                <a href=""><img height="110px" width="110px" src="media/media/{{ $product->imagepath}}" alt=""></a>
+                <a href=""><img height="110px" width="110px" src="media/{{ $product['item']['imagepath']}}" alt=""></a>
               </td>
               <td class="cart_description">
-                <h4><a href="">{{ $product->title}}</a></h4>
-                <p>Sku: {{ $product->sku}}</p>
+                <h4><a href="">{{ $product['item']['title'] }}</a></h4>
+                <p>Sku: {{ $product['item']['sku'] }}</p>
               </td>
               <td class="cart_price">
-                <p>${{ $product->price}}</p>
+                <p>${{ $product['item']['price'] }}</p>
               </td>
               <td class="cart_quantity">
                 <div class="cart_quantity_button">
-                  <a class="cart_quantity_up" href=""> + </a>
-                  <input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-                  <a class="cart_quantity_down" href=""> - </a>
+                  <a class="cart_quantity_down" href="{{ route('product.reduceByOne', ['id' => $product['item']['id']]) }}"> - </a>
+                  <input class="cart_quantity_input" type="text" name="quantity" value="{{ $product['qty'] }}" autocomplete="off" size="2">
+                  <a class="cart_quantity_up" href="{{ route('product.addByOne', ['id' => $product['item']['id']]) }}"> + </a>
                 </div>
               </td>
               <td class="cart_total">
-                <p class="cart_total_price">$59</p>
+                <p class="cart_total_price">${{ $product['item']['price']*$product['qty'] }}</p>
               </td>
               <td class="cart_delete">
-                <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+                <a class="cart_quantity_delete" href="{{ route('product.removeItem', ['id' => $product['item']['id']]) }}"><i class="fa fa-times"></i></a>
               </td>
             </tr>
-          -->
-          --}}
+            @endforeach
 
-            <tr>
-              <td class="cart_product">
-                <a href=""><img height="110px" width="110px" src="images/cart/two.png" alt=""></a>
-              </td>
-              <td class="cart_description">
-                <h4><a href="">Colorblock Scuba</a></h4>
-                <p>Sku: 1089772</p>
-              </td>
-              <td class="cart_price">
-                <p>$59</p>
-              </td>
-              <td class="cart_quantity">
-                <div class="cart_quantity_button">
-                  <a class="cart_quantity_up" href=""> + </a>
-                  <input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-                  <a class="cart_quantity_down" href=""> - </a>
-                </div>
-              </td>
-              <td class="cart_total">
-                <p class="cart_total_price">$59</p>
-              </td>
-              <td class="cart_delete">
-                <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-              </td>
-            </tr>
-            <tr>
-              <td class="cart_product">
-                <a href=""><img src="images/cart/three.png" alt=""></a>
-              </td>
-              <td class="cart_description">
-                <h4><a href="">Colorblock Scuba</a></h4>
-                <p>Web ID: 1089772</p>
-              </td>
-              <td class="cart_price">
-                <p>$59</p>
-              </td>
-              <td class="cart_quantity">
-                <div class="cart_quantity_button">
-                  <a class="cart_quantity_up" href=""> + </a>
-                  <input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-                  <a class="cart_quantity_down" href=""> - </a>
-                </div>
-              </td>
-              <td class="cart_total">
-                <p class="cart_total_price">$59</p>
-              </td>
-              <td class="cart_delete">
-                <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-              </td>
-            </tr>
+ 
+
           </tbody>
         </table>
       </div>
-
 
 
 
@@ -183,84 +134,35 @@
 
   <section id="do_action" >
 
-    <div class="container">
-
-
-      <div class="row" >
-
-
-      <!-- 
-        <div class="col-sm-6">
-          <div class="chose_area">
-            <ul class="user_option">
-              <li>
-                <input type="checkbox">
-                <label>Use Coupon Code</label>
-              </li>
-              <li>
-                <input type="checkbox">
-                <label>Use Gift Voucher</label>
-              </li>
-              <li>
-                <input type="checkbox">
-                <label>Estimate Shipping & Taxes</label>
-              </li>
-            </ul>
-            <ul class="user_info">
-              <li class="single_field">
-                <label>Country:</label>
-                <select>
-                  <option>United States</option>
-                  <option>Bangladesh</option>
-                  <option>UK</option>
-                  <option>India</option>
-                  <option>Pakistan</option>
-                  <option>Ucrane</option>
-                  <option>Canada</option>
-                  <option>Dubai</option>
-                </select>
-                
-              </li>
-              <li class="single_field">
-                <label>Region / State:</label>
-                <select>
-                  <option>Select</option>
-                  <option>Dhaka</option>
-                  <option>London</option>
-                  <option>Dillih</option>
-                  <option>Lahore</option>
-                  <option>Alaska</option>
-                  <option>Canada</option>
-                  <option>Dubai</option>
-                </select>
-              
-              </li>
-              <li class="single_field zip-field">
-                <label>Zip Code:</label>
-                <input type="text">
-              </li>
-            </ul>
-            <a class="btn btn-default update" href="">Get Quotes</a>
-            <a class="btn btn-default check_out" href="">Continue</a>
-          </div>
-        </div>
-        -->
-        <div class="col-sm-6">
+        <div class="container">
+          <div class="row" >
+          <div class="col-sm-6">
         </div>
 
         <div class="col-sm-6">
           <div class="total_area">
             <ul>
-              <li>Cart Sub Total <span>$59</span></li>
-              <li>Eco Tax <span>$2</span></li>
+              <li>Cart Sub Total <span>${{ $totalPrice }}</span></li>
               <li>Shipping Cost <span>Free</span></li>
-              <li>Total <span>$61</span></li>
+              <li>Total <span>${{ $totalPrice }}</span></li>
             </ul>
-              <a class="btn btn-default update" href="">Update</a>
-              <a class="btn btn-default check_out" href="">Check Out</a>
+              <a class="btn btn-default check_out" href="{{ route('checkout') }}">Check Out</a>
           </div>
         </div>
       </div>
+
+
+    </div>
+  </section><!--/#do_action--> 
+
+
+  @else
+    <div class="row">
+      <div class="col-sm6 col-md6 col-md-offset-3 col-sm-offset3">
+        <strong>No Items in Cart</strong>        
+      </div>
+    </div>  
+  @endif
 
 
     </div>

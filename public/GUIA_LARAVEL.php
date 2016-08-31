@@ -744,19 +744,20 @@ php artisan db:seed --class=UsersTableSeeder
 
 php artisan migrate:refresh --seed
 
+layouts.index 
 
-shop.index
-shop.home
+shop.index /shop
+shop.home  /principal  or /
 
-<div class="choose">
-    <ul class="nav nav-pills nav-justified">
-        <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-        <li><a href="{{ route('product.seeDetails', ['id' => $product->id]) }}"><i class="fa fa-eye"></i>See Details</a></li>
-    </ul>
-</div>
 
-No subir 
+cambios estrategicos 
+public/css/main.css a main1.css
+public/view/layouts/header.blade.php
+public/view/layouts/footer.blade.php 
+public/view/shop/contact.blade.php
 
-layouts.index
-shop.index
-shop.home
+
+
+
+
+

@@ -6,26 +6,25 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Shop | E-Shopper</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/prettyPhoto.css" rel="stylesheet">
-    <link href="css/price-range.css" rel="stylesheet">
-    <link href="css/animate.css" rel="stylesheet">
-  <link href="css/main.css" rel="stylesheet">
-  <link href="css/responsive.css" rel="stylesheet">
+    <link href="{{ URL::to('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ URL::to('css/font-awesome.min.css') }}" rel="stylesheet">
+    <link href="{{ URL::to('css/prettyPhoto.css') }}" rel="stylesheet">
+    <link href="{{ URL::to('css/price-range.css') }}" rel="stylesheet">
+    <link href="{{ URL::to('css/animate.css') }}" rel="stylesheet">
+  <link href="{{ URL::to('css/main1.css') }}" rel="stylesheet">
+  <link href="{{ URL::to('css/responsive.css') }}" rel="stylesheet">
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
     <![endif]-->       
-    <link rel="shortcut icon" href="images/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" href="images/favicon.ico">
+    <link rel="shortcut icon" href="{{ URL::to('images/favicon.ico') }}">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ URL::to('images/favicon.ico') }}">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ URL::to('images/favicon.ico') }}">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ URL::to('images/favicon.ico') }}">
+    <link rel="apple-touch-icon-precomposed" href="{{ URL::to('images/favicon.ico') }}">
 </head><!--/head-->
 
 <body>
-
 
 <!-- BEGIN HEADER -->
   <header id="header"><!--header-->
@@ -66,12 +65,12 @@
  @include('layouts.footer')
 <!-- END FOOTER -->
    
-  <script src="js/jquery.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/jquery.scrollUp.min.js"></script>
-  <script src="js/price-range.js"></script>
-  <script src="js/jquery.prettyPhoto.js"></script>
-  <script src="js/main.js"></script>
+  <script src="{{ URL::to('js/jquery.js') }}"></script>
+  <script src="{{ URL::to('js/bootstrap.min.js') }}"></script>
+  <script src="{{ URL::to('js/jquery.scrollUp.min.js') }}"></script>
+  <script src="{{ URL::to('js/price-range.js') }}"></script>
+  <script src="{{ URL::to('js/jquery.prettyPhoto.js') }}"></script>
+  <script src="{{ URL::to('js/main.js') }}"></script>
 
 
 </body>

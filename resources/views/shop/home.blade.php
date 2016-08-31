@@ -41,10 +41,10 @@
                     --}}                    
                 </div>
                 <div class="choose">
-                  <ul class="nav nav-pills nav-justified">
-                    <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-                    <li><a href="#"><i class="fa fa-eye"></i>See Details</a></li>
-                  </ul>
+                    <ul class="nav nav-pills nav-justified">
+                        <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
+                        <li><a href="{{ route('product.seeDetails', ['id' => $product->id]) }}"><i class="fa fa-eye"></i>See Details</a></li>
+                    </ul>
                 </div>
               </div>
             </div>      

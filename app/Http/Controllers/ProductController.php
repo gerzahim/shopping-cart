@@ -156,12 +156,18 @@ class ProductController extends Controller
     public function getDetails(Request $request, $id)
     {
 
+        $url = $request->url();
+
         $categories = Categories::all();   
         $brands = Brand::all();   
 
         $product = Product::find($id);
 
-        return view('shop.product_details', compact('product', 'categories', 'brands'));        
+        //Get Categories for SideBar        
+        $tree =$this->ParentView($url);
+        $tree1 =$this->getBrands($url);         
+
+        return view('shop.product_details', compact('product', 'categories', 'brands', 'tree', 'tree1'));        
     }
 
     public function getContact(){
@@ -237,7 +243,7 @@ class ProductController extends Controller
 
         $total = $cart->totalPrice;
 
-        return view('shop.checkout', ['total' => $total]);
+        return view('shop.checkout', ['total' => $total, 'products' => $cart->items, 'totalPrice' => $cart->totalPrice, 'totalQty' => $cart->totalQty]);
     }
 
 
@@ -271,19 +277,26 @@ class ProductController extends Controller
 
             // Delete Product From Stock 
             //dd($cart);
-            /*
+
+            $cart = is_array($cart) ? $cart : array($cart);
+
+            
+            //dd($cart);
             foreach ($cart as $items) {
-                foreach ($items as $item) {
-                    $qty=$item['qty'];
-                    $sku=$item['item']->sku;
+                //dd($items->totalQty);
+                //dd($items->items);
+                foreach ($items->items as $item) {
+                    //dd($item['item']['id']);
+                    //dd($item['qty']);                    
                     
-                    $products = Product::where('sku', $sku);
-                    dd($product->quantity);
-                    $product['quantity'] = ($product['quantity'] - $qty);
+                    $product = Product::find($item['item']['id']);
+                    //dd($product->quantity);
+                    
+                    $product->quantity = $product->quantity - $item['qty'];
+                   
                     $product->save();
                 }
             }
-            */
 
 
         } catch(\Exception $e){
@@ -294,7 +307,7 @@ class ProductController extends Controller
         //delete cart session
         Session::forget('cart');
         
-        return redirect()->route('product.index')->with('success', 'Successfully Purchased Products!');
+        return redirect()->route('product.shop')->with('success', 'Successfully Purchased Products!');
     }    
 
 

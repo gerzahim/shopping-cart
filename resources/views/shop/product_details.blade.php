@@ -15,17 +15,17 @@
   <div class="col-sm-9 padding-right">  
           <div class="product-details"><!--product-details-->
             <div class="col-sm-5">
-              <div class="view-product">
-                <img src="media/{{ $product->imagepath}}"" alt="" />
-                <h3>ZOOM</h3>
+              <div class="view-product">                      
+                <img height="" width="" src="{{ URL::to('media/') }}/{{ $product->imagepath}}" alt="">
+                <!--h3>ZOOM</h3-->
               </div>
             </div>
             <div class="col-sm-7">
               <div class="product-information"><!--/product-information-->
-                <img src="images/new.jpg" class="newarrival" alt="" />
+                <img src="{{ URL::to('images/new.jpg') }}" class="newarrival" alt="" />
                 <h2>{{ $product->title}}</h2>
                 <p>Web ID: 1089772</p>
-                <img src="images/product-details/rating.png" alt="" />
+                <img src="{{ URL::to('images/rating.png') }}" alt="" />
                 <span>
                   <span>${{ $product->price}}</span>
                   <a href="{{ route('product.addToCart', ['id' => $product->id]) }}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
@@ -33,7 +33,7 @@
                 <p><b>Availability:</b> In Stock</p>
                 <p><b>Condition:</b> New</p>
                 <p><b>Brand:</b> ${{ $product->price}}</p>
-                <a href=""><img src="images/share.png" class="share img-responsive"  alt="" /></a>
+                <a href=""><img src="{{ URL::to('images/share.png') }}" class="share img-responsive"  alt="" /></a>
               </div><!--/product-information-->
             </div>
           </div><!--/product-details-->

@@ -132,7 +132,8 @@
             <div class="shipping text-center"><!--shipping-->
               <img height="329px" width="270px" src="media/poster.jpg" alt="" />
             </div><!--/shipping-->
-            <!--/Banner Poster-->
+            <!--/Banner 
+            -->
 
           </div>
         </div>

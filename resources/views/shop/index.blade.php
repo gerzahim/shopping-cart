@@ -25,6 +25,7 @@
                       <p>{{ $product->title}}</p>
                       <a href="{{ route('product.addToCart', ['id' => $product->id]) }}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                     </div>
+                    {{-- 
                     <div class="product-overlay">
                       <div class="overlay-content">
                         <h2>${{ $product->price}}</h2>
@@ -32,12 +33,13 @@
                         <a href="{{ route('product.addToCart', ['id' => $product->id]) }}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                       </div>
                     </div>
+                    --}}
                 </div>
                 <div class="choose">
-                  <ul class="nav nav-pills nav-justified">
-                    <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-                    <li><a href="#"><i class="fa fa-eye"></i>See Details</a></li>
-                  </ul>
+                    <ul class="nav nav-pills nav-justified">
+                        <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
+                        <li><a href="{{ route('product.seeDetails', ['id' => $product->id]) }}"><i class="fa fa-eye"></i>See Details</a></li>
+                    </ul>
                 </div>
               </div>
             </div>      

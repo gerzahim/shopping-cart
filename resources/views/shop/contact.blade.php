@@ -38,13 +38,19 @@
             <div class="contact-info">
               <h2 class="title text-center">Contact Info</h2>
               <address>
-                <p>E-Shopper Inc.</p>
-              <p>935 W. Webster Ave New Streets Chicago, IL 60614, NY</p>
-              <p>Newyork USA</p>
-              <p>Mobile: +2346 17 38 93</p>
-              <p>Fax: 1-714-252-0026</p>
-              <p>Email: info@e-shopper.com</p>
+                <p>Crown Trading Inc.</p>
+                <p>2503 NW 72 Ave. Doral, FL 33166 USA</p>
+                <p>Phone: +1 954-790-2620</p>
+                <p>Email: hmitha@gmail.com</p>
               </address>
+              {{-- 
+              <address>
+                <p>Hookah Express.</p>
+                <p>8065 NW 54th St. Doral, FL 33166 USA</p>
+                <p>Phone: +1 786-464-1348</p>
+                <p>Email: thehookahexpress@gmail.com</p>
+              </address>
+              --}}
               <div class="social-networks">
                 <h2 class="title text-center">Social Networking</h2>
               <ul>
