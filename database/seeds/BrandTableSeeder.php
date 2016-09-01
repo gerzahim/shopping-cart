@@ -13,7 +13,7 @@ class BrandTableSeeder extends Seeder
     {
         $product = new \ShopCart\Brand([
         	'id'=> '1',
-        	'name'=> 'No Brand',
+        	'name'=> 'Generic',
         ]);
         $product->save();
     }

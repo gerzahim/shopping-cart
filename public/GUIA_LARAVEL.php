@@ -775,3 +775,20 @@ MAIL_USERNAME=herbnkulture@gmail.com
 MAIL_PASSWORD=george1964
 MAIL_ENCRYPTION=tls
 
+.htaccess
+
+<IfModule mod_rewrite.c>
+<IfModule mod_negotiation.c>
+Options -MultiViews
+</IfModule>
+
+RewriteEngine On
+
+# Redirect Trailing Slashes...
+RewriteRule ^(.*)/$ /$1 [L,R=301]
+
+# Handle Front Controller...
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ /index.php [L]
+</IfModule>

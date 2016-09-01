@@ -42,11 +42,11 @@
                 </div>
                 --}}              
                 <div class="logo pull-left">
-                  <a href="index.html"><img width="150px" height="150px" src="{{ URL::to('images/CrownTrading.png') }}" alt="" /></a>
+                  <a href="{{ url('/') }}"><img width="150px" height="150px" src="{{ URL::to('images/CrownTrading.png') }}" alt="" /></a>
                 </div>
 
                 <div class="lema pull-right">
-                  <a href="index.html"><img width="400px" height="120px" src="{{ URL::to('images/Lema.jpg') }}" alt="" /></a>
+                  <a href="{{ url('/') }}"><img width="400px" height="120px" src="{{ URL::to('images/Lema.jpg') }}" alt="" /></a>
                 </div>  
           </div>            
 <!--            

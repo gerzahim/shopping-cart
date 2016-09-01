@@ -15,12 +15,21 @@ Route::get('prueba', function(){
 	return view('welcome');
 });
 
+Route::get('/', function(){
+	return redirect('principal');
+});
 
 
-
+/*
 Route::get('/', [
 	'uses' => 'ProductController@getHome',
 	'as' => 'principal'
+]);
+
+*/
+Route::get('/public_html', [
+	'uses' => 'ProductController@getHome',
+	'as' => 'principal3'
 ]);
 
 Route::get('/principal', [

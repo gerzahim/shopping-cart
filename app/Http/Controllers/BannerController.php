@@ -152,8 +152,8 @@ class BannerController extends Controller
                 //$request->file('photo')->move($destinationPath, $fileName); 
                 $request->file('imagepath_price')->move('media/', $fileName);
             }else{
-                //$input['imagepath_price'] = Null;   
-                $input['imagepath_price'] = $banner->imagepath_price;     
+                $input['imagepath_price'] = Null;   
+                //$input['imagepath_price'] = $banner->imagepath_price;     
             }             
 
         }else{
