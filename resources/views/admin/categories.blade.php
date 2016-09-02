@@ -1,8 +1,14 @@
 ﻿@extends('admin.index')
 
 @section('content')
+
 <div id="page-wrapper" >
             <div id="page-inner">
+                  @if(Session::has('message'))
+                      <div class="alert alert-success">
+                          {{ Session::get('message') }}
+                      </div>
+                  @endif             
                 <div class="row">
                     <div class="col-md-12">
                      <h2>List Categories </h2>   

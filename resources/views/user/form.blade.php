@@ -36,6 +36,10 @@
 										<label for="name">Name</label>
 										<input type="text" id="name" class="form-control" name="name" placeholder="{{ $user['name'] }}">
 									</div>   															
+									<div class="form-group">
+										<label for="name">Password</label>
+										<input type="password" id="password" class="form-control" name="password" placeholder="Leave Password blank if don't want to change">
+									</div>   																				
 									<div class="bill-to">
 										<p>Bill To</p>
 									</div>

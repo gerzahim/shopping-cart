@@ -750,7 +750,7 @@ shop.index /shop
 shop.home  /principal  or /
 
 
-cambios estrategicos 
+cambios estrategicos / customize
 public/css/main.css a main1.css
 public/view/layouts/header.blade.php
 public/view/layouts/footer.blade.php 
@@ -792,3 +792,26 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^ /index.php [L]
 </IfModule>
+
+
+
+dimension images 
+
+images products/ shop and home 
+original height 268 , width 249 
+shopcart height 249 , width 249 
+
+images banner/ home 
+original height 441 , width 484 
+shopcart height 280 , width 280
+
+categories items products / home
+original height 208 , width 183 
+shopcart height 183 , width 183
+
+features items products / home
+original height 134 , width 268 
+shopcart height 134 , width 134
+
+Poster height 329, width 270
+ 

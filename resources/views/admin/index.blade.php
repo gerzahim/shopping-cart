@@ -58,10 +58,20 @@
                     <li>
                         <a href="{{ url('/categories') }}"><i class="fa fa-qrcode"></i>Categories</a>
                     </li>
+                    
+                    <li>
+                        <a href="{{ url('/banners') }}"><i class="fa fa-film"></i>Banner</a>
+                    </li>                    
                     {{-- <!-- 
+
+                    // 
                     <li class="active-link">
                         <a href="blank.html"><i class="fa fa-edit "></i>Blank Page  <span class="badge">Included</span></a>
                     </li>
+                             <a href="{{ url('/banners') }}" >
+                                <i class="fa fa-film fa-5x"></i>
+                                <h4>Banner Home</h4>
+                              </a>                    
                     --> --}}  
                      <li>
                             <a href="{{ url('/brands') }}"><i class="fa fa-rocket"></i>Brands</a>

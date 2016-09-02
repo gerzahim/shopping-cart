@@ -22,7 +22,7 @@
                     <button type="button" class="btn btn-default get">{{ $banner->button }}</button>
                   </div>
                   <div class="col-sm-6">
-                    <img src="media/{{ $banner->imagepath }}" class="girl img-responsive" alt="" />
+                    <img height="280px" width="280px"  src="media/{{ $banner->imagepath }}" class="girl img-responsive" alt="" />
                     @if (!$banner->imagepath_price == '')
                       <img src="media/{{ $banner->imagepath_price }}"  class="pricing" alt="" />
                     @endif  

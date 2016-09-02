@@ -18,7 +18,7 @@
           <div class="row">
             <div class="col-xs-4">
               <div class="form-group">
-                <label for="name"></label>
+                <label for="name">Text Red</label>
                 <input type="text" id="name" class="form-control" name="text_red" value="{{ $banner['text_red'] }}" >
               </div>              
             </div>            

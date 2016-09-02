@@ -40,17 +40,55 @@ class UserController extends Controller
     public function updateAccount(Request $request, $id){
 
         $user = User::find($id);
-        //dd($user); 
-        $input = $request->all();
-        $user->fill($input)->save();
 
+        $array = $request->all();
 
+        //dd($array);
+
+        while ( ($fruit_name = current($array)) !== FALSE ) {
+            //echo key($array).'<br />';
+            $keya = key($array);
+            // If Field Password
+            if ($keya == 'password') {
+                if ($fruit_name == '') {
+                    // if field coming empty asign the same value from DB
+                    $array[$keya] = $user->$keya;
+                }else{
+                    $array[$keya] = bcrypt($array[$keya]);        
+                }
+            }else{
+            // Another No Password
+                if ($fruit_name == '') {
+                    // if field coming empty asign the same value from DB
+                    $array[$keya] = $user->$keya;
+                }                                
+            }
+
+                
+               next($array);
+        }
+
+        $user->fill($array)->save();
 
         Session::flash('message', 'User successfully updated!');
         return redirect()->back();
 
     }
 
+
+    public function ignoreIfBlank($input, $user){
+        if ($input == '') {
+            // if field coming empty asign the same value from DB
+            $input = $user->name;
+        }
+
+        return $input;
+    }
+
+    public function nullIfBlank($field)
+    {
+        return trim($field) !== '' ? $field : null;
+    }    
 
     public function getOrders(){
 

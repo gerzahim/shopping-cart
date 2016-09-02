@@ -33,13 +33,14 @@
       <div class="container">
         <div class="row">
           <div class="col-sm-6">
-                {{-- 
+                {{-- <!--
                 <div class="logo pull-left">
                   <a href="{{ url('/') }}"><img width="150px" height="120px" src="{{ URL::to('images/Logoherbnkulture.png') }}" alt="" /></a>
                 </div>
                 <div class="lema pull-right">
                   <a href="{{ url('/') }}"><img width="380px" height="100px" src="{{ URL::to('images/Lema1.jpg') }}" alt="" /></a>
                 </div>
+                -->
                 --}}              
                 <div class="logo pull-left">
                   <a href="{{ url('/') }}"><img width="150px" height="150px" src="{{ URL::to('images/CrownTrading.png') }}" alt="" /></a>

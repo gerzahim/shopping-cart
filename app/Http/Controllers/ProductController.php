@@ -34,7 +34,9 @@ class ProductController extends Controller
         $tree =$this->ParentView($url);
         $tree1 =$this->getBrands($url);    
 
-        $products = Product::all();
+        //$products = Product::all();
+
+        $products = Product::paginate(6);
 
         
         return view('shop.index', compact('products', 'categories', 'tree', 'tree1'));
@@ -59,8 +61,6 @@ class ProductController extends Controller
         // Get info for Content Section Shop
         //$products = Product::all();
         $products = Product::paginate(6);
-
-     
 
         return view('shop.home', compact('products', 'categories', 'banners', 'tree', 'tree1'));
         //return view('shop.home', ['products' => $products], ['banners' => $banners]);

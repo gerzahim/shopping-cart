@@ -55,7 +55,7 @@
             </div>
             <div class="address">
               <img src="{{ URL::to('images/map.png') }}" alt="" />
-              <p>2503 NW 72 Ave. Doral, FL 33166 USA</p>
+              <p>3062 NW 72 Ave. Doral, FL 33166 USA</p>
             </div>
             {{-- 
             <div class="companyinfo">

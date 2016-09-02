@@ -24,7 +24,7 @@
                 <div class="single-products">
                     
                     <div class="productinfo text-center">
-                      <img src="media/{{ $product->imagepath}}" alt="" />
+                      <img height="249px" width="249px" src="media/{{ $product->imagepath}}" alt="" />
                       <h2>${{ $product->price}}</h2>
                       <p>{{ $product->title}}</p>
                       <a href="{{ route('product.addToCart', ['id' => $product->id]) }}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
@@ -50,8 +50,10 @@
             </div>      
 
         @endforeach
+        {{ $products->links() }}
     </div>
-
+    
+{{-- 
 <div class="category-tab"><!--category-tab-->
   <div class="col-sm-12">
     <ul class="nav nav-tabs">
@@ -339,6 +341,8 @@
     </div>
   </div>
 </div><!--/category-tab-->    
+
+--}}
   </div>
 
 @endsection
