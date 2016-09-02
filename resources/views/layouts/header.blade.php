@@ -6,11 +6,16 @@
           <div class="col-sm-6">
             <div class="contactinfo">
               <ul class="nav nav-pills">
-                {{-- 
+                {{--
+                <!-- 
                 <li><a href="#"><i class="fa fa-phone"></i> +1 786-464-1348</a></li>
-                <li><a href="#"><i class="fa fa-envelope"></i> thehookahexpress@gmail.com</a></li> --}}
+                <li><a href="#"><i class="fa fa-envelope"></i> thehookahexpress@gmail.com</a></li> 
                 <li><a href="#"><i class="fa fa-phone"></i> +1 954-790-2620</a></li>
-                <li><a href="#"><i class="fa fa-envelope"></i> hmitha@gmail.com </a></li>                
+                <li><a href="#"><i class="fa fa-envelope"></i> hmitha@gmail.com </a></li>
+                -->
+                --}}                
+                <li><a href="#"><i class="fa fa-phone"></i> +1 786-464-1348</a></li>
+                <li><a href="#"><i class="fa fa-envelope"></i> thehookahexpress@gmail.com</a></li>                 
               </ul>
             </div>
           </div>
@@ -40,15 +45,23 @@
                 <div class="lema pull-right">
                   <a href="{{ url('/') }}"><img width="380px" height="100px" src="{{ URL::to('images/Lema1.jpg') }}" alt="" /></a>
                 </div>
-                -->
-                --}}              
+
                 <div class="logo pull-left">
                   <a href="{{ url('/') }}"><img width="150px" height="150px" src="{{ URL::to('images/CrownTrading.png') }}" alt="" /></a>
                 </div>
 
                 <div class="lema pull-right">
                   <a href="{{ url('/') }}"><img width="400px" height="120px" src="{{ URL::to('images/Lema.jpg') }}" alt="" /></a>
-                </div>  
+                </div>                  
+                -->
+                --}}  
+                <div class="logo pull-left">
+                  <a href="{{ url('/') }}"><img width="150px" height="120px" src="{{ URL::to('images/Logoherbnkulture.png') }}" alt="" /></a>
+                </div>
+                <div class="lema pull-right">
+                  <a href="{{ url('/') }}"><img width="380px" height="100px" src="{{ URL::to('images/Lema1.jpg') }}" alt="" /></a>
+                </div>                            
+
           </div>            
 <!--            
             <div class="btn-group pull-right">

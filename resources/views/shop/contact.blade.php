@@ -4,6 +4,12 @@
 
    <div id="contact-page" class="container">
       <div class="bg">
+        @if(Session::has('message'))
+            <div class="alert alert-success">
+                {{ Session::get('message') }}
+            </div>
+        @endif  
+      
         <div class="row">       
           <div class="col-sm-12">                 
           <h2 class="title text-center">Contact <strong>Us</strong></h2>
@@ -27,22 +33,19 @@
                     </div>
                     <div class="form-group col-md-12">
                         <textarea name="message" id="message" required="required" class="form-control" rows="8" placeholder="Your Message Here"></textarea>
-                    </div>                        
-                    <div class="form-group col-md-12">
-                        <input type="submit" name="submit" class="btn btn-primary pull-right" value="Submit">
                     </div>
+                    {{ csrf_field() }}                        
+                    <div class="form-group col-md-12">
+                        <input type="submit" name="submit" class="btn btn-primary pull-right" value="Send">
+                    </div>
+
                 </form>
             </div>
           </div>
           <div class="col-sm-4">
             <div class="contact-info">
               <h2 class="title text-center">Contact Info</h2>
-              <address>
-                <p>Crown Trading Inc.</p>
-                <p>2503 NW 72 Ave. Doral, FL 33166 USA</p>
-                <p>Phone: +1 954-790-2620</p>
-                <p>Email: hmitha@gmail.com</p>
-              </address>
+
               {{-- 
               <address>
                 <p>Hookah Express.</p>
@@ -50,6 +53,15 @@
                 <p>Phone: +1 786-464-1348</p>
                 <p>Email: thehookahexpress@gmail.com</p>
               </address>
+              <!--
+              <address>
+                <p>Crown Trading Inc.</p>
+                <p>2503 NW 72 Ave. Doral, FL 33166 USA</p>
+                <p>Phone: +1 954-790-2620</p>
+                <p>Email: hmitha@gmail.com</p>
+              </address>              
+
+              -->
               --}}
               <div class="social-networks">
                 <h2 class="title text-center">Social Networking</h2>

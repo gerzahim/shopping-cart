@@ -47,7 +47,7 @@
 						        	<div class="a-row">
 							            <h4 class="">Profile</h4>
 							            <i class="fa fa-user fa-3x" aria-hidden="true"></i><br>
-							            <span class="abase">Address, Name & E-mail</span>                
+							            <span class="abase">Name, Password & Address</span>                
 						            </div>
 						        </div>
 						        <div class="col-sm-6">

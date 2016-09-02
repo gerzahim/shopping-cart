@@ -20,7 +20,10 @@
 
     <!--/Banner Poster-->
     <div class="shipping text-center"><!--shipping-->
+    {{-- 
       <img height="329px" width="270px" src="{{ URL::to('media/poster.jpg') }}""  />
+    --}}
+    <img src="{{ URL::to('media/poster1.jpg') }}""  />
     </div><!--/shipping-->
     <!--/Banner Poster-->
 

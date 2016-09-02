@@ -35,7 +35,7 @@ class UserTableSeeder extends Seeder
             'name'=> 'Habib Mitha',
             'email'=> 'hmitha@gmail.com',
             'role'=> '2',
-            'password' => bcrypt('12345'),
+            'password' => bcrypt('123456'),
             'status'=> '1',
         ]);
         $product->save();

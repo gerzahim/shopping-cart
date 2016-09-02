@@ -14,6 +14,7 @@ use Session;
 use Auth;
 use Stripe\Charge;
 use Stripe\Stripe;
+use Mail;
 
 class ProductController extends Controller
 {
@@ -182,7 +183,43 @@ class ProductController extends Controller
             'subject' => 'min:10',
             'message' => 'min:10']);
 
-        return view('shop.contact');        
+        $title="New Contact Interesting";
+
+        $data = array(
+            'email' => $request->email, 
+            'subject' => $request->subject,
+            'bodyMessage' => $request->message
+            );
+
+        Mail::send('emails.contact', $data, function ($message) use ($data){
+            $message->from($data['email']);
+            $message->to('info@crowntradingmiami.com', 'Info Crown Trading Miami');
+            $message->subject($data['subject']);
+
+        });
+
+
+        Session::flash('message', 'Your message was sent successfully!');
+        return redirect('contact');
+
+        /*        
+        $user = User::findOrFail($id);
+        Mail::send('emails.contact', ['user' => $user], function ($m) use ($user){
+
+            $m->from('hello@app.com','App.com');
+            //$message->from('no-reply@scotch.io', 'Scotch.IO');
+            $m->to($user->email, $user->name)->subject('Your Reminder');
+        });
+
+        //Mail::send('view', $data, function(){ });
+        //Mail::to($request->user())->send(new OrderShipped($order));
+
+        Mail::send('emails.contact', ['title' => $title, 'message' => $message], function ($message){
+            $message->from('no-reply@scotch.io', 'Scotch.IO');
+            $message->to('batman@batcave.io');
+        });
+        */
+    
     } 
 
     public function getAddByOne($id)

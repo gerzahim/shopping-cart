@@ -744,29 +744,77 @@ php artisan db:seed --class=UsersTableSeeder
 
 php artisan migrate:refresh --seed
 
+
+//////////////////////////////////////////////////////////////////
 layouts.index 
 
 shop.index /shop
 shop.home  /principal  or /
 
+///////////////////////////////////////////////////////////////
+CUSTOMIZE
+///////////////////////////////////////////////////////////////////
 
 cambios estrategicos / customize
-public/css/main.css a main1.css
-public/view/layouts/header.blade.php
+public/view/layouts/index.php
+        css/main.css a main1.css  / keywords
+public/view/layouts/header.blade.php  
+            Info contact / logos 
 public/view/layouts/footer.blade.php 
+            addres
 public/view/layouts/app.blade.php 
+        Logo
 public/view/shop/contact.blade.php
 public/view/admin/index.blade.php
-<img height="50px" width="60px" src="{{ URL::to('images/Logoherbnkulture.png') }}" />
+    Logo
+    <img height="50px" width="60px" src="{{ URL::to('images/Logoherbnkulture.png') }}" />
 
+stripe Account
+        
+    Getting From Your Account -> Account Setting -> Api Keys
+    -Test PublishableKey
+    -Test Secret Key
+
+     setting de Api Public keyss
+     js/checkout.js
+
+     Stripe.setPublishableKey('pk_test_bgDZl3Hlj03zb9UDeQYraAHk');
+
+
+    Controllers/ProductController.php
+
+    setting de Api Secret key
+
+    public function postCheckout(Request $request){
+
+        Stripe::setApiKey('sk_test_HlLliwLgXEFhdQv4WQQamLii');
+
+    }
+
+
+. env  set email Account
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=shopcartcrowntrading
+DB_USERNAME=shopcartcro_user
+DB_PASSWORD=swa8&GlrxKLm
 
 MAIL_DRIVER=smtp
-MAIL_HOST=  mailtrap.io
+MAIL_HOST=mail.crowntradingmiami.com
 MAIL_PORT=25
-MAIL_USERNAME=7e55bd37a03ba5
-MAIL_PASSWORD=183cfcaf7436d8
+MAIL_USERNAME=info@crowntradingmiami.com
+MAIL_PASSWORD=HWC{RHbFv=!9
 MAIL_ENCRYPTION=null
 
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=shopcart
+DB_USERNAME=root    
+DB_PASSWORD=
 
 MAIL_DRIVER=smtp
 MAIL_HOST=smtp.gmail.com
@@ -774,6 +822,13 @@ MAIL_PORT=25
 MAIL_USERNAME=herbnkulture@gmail.com
 MAIL_PASSWORD=george1964
 MAIL_ENCRYPTION=tls
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
 
 .htaccess
 

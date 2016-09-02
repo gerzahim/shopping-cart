@@ -51,13 +51,21 @@
 
           <div class="col-sm-3 col-sm-offset-1">
             <div class="companyinfo">
+              <h2><span>Hookah</span>-Express</h2>              
+            </div>
+            <div class="address">
+              <img src="{{ URL::to('images/map.png') }}" alt="" />
+              <p>8065 NW 54th St. Doral, FL 33166 USA</p>
+            </div>
+            {{-- 
+            <!--
+            <div class="companyinfo">
               <h2><span>Crown</span>-Trading</h2>
             </div>
             <div class="address">
               <img src="{{ URL::to('images/map.png') }}" alt="" />
               <p>3062 NW 72 Ave. Doral, FL 33166 USA</p>
-            </div>
-            {{-- 
+            </div>            
             <div class="companyinfo">
               <h2><span>Hookah</span>-Express</h2>              
             </div>
@@ -65,6 +73,7 @@
               <img src="{{ URL::to('images/map.png') }}" alt="" />
               <p>8065 NW 54th St. Doral, FL 33166 USA</p>
             </div>
+            -->
             --}}
           </div>
           
