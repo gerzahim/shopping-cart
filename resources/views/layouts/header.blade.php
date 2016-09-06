@@ -115,9 +115,27 @@
 
              @if (Auth::guest())  
               <div class="pull-right">
-                <form action="#" class="searchform">
-                  <p>Get the most recent updates from our site...</p>
-                  <input type="text" placeholder="Your email address" />
+                <form action="{{ url('subscribers') }}" id="main-contact-form" class="searchform" name="contact-form" method="post">
+                  @if (count($errors) > 0)
+                      <div class="alert alert-danger">
+                          <ul>
+                              @foreach ($errors->all() as $error)
+                                  <li>{{ $error }}</li>
+                              @endforeach
+                          </ul>
+                      </div>
+                  @else
+                    @if(Session::has('message'))
+                      <div class="alert alert-success">
+                        {{ Session::get('message') }}
+                      </div>
+                    @else
+                      <p>Get the most recent updates from our site...</p>    
+                    @endif                      
+                  @endif 
+
+                  <input type="email" name="email" required="required" placeholder="Your email address" />
+                  {{ csrf_field() }}  
                   <button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i></button>   
                 </form>
               </div>

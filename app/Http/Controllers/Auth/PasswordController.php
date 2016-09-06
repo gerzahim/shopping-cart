@@ -1,7 +1,7 @@
 <?php
 
 namespace ShopCart\Http\Controllers\Auth;
-
+use ShopCart\User;
 use ShopCart\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 

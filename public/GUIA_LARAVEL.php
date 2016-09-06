@@ -170,6 +170,8 @@ app/nameModels.php
 
 php artisan make:model Articles -m
 
+php artisan make:model Subscriber -m
+
 va a crear 2 archivos el modelo y el archivo migrate (para crear la tabla)
 
 si solo quieres crear la tabla por tu cuenta ver 6) Declarando Migraciones 
@@ -817,11 +819,19 @@ DB_USERNAME=root
 DB_PASSWORD=
 
 MAIL_DRIVER=smtp
+MAIL_PRETEND=false
 MAIL_HOST=smtp.gmail.com
-MAIL_PORT=25
+MAIL_PORT=587
 MAIL_USERNAME=herbnkulture@gmail.com
-MAIL_PASSWORD=george1964
+MAIL_PASSWORD=george0729
 MAIL_ENCRYPTION=tls
+
+
+config/mail.php
+
+'from' => ['address' => 'herbnkulture@gmail.com', 'name' => 'Herbn Kulture'],
+//'from' => ['address' => 'info@crowntradingmiami.com', 'name' => 'Crown Trading Miami.com'],
+//'from' => ['address' => null, 'name' => null],
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -870,3 +880,28 @@ shopcart height 134 , width 134
 
 Poster height 329, width 270
  
+
+FTP 
+
+.env 
+config/mail.php
+Guia_laravel
+routes.php
+Controllers/ProductController.php
+views/shop/contact.blade.php
+views/email/signup 
+views/email/Subscriber
+views/shop/home
+views/shop/index
+Model Subscriber
+database/migrations/create_Subscriber
+database/seeds/SubscriberTableSeeder
+
+make Migrate  or create table on database
+
+
+{{{ isset(Auth::user()->name) ? Auth::user()->name : Auth::user()->email }}}
+{{{ Auth::user()->name or Auth::user()->email }}}
+
+
+php artisan db:seed --class=ProductTableSeeder

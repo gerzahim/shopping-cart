@@ -54,8 +54,9 @@ return [
     | used globally for all e-mails that are sent by your application.
     |
     */
-
-    'from' => ['address' => null, 'name' => null],
+    'from' => ['address' => 'herbnkulture@gmail.com', 'name' => 'Herbn Kulture'],
+    //'from' => ['address' => 'info@crowntradingmiami.com', 'name' => 'Crown Trading Miami.com'],
+    //'from' => ['address' => null, 'name' => null],
 
     /*
     |--------------------------------------------------------------------------

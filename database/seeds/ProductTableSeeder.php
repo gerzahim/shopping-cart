@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Faker\Factory as Faker;
 
 class ProductTableSeeder extends Seeder
 {
@@ -9,6 +10,8 @@ class ProductTableSeeder extends Seeder
      *
      * @return void
      */
+
+    /*
     public function run()
     {
         //
@@ -90,7 +93,30 @@ class ProductTableSeeder extends Seeder
         ]);
         $product->save();                         
         
+    }*/
+
+    // Seed Table with Fake Data
+    public function run()
+    {
+        $faker = Faker::create();
+        foreach (range(1,10) as $index) {
+            DB::table('products')->insert([
+                'sku'=> $faker->word(6),
+                'title'=> $faker->name,
+                'description'=>'Lorem Ipsum is simply dummy text of the printing and pesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
+                'imagepath'=> 'MM106.jpg',
+                'price'=> '16',
+                'quantity'=> '100',
+                'status'=> '1',
+                'categories_id'=> 1,
+                'brand_id'=> 1                
+            ]);
+        }
     }
+
+
+
+
 }
 
 

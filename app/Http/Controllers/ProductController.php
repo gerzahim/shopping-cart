@@ -10,11 +10,14 @@ use ShopCart\Order;
 use ShopCart\Categories;
 use ShopCart\Brand;
 use ShopCart\Banner;
+use ShopCart\User;
+use ShopCart\Subscriber;
 use Session;
 use Auth;
 use Stripe\Charge;
 use Stripe\Stripe;
 use Mail;
+use Validator;
 
 class ProductController extends Controller
 {
@@ -26,7 +29,11 @@ class ProductController extends Controller
      */
     public function getIndex(Request $request)
     {
-        $url = $request->url();
+        //Get Current Path
+        //$url = $request->url();
+        
+        //get original path
+        $url = str_replace($request->path(), '', $request->url());
         
         // Get info for Banner Section
         $categories = Categories::all();
@@ -43,9 +50,56 @@ class ProductController extends Controller
         return view('shop.index', compact('products', 'categories', 'tree', 'tree1'));
     }
 
+
+    public function getByCategory(Request $request, $categories_id)
+    {
+        //Get Current Path
+        //$url = $request->url();
+        
+        //get original path
+        $url = str_replace($request->path(), '', $request->url());
+
+        // Get info for Banner Section
+        $categories = Categories::all();
+
+        //Get Categories for SideBar        
+        $tree =$this->ParentView($url);
+        $tree1 =$this->getBrands($url);    
+
+        //$products = Product::all();
+        $products = Product::where('categories_id', '=', $categories_id)->paginate(6);
+        
+        return view('shop.index', compact('products', 'categories', 'tree', 'tree1'));
+    }  
+
+    public function getByBrand(Request $request, $brand_id)
+    {
+        //Get Current Path
+        //$url = $request->url();
+        
+        //get original path
+        $url = str_replace($request->path(), '', $request->url());
+
+        // Get info for Banner Section
+        $categories = Categories::all();
+
+        //Get Categories for SideBar        
+        $tree =$this->ParentView($url);
+        $tree1 =$this->getBrands($url);    
+
+        //$products = Product::all();
+        $products = Product::where('brand_id', '=', $brand_id)->paginate(6);
+        
+        return view('shop.index', compact('products', 'categories', 'tree', 'tree1'));
+    }        
+
     public function getHome(Request $request)
     {
-        $url = $request->url();
+        //Get Current Path
+        //$url = $request->url();
+        
+        //get original path
+        $url = str_replace($request->path(), '', $request->url());
 
         // Get info for Banner Section
         $banners = Banner::all();
@@ -94,11 +148,10 @@ class ProductController extends Controller
                     }else{
                         $tree.='<div class="panel panel-default">';
                             $tree.='<div class="panel-heading">';
-                                $tree.='<h4 class="panel-title"><a href="#">'.$Category->name.'</a></h4>';
+                                $tree.='<h4 class="panel-title"><a href="'.$url.'selectByCategory/'.$Category->id.'">'.$Category->name.'</a></h4>';
                             $tree.='</div>';
                         $tree.='</div>';
                     }                    
-
                     //$tree.='<a class="cart_quantity_delete" href="'.$url.'/'.$Category->id.'/edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>';
 
                 }
@@ -119,7 +172,7 @@ class ProductController extends Controller
             $html.='<div class="panel-body">';
                 $html.='<ul>';        
                 foreach ($Category->childs as $arr) {
-                        $html.='<li><a href="#">'.$arr->name.'</a></li>';
+                        $html.='<li><a href="'.$url.'selectByCategory/'.$arr->id.'">'.$arr->name.'</a></li>';
                 }                    
                 $html.='</ul>';
             $html.='</div>';
@@ -135,7 +188,7 @@ class ProductController extends Controller
         $html ='';    
         foreach ($brands as $brand) {
             $count_brand = Product::where('brand_id', '=', $brand->id)->count();
-            $html.='<li><a href="#"> <span class="pull-right">('.$count_brand.')</span>'.$brand->name.'</a></li>';
+            $html.='<li><a href="'.$url.'selectByBrand/'.$brand->id.'"> <span class="pull-right">('.$count_brand.')</span>'.$brand->name.'</a></li>';
         }                    
         
         return $html;
@@ -178,12 +231,17 @@ class ProductController extends Controller
 
     public function postContact(Request $request){
 
-        $this->validate($request, [
+        $validator = Validator::make($request->all(), [
             'email' => 'required|email',
-            'subject' => 'min:10',
-            'message' => 'min:10']);
+            'subject' => 'min:4|max:50',
+            'message' => 'min:10|max:255'
+        ]);
 
-        $title="New Contact Interesting";
+        if ($validator->fails()) {
+            return redirect('contact')
+                        ->withErrors($validator)
+                        ->withInput();
+        }     
 
         $data = array(
             'email' => $request->email, 
@@ -191,12 +249,22 @@ class ProductController extends Controller
             'bodyMessage' => $request->message
             );
 
+        //dd($data);
+        /*
         Mail::send('emails.contact', $data, function ($message) use ($data){
             $message->from($data['email']);
             $message->to('info@crowntradingmiami.com', 'Info Crown Trading Miami');
             $message->subject($data['subject']);
 
         });
+        */   
+        Mail::send('emails.contact', $data, function ($message) use ($data){
+            $message->from($data['email']);
+            $message->to('herbnkulture@gmail.com', 'Info HerbnKulture');
+            $message->subject($data['subject']);
+
+        }); 
+            
 
 
         Session::flash('message', 'Your message was sent successfully!');
@@ -221,6 +289,53 @@ class ProductController extends Controller
         */
     
     } 
+
+    public function postSubscriber(Request $request){
+
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('principal')
+                        ->withErrors($validator)
+                        ->withInput();
+        }   
+
+        $user = User::where('email', $request->email)->get();
+        $subscriber = Subscriber::where('email', $request->email)->get();
+
+        if(count($user) > 0 || count($subscriber) > 0 ){
+            //If Found register on User Table or Suscriber Table
+            Session::flash('message', ' You are Already Subscribed!');
+            return redirect('principal');
+        }
+        else{
+            // No Found Previus Register
+
+            //Save on Subscriber Table
+            $input = $request->all();
+            $nsubscriber = new Subscriber();
+            $nsubscriber->fill($input)->save();
+
+
+            //Send Email 
+            $data = array(
+                'email' => $request->email, 
+                );
+     
+            Mail::send('emails.subscriber', $data, function ($message) use ($data){
+                $message->from('herbnkulture@gmail.com', 'Info HerbnKulture');
+                $message->to($data['email']);
+                $message->subject('Welcome New Subcriber');
+
+            }); 
+
+            Session::flash('message', 'Your was subscribed successfully!');
+            return redirect('principal');               
+          
+        }            
+    }     
 
     public function getAddByOne($id)
     {

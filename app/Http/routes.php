@@ -15,6 +15,10 @@ Route::get('prueba', function(){
 	return view('welcome');
 });
 
+Route::get('home', function(){
+	return redirect('principal');
+});
+
 Route::get('/', function(){
 	return redirect('principal');
 });
@@ -44,7 +48,17 @@ Route::get('/shop', [
 	'as' => 'product.shop'
 ]);
 
-Route::get('/home', 'HomeController@index');
+Route::get('/selectByCategory/{id}', [
+	'uses' => 'ProductController@getByCategory',
+	'as' => 'selectByCategory'
+]);
+
+Route::get('/selectByBrand/{id}', [
+	'uses' => 'ProductController@getByBrand',
+	'as' => 'selectByBrand'
+]);
+
+Route::post('/subscribers', 'ProductController@postSubscriber');
 
 Route::get('/contact', 'ProductController@getContact');
 Route::post('/contact', 'ProductController@postContact');
