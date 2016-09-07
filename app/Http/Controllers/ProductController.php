@@ -489,6 +489,7 @@ class ProductController extends Controller
             $tree='';  
             foreach ($products as $product ) {
                 $tree.='<tr>';
+                $tree.='<td class="cart_description"><input type="checkbox" id="'.$product->id.'" name="'.$product->id.'"></td>';
                 $tree.='<td class="cart_product">';
                 if ($product->imagepath == Null) {
                  $tree.='<img height="50px" width="50px" src="images/no-image.jpg"  alt="No Images">';
@@ -507,6 +508,11 @@ class ProductController extends Controller
                 $categories = Categories::Find($product->categories_id);
                 $categoryName = $categories['name'];                
                 $tree.='<td class="cart_description">'.$categoryName.'</td>';
+                if ($product->status == 1) {
+                    $tree.='<td class="cart_description"> Active </td>';
+                }else{
+                    $tree.='<td class="cart_description"> Inactive </td>';                }
+                
                 $tree.='<td class="cart_description">';
                 $tree.='<a class="cart_quantity_delete" href="'.$url.'/'.$product->id.'/edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>';
                 $tree.='</td>';

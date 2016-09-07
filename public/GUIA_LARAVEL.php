@@ -879,36 +879,25 @@ original height 134 , width 268
 shopcart height 134 , width 134
 
 Poster height 329, width 270
- 
+ {{{ isset(Auth::user()->name) ? Auth::user()->name : Auth::user()->email }}}
+{{{ Auth::user()->name or Auth::user()->email }}}
+
 
 FTP 
 
-.env 
-config/mail.php
+
 Guia_laravel
-routes.php
-Controllers/Auth 
-Controllers/ProductController.php
-
-views/shop/contact.blade.php
-views/shop/home
-views/shop/index
-
-views/email/contact
-views/email/signup 
-views/email/Subscriber
-
-views/layouts/index
-views/layouts/header 
-
-Model Subscriber.php 
-database/migrations/create_Subscriber
-database/seeds/SubscriberTableSeeder
-
-make Migrate  or create table on database Subscriber
-
-php artisan db:seed --class=ProductTableSeeder
 
 
-{{{ isset(Auth::user()->name) ? Auth::user()->name : Auth::user()->email }}}
-{{{ Auth::user()->name or Auth::user()->email }}}
+
+views/layouts/header
+views/shop/contact
+views/shop/checkout
+views/user/form.blade.php
+views/admin/editbanners.php 
+views/admin/products.php 
+views/admin/index.php  **
+
+
+
+

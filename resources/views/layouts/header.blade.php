@@ -94,7 +94,7 @@
               <ul class="nav navbar-nav">
                 @if (Auth::guest())                
                   <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
-                  <li><a href="#"><i class="fa fa-crosshairs"></i> Checkout</a></li>
+                  <li><a href="{{ url('/checkout') }}"><i class="fa fa-crosshairs"></i> Checkout</a></li>
                   <li><a href="{{ route('product.shoppingCart') }}"><i class="fa fa-shopping-cart"></i> Cart
                   <span class="badge">{{ Session::has('cart') ? Session::get('cart')->totalQty : '' }}</span>
                   </a></li>

@@ -90,7 +90,8 @@
                   </select>                
               </div>              
             </div>            
-          </div>           
+          </div>  
+
           <div class="row">
             <div class="col-xs-12">
               <div class="form-group">
@@ -107,7 +108,23 @@
                 <input type="file" id="imagepath" name="imagepath" accept="image/*">
               </div>              
             </div>            
-          </div>                         
+          </div> 
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="form-group">
+                <label for="card-number">Status</label>
+                  <select id="status" name="status">
+                          @if($product['status'] == 1)
+                            <option selected="selected" value="1">Active</option>
+                            <option value="2">Inactive</option>
+                          @else
+                            <option value="1">Active</option>
+                            <option selected="selected" value="2">Inactive</option>
+                          @endif
+                  </select>                
+              </div>              
+            </div>            
+          </div>                                    
 
           {{ method_field('PUT') }}
           {{ csrf_field() }}   

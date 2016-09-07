@@ -33,6 +33,7 @@
         <table class="table table-condensed">
           <thead>
             <tr class="cart_menu">
+              <td class="image"><input type="checkbox" id="" name=""></td>
               <td class="image">Imagen</td>
               <td class="description">Name</td>
               <td class="quantity">Sku</td>
@@ -40,6 +41,7 @@
               <td class="quantity">Stock</td>
               <td class="quantity">Brand</td>
               <td class="quantity">Category</td>            
+              <td class="quantity">Status</td>
               <td class="quantity">Edit</td>
               <td class="total">Delete</td>
             </tr>
@@ -54,7 +56,9 @@
               <td class="price"></td>
               <td class="price"></td>
               <td class="price"></td>
+              <td class="price"></td>
               <td class="price"></td>                            
+              <td class="price"></td>
               <td class="quantity"><a class="btn btn-success" href="{{ route('product.create') }}">Create New Product</a></td>
               <td class="total"></td>
             </tr>            

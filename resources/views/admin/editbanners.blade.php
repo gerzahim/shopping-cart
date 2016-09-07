@@ -43,7 +43,7 @@
             <div class="col-xs-4">
               <div class="form-group">
                 <label for="name">Description</label>
-                <input type="text" id="name" class="form-control" name="description" value="{{ $banner['description'] }}" required>
+                <textarea id="description" class="form-control" name="description" rows="3" cols="50" required>{{ $banner['description'] }}</textarea>
               </div>              
             </div>            
           </div> 
