@@ -897,6 +897,7 @@ views/user/form.blade.php
 views/admin/editbanners.php 
 views/admin/products.php 
 views/admin/index.php  **
+Controllers/ProductController 
 
 
 
