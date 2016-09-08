@@ -742,7 +742,7 @@ create migrations
 create table seed 
 create routes
 
-php artisan db:seed --class=UsersTableSeeder
+php artisan db:seed --class=ProductTableSeeder
 
 php artisan migrate:refresh --seed
 
@@ -896,9 +896,31 @@ views/shop/checkout
 views/user/form.blade.php
 views/admin/editbanners.php 
 views/admin/products.php 
-views/admin/index.php  **
+views/admin/index.php  ** 
 Controllers/ProductController 
 
+/add  to installation 
+
+composer require yajra/laravel-datatables-oracle:~6.0
+
+User::inRandomOrder()->get();
 
 
 
+Quick Installation
+
+composer require yajra/laravel-datatables-oracle:~6.0
+Service Provider
+
+config/app.php
+Yajra\Datatables\DatatablesServiceProvider::class,
+
+Alias 
+
+Datatables facade is automatically registered as an alias for Yajra\Datatables\Facades\Datatables class.
+
+'Datatables' => Yajra\Datatables\Facades\Datatables::class,
+
+Configuration and Assets
+
+$ php artisan vendor:publish --tag=datatables

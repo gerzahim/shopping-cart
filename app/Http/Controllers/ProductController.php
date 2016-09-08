@@ -525,6 +525,8 @@ class ProductController extends Controller
 
             // return $tree;
             return view('admin.products', compact('tree'));
+
+
             
     }
 

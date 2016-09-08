@@ -27,6 +27,7 @@
     23 => 'ShopCart\\Providers\\AuthServiceProvider',
     24 => 'ShopCart\\Providers\\EventServiceProvider',
     25 => 'ShopCart\\Providers\\RouteServiceProvider',
+    26 => 'Yajra\\Datatables\\DatatablesServiceProvider',
   ),
   'eager' => 
   array (
@@ -43,6 +44,7 @@
     10 => 'ShopCart\\Providers\\AuthServiceProvider',
     11 => 'ShopCart\\Providers\\EventServiceProvider',
     12 => 'ShopCart\\Providers\\RouteServiceProvider',
+    13 => 'Yajra\\Datatables\\DatatablesServiceProvider',
   ),
   'deferred' => 
   array (

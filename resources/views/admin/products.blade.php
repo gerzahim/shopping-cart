@@ -14,6 +14,7 @@
                 <div class="row">
                     <div class="col-md-12">
                      <h2>List Products </h2>   
+                     
                     </div>
                 </div>              
                  <!-- /. ROW  -->
@@ -27,10 +28,7 @@
 <hr>
       <div class="table-responsive cart_info">
 
-       
-
-
-        <table class="table table-condensed">
+        <table class="table table-condensed" id="products">
           <thead>
             <tr class="cart_menu">
               <td class="image"><input type="checkbox" id="" name=""></td>

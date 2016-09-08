@@ -132,6 +132,12 @@ Route::get('/removeItem/{id}', [
 
 
 
+Route::get('/products_Serverprocessing', function(){
+
+	//return $dedo;
+	return Datatables::eloquent(ShopCart\Product::query())->make(true);
+});
+
 //auth routes
 Route::group(['middleware' => 'auth'], function () {
 

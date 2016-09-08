@@ -16,7 +16,8 @@
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ URL::to('images/favicon.ico') }}">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ URL::to('images/favicon.ico') }}">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ URL::to('images/favicon.ico') }}">
-    <link rel="apple-touch-icon-precomposed" href="{{ URL::to('images/favicon.ico') }}">     
+    <link rel="apple-touch-icon-precomposed" href="{{ URL::to('images/favicon.ico') }}">    
+    <link rel='stylesheet' href='//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css'>   
 </head>
 <body>
      
@@ -92,27 +93,68 @@
         @include('admin.content')
         
     </div>
-    <div class="footer">
-      
+
+    
+      <!-- 
+
+     <div class="footer">  
     
              <div class="row">
                 <div class="col-lg-12" >
-          <p class="pull-left">Copyright &copy; <?php echo date("Y") ?> . All rights reserved.</p>
+          <p class="pull-left">Copyright &copy; <?php /* echo date("Y") */ ?> . All rights reserved.</p>
           <p class="pull-right">Designed by Gerza Salas <span>rasce88@gmail.com</span></p>                    
                 </div>
         </div>
-        </div>
-          
+        </div>  
+    -->
+       
 
      <!-- /. WRAPPER  -->
     <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
     <!-- JQUERY SCRIPTS -->
     <script src="{{ URL::to('js/jquery-1.10.2.js') }}"></script>
-      <!-- BOOTSTRAP SCRIPTS -->
+    <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+
+    <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript">
+        <script type="text/javascript">
+        $(document).ready(function(){
+            $('#products').DataTable();
+        });
+    </script>
+    <!--
+        <script type="text/javascript">
+        $(document).ready(function(){
+            $('#products').DataTable();
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#products').DataTable( {
+                "processing": true,
+                "serverSide": true,
+                "ajax": "/products_Serverprocessing",
+                "columns": [
+                    {data: 'id'},
+                    {data: 'name'},
+                    {data: 'imagepath'},
+                    {data: 'sku'},
+                    {data: 'title'},
+                    {data: 'price'},
+                    {data: 'quantity'},
+                    {data: 'categories_id'},
+
+                ],
+            } );
+        });
+    </script>
+-->
+
+    <!-- BOOTSTRAP SCRIPTS -->
     <script src="{{ URL::to('js/bootstrap.min.js') }}"></script>
       <!-- CUSTOM SCRIPTS -->
     <script src="{{ URL::to('js/custom.js') }}"></script>
-    
-   
+
+
 </body>
 </html>
