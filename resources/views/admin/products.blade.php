@@ -19,6 +19,7 @@
                         <a data-toggle="collapse" data-target="#demo" href="#">Filter by </a>
                         </legend>
                         <div class="row collapse in" id="demo">
+
                           <div class="col-md-4">
                             <div class="form-group">
                             <label for="card-number">Category</label>
@@ -30,6 +31,7 @@
                             </select>                
                             </div>              
                           </div>  
+
                           <div class="col-md-4">
                             <div class="form-group">
                             <label for="card-number">Brand</label>
@@ -61,6 +63,16 @@
         <table class="table table-condensed" id="products">
           <thead>
             <tr class="cart_menu">
+              <td class="image" colspan="11">
+                <label for="card-number">Bulks Actions</label>
+                <select id="bulks_id" name="bulks_id">
+                  <option value="1">Edit Products</option>
+                  <option value="2">Delete Products</option>
+                </select>    
+              <a class="btn btn-success" href="{{ route('product.create') }}">Apply</a>             
+              </td>
+            </tr>
+            <tr class="cart_menu">
               <td class="image"><input type="checkbox" id="" name=""></td>
               <td class="image">Image</td>
               <td class="description">Name</td>
@@ -73,6 +85,7 @@
               <td class="quantity">Edit</td>
               <td class="total">Delete</td>
             </tr>
+
           </thead>
           <tbody>
          {!! $tree !!}      
