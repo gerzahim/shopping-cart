@@ -99,7 +99,7 @@ class ProductTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
-        foreach (range(1,2000) as $index) {
+        foreach (range(1,150) as $index) {
             $nrand = rand(1,999);
             $rrand = rand(1,999);
             DB::table('products')->insert([

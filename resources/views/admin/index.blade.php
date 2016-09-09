@@ -113,42 +113,18 @@
     <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
     <!-- JQUERY SCRIPTS -->
     <script src="{{ URL::to('js/jquery-1.10.2.js') }}"></script>
-    <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
 
-    <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript">
-        <script type="text/javascript">
-        $(document).ready(function(){
-            $('#products').DataTable();
-        });
-    </script>
     <!--
-        <script type="text/javascript">
+    <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+
+    <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript">
         $(document).ready(function(){
             $('#products').DataTable();
         });
     </script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#products').DataTable( {
-                "processing": true,
-                "serverSide": true,
-                "ajax": "/products_Serverprocessing",
-                "columns": [
-                    {data: 'id'},
-                    {data: 'name'},
-                    {data: 'imagepath'},
-                    {data: 'sku'},
-                    {data: 'title'},
-                    {data: 'price'},
-                    {data: 'quantity'},
-                    {data: 'categories_id'},
+    -->
 
-                ],
-            } );
-        });
-    </script>
--->
 
     <!-- BOOTSTRAP SCRIPTS -->
     <script src="{{ URL::to('js/bootstrap.min.js') }}"></script>

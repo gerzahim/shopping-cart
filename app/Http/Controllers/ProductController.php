@@ -482,14 +482,17 @@ class ProductController extends Controller
 
             $url = $request->url();
 
-            $products = Product::all();
+            //$products = Product::all();
+            $products = Product::paginate(10);
             $categories = Categories::all();
+            $categories1 = $categories;
             $brands = Brand::all();
+            $brands1 = $brands;
 
             $tree='';  
             foreach ($products as $product ) {
                 $tree.='<tr>';
-                $tree.='<td class="cart_description"><input type="checkbox" id="'.$product->id.'" name="'.$product->id.'"></td>';
+                $tree.='<td class="cart_description"><input type="checkbox" id="check_'.$product->id.'" name="'.$product->id.'"></td>';
                 $tree.='<td class="cart_product">';
                 if ($product->imagepath == Null) {
                  $tree.='<img height="50px" width="50px" src="images/no-image.jpg"  alt="No Images">';
@@ -524,7 +527,8 @@ class ProductController extends Controller
             }                             
 
             // return $tree;
-            return view('admin.products', compact('tree'));
+            return view('admin.products', compact('products', 'brands1', 'categories1', 'tree'));
+            //return view('admin.products', compact('tree'));
 
 
             

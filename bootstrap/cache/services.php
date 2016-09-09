@@ -22,12 +22,10 @@
     18 => 'Illuminate\\Translation\\TranslationServiceProvider',
     19 => 'Illuminate\\Validation\\ValidationServiceProvider',
     20 => 'Illuminate\\View\\ViewServiceProvider',
-    21 => 'Collective\\Html\\HtmlServiceProvider',
-    22 => 'ShopCart\\Providers\\AppServiceProvider',
-    23 => 'ShopCart\\Providers\\AuthServiceProvider',
-    24 => 'ShopCart\\Providers\\EventServiceProvider',
-    25 => 'ShopCart\\Providers\\RouteServiceProvider',
-    26 => 'Yajra\\Datatables\\DatatablesServiceProvider',
+    21 => 'ShopCart\\Providers\\AppServiceProvider',
+    22 => 'ShopCart\\Providers\\AuthServiceProvider',
+    23 => 'ShopCart\\Providers\\EventServiceProvider',
+    24 => 'ShopCart\\Providers\\RouteServiceProvider',
   ),
   'eager' => 
   array (
@@ -44,7 +42,6 @@
     10 => 'ShopCart\\Providers\\AuthServiceProvider',
     11 => 'ShopCart\\Providers\\EventServiceProvider',
     12 => 'ShopCart\\Providers\\RouteServiceProvider',
-    13 => 'Yajra\\Datatables\\DatatablesServiceProvider',
   ),
   'deferred' => 
   array (
@@ -131,10 +128,6 @@
     'translation.loader' => 'Illuminate\\Translation\\TranslationServiceProvider',
     'validator' => 'Illuminate\\Validation\\ValidationServiceProvider',
     'validation.presence' => 'Illuminate\\Validation\\ValidationServiceProvider',
-    'html' => 'Collective\\Html\\HtmlServiceProvider',
-    'form' => 'Collective\\Html\\HtmlServiceProvider',
-    'Collective\\Html\\HtmlBuilder' => 'Collective\\Html\\HtmlServiceProvider',
-    'Collective\\Html\\FormBuilder' => 'Collective\\Html\\HtmlServiceProvider',
   ),
   'when' => 
   array (
@@ -172,9 +165,6 @@
     array (
     ),
     'Illuminate\\Validation\\ValidationServiceProvider' => 
-    array (
-    ),
-    'Collective\\Html\\HtmlServiceProvider' => 
     array (
     ),
   ),
