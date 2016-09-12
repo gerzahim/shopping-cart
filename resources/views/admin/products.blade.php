@@ -11,16 +11,20 @@
                           {{ Session::get('message') }}
                       </div>
                   @endif 
+                  <form>
                   <div class="row">
                     <div class="col-md-12">
                       <h2>List Products </h2>  
                       <fieldset class="fsStyle">
                         <legend class="legendStyle">
+
                         <a data-toggle="collapse" data-target="#demo" href="#">Filter by </a>
+
                         </legend>
                         <div class="row collapse in" id="demo">
 
-                          <div class="col-md-4">
+
+                          <div class="col-md-2">
                             <div class="form-group">
                             <label for="card-number">Category</label>
                             <select id="categories_id" name="categories_id">
@@ -32,7 +36,7 @@
                             </div>              
                           </div>  
 
-                          <div class="col-md-4">
+                          <div class="col-md-2">
                             <div class="form-group">
                             <label for="card-number">Brand</label>
                             <select id="brand_id" name="brand_id">
@@ -43,11 +47,30 @@
                             </select>                
                             </div>              
                           </div> 
-                          <a class="btn btn-success" href="{{ route('product.create') }}">Filter</a>
+
+                          <div class="col-md-2">
+                            <div class="form-group">
+                            <label for="card-number">ShowEntries</label>
+                            <select id="ShowEntries" name="ShowEntries">
+                              <option value="10">10</option>
+                              <option value="25">25</option>
+                              <option value="50">50</option>
+                              <option value="100">100</option>
+                              <option value="0">All</option>
+                            </select>                
+                            </div>              
+                          </div> 
+
+                          {{ method_field('PUT') }}
+                          {{ csrf_field() }}   
+                          <button type="submit" class="btn btn-warning">Filter</button>
+
+
                         </div>
                       </fieldset>
                     </div> 
                   </div>
+                  </form>
                            
                  <!-- /. ROW  -->
                   
@@ -59,7 +82,7 @@
     <div class="col-md-12">
 <hr>
       <div class="table-responsive cart_info">
-
+        <form name ="list_products">
         <table class="table table-condensed" id="products">
           <thead>
             <tr class="cart_menu">
@@ -68,12 +91,15 @@
                 <select id="bulks_id" name="bulks_id">
                   <option value="1">Edit Products</option>
                   <option value="2">Delete Products</option>
-                </select>    
-              <a class="btn btn-success" href="{{ route('product.create') }}">Apply</a>             
+                </select> 
+                <button type="submit" class="btn btn-primary">Apply</button>   
+                <a class="btn btn-success" href="{{ route('product.create') }}">Create New Product</a>
               </td>
             </tr>
             <tr class="cart_menu">
-              <td class="image"><input type="checkbox" id="" name=""></td>
+              <td class="description"><font size="1">
+              <a id="check-all" href="javascript:void(0);">Check All</a><br>
+<a id="uncheck-all" href="javascript:void(0);">Uncheck All</a></font></td>
               <td class="image">Image</td>
               <td class="description">Name</td>
               <td class="quantity">Sku</td>
@@ -90,24 +116,15 @@
           <tbody>
          {!! $tree !!}      
           </tbody>
-          <tfoot>
-            <tr class="cart_menu">
-              <td class="price"></td>
-              <td class="price"></td>
-              <td class="price"></td>
-              <td class="price"></td>
-              <td class="price"></td>
-              <td class="price"></td>
-              <td class="price"></td>                            
-              <td class="price"></td>
-              <td class="quantity"><a class="btn btn-success" href="{{ route('product.create') }}">Create New Product</a></td>
-              <td class="total"></td>
-            </tr>            
-          </tfoot>
-        </table>
 
+
+        </table>
+          {{ method_field('PUT') }}
+          {{ csrf_field() }}           
+        </form>
       </div>
       {{ $products->links() }}
+      <br>
 
 
 

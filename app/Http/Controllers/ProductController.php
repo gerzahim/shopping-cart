@@ -492,7 +492,7 @@ class ProductController extends Controller
             $tree='';  
             foreach ($products as $product ) {
                 $tree.='<tr>';
-                $tree.='<td class="cart_description"><input type="checkbox" id="'.$product->id.']" name="'.$product->id.'"></td>';
+                $tree.='<td class="cart_description"><input type="checkbox" id="checkbox_'.$product->id.'" name="checkboxes['.$product->id.']"></td>';
                 $tree.='<td class="cart_product">';
                 if ($product->imagepath == Null) {
                  $tree.='<img height="50px" width="50px" src="images/no-image.jpg"  alt="No Images">';
