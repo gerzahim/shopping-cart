@@ -44,7 +44,7 @@ class ProductController extends Controller
 
         //$products = Product::all();
 
-        $products = Product::paginate(6);
+        $products = Product::paginate(10);
 
         
         return view('shop.index', compact('products', 'categories', 'tree', 'tree1'));
@@ -120,6 +120,59 @@ class ProductController extends Controller
         return view('shop.home', compact('products', 'categories', 'banners', 'tree', 'tree1'));
         //return view('shop.home', ['products' => $products], ['banners' => $banners]);
     }
+
+    public function getProductsByFilter(Request $request)
+    {
+        //Get Current Path
+        //$url = $request->url();
+        
+        //get original path
+        $url = str_replace($request->path(), '', $request->url());
+
+        // Get info for Banner Section
+        $banners = Banner::all();
+
+        // Get info for Banner Section
+        $categories = Categories::all();
+
+        //Get Categories for SideBar        
+        $tree =$this->ParentView($url);
+        $tree1 =$this->getBrands($url);         
+
+
+        $products = new Product();
+        
+        $input = $request->all();
+
+        $categories_id=$input['categories_id'];
+        $brand_id=$input['brand_id'];
+        $ShowEntries = $input['ShowEntries'];
+
+
+        if ($categories_id != 0 && $brand_id == 0) {
+            $products = Product::table('users')->where([
+                ['categories_id', '=', $categories_id],
+                ['brand_id', '!=', '0'],
+            ])->get()->paginate($ShowEntries);
+        }elseif($categories_id == 0 && $brand_id != 0){
+            $products = Product::table('users')->where([
+                ['categories_id',  '!=', '0'],
+                ['brand_id', '=', $brand_id],
+            ])->get()->paginate($ShowEntries);
+        }else{
+
+            $products = Product::table('users')->where([
+                ['categories_id', '=', $categories_id],
+                ['brand_id', '=', $brand_id],
+            ])->get()->paginate($ShowEntries);  
+
+        }
+
+        return view('shop.home', compact('products', 'categories', 'banners', 'tree', 'tree1'));
+        
+
+    }
+
 
     public function ParentView($url){
 

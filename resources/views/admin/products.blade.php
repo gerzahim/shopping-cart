@@ -11,7 +11,8 @@
                           {{ Session::get('message') }}
                       </div>
                   @endif 
-                  <form>
+                  
+                  <form action="{{ route('product.filter') }}" method="post" id="filter-form" enctype="multipart/form-data">
                   <div class="row">
                     <div class="col-md-12">
                       <h2>List Products </h2>  
@@ -50,13 +51,13 @@
 
                           <div class="col-md-2">
                             <div class="form-group">
-                            <label for="card-number">ShowEntries</label>
+                            <label for="card-number">Show Entries</label>
                             <select id="ShowEntries" name="ShowEntries">
                               <option value="10">10</option>
                               <option value="25">25</option>
                               <option value="50">50</option>
                               <option value="100">100</option>
-                              <option value="0">All</option>
+                              <option value="1000">All</option>
                             </select>                
                             </div>              
                           </div> 
