@@ -12,7 +12,7 @@
                       </div>
                   @endif 
                   
-                  <form action="{{ route('product.filter') }}" method="post" id="filter-form" enctype="multipart/form-data">
+                  
                   <div class="row">
                     <div class="col-md-12">
                       <h2>List Products </h2>  
@@ -22,6 +22,7 @@
                         <a data-toggle="collapse" data-target="#demo" href="#">Filter by </a>
 
                         </legend>
+                        <form action="{{ route('productFilter') }}" method="post" id="filter-form" enctype="multipart/form-data">
                         <div class="row collapse in" id="demo">
 
 
@@ -62,16 +63,16 @@
                             </div>              
                           </div> 
 
-                          {{ method_field('PUT') }}
                           {{ csrf_field() }}   
                           <button type="submit" class="btn btn-warning">Filter</button>
 
 
                         </div>
+                        </form>
                       </fieldset>
                     </div> 
                   </div>
-                  </form>
+                  
                            
                  <!-- /. ROW  -->
                   
@@ -83,7 +84,6 @@
     <div class="col-md-12">
 <hr>
       <div class="table-responsive cart_info">
-        <form name ="list_products">
         <table class="table table-condensed" id="products">
           <thead>
             <tr class="cart_menu">
@@ -120,11 +120,9 @@
 
 
         </table>
-          {{ method_field('PUT') }}
-          {{ csrf_field() }}           
-        </form>
       </div>
       {{ $products->links() }}
+      
       <br>
 
 

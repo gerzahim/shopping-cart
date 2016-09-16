@@ -130,9 +130,9 @@ Route::get('/removeItem/{id}', [
 	'as' => 'product.removeItem'
 ]);
 
-Route::get('/filterProducts', [
+Route::post('/filterProducts', [
 	'uses' => 'ProductController@getProductsByFilter',
-	'as' => 'product.filter'
+	'as' => 'productFilter'
 ]);
 
 

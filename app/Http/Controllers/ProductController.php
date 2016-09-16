@@ -123,30 +123,92 @@ class ProductController extends Controller
 
     public function getProductsByFilter(Request $request)
     {
+
+        
+
         //Get Current Path
-        //$url = $request->url();
+        $url = $request->url();
         
         //get original path
-        $url = str_replace($request->path(), '', $request->url());
+        $url = str_replace('filterProducts', 'product', $request->url());
+        
 
-        // Get info for Banner Section
-        $banners = Banner::all();
-
-        // Get info for Banner Section
         $categories = Categories::all();
+        $categories1 = $categories;
+        $brands = Brand::all();
+        $brands1 = $brands;
 
         //Get Categories for SideBar        
         $tree =$this->ParentView($url);
         $tree1 =$this->getBrands($url);         
 
 
-        $products = new Product();
+        //$products = new Product();
         
         $input = $request->all();
 
+
         $categories_id=$input['categories_id'];
         $brand_id=$input['brand_id'];
+        $categories_id=0;
+        $brand_id=0;
         $ShowEntries = $input['ShowEntries'];
+
+
+
+        $products = Product::where('brand_id', '!=', $brand_id)
+                ->where('categories_id', '!=', $categories_id)
+                ->paginate($ShowEntries);  
+
+
+        $tree='';  
+        foreach ($products as $product ) {
+            $tree.='<tr>';
+            $tree.='<td class="cart_description"><input type="checkbox" id="checkbox_'.$product->id.'" name="checkboxes['.$product->id.']"></td>';
+            $tree.='<td class="cart_product">';
+            if ($product->imagepath == Null) {
+             $tree.='<img height="50px" width="50px" src="images/no-image.jpg"  alt="No Images">';
+            } else {
+             $tree.='<img height="50px" width="50px" src="media/'.$product->imagepath.'" alt="No Images">';
+            }
+            $tree.='</td>';
+            $tree.='<td class="cart_description">'.$product->sku.'</td>';
+            $tree.='<td class="cart_description">'.$product->title.'</td>';
+            $tree.='<td class="cart_description">'.$product->price.'</td>';
+            $tree.='<td class="cart_description">'.$product->quantity.'</td>';
+           
+            $brands = Brand::Find($product->brand_id);
+            $brandName = $brands['name'];
+            $tree.='<td class="cart_description">'.$brandName.'</td>';
+            $categories = Categories::Find($product->categories_id);
+            $categoryName = $categories['name'];                
+            $tree.='<td class="cart_description">'.$categoryName.'</td>';
+            if ($product->status == 1) {
+                $tree.='<td class="cart_description"> Active </td>';
+            }else{
+                $tree.='<td class="cart_description"> Inactive </td>';                }
+            
+            $tree.='<td class="cart_description">';
+            $tree.='<a class="cart_quantity_delete" href="'.$url.'/'.$product->id.'/edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>';
+            $tree.='</td>';
+            $tree.='<td class="cart_description">';
+            $tree.='<a class="cart_quantity_delete" href="'.$url.'/removeProduct/'.$product->id.'"><i class="fa fa-times" aria-hidden="true"></i></a>';
+            $tree.='</td>';
+            $tree.='</tr>';           
+            
+        }                 
+
+        
+        /*
+        dd($products);
+
+        
+        $data['pets'] = \Illuminate\Support\Facades\DB::table('pets')
+                                ->where('petname', 'like', $petsearch)
+                                ->orderBy('petname', 'asc')
+                                ->skip($pages->get_limit2())->take($pages->get_perpage())->get()
+       
+
 
 
         if ($categories_id != 0 && $brand_id == 0) {
@@ -167,8 +229,9 @@ class ProductController extends Controller
             ])->get()->paginate($ShowEntries);  
 
         }
+         */
 
-        return view('shop.home', compact('products', 'categories', 'banners', 'tree', 'tree1'));
+        return view('admin.products', compact('products', 'brands1', 'categories1', 'tree'));
         
 
     }

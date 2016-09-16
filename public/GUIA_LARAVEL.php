@@ -924,3 +924,13 @@ Datatables facade is automatically registered as an alias for Yajra\Datatables\F
 Configuration and Assets
 
 $ php artisan vendor:publish --tag=datatables
+
+
+DEbugging SQL 
+
+
+$products = Product::where('brand_id', '!=', $brand_id)
+        ->where('categories_id', '!=', $categories_id)
+        ->toSql();  
+       
+dd($products);
