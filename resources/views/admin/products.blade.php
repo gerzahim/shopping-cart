@@ -22,7 +22,7 @@
                         <a data-toggle="collapse" data-target="#demo" href="#">Filter by </a>
 
                         </legend>
-                        <form action="{{ route('productFilter') }}" method="post" id="filter-form" enctype="multipart/form-data">
+                        <form action="{{ route('productFilter') }}" method="get" id="filter-form" enctype="multipart/form-data">
                         <div class="row collapse in" id="demo">
 
 
@@ -84,6 +84,7 @@
     <div class="col-md-12">
 <hr>
       <div class="table-responsive cart_info">
+      <form action="{{ route('product.multipleactions') }}" method="post" id="edit-form" enctype="multipart/form-data">
         <table class="table table-condensed" id="products">
           <thead>
             <tr class="cart_menu">
@@ -93,14 +94,15 @@
                   <option value="1">Edit Products</option>
                   <option value="2">Delete Products</option>
                 </select> 
-                <button type="submit" class="btn btn-primary">Apply</button>   
+                <button type="submit" class="btn btn-primary">Apply</button>  
+
                 <a class="btn btn-success" href="{{ route('product.create') }}">Create New Product</a>
               </td>
             </tr>
             <tr class="cart_menu">
-              <td class="description"><font size="1">
-              <a id="check-all" href="javascript:void(0);">Check All</a><br>
-<a id="uncheck-all" href="javascript:void(0);">Uncheck All</a></font></td>
+              <td class="description"><font size="2">
+                <label><input type="checkbox" id="checkAll"/> Check all</label>
+              </td>
               <td class="image">Image</td>
               <td class="description">Name</td>
               <td class="quantity">Sku</td>
@@ -120,6 +122,8 @@
 
 
         </table>
+        {{ csrf_field() }}   
+        </form>
       </div>
       {{ $products->links() }}
       

@@ -147,18 +147,42 @@ class ProductController extends Controller
         
         $input = $request->all();
 
+        
 
-        $categories_id=$input['categories_id'];
+
+        $categories_id= $input['categories_id'];
         $brand_id=$input['brand_id'];
-        $categories_id=0;
-        $brand_id=0;
         $ShowEntries = $input['ShowEntries'];
 
 
-
+        /*
         $products = Product::where('brand_id', '!=', $brand_id)
                 ->where('categories_id', '!=', $categories_id)
                 ->paginate($ShowEntries);  
+        */  
+
+
+         if ($categories_id != '0' && $brand_id == '0') {
+            //dd('CAT #  - BRA 0');
+            $products = Product::where('brand_id', '!=', $brand_id)
+                ->where('categories_id', '=', $categories_id)
+                ->paginate($ShowEntries); 
+
+        }elseif($categories_id == '0' && $brand_id != '0'){
+            //dd('CAT 0  - BRA #');
+            $products = Product::where('brand_id', '=', $brand_id)
+                ->where('categories_id', '!=', $categories_id)
+                ->paginate($ShowEntries); 
+        }elseif($categories_id != '0' && $brand_id != '0'){
+            //dd('CAT 0  - BRA #');
+            $products = Product::where('brand_id', '=', $brand_id)
+                ->where('categories_id', '=', $categories_id)
+                ->paginate($ShowEntries); 
+        }else{
+            $products = Product::where('brand_id', '!=', $brand_id)
+                ->where('categories_id', '!=', $categories_id)
+                ->paginate($ShowEntries); 
+        }               
 
 
         $tree='';  
@@ -182,6 +206,7 @@ class ProductController extends Controller
             $tree.='<td class="cart_description">'.$brandName.'</td>';
             $categories = Categories::Find($product->categories_id);
             $categoryName = $categories['name'];                
+
             $tree.='<td class="cart_description">'.$categoryName.'</td>';
             if ($product->status == 1) {
                 $tree.='<td class="cart_description"> Active </td>';
@@ -198,43 +223,118 @@ class ProductController extends Controller
             
         }                 
 
-        
-        /*
-        dd($products);
-
-        
-        $data['pets'] = \Illuminate\Support\Facades\DB::table('pets')
-                                ->where('petname', 'like', $petsearch)
-                                ->orderBy('petname', 'asc')
-                                ->skip($pages->get_limit2())->take($pages->get_perpage())->get()
-       
-
-
-
-        if ($categories_id != 0 && $brand_id == 0) {
-            $products = Product::table('users')->where([
-                ['categories_id', '=', $categories_id],
-                ['brand_id', '!=', '0'],
-            ])->get()->paginate($ShowEntries);
-        }elseif($categories_id == 0 && $brand_id != 0){
-            $products = Product::table('users')->where([
-                ['categories_id',  '!=', '0'],
-                ['brand_id', '=', $brand_id],
-            ])->get()->paginate($ShowEntries);
-        }else{
-
-            $products = Product::table('users')->where([
-                ['categories_id', '=', $categories_id],
-                ['brand_id', '=', $brand_id],
-            ])->get()->paginate($ShowEntries);  
-
-        }
-         */
-
-        return view('admin.products', compact('products', 'brands1', 'categories1', 'tree'));
+        return view('admin.filterproducts', compact('products', 'brands1', 'categories1', 'tree', 'categories_id', 'brand_id', 'ShowEntries'));
         
 
     }
+
+
+    public function getMultipleAction(Request $request){
+
+        
+        $input = $request->all();
+
+
+
+        $action=$input['bulks_id'];
+        
+
+        if(isset($input['checkboxes'])){
+            
+            $ids=$input['checkboxes'];
+
+            //Figure Out if Delete or Update        
+            if ($action == '2') {
+                /* Mean it's Delete*/
+
+
+                $products = Product::whereIn('id', array_keys($ids))
+                ->delete();
+
+                Session::flash('message', 'Products successfully Deleted!');
+                return redirect()->route('product.index');
+
+            }else{
+
+
+                $categories = Categories::all();   
+                $brands = Brand::all();
+
+
+                $products = Product::whereIn('id', array_keys($ids))
+                ->get();
+
+                //Session::flash('message', 'Products successfully updated!');
+                return view('admin.multipleupdateproducts', compact('products', 'categories', 'brands', 'ids')); 
+            }            
+
+        }else{
+
+            Session::flash('message', 'No Select items!');
+            return redirect()->route('product.index');            
+
+        }
+
+
+
+
+
+
+    }    
+
+
+    public function getMultipleUpdate(Request $request){
+
+        
+        $input = $request->all();
+
+        
+        $status = $input['status'];
+        $categories_id = $input['categories_id'];
+        $brand_id = $input['brand_id'];
+        $description = $input['description'];
+        $price = $input['price'];
+        $quantity = $input['quantity'];
+        $ids = $input['ids'];
+
+        /*
+        "status" => "0"
+        "categories_id" => "0"
+        "brand_id" => "0"
+        "description" => ""
+        "price" => ""
+        "quantity" => ""
+        */
+        $values=array();
+        
+        if ($status != "0") {
+            $values['status']=$status;
+        }if ($categories_id != "0") {
+            $values['categories_id']=$categories_id;
+
+        }if ($brand_id != "0") {
+            $values['brand_id']=$brand_id;
+
+        }if ($description != "") {
+            $values['description']=$description;
+
+        }if ($price != "") {
+            $values['price']=$price;
+
+        }if ($quantity != "") {
+            $values['quantity']=$quantity;
+
+        }
+
+        $products = Product::whereIn('id', array_keys($ids))->update($values);  
+
+        //dd($products);
+        //$values=array('column1'=>'value','column2'=>'value2');
+        
+        Session::flash('message', 'Products successfully updated!');
+        return redirect()->route('product.index');
+
+    }     
 
 
     public function ParentView($url){

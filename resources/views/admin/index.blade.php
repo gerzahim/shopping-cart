@@ -113,14 +113,10 @@
     <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
     <!-- JQUERY SCRIPTS -->
     <script src="{{ URL::to('js/jquery-1.10.2.js') }}"></script>
+    
     <script type="text/javascript">
-        $(document).ready(function() {
-          $('#check-all').click(function(){
-            $("input:checkbox").attr('checked', true);
-          });
-          $('#uncheck-all').click(function(){
-            $("input:checkbox").attr('checked', false);
-          });
+        $("#checkAll").change(function () {
+            $("input:checkbox").prop('checked', $(this).prop("checked"));
         });
     </script>    
 

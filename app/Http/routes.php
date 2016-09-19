@@ -130,9 +130,21 @@ Route::get('/removeItem/{id}', [
 	'as' => 'product.removeItem'
 ]);
 
-Route::post('/filterProducts', [
+Route::get('/filterProducts', [
 	'uses' => 'ProductController@getProductsByFilter',
 	'as' => 'productFilter'
+]);
+
+
+Route::post('/multipleupdate', [
+	'uses' => 'ProductController@getMultipleUpdate',
+	'as' => 'product.multipleupdate'
+]);
+
+
+Route::post('/multipleactions', [
+	'uses' => 'ProductController@getMultipleAction',
+	'as' => 'product.multipleactions'
 ]);
 
 
