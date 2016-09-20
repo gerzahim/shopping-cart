@@ -25,4 +25,8 @@ class User extends Authenticatable
     public function orders(){
         return $this->hasMany('ShopCart\Order');
     }
+
+    public function roles(){
+        return $this->hasMany('ShopCart\Role', 'user_role', 'user_id', 'role_id');
+    }    
 }

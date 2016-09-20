@@ -11,6 +11,7 @@
 |
 */
 
+
 Route::get('prueba', function(){
 	return view('welcome');
 });
@@ -42,6 +43,7 @@ Route::get('/principal', [
 ]);
 
 Route::auth();
+
 
 Route::get('/shop', [
 	'uses' => 'ProductController@getIndex',
