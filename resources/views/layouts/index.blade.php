@@ -45,6 +45,23 @@
    </header><!--/header-->
 <!-- END MENUTOP -->
 
+@if(Session::has('message'))
+
+   <div class="header-bottom"><!--header-bottom-->
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">          
+              <div class="alert alert-danger">
+                {{ Session::get('message') }}
+              </div>            
+          </div>
+        </div>
+      </div>
+    </div><!--/header-bottom-->
+
+
+@endif
+
 <!-- BEGIN BANNER -->
  @include('layouts.banner')
 <!-- END BANNER -->

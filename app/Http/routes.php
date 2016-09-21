@@ -132,75 +132,84 @@ Route::get('/removeItem/{id}', [
 	'as' => 'product.removeItem'
 ]);
 
-Route::get('/filterProducts', [
-	'uses' => 'ProductController@getProductsByFilter',
-	'as' => 'productFilter'
-]);
 
 
-Route::post('/multipleupdate', [
-	'uses' => 'ProductController@getMultipleUpdate',
-	'as' => 'product.multipleupdate'
-]);
-
-
-Route::post('/multipleactions', [
-	'uses' => 'ProductController@getMultipleAction',
-	'as' => 'product.multipleactions'
-]);
-
-
-Route::get('/products_Serverprocessing', function(){
-
-	//return $dedo;
-	return Datatables::eloquent(ShopCart\Product::query())->make(true);
-});
 
 //auth routes
 Route::group(['middleware' => 'auth'], function () {
 
+
+	//Route::get('test', function () { $user = \Auth::user(); dd($user->role); });
+
+
 	Route::get('admin', function(){
-		return view('admin.home');
+
+		if (Auth::check()){
+			$user = \Auth::user(); 
+			if ($user->role == '2') {
+				return view('admin.home');
+			}
+			
+		}
+		Session::flash('message', 'You are Not Authorized to access Admin section !!!');	 
+		return redirect('principal');
+
 	});
+
+	Route::resource('/categories', 'CategoriesController');
+	Route::resource('/brands', 'BrandsController');
+	Route::resource('/product', 'ProductController');
+	Route::resource('/banners', 'BannerController');	
+
+	Route::get('/product/removeProduct/{id}', [
+	'uses' => 'ProductController@getRemoveProduct',
+	'as' => 'product.removeProduct'
+	]);
+
+	Route::get('/categories/removeCategory/{id}', [
+		'uses' => 'CategoriesController@getRemoveCategory',
+		'as' => 'categories.removeCategory'
+	]);
+
+	Route::get('/brands/removeBrand/{id}', [
+		'uses' => 'BrandsController@getRemoveBrand',
+		'as' => 'brands.removeBrand'
+	]);
+
+	Route::get('/filterProducts', [
+		'uses' => 'ProductController@getProductsByFilter',
+		'as' => 'productFilter'
+	]);
+
+
+	Route::post('/multipleupdate', [
+		'uses' => 'ProductController@getMultipleUpdate',
+		'as' => 'product.multipleupdate'
+	]);
+
+
+	Route::post('/multipleactions', [
+		'uses' => 'ProductController@getMultipleAction',
+		'as' => 'product.multipleactions'
+	]);	
   
 });
 
 
-Route::resource('/categories', 'CategoriesController');
-Route::resource('/brands', 'BrandsController');
-Route::resource('/product', 'ProductController');
-Route::resource('/banners', 'BannerController');
 
 
-Route::get('/product/removeProduct/{id}', [
-	'uses' => 'ProductController@getRemoveProduct',
-	'as' => 'product.removeProduct'
-]);
 
-Route::get('/categories/removeCategory/{id}', [
-	'uses' => 'CategoriesController@getRemoveCategory',
-	'as' => 'categories.removeCategory'
-]);
 
-Route::get('/brands/removeBrand/{id}', [
-	'uses' => 'BrandsController@getRemoveBrand',
-	'as' => 'brands.removeBrand'
-]);
 
 Route::get('jquery-tree-view',array('as'=>'jquery.treeview','uses'=>'TreeController@treeView'));
 
 /*
 
-Route::get('/categories', [
-	'uses' => 'CategoriesController@index',
-	'as' => 'admin.categories'
-]);
+
 
 Route::get('/', function () {
 	return view('master');
 });
-
-Route::get('/useredit', 'UserController@edit');
 
 	
 //Route::post('userupdate', ['as' => 'books_list', 'uses' => 'UserController@update']);

@@ -25,6 +25,7 @@
                 <li><a href="{{ url('/contact') }}">Contact</a></li>
               </ul>
             </div>
+            
           </div>
           <div class="col-sm-3">
             <div class="search_box pull-right">
