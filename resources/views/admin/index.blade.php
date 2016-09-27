@@ -3,7 +3,7 @@
 <head>
       <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Administrator | ShopCart</title>
+    <title>Administrator | E-shopper</title>
 	<!-- BOOTSTRAP STYLES-->
     <link href="{{ URL::to('css/bootstrap.min.css') }}" rel="stylesheet" />
      <!-- FONTAWESOME STYLES-->
@@ -37,10 +37,10 @@
                         <!--
                         <img height="80px" width="90px" src="{{ URL::to('images/CrownTrading.png') }}" />
                         <img height="50px" width="60px" src="{{ URL::to('images/Logoherbnkulture.png') }}" />
-                        <img height="50px" width="60px" src="{{ URL::to('images/Logosolodoral.jpg') }}" />
+                        <img height="50px" width="120px" src="{{ URL::to('images/Logosolodoral.jpg') }}" />
                         -->
                         --}}
-                        <img height="50px" width="60px" src="{{ URL::to('images/Logosolodoral.jpg') }}" />
+                        <img height="50px" width="60px" src="{{ URL::to('images/Logoherbnkulture.png') }}" />
                     </a>
                 </div>
               

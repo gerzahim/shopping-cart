@@ -55,6 +55,8 @@ return [
     |
     */
     'from' => ['address' => 'herbnkulture@gmail.com', 'name' => 'Herbn Kulture'],
+    //'from' => ['address' => 'herbnkulture@gmail.com', 'name' => 'Herbn Kulture'],
+    //'from' => ['address' => 'info@doralhookah.com', 'name' => 'Doral Hookah'],
     //'from' => ['address' => 'info@crowntradingmiami.com', 'name' => 'Crown Trading Miami.com'],
     //'from' => ['address' => null, 'name' => null],
 

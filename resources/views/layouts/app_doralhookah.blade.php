@@ -44,10 +44,10 @@
                         <!--
                         <img height="50px" width="60px" src="{{ URL::to('images/Logoherbnkulture.png') }}" />
                         <img height="80px" width="90px" src="{{ URL::to('images/CrownTrading.png') }}" />
-                        <img height="50px" width="120px" src="{{ URL::to('images/Logosolodoral.jpg') }}" />
+                        <img height="50px" width="60px" src="{{ URL::to('images/Logosolodoral.jpg') }}" />
                         -->
                         --}}
-                        <img height="50px" width="60px" src="{{ URL::to('images/Logoherbnkulture.png') }}" />
+                        <img height="50px" width="60px" src="{{ URL::to('images/Logosolodoral.jpg') }}" />
                 </a>
             </div>
 

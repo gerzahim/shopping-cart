@@ -856,6 +856,7 @@ config/mail.php
 
 'from' => ['address' => 'herbnkulture@gmail.com', 'name' => 'Herbn Kulture'],
 //'from' => ['address' => 'info@crowntradingmiami.com', 'name' => 'Crown Trading Miami.com'],
+//'from' => ['address' => 'info@doralhookah.com', 'name' => 'Doral Hookah'],
 //'from' => ['address' => null, 'name' => null],
 
 /////////////////////////////////////////////////////////////////////////////////////////////
