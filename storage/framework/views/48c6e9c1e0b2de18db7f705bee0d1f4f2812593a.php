@@ -3,15 +3,24 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="Electronics Miami">
+    <meta name="author" content="Gerza Salas">
+    <!--
+    <meta name="keywords" content="electronics, miami, sales">
+    <meta name="keywords" content="Hookah, miami, sales">
+    -->
+    <meta name="keywords" content="Hookah, miami, sales">
     <title>Shop | E-Shopper</title>
     <link href="<?php echo e(URL::to('css/bootstrap.min.css')); ?>" rel="stylesheet">
     <link href="<?php echo e(URL::to('css/font-awesome.min.css')); ?>" rel="stylesheet">
     <link href="<?php echo e(URL::to('css/prettyPhoto.css')); ?>" rel="stylesheet">
     <link href="<?php echo e(URL::to('css/price-range.css')); ?>" rel="stylesheet">
     <link href="<?php echo e(URL::to('css/animate.css')); ?>" rel="stylesheet">
-  <link href="<?php echo e(URL::to('css/main1.css')); ?>" rel="stylesheet">
+    <!--
+    <link href="<?php echo e(URL::to('css/main.css')); ?>" rel="stylesheet">
+    <link href="<?php echo e(URL::to('css/main1.css')); ?>" rel="stylesheet">
+    -->    
+  <link href="<?php echo e(URL::to('css/main.css')); ?>" rel="stylesheet">
   <link href="<?php echo e(URL::to('css/responsive.css')); ?>" rel="stylesheet">
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
@@ -35,6 +44,24 @@
  <?php echo $__env->make('layouts.menutop', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
    </header><!--/header-->
 <!-- END MENUTOP -->
+
+<?php if(Session::has('message')): ?>
+
+   <div class="header-bottom"><!--header-bottom-->
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">          
+              <div class="alert alert-danger">
+                <?php echo e(Session::get('message')); ?>
+
+              </div>            
+          </div>
+        </div>
+      </div>
+    </div><!--/header-bottom-->
+
+
+<?php endif; ?>
 
 <!-- BEGIN BANNER -->
  <?php echo $__env->make('layouts.banner', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

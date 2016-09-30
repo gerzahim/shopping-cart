@@ -758,40 +758,24 @@ CUSTOMIZE
 ///////////////////////////////////////////////////////////////////
 
 cambios estrategicos / customize
-public/view/layouts/index.php
-        css/main.css a main1.css  / keywords
+public/view/layouts/index.php // keywords
+        css/main.css to correspond 
 public/view/layouts/header.blade.php  
-            Info contact / logos 
-public/view/layouts/footer.blade.php 
-            addres
-public/view/layouts/app.blade.php 
-        Logo
-public/view/shop/contact.blade.php
-public/view/admin/index.blade.php
+            to correspond  --  Info contact / logos 
+
+public/view/layouts/footer.blade.php  to correspond  -- addres
+public/view/layouts/app.blade.php to correspond  -- Logo
+public/view/shop/contact.blade.php to correspond 
+public/view/admin/index.blade.php  to correspond 
     Logo
     <img height="50px" width="60px" src="{{ URL::to('images/Logoherbnkulture.png') }}" />
 
-stripe Account
-        
-    Getting From Your Account -> Account Setting -> Api Keys
-    -Test PublishableKey
-    -Test Secret Key
-
-     setting de Api Public keyss
-     js/checkout.js
-
-     Stripe.setPublishableKey('pk_test_bgDZl3Hlj03zb9UDeQYraAHk');
+public/app/http/routes.php  to correspond 
 
 
-    Controllers/ProductController.php
+public/.env 
 
-    setting de Api Secret key
 
-    public function postCheckout(Request $request){
-
-        Stripe::setApiKey('sk_test_HlLliwLgXEFhdQv4WQQamLii');
-
-    }
 
 
 . env  set email Account
@@ -852,6 +836,54 @@ MAIL_ENCRYPTION=null
 MAIL_ENCRYPTION=tls
 
 
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=shopcart_doralhookah
+DB_USERNAME=shopcart_doruser
+DB_PASSWORD=swa8&GlrxKLm
+
+
+
+MAIL_DRIVER=smtp
+MAIL_HOST=mail.doralhookah.com
+MAIL_PORT=25
+MAIL_USERNAME=info@doralhookah.com
+MAIL_PASSWORD=swa8&GlrxKLm
+MAIL_ENCRYPTION=null
+
+
+
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=shopcart_doralhookah
+DB_USERNAME=shopcart_doruser
+DB_PASSWORD=gWd13qrIP8n.
+
+CACHE_DRIVER=file
+SESSION_DRIVER=file
+QUEUE_DRIVER=sync
+
+REDIS_HOST=127.0.0.1
+REDIS_PASSWORD=null
+REDIS_PORT=6379
+
+MAIL_DRIVER=smtp
+MAIL_HOST=mail.doralhookah.com
+MAIL_PORT=25
+MAIL_USERNAME=info@doralhookah.com
+MAIL_PASSWORD=swa8&GlrxKLm
+MAIL_ENCRYPTION=null
+
+
+
+
+
+
+
 config/mail.php
 
 'from' => ['address' => 'herbnkulture@gmail.com', 'name' => 'Herbn Kulture'],
@@ -864,6 +896,28 @@ config/mail.php
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 
+
+stripe Account
+        
+    Getting From Your Account -> Account Setting -> Api Keys
+    -Test PublishableKey
+    -Test Secret Key
+
+     setting de Api Public keyss
+     js/checkout.js
+
+     Stripe.setPublishableKey('pk_test_bgDZl3Hlj03zb9UDeQYraAHk');
+
+
+    Controllers/ProductController.php
+
+    setting de Api Secret key
+
+    public function postCheckout(Request $request){
+
+        Stripe::setApiKey('sk_test_HlLliwLgXEFhdQv4WQQamLii');
+
+    }
 
 
 .htaccess
@@ -912,18 +966,8 @@ Poster height 329, width 270
 FTP 
 
 
-Guia_laravel
+LARAVEL Datatables
 
-
-
-views/layouts/header
-views/shop/contact
-views/shop/checkout
-views/user/form.blade.php
-views/admin/editbanners.php 
-views/admin/products.php 
-views/admin/index.php  ** 
-Controllers/ProductController 
 
 /add  to installation 
 
@@ -964,46 +1008,3 @@ dd($products);
 
 
 
-
-
-
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=shopcart_doralhookah
-DB_USERNAME=shopcart_doruser
-DB_PASSWORD=swa8&GlrxKLm
-
-
-
-MAIL_DRIVER=smtp
-MAIL_HOST=mail.doralhookah.com
-MAIL_PORT=25
-MAIL_USERNAME=info@doralhookah.com
-MAIL_PASSWORD=swa8&GlrxKLm
-MAIL_ENCRYPTION=null
-
-
-
-
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=shopcart_doralhookah
-DB_USERNAME=shopcart_doruser
-DB_PASSWORD=gWd13qrIP8n.
-
-CACHE_DRIVER=file
-SESSION_DRIVER=file
-QUEUE_DRIVER=sync
-
-REDIS_HOST=127.0.0.1
-REDIS_PASSWORD=null
-REDIS_PORT=6379
-
-MAIL_DRIVER=smtp
-MAIL_HOST=mail.doralhookah.com
-MAIL_PORT=25
-MAIL_USERNAME=info@doralhookah.com
-MAIL_PASSWORD=swa8&GlrxKLm
-MAIL_ENCRYPTION=null

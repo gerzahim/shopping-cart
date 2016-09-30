@@ -477,6 +477,7 @@ ul.sub-menu {
 
 .footer-widget {
   margin-bottom: 68px;
+  background-color: #181817;
 }
 
 .footer-widget .container {
@@ -2896,7 +2897,7 @@ ul.sub-menu {
 **************************/
 
 #footer {
-  background: #F0F0E9;
+  background: #181817;
 }
 
 
@@ -2924,6 +2925,14 @@ ul.sub-menu {
   color: #B3B3AD;
   font-family: 'Roboto', sans-serif;
   font-size: 12px;
+  font-weight: 300;
+}
+
+.companyaddress p {
+  padding-top: 5px;
+  color: #a8a8a3;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
   font-weight: 300;
 }
 
@@ -3209,7 +3218,7 @@ ul.sub-menu {
   CSS Hookah Express
   NO background-color
   */
-  background-color: #F7F7F0;
+  background-color: #F0F0E9;
   border: 1px solid #F7F7F0;
   margin-bottom: 35px;
   padding-bottom: 20px;
@@ -3271,7 +3280,11 @@ h2.title:before{
 }
 
 .category-products .panel-default .panel-heading {
+    /*
+  CSS Hookah Express
   background-color: #F7F7F0;
+  */
+  background-color: #F0F0E9;
   border: 0 none;
   color: #FFFFFF;
   padding: 5px 20px;
@@ -3318,7 +3331,11 @@ h2.title:before{
 }
 
 .brands-name {
+    /*
+  CSS Hookah Express
   background-color: #F7F7F0;
+  */  
+  background-color: #F0F0E9;
   border: 1px solid #F7F7F0;
   padding-bottom: 20px;
   padding-top: 15px;
@@ -3326,7 +3343,12 @@ h2.title:before{
 
 
 .brands-name .nav-stacked li a {
+    /*
+  CSS Hookah Express
   background-color: #F7F7F0;
+  */
+
+  background-color: #F0F0E9;
   color: #696763;
   font-family: 'Roboto', sans-serif;
   font-size: 14px;

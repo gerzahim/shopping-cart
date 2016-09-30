@@ -135,6 +135,7 @@ Route::get('/removeItem/{id}', [
 
 
 
+
 //auth routes
 Route::group(['middleware' => 'auth'], function () {
 
@@ -191,7 +192,25 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('/multipleactions', [
 		'uses' => 'ProductController@getMultipleAction',
 		'as' => 'product.multipleactions'
+	]);
+
+	Route::get('/form-csv', [
+	'uses' => 'ImportController@formImport',
+	'as' => 'import.form'
 	]);	
+
+	Route::post('/upload-csv', [
+	'uses' => 'ImportController@storeCSV',
+	'as' => 'import.upload'
+	]);
+
+	Route::get('/import-csv', [
+	'uses' => 'ImportController@getImport',
+	'as' => 'import.import'
+	]);
+
+	
+
   
 });
 

@@ -16,7 +16,7 @@
                   <div class="row">
                     <div class="col-md-12">
                       <h2>List Products </h2>  
-                      <fieldset class="fsStyle">
+                      <fieldset class="fsStyle" style="border: 4px solid #a1a1a1;margin-top: 15px;padding: 10px;">
                         <legend class="legendStyle">
 
                         <a data-toggle="collapse" data-target="#demo" href="#">Filter by </a>
@@ -95,8 +95,8 @@
                   <option value="2">Delete Products</option>
                 </select> 
                 <button type="submit" class="btn btn-primary">Apply</button>  
-
                 <a class="btn btn-success" href="{{ route('product.create') }}">Create New Product</a>
+                <a class="btn btn-warning" href="{{ route('import.form') }}">CSV Import Products</a>                
               </td>
             </tr>
             <tr class="cart_menu">

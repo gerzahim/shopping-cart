@@ -1,6 +1,59 @@
 <?php $__env->startSection('content'); ?>
+   <div id="contact-page" class="container">
+          <div class="row">       
+            <div class="col-sm-12">                 
+              <h2 class="title text-center">Checkout </h2>
+              <br>                             
+            </div>          
+          </div>
+
+
+
+          <div class="col-sm-8">
+            <div class="contact-form">
+              <h2 class="title text-center">Your Total: <strong>$<?php echo e($total); ?></strong></h2>
+              <div id="charge-error" class="alert alert-danger <?php echo e(!Session::has('error') ? 'hidden' : ''); ?>">
+                  <?php echo e(Session::get('error')); ?>
+
+              </div>
+              <form action="<?php echo e(route('checkout')); ?>" id="checkout-form" class="contact-form row" name="checkout-form" method="post">
+                    <div class="form-group col-md-6">
+                        <input type="text" id="name" class="form-control" required name="name" placeholder="Full Name">
+                    </div>
+                    <div class="form-group col-md-6"></div>
+                    <div class="form-group col-md-12">
+                        <input type="text" id="address" class="form-control" required name="address" placeholder="Address">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input type="text" id="card-name" class="form-control" placeholder="Card Holder Name" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input type="text" id="card-number" class="form-control" placeholder="Credit Card Number" required>                      
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input type="text" id="card-expiry-month" class="form-control" placeholder="Expiration Month" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input type="text" id="card-expiry-year" class="form-control" placeholder="Expiration Year" required>                
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input type="text" id="card-cvc" class="form-control" placeholder="CVC" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <button type="submit" class="btn btn-success">Place Your Order</button>              
+                    </div>       
+                  <?php echo e(csrf_field()); ?>                                                           
+                </form>
+            </div>
+          </div>
+
+          
+   </div>
+
+<?php /* <!--
 
     <div class='row'>
+
       <div class="col-sm-6 col-md-12 col-md-offset-4 col-sm-offset-3"">
         <h1>Checkout</h1>
         <h4>Your Total: $<?php echo e($total); ?></h4>
@@ -70,7 +123,7 @@
           <button type="submit" class="btn btn-success">Place Your Order</button>
         </form>
       </div>
-    </div>  
+    </div>  --> */ ?>
 
 <hr>
 

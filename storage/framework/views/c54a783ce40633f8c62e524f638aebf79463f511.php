@@ -22,7 +22,7 @@
                     <button type="button" class="btn btn-default get"><?php echo e($banner->button); ?></button>
                   </div>
                   <div class="col-sm-6">
-                    <img src="media/<?php echo e($banner->imagepath); ?>" class="girl img-responsive" alt="" />
+                    <img height="280px" width="280px"  src="media/<?php echo e($banner->imagepath); ?>" class="girl img-responsive" alt="" />
                     <?php if(!$banner->imagepath_price == ''): ?>
                       <img src="media/<?php echo e($banner->imagepath_price); ?>"  class="pricing" alt="" />
                     <?php endif; ?>  

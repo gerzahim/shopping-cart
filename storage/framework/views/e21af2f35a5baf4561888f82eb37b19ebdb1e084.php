@@ -6,11 +6,16 @@
           <div class="col-sm-6">
             <div class="contactinfo">
               <ul class="nav nav-pills">
-                <?php /* 
+                <?php /*
+                <!-- 
                 <li><a href="#"><i class="fa fa-phone"></i> +1 786-464-1348</a></li>
-                <li><a href="#"><i class="fa fa-envelope"></i> thehookahexpress@gmail.com</a></li> */ ?>
+                <li><a href="#"><i class="fa fa-envelope"></i> thehookahexpress@gmail.com</a></li> 
                 <li><a href="#"><i class="fa fa-phone"></i> +1 954-790-2620</a></li>
-                <li><a href="#"><i class="fa fa-envelope"></i> hmitha@gmail.com </a></li>                
+                <li><a href="#"><i class="fa fa-envelope"></i> hmitha@gmail.com </a></li>
+                -->
+                */ ?>                
+                <li><a href="#"><i class="fa fa-phone"></i> +1 786-464-1348</a></li>
+                <li><a href="#"><i class="fa fa-envelope"></i> thehookahexpress@gmail.com</a></li>                 
               </ul>
             </div>
           </div>
@@ -33,21 +38,30 @@
       <div class="container">
         <div class="row">
           <div class="col-sm-6">
-                <?php /* 
+                <?php /* <!--
                 <div class="logo pull-left">
                   <a href="<?php echo e(url('/')); ?>"><img width="150px" height="120px" src="<?php echo e(URL::to('images/Logoherbnkulture.png')); ?>" alt="" /></a>
                 </div>
                 <div class="lema pull-right">
                   <a href="<?php echo e(url('/')); ?>"><img width="380px" height="100px" src="<?php echo e(URL::to('images/Lema1.jpg')); ?>" alt="" /></a>
                 </div>
-                */ ?>              
+
                 <div class="logo pull-left">
-                  <a href="index.html"><img width="150px" height="150px" src="<?php echo e(URL::to('images/CrownTrading.png')); ?>" alt="" /></a>
+                  <a href="<?php echo e(url('/')); ?>"><img width="150px" height="150px" src="<?php echo e(URL::to('images/CrownTrading.png')); ?>" alt="" /></a>
                 </div>
 
                 <div class="lema pull-right">
-                  <a href="index.html"><img width="400px" height="120px" src="<?php echo e(URL::to('images/Lema.jpg')); ?>" alt="" /></a>
-                </div>  
+                  <a href="<?php echo e(url('/')); ?>"><img width="400px" height="120px" src="<?php echo e(URL::to('images/Lema.jpg')); ?>" alt="" /></a>
+                </div>                  
+                -->
+                */ ?>  
+                <div class="logo pull-left">
+                  <a href="<?php echo e(url('/')); ?>"><img width="150px" height="120px" src="<?php echo e(URL::to('images/Logoherbnkulture.png')); ?>" alt="" /></a>
+                </div>
+                <div class="lema pull-right">
+                  <a href="<?php echo e(url('/')); ?>"><img width="380px" height="100px" src="<?php echo e(URL::to('images/Lema1.jpg')); ?>" alt="" /></a>
+                </div>                            
+
           </div>            
 <!--            
             <div class="btn-group pull-right">
@@ -80,7 +94,7 @@
               <ul class="nav navbar-nav">
                 <?php if(Auth::guest()): ?>                
                   <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
-                  <li><a href="#"><i class="fa fa-crosshairs"></i> Checkout</a></li>
+                  <li><a href="<?php echo e(url('/checkout')); ?>"><i class="fa fa-crosshairs"></i> Checkout</a></li>
                   <li><a href="<?php echo e(route('product.shoppingCart')); ?>"><i class="fa fa-shopping-cart"></i> Cart
                   <span class="badge"><?php echo e(Session::has('cart') ? Session::get('cart')->totalQty : ''); ?></span>
                   </a></li>
@@ -101,9 +115,28 @@
 
              <?php if(Auth::guest()): ?>  
               <div class="pull-right">
-                <form action="#" class="searchform">
-                  <p>Get the most recent updates from our site...</p>
-                  <input type="text" placeholder="Your email address" />
+                <form action="<?php echo e(url('subscribers')); ?>" id="main-contact-form" class="searchform" name="contact-form" method="post">
+                  <?php if(count($errors) > 0): ?>
+                      <div class="alert alert-danger">
+                          <ul>
+                              <?php foreach($errors->all() as $error): ?>
+                                  <li><?php echo e($error); ?></li>
+                              <?php endforeach; ?>
+                          </ul>
+                      </div>
+                  <?php else: ?>
+                    <?php if(Session::has('message')): ?>
+                      <div class="alert alert-success">
+                        <?php echo e(Session::get('message')); ?>
+
+                      </div>
+                    <?php else: ?>
+                      <p>Get the most recent updates from our site...</p>    
+                    <?php endif; ?>                      
+                  <?php endif; ?> 
+
+                  <input type="email" name="email" required="required" placeholder="Your email address" />
+                  <?php echo e(csrf_field()); ?>  
                   <button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i></button>   
                 </form>
               </div>

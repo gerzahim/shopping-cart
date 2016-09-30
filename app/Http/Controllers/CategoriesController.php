@@ -38,6 +38,7 @@ class CategoriesController extends Controller
                          $tree.='<img height="50px" width="50px" src="media/'.$Category->imagepath.'" alt="No Images">';
                      }
                      $tree.='</td>';
+                     $tree.='<td class="cart_description">'.$Category->id.'</td>';
                      $tree.='<td class="cart_description">';
                      $tree.='<i class="fa fa-circle fa-fw" aria-hidden="true"></i> '.$Category->name;
                      $tree.='</td>';
@@ -90,6 +91,7 @@ class CategoriesController extends Controller
                          $html.='<img height="50px" width="50px" src="media/'.$arr->imagepath.'" alt="No Images">';
                      }                     
                      $html.='</td>';
+                     $html.='<td class="cart_description">'.$arr->id.'</td>';
                      $html.='<td class="cart_description2">';
                      $html.='&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-minus fa-fw" aria-hidden="true"></i> '.$arr->name;
                      $html.='</td>';
@@ -122,6 +124,7 @@ class CategoriesController extends Controller
                          $html.='<img height="50px" width="50px" src="media/'.$arr->imagepath.'" alt="No Images">';
                      }  
                      $html.='</td>';
+                     $html.='<td class="cart_description">'.$arr->id.'</td>';
                      $html.='<td class="cart_description2">';
                      $html.='&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-minus fa-fw" aria-hidden="true"></i> '.$arr->name;
                      $html.='</td>';

@@ -1,7 +1,7 @@
-@yield('sidebar') 
+@yield('sidebar')
 
+{{--
 
-{{--      
 <!-- BEGIN SIDEBAR -->
 
           <div class="left-sidebar">

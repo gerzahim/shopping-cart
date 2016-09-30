@@ -31,6 +31,7 @@
           <thead>
             <tr class="cart_menu">
               <td class="image">Imagen</td>
+              <td class="id">Brand ID</td>
               <td class="description">Name</td>
               <td class="quantity">Edit</td>
               <td class="total">Delete</td>
@@ -44,6 +45,7 @@
               <td class="price"></td>
               <td class="price"></td>
               <td class="quantity"><a class="btn btn-success" href="{{ route('brands.create') }}">Create Brand</a></td>
+              <td class="total"></td>
               <td class="total"></td>
             </tr>            
           </tfoot>

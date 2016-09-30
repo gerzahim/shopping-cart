@@ -29,9 +29,8 @@ class BrandsController extends Controller
              $tree.='<img height="50px" width="50px" src="media/'.$brand->imagepath.'" alt="No Images">';
             }
             $tree.='</td>';
-            $tree.='<td class="cart_description">';
-            $tree.='<i class="fa fa-circle fa-fw" aria-hidden="true"></i> '.$brand->name;
-            $tree.='</td>';
+            $tree.='<td class="cart_description">'.$brand->id.'</td>';
+            $tree.='<td class="cart_description">'.$brand->name.'</td>';
             $tree.='<td class="cart_description">';
             $tree.='<a class="cart_quantity_delete" href="'.$url.'/'.$brand->id.'/edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>';
             $tree.='</td>';

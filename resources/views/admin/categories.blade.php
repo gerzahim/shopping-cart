@@ -32,6 +32,7 @@
           <thead>
             <tr class="cart_menu">
               <td class="image">Imagen</td>
+              <td class="image">Category ID</td>
               <td class="description">Name</td>
               <td class="price">Description</td>
               <td class="price">Parent Category</td>
@@ -47,6 +48,9 @@
             <tr>
               <td class="cart_product">
                 <img height="50px" width="50px" src="media/{{ $category['imagepath'] }}" alt="No Images">
+              </td>
+              <td class="cart_description">
+                <h4><a href="">{{ $category['id'] }}</a></h4>
               </td>
               <td class="cart_description">
                 <h4><a href="">{{ $category['name'] }}</a></h4>
@@ -75,6 +79,7 @@
               <td class="price"></td>
               <td class="price"></td>
               <td class="quantity"><a class="btn btn-success" href="{{ route('categories.create') }}">Create Category</a></td>
+              <td class="total"></td>
               <td class="total"></td>
             </tr>            
           </tfoot>

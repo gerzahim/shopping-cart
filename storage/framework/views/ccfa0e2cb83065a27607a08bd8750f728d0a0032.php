@@ -1,7 +1,7 @@
-<?php echo $__env->yieldContent('sidebar'); ?> 
+<?php echo $__env->yieldContent('sidebar'); ?>
 
+<?php /*
 
-<?php /*      
 <!-- BEGIN SIDEBAR -->
 
           <div class="left-sidebar">

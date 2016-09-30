@@ -22,10 +22,11 @@
     18 => 'Illuminate\\Translation\\TranslationServiceProvider',
     19 => 'Illuminate\\Validation\\ValidationServiceProvider',
     20 => 'Illuminate\\View\\ViewServiceProvider',
-    21 => 'ShopCart\\Providers\\AppServiceProvider',
-    22 => 'ShopCart\\Providers\\AuthServiceProvider',
-    23 => 'ShopCart\\Providers\\EventServiceProvider',
-    24 => 'ShopCart\\Providers\\RouteServiceProvider',
+    21 => 'Maatwebsite\\Excel\\ExcelServiceProvider',
+    22 => 'ShopCart\\Providers\\AppServiceProvider',
+    23 => 'ShopCart\\Providers\\AuthServiceProvider',
+    24 => 'ShopCart\\Providers\\EventServiceProvider',
+    25 => 'ShopCart\\Providers\\RouteServiceProvider',
   ),
   'eager' => 
   array (
@@ -38,10 +39,11 @@
     6 => 'Illuminate\\Pagination\\PaginationServiceProvider',
     7 => 'Illuminate\\Session\\SessionServiceProvider',
     8 => 'Illuminate\\View\\ViewServiceProvider',
-    9 => 'ShopCart\\Providers\\AppServiceProvider',
-    10 => 'ShopCart\\Providers\\AuthServiceProvider',
-    11 => 'ShopCart\\Providers\\EventServiceProvider',
-    12 => 'ShopCart\\Providers\\RouteServiceProvider',
+    9 => 'Maatwebsite\\Excel\\ExcelServiceProvider',
+    10 => 'ShopCart\\Providers\\AppServiceProvider',
+    11 => 'ShopCart\\Providers\\AuthServiceProvider',
+    12 => 'ShopCart\\Providers\\EventServiceProvider',
+    13 => 'ShopCart\\Providers\\RouteServiceProvider',
   ),
   'deferred' => 
   array (
