@@ -10,8 +10,16 @@
                       <div class="alert alert-success">
                           {{ Session::get('message') }}
                       </div>
-                  @endif 
+                  @endif
                   
+                <div class="flash-message">
+                  @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+                    @if(Session::has('alert-' . $msg))
+                    <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }}</p>
+                    @endif
+                  @endforeach
+                </div>           
+                                  
                   
                   <div class="row">
                     <div class="col-md-12">

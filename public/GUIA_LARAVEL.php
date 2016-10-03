@@ -759,20 +759,19 @@ CUSTOMIZE
 
 cambios estrategicos / customize
 public/view/layouts/index.php // keywords
-        css/main.css to correspond 
+        css/main.css to correspond // style
 public/view/layouts/header.blade.php  
-            to correspond  --  Info contact / logos 
+          //  to correspond  --  Info contact / logos 
 
-public/view/layouts/footer.blade.php  to correspond  -- addres
-public/view/layouts/app.blade.php to correspond  -- Logo
+public/view/layouts/footer.blade.php  to correspond  //-- addres
+public/view/layouts/app.blade.php to correspond  //-- Logo
+
 public/view/shop/contact.blade.php to correspond 
+         //Info address and ...
 public/view/admin/index.blade.php  to correspond 
-    Logo
-    <img height="50px" width="60px" src="{{ URL::to('images/Logoherbnkulture.png') }}" />
-
+    // Logo  <img height="50px" width="60px" src="{{ URL::to('images/Logoherbnkulture.png') }}" />
 public/app/http/routes.php  to correspond 
-
-
+     // buy like guess or login , auth 
 public/.env 
 
 
@@ -1007,4 +1006,18 @@ dd($products);
 
 
 
+flash-message
 
+<div class="flash-message">
+  @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+    @if(Session::has('alert-' . $msg))
+    <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }}</p>
+    @endif
+  @endforeach
+</div>           
+                         
+
+Session::flash('alert-danger', 'danger');
+Session::flash('alert-warning', 'warning');
+Session::flash('alert-success', 'success');
+Session::flash('alert-info', 'info');
