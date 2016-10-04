@@ -25,15 +25,13 @@
                     <option value="1">Large Image</option>                    
 
                     {{-- <!--
-                    @foreach($categories as $category)                     
-                        
-                        @if($product['categories_id'] == $category['id'])
+                        @if($banner['typeofbanner'] == $category['id'])
+                          <option selected="selected" value="{{ $category['id'] }}">{{ $category['name'] }}</option>
                           <option selected="selected" value="{{ $category['id'] }}">{{ $category['name'] }}</option>
                         @else
-                          <option value="{{ $category['id'] }}">{{ $category['name'] }}</option>
-                        @endif            
-
-                    @endforeach
+                          <option value="{{ $banner['id'] }}">{{ $banner['name'] }}</option>
+                          <option value="{{ $banner['id'] }}">{{ $banner['name'] }}</option>
+                        @endif   
                     --> --}}
                   </select>                
               </div>              
@@ -91,8 +89,8 @@
           <div class="row">
             <div class="col-xs-12">
               <div class="form-group">
-                <label for="card-name" name="msgtxtimg">Image Banner Current</label>                
-                <label for="card-name" name="msglargimg" style="display:none">Image Large Banner Current  </label>
+                <label for="card-name" name="msgtxtimg">Image Banner Current (width=280px ; Height=280px)</label>                
+                <label for="card-name" name="msglargimg" style="display:none">Image Large Banner Current (width=920px ; Height=350px)</label>
                   @if($banner['imagepath'] == '')
                     <img height="50px" width="50px" src="{{ URL::to('/') }}/images/no-image.jpg" alt="No Images" name="imagepath">
                   @else
