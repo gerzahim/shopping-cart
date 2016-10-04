@@ -15,6 +15,7 @@ class CreateBannersTable extends Migration
         Schema::create('banners', function (Blueprint $table) {
             
             $table->increments('id');
+            $table->integer('typeofbanner')->unsigned()->nullable();            
             $table->string('active')->nullable();
             $table->string('text_red')->nullable();
             $table->string('text_gray')->nullable();
@@ -23,6 +24,7 @@ class CreateBannersTable extends Migration
             $table->text('button');
             $table->string('imagepath');           
             $table->string('imagepath_price')->nullable();
+            $table->string('link');
             $table->integer('product_id')->unsigned()->nullable();
             $table->timestamps();
         });

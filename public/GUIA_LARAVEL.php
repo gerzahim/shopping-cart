@@ -1,4 +1,4 @@
-<?php GUIA DE LARAVEL
+sed<?php GUIA DE LARAVEL
 
 
 1) Instalación 

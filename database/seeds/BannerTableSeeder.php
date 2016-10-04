@@ -13,6 +13,7 @@ class BannerTableSeeder extends Seeder
     {
         $banner = new \ShopCart\Banner([
         	'active'=> 'active',
+            'typeofbanner'=> "0",
             'text_red'=> 'ON', 
         	'text_gray'=> '-SALE',
         	'title'=> 'Hookah Jamila Cage Rainbow Silver', 
@@ -20,11 +21,13 @@ class BannerTableSeeder extends Seeder
         	'button' => 'Get it now',
             'imagepath'=> 'banner1.jpg',
         	'imagepath_price'=> 'pricing.png',
+            'link'=> '#',            
         	'product_id'=> "0"
         ]);
         $banner->save();
         $banner = new \ShopCart\Banner([
             'active'=> '',
+            'typeofbanner'=> "0",
         	'text_red'=> 'AWS', 
         	'text_gray'=> '-100',
         	'title'=> '100% American Weight Scale', 
@@ -32,17 +35,20 @@ class BannerTableSeeder extends Seeder
         	'button' => 'Get it now',
             'imagepath'=> 'banner2.jpg',
         	'imagepath_price'=> '',
+            'link'=> '#',
         	'product_id'=> "0"
         ]);
         $banner->save();
         $banner = new \ShopCart\Banner([
             'active'=> '',
+            'typeofbanner'=> "0",
         	'text_red'=> 'RAW', 
         	'text_gray'=> '-SHOPPER',
         	'title'=> 'Greatest invention of our time', 
         	'description'=> 'Classic rolling papers are a pure, less processed rolling paper unlike anything that you have ever seen or smoked.',
             'imagepath'=> 'banner3.jpg',
         	'imagepath_price'=> Null,
+            'link'=> '#',
         	'product_id'=> "0"
         ]);
         $banner->save();        
