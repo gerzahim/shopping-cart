@@ -656,7 +656,10 @@ ProductTableSeeder.php
     }
 
 
-DatabaseSeeder.php    
+DatabaseSeeder.php  
+
+
+php artisan make:seed DatabaseSeeder  
 
 public function run()
 {
@@ -1021,3 +1024,10 @@ Session::flash('alert-danger', 'danger');
 Session::flash('alert-warning', 'warning');
 Session::flash('alert-success', 'success');
 Session::flash('alert-info', 'info');
+
+
+
+For Care 
+
+admin/index   line 87
+routes  line 212

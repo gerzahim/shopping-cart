@@ -209,7 +209,20 @@ Route::group(['middleware' => 'auth'], function () {
 	'as' => 'import.import'
 	]);
 
-	
+	Route::get('/users', [
+		'uses' => 'UserController@getUsers',
+		'as' => 'userslist'
+	]);
+
+	Route::get('/usersedit/{id}', [
+		'uses' => 'UserController@editUser',
+		'as' => 'user.editUser'
+	]);
+
+	Route::get('/removeuser/{id}', [
+		'uses' => 'UserController@getRemoveUser',
+		'as' => 'user.removeUser'
+	]);			
 
   
 });

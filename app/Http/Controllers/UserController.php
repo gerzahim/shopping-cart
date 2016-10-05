@@ -100,7 +100,35 @@ class UserController extends Controller
 
         return view('user.myorders', ['orders' => $orders]);
 
-    }    
+    } 
+
+    public function getUsers(){
+
+        //$users = User::all();
+        $users = User::paginate(20);
+        
+        return view('admin.users', ['users' => $users]);
+
+    }       
+
+    public function getRemoveUser($id)
+    {
+        $user->find($id)->delete();
+        Session::flash('message', 'User successfully Deleted!');
+        return redirect()->route('categories.index');
+        
+    }
+
+
+    public function editUser($id)
+    {
+
+        $user = User::find($id);
+
+        //return view('admin.editproducts', ['product' => $product], compact('categories'), compact('brands'));
+        return view('admin.editusers', compact('user'));
+    }     
+
 
     public function showAccount(){
 

@@ -82,7 +82,13 @@
                         </li>
                         <li>
                             <a href="{{ url('/product') }}"><i class="fa fa-tags"></i>Products</a>
-                        </li>                        
+                        </li> 
+                        <li>
+                            <a href="{{ url('/users') }}"><i class="fa fa-tags"></i>Users</a>
+                        </li>  
+                        <li>
+                            <a href="{{ url('/subscribers') }}"><i class="fa fa-tags"></i>Subscribers</a>
+                        </li>                                                                         
                         <li>
                             <a href="#"><i class="fa fa-cog"></i>Settings</a>
                         </li>
