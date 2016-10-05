@@ -28,6 +28,7 @@
             <tr class="cart_menu">
               <td class="image">Imagen Banner</td>
               <td class="quantity">Title</td>       
+              <td class="quantity">Type</td>
               <td class="quantity">Edit</td>
             </tr>
           </thead>
@@ -36,6 +37,7 @@
           </tbody>
           <tfoot>
             <tr class="cart_menu">
+              <td class="price"></td>
               <td class="price"></td>
               <td class="price"></td>
               <td class="total"></td>

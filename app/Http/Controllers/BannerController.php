@@ -27,10 +27,21 @@ class BannerController extends Controller
                 if ($banner->imagepath == Null or $banner->imagepath == "") {
                  $tree.='<img height="50px" width="50px" src="images/no-image.jpg"  alt="No Images">';
                 } else {
-                 $tree.='<img height="50px" width="50px" src="media/'.$banner->imagepath.'" alt="No Images">';
+                    if ($banner->typeofbanner == "1") {
+                        $tree.='<img height="50px" width="100px" src="media/'.$banner->imagepath.'" alt="No Images">';
+                    }else{
+                        $tree.='<img height="50px" width="50px" src="media/'.$banner->imagepath.'" alt="No Images">';
+                    }                 
                 }
                 $tree.='</td>';             
                 $tree.='<td class="cart_description">'.$banner->title.'</td>';
+                $tree.='<td class="cart_description">';
+                if ($banner->typeofbanner == 0) {
+                 $tree.='Text and Images';
+                } else {
+                 $tree.='Large Image';
+                }
+                $tree.='</td>';                   
                 $tree.='<td class="cart_description">';
                 $tree.='<a class="cart_quantity_delete" href="'.$url.'/'.$banner->id.'/edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>';
                 $tree.='</td>';
@@ -165,7 +176,7 @@ class BannerController extends Controller
 
         $banner->fill($input)->save();  
 
-        Session::flash('message', 'Banners successfully created!');
+        Session::flash('message', 'Banners successfully Updated!');
         return redirect()->route('banners.index');
 
     }

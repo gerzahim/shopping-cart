@@ -10,31 +10,37 @@
               <li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
               <li data-target="#slider-carousel" data-slide-to="1"></li>
               <li data-target="#slider-carousel" data-slide-to="2"></li>
-              <li data-target="#slider-carousel" data-slide-to="3"></li>
             </ol>
             
             <div class="carousel-inner">
               @foreach( $banners as $banner)
-                <div class="item {{ $banner->active }}">
-                  <div class="col-sm-6">
-                    <h1><span>{{ $banner->text_red }}</span>{{ $banner->text_gray }}</h1>
-                    <h2>{{ $banner->title }}</h2>
-                    <p>{{ $banner->description }}</p>
-                    <a href="#"><button type="button" class="btn btn-default get">{{ $banner->button }}</button></a>
-                  </div>
-                  <div class="col-sm-6">
-                    <img height="280px" width="280px"  src="media/{{ $banner->imagepath }}" class="girl img-responsive" alt="" />
-                    @if (!$banner->imagepath_price == '')
-                      <img src="media/{{ $banner->imagepath_price }}"  class="pricing" alt="" />
-                    @endif  
-                  </div>
-                </div>
+                  @if ($banner->typeofbanner == '0')
+                    <div class="item {{ $banner->active }}">
+                      <div class="col-sm-6">
+                        <h1><span>{{ $banner->text_red }}</span>{{ $banner->text_gray }}</h1>
+                        <h2>{{ $banner->title }}</h2>
+                        <p>{{ $banner->description }}</p>
+                        <a href="{{ $banner->link }}"><button type="button" class="btn btn-default get">{{ $banner->button }}</button></a>
+                      </div>
+                      <div class="col-sm-6">
+                        <img height="280px" width="280px"  src="media/{{ $banner->imagepath }}" class="girl img-responsive" alt="" />
+                        @if (!$banner->imagepath_price == '')
+                          <img src="media/{{ $banner->imagepath_price }}"  class="pricing" alt="" />
+                        @endif  
+                      </div>
+                    </div> 
+                  @else
+                    <div class="item {{ $banner->active }}">
+                      <div class="col-sm-12" >
+                        <a href="{{ $banner->link }}">
+                          <img src="media/{{ $banner->imagepath }}" alt="" />
+                        </a>
+                      </div>
+                    </div>                
+                  @endif
+
+
               @endforeach
-                  <div class="item">
-                  <div class="col-sm-12" >
-                    <a href="#"><img src="media/banner/07.jpg" alt="" /></a>
-                  </div>
-                </div>
            
             </div>                        
             

@@ -21,18 +21,15 @@
                 <label for="card-number">Select Type of Banner</label>
 
                   <select id="typeofbanner" name="typeofbanner">
-                    <option value="0">Text and Image</option>
-                    <option value="1">Large Image</option>                    
+                  
+                        @if($banner['typeofbanner'] == '0')
+                          <option selected="selected" value="0">Text and Image</option>
+                          <option value="1">Large Image</option>
+                        @else                  
+                          <option value="0">Text and Image</option>
+                          <option selected="selected" value="1">Large Image</option>
+                        @endif
 
-                    {{-- <!--
-                        @if($banner['typeofbanner'] == $category['id'])
-                          <option selected="selected" value="{{ $category['id'] }}">{{ $category['name'] }}</option>
-                          <option selected="selected" value="{{ $category['id'] }}">{{ $category['name'] }}</option>
-                        @else
-                          <option value="{{ $banner['id'] }}">{{ $banner['name'] }}</option>
-                          <option value="{{ $banner['id'] }}">{{ $banner['name'] }}</option>
-                        @endif   
-                    --> --}}
                   </select>                
               </div>              
             </div>            
@@ -41,7 +38,7 @@
           <div class="row">
             <div class="col-xs-4">
               <div class="form-group">
-                <label for="name" name="text_red">Text Red</label>
+                <label for="name" id="text_redl" name="text_red">Text Red</label>
                 <input type="text" id="text_red" class="form-control" name="text_red" value="{{ $banner['text_red'] }}" >
               </div>              
             </div>            
@@ -49,23 +46,23 @@
           <div class="row">
             <div class="col-xs-4">
               <div class="form-group">
-                <label for="name" name="text_gray">Tex Gray</label>
-                <input type="text" id="name" class="form-control" name="text_gray" value="{{ $banner['text_gray'] }}" >
+                <label for="name" id="text_grayl" name="text_gray">Tex Gray</label>
+                <input type="text" id="text_gray" class="form-control" name="text_gray" value="{{ $banner['text_gray'] }}" >
               </div>              
             </div>            
           </div>
           <div class="row">
             <div class="col-xs-4">
               <div class="form-group">
-                <label for="name" name="title">Title</label>
-                <input type="text" id="name" class="form-control" name="title" value="{{ $banner['title'] }}" required>
+                <label for="name" id="titlel" name="title">Title</label>
+                <input type="text" id="title" class="form-control" name="title" value="{{ $banner['title'] }}" required>
               </div>              
             </div>            
           </div>
           <div class="row">
             <div class="col-xs-4">
               <div class="form-group">
-                <label for="name" name="description">Description</label>
+                <label for="name" id="descriptionl" name="description">Description</label>
                 <textarea id="description" class="form-control" name="description" rows="3" cols="50" required>{{ $banner['description'] }}</textarea>
               </div>              
             </div>            
@@ -73,15 +70,15 @@
           <div class="row">
             <div class="col-xs-4">
               <div class="form-group">
-                <label for="name" name="button">Button</label>
-                <input type="text" id="name" class="form-control" name="button" value="{{ $banner['button'] }}" required>
+                <label for="name" id="buttonl" name="button">Button</label>
+                <input type="text" id="button" class="form-control" name="button" value="{{ $banner['button'] }}" required>
               </div>              
             </div>    
           </div> 
           <div class="row">
             <div class="col-xs-4">
               <div class="form-group">
-                <label for="name">Link</label>
+                <label for="name" id="linkl">Link</label>
                 <input type="text" id="link" class="form-control" name="link" value="{{ $banner['link'] }}" placeholder="http://yourwebsite.com/categories">
               </div>              
             </div>            
@@ -89,12 +86,25 @@
           <div class="row">
             <div class="col-xs-12">
               <div class="form-group">
-                <label for="card-name" name="msgtxtimg">Image Banner Current (width=280px ; Height=280px)</label>                
-                <label for="card-name" name="msglargimg" style="display:none">Image Large Banner Current (width=920px ; Height=350px)</label>
+                <label for="card-name" id="msgtxtimg" name="msgtxtimg">Image Banner Current (width=280px ; Height=280px)
+                  <br> 
+                  <a href="{{ URL::to('media/banner/template_bannershort.psd') }}">Download PSD Template</a>
+                  <br>
+                </label>                
+                <label for="card-name" id="msglargimg" name="msglargimg" style="display:none">Image Large Banner Current (width=920px ; Height=350px)
+                  <br> 
+                  <a href="{{ URL::to('media/banner/template_bannerlarge.psd') }}">Download PSD Template</a>
+                  <br>
+                </label>
                   @if($banner['imagepath'] == '')
                     <img height="50px" width="50px" src="{{ URL::to('/') }}/images/no-image.jpg" alt="No Images" name="imagepath">
                   @else
-                    <img height="50px" width="50px" src="{{ URL::to('/') }}/media/{{ $banner['imagepath'] }}" alt="No Images" name="imagepath">
+                    @if($banner['typeofbanner'] == '1')
+
+                      <img height="50px" width="100px" src="{{ URL::to('/') }}/media/{{ $banner['imagepath'] }}" alt="No Images" name="imagepath">
+                    @else
+                      <img height="50px" width="50px" src="{{ URL::to('/') }}/media/{{ $banner['imagepath'] }}" alt="No Images" name="imagepath">
+                    @endif
                   @endif
                 <br><br>
                 <label><input type="checkbox" id="cbox1" name="cbox1" value="1"></label>
@@ -103,7 +113,7 @@
               </div>              
             </div>            
           </div>
-          <div class="row">
+          <div class="row"  id="fff">
             <div class="col-xs-12">
               <div class="form-group">
                 <label for="card-name" name="imagepath_price">Image Price Current</label>                
@@ -123,6 +133,25 @@
           {{ csrf_field() }}          
           <button type="submit" class="btn btn-success">Update Banner</button>
         </form>
+
+        @if($banner['typeofbanner'] == '1')
+          <script type="text/javascript">
+              document.getElementById('text_redl').style.display = 'none';
+              document.getElementById('text_red').style.display = 'none';
+              document.getElementById('text_grayl').style.display = 'none';
+              document.getElementById('text_gray').style.display = 'none';                      
+              document.getElementById('titlel').style.display = 'none';
+              document.getElementById('title').style.display = 'none';
+              document.getElementById('descriptionl').style.display = 'none';
+              document.getElementById('description').style.display = 'none';
+              document.getElementById('buttonl').style.display = 'none';
+              document.getElementById('button').style.display = 'none';
+              document.getElementById('msgtxtimg').style.display = 'none';
+              document.getElementById('msglargimg').style.display = 'block';
+              document.getElementById('fff').style.display = 'none';
+          </script>
+        @endif
+
       </div>
     </div>
   </section> <!--/#cart_items-->                 <!-- /. ROW  -->           

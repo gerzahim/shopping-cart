@@ -96,6 +96,9 @@
             <div class="col-xs-12">
               <div class="form-group">
                 <label for="card-name">Current Product Image</label>
+                  <br> 
+                    <a href="{{ URL::to('images/template_products.psd') }}">Download PSD Template</a>
+                  <br>
                 
                 @if($product['imagepath'] == '')
                   <img height="300px" width="300px" src="{{ URL::to('/') }}/images/no-image.jpg" alt="No Images">

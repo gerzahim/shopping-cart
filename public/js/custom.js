@@ -40,6 +40,13 @@
         }
 
     }
+
+    function validateForm(){
+
+        alert("matched");
+    }
+
+
     // Initializing ///
 
     $(document).ready(function () {
@@ -86,7 +93,7 @@
         }
     });
 
-
+    
 
     });
 
