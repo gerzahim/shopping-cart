@@ -621,6 +621,7 @@ class Product extends Model
 
 
 php artisan make:seed ProductTableSeeder
+php artisan make:seed SubscriberTableSeeder
 
 It'll create 2 seeds Files in database/seeds 
 
@@ -893,6 +894,18 @@ config/mail.php
 //'from' => ['address' => 'info@doralhookah.com', 'name' => 'Doral Hookah'],
 //'from' => ['address' => null, 'name' => null],
 
+
+
+controllers/ProductController.php line 509
+
+public function postSubscriber(Request $request){
+            Mail::send('emails.subscriber', $data, function ($message) use ($data){
+                $message->from('herbnkulture@gmail.com', 'Info HerbnKulture');
+                $message->to($data['email']);
+                $message->subject('Welcome New Subcriber');
+
+            }); 
+
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -1031,3 +1044,7 @@ For Care
 
 admin/index   line 87
 routes  line 212
+        line 164
+        line 181
+
+header line 118
