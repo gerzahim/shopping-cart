@@ -10,7 +10,7 @@
     <meta name="keywords" content="Hookah, miami, sales">
     -->
     <meta name="keywords" content="Hookah, miami, sales">
-    <title>Shop | E-Shopper</title>
+    <title>.:: Doral | Hookah ::.</title>
     <link href="{{ URL::to('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ URL::to('css/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ URL::to('css/prettyPhoto.css') }}" rel="stylesheet">

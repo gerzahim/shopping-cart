@@ -116,7 +116,7 @@
 
              @if (Auth::guest())  
               <div class="pull-right">
-                <form action="{{ url('subscribers') }}" id="main-contact-form" class="searchform" name="contact-form" method="post">
+                <form action="{{ url('postsubscribers') }}" id="main-contact-form" class="searchform" name="contact-form" method="post">
                   @if (count($errors) > 0)
                       <div class="alert alert-danger">
                           <ul>
