@@ -11,5 +11,5 @@ class Subscriber extends Model
      *
      * @var array
      */
-    protected $fillable = ['email'];
+    protected $fillable = ['email','status',];
 }

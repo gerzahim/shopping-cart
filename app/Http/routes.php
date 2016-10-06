@@ -60,7 +60,7 @@ Route::get('/selectByBrand/{id}', [
 	'as' => 'selectByBrand'
 ]);
 
-Route::post('/subscribers', 'ProductController@postSubscriber');
+Route::post('/postsubscribers', 'ProductController@postSubscriber');
 
 Route::get('/contact', 'ProductController@getContact');
 Route::post('/contact', 'ProductController@postContact');
@@ -161,6 +161,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('/brands', 'BrandsController');
 	Route::resource('/product', 'ProductController');
 	Route::resource('/banners', 'BannerController');	
+	Route::resource('/subscribers', 'SubscriberController');
 
 	Route::get('/product/removeProduct/{id}', [
 	'uses' => 'ProductController@getRemoveProduct',
@@ -175,6 +176,11 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/brands/removeBrand/{id}', [
 		'uses' => 'BrandsController@getRemoveBrand',
 		'as' => 'brands.removeBrand'
+	]);
+
+	Route::get('/removeSubscribers/{id}', [
+		'uses' => 'SubscriberController@getRemoveSubscribers',
+		'as' => 'subscribers.removesubscribers'
 	]);
 
 	Route::get('/filterProducts', [

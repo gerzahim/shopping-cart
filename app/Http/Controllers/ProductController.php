@@ -531,6 +531,7 @@ class ProductController extends Controller
 
             //Save on Subscriber Table
             $input = $request->all();
+            $input['status'] = '1';
             $nsubscriber = new Subscriber();
             $nsubscriber->fill($input)->save();
 
@@ -539,7 +540,7 @@ class ProductController extends Controller
             $data = array(
                 'email' => $request->email, 
                 );
-     
+
             Mail::send('emails.subscriber', $data, function ($message) use ($data){
                 $message->from('herbnkulture@gmail.com', 'Info HerbnKulture');
                 $message->to($data['email']);
