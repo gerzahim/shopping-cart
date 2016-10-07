@@ -37,7 +37,18 @@
 									@endforeach
 								</ul>
 							</div>
-							<div class="panel-footer"><strong>Total Price: ${{ $order->cart->totalPrice }}</strong></div>
+							<div class="panel-footer">
+								<strong>
+									<p>Total: ${{ $order->cart->totalPrice }}</p>
+									@if($order->status == '1')
+										<p>Status: Pending to Delivery</p>
+									@else
+										<p>Status: Out to Delivery</p>
+										<p>Shipping Company: {{ $order->shipcompany }}</p>
+										<p>Tracking Number: {{ $order->tracking }}</p>
+									@endif
+								</strong>
+							</div>
 						</div>
 					@endforeach
 				</div>
@@ -50,3 +61,4 @@
 
 
 @endsection
+

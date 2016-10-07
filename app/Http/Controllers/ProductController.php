@@ -732,7 +732,38 @@ class ProductController extends Controller
         Session::forget('cart');
         
         return redirect()->route('product.shop')->with('success', 'Successfully Purchased Products!');
-    }    
+    }
+
+    public function getPolicy(){
+
+        return view('shop.policy');
+    }        
+
+
+    public function getTerms(){
+
+        return view('shop.terms');
+    }
+
+    public function getRefunds(){
+
+        return view('shop.returns');
+    } 
+
+    public function getShipping(){
+
+        return view('shop.shipping');
+    }     
+
+    public function getAboutUs(){
+
+        return view('shop.aboutus');
+    }
+
+    public function getFaqs(){
+
+        return view('shop.faqs');
+    }        
 
 
     /**

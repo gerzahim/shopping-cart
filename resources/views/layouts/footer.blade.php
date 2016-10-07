@@ -9,9 +9,9 @@
               <h2>Service</h2>
               <ul class="nav nav-pills nav-stacked">
                 <li><a href="#">Contact Us</a></li>
-                <li><a href="#">Order Status</a></li>
-                <li><a href="#">Change Location</a></li>
-                <li><a href="#">FAQ’s</a></li>
+                <li><a href="{{ URL::to('myorders') }}">Order Status</a></li>
+                <li><a href="{{ URL::to('faqs') }}">FAQ’s</a></li>
+                <li><a href="{{ URL::to('admin') }}">Backend</a></li>
               </ul>
             </div>
           </div>
@@ -31,9 +31,10 @@
             <div class="single-widget">
               <h2>Policies</h2>
               <ul class="nav nav-pills nav-stacked">
-                <li><a href="#">Terms of Use</a></li>
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">Refund Policy</a></li>
+                <li><a href="{{ URL::to('terms') }}">Terms of Use</a></li>
+                <li><a href="{{ URL::to('policy') }}">Privacy Policy</a></li>
+                <li><a href="{{ URL::to('shipping') }}">Shipping</a></li>
+                <li><a href="{{ URL::to('refunds') }}">Returns</a></li>
               </ul>
             </div>
           </div>
@@ -41,10 +42,7 @@
             <div class="single-widget">
               <h2>About Shopper</h2>
               <ul class="nav nav-pills nav-stacked">
-                <li><a href="#">Company Information</a></li>
-                <li><a href="#">Careers</a></li>
-                <li><a href="#">Store Location</a></li>
-                <li><a href="#">Copyright</a></li>
+                <li><a href="{{ URL::to('aboutus') }}">Company Information</a></li>
               </ul>
             </div>
           </div>

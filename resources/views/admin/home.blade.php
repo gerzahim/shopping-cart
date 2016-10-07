@@ -23,33 +23,61 @@
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
                         <div class="div-square">
+                             <a href="{{ url('/orders') }}" >
+                                <i class="fa fa-archive fa-5x"></i>
+                                <h4>Orders</h4>
+                              </a>
+                        </div>              
+                    </div>                                        
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                        <div class="div-square">
                              <a href="{{ url('/categories') }}" >
                                 <i class="fa fa-qrcode fa-5x"></i>
                                 <h4>Categories</h4>
                               </a>
                         </div>              
-                    </div>                     
+                    </div>                        
                      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                        <div class="div-square">
+                             <a href="{{ url('/banners') }}" >
+                                <i class="fa fa-film fa-5x"></i>
+                                <h4>Banner</h4>
+                              </a>
+                        </div>              
+                    </div>
+                   <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
                         <div class="div-square">
                              <a href="{{ url('/brands') }}" >
                                 <i class="fa fa-rocket fa-5x"></i>
                                 <h4>Brands</h4>
                               </a>
                         </div>              
-                    </div> 
-                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                    </div>                                          
+                   <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
                         <div class="div-square">
                              <a href="{{ url('/product') }}" >
                                 <i class="fa fa-tags fa-5x"></i>
                                 <h4>Products</h4>
                               </a>
                         </div>              
+                    </div> 
+                      
+                </div>   
+                  <!-- /. ROW  -->
+                <div class="row text-center pad-top">
+                      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                        <div class="div-square">
+                             <a href="{{ url('/users') }}" >
+                                <i class="fa fa-user fa-5x"></i>
+                                <h4>Users</h4>
+                              </a>
+                        </div>              
                     </div>
                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
                         <div class="div-square">
-                             <a href="{{ url('/banners') }}" >
-                                <i class="fa fa-film fa-5x"></i>
-                                <h4>Banner Home</h4>
+                             <a href="{{ url('/subscribers') }}" >
+                                <i class="fa fa-users fa-5x"></i>
+                                <h4>Subscribers</h4>
                               </a>
                         </div>              
                     </div>                                          
@@ -60,12 +88,7 @@
                                 <h4>Settings</h4>
                               </a>
                         </div>              
-                    </div> 
-                      
-                </div>   
-                  <!-- /. ROW  -->
-                <div class="row text-center pad-top">
-                   
+                    </div>                   
                  
 
                   <!-- 

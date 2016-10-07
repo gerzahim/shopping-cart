@@ -101,7 +101,7 @@ Route::get('/account', [
 
 
 Route::get('/myorders', [
-	'uses' => 'UserController@userupdate',
+	'uses' => 'UserController@getOrders',
 	'as' => 'product.myorders'
 ]);
 
@@ -133,8 +133,36 @@ Route::get('/removeItem/{id}', [
 ]);
 
 
+Route::get('/policy', [
+	'uses' => 'ProductController@getPolicy',
+	'as' => 'getpolicy'
+]);
+
+Route::get('/terms', [
+	'uses' => 'ProductController@getTerms',
+	'as' => 'getterms'
+]);
+
+Route::get('/aboutus', [
+	'uses' => 'ProductController@getAboutUs',
+	'as' => 'getaboutus'
+]);
+
+Route::get('/refunds', [
+	'uses' => 'ProductController@getRefunds',
+	'as' => 'getrefunds'
+]);
 
 
+Route::get('/shipping', [
+	'uses' => 'ProductController@getShipping',
+	'as' => 'getshipping'
+]);
+
+Route::get('/faqs', [
+	'uses' => 'ProductController@getFaqs',
+	'as' => 'getfaqs'
+]);
 
 //auth routes
 Route::group(['middleware' => 'auth'], function () {
