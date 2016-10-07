@@ -14,12 +14,18 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
+            //$table->string('gender',array(‘M’,’F’)->default(‘M’);
+            $table->integer('status')->unsigned()->default('1');   // 1 order Pending for Delivery, 2 Out for delivery          
+            $table->string('shipcompany')->nullable();  
+            $table->string('tracking')->nullable();  
             $table->integer('user_id');
             $table->text('cart');
             $table->text('address');
             $table->string('name');
+            $table->string('email');            
+            $table->string('phone');
             $table->string('payment_id');
+            $table->timestamps();
         });
     }
 

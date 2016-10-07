@@ -228,6 +228,38 @@ class ProductController extends Controller
 
     }
 
+    public function getOrders(){
+
+        //$users = User::all();
+        $orders = Order::paginate(20);
+        
+        return view('admin.orders', ['orders' => $orders]);
+
+    }
+
+    public function editOrder($id)
+    {
+
+        $order = Order::find($id);
+        $order->cart = unserialize($order->cart);
+
+        return view('admin.editorders', compact('order'));
+    }
+
+    public function updateOrder(Request $request, $id){
+
+        $order = Order::find($id);
+
+        $array = $request->all();
+
+
+        $order->fill($array)->save();
+
+        Session::flash('message', 'Order successfully updated!');
+        return redirect()->back();
+
+    }                 
+
 
     public function getMultipleAction(Request $request){
 
@@ -647,12 +679,25 @@ class ProductController extends Controller
             
             // Saving Order on Database
             $order = new Order();
-            $order->cart = serialize($cart);
+            $order->cart = serialize($cart);            
             $order->address = $request->input('address');
             $order->name = $request->input('name');
+            $order->email = $request->input('email');
+            $order->phone = $request->input('phone');
             $order->payment_id = $charge->id;
+            
 
-            Auth::user()->orders()->save($order);
+            if (Auth::check()) {
+                // The user is logged in...
+                Auth::user()->orders()->save($order);
+            }else{
+                // Save user like guess
+                $order->user_id = "1";
+                //orders()->save($order);
+                $order->save();
+            }            
+            
+            //Auth::user()->orders()->save($order);
 
             // Delete Product From Stock 
             //dd($cart);

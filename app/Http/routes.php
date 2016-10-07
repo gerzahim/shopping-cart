@@ -101,7 +101,7 @@ Route::get('/account', [
 
 
 Route::get('/myorders', [
-	'uses' => 'UserController@getOrders',
+	'uses' => 'UserController@userupdate',
 	'as' => 'product.myorders'
 ]);
 
@@ -228,8 +228,22 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/removeuser/{id}', [
 		'uses' => 'UserController@getRemoveUser',
 		'as' => 'user.removeUser'
-	]);			
+	]);
 
+	Route::get('/orders', [
+		'uses' => 'ProductController@getOrders',
+		'as' => 'orderslist'
+	]);
+
+	Route::get('/ordersedit/{id}', [
+		'uses' => 'ProductController@editOrder',
+		'as' => 'order.editOrder'
+	]);				
+
+	Route::post('/orderupdate/{id}', [
+		'uses' => 'ProductController@updateOrder',
+		'as' => 'orderupdate'
+	]);
   
 });
 

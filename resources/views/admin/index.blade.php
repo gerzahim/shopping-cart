@@ -60,6 +60,9 @@
                         <a href="{{ url('/admin') }}" ><i class="fa fa-desktop"></i>Dashboard </a>
                     </li>
                     <li>
+                        <a href="{{ url('/orders') }}"><i class="fa fa-archive"></i>Orders</a>
+                    </li>
+                    <li>
                         <a href="{{ url('/categories') }}"><i class="fa fa-qrcode"></i>Categories</a>
                     </li>
                     
@@ -84,10 +87,10 @@
                             <a href="{{ url('/product') }}"><i class="fa fa-tags"></i>Products</a>
                         </li> 
                         <li>
-                            <a href="{{ url('/users') }}"><i class="fa fa-tags"></i>Users</a>
+                            <a href="{{ url('/users') }}"><i class="fa fa-user"></i>Users</a>
                         </li>  
                         <li>
-                            <a href="{{ url('/subscribers') }}"><i class="fa fa-tags"></i>Subscribers</a>
+                            <a href="{{ url('/subscribers') }}"><i class="fa fa-users"></i>Subscribers</a>
                         </li>                                                                         
                         <li>
                             <a href="#"><i class="fa fa-cog"></i>Settings</a>

@@ -12,6 +12,14 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         //name', 'email', 'password
+        $product = new \ShopCart\User([
+            'name'=> 'Name Costumer Guess',
+            'email'=> 'guesscostumer@gmail.com',
+            'role'=> '1',
+            'password' => bcrypt('12345'),
+            'status'=> '1',
+        ]);
+        $product->save();
 
         $product = new \ShopCart\User([
         	'name'=> 'Costumer Shop',

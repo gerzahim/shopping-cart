@@ -18,13 +18,36 @@
                   {{ Session::get('error') }}
               </div>
               <form action="{{ route('checkout') }}" id="checkout-form" class="contact-form row" name="checkout-form" method="post">
+                    @if (Auth::guest())
+                      <div class="form-group col-md-6">
+                          <input type="text" id="name" class="form-control" required name="name" placeholder="Full Name">
+                      </div>                      
+                      <div class="form-group col-md-6">
+                          <input type="text" id="email" class="form-control" required name="email" placeholder="Email">
+                      </div>
+                      <div class="form-group col-md-6">
+                          <input type="text" id="phone" class="form-control" required name="phone" placeholder="Phone">
+                      </div>
+                      <div class="form-group col-md-6"></div>
+                      <div class="form-group col-md-12">
+                          <input type="text" id="address" class="form-control" required name="address" placeholder="Address">
+                      </div>                      
+                    @else
                     <div class="form-group col-md-6">
-                        <input type="text" id="name" class="form-control" required name="name" placeholder="Full Name">
-                    </div>
-                    <div class="form-group col-md-6"></div>
-                    <div class="form-group col-md-12">
-                        <input type="text" id="address" class="form-control" required name="address" placeholder="Address">
-                    </div>
+                        <input type="text" id="name" class="form-control" required name="name" value="{{ Auth::user()->name }}" placeholder="Full Name">
+                    </div>                    
+                      <div class="form-group col-md-6">
+                          <input type="text" id="email" class="form-control" required name="email" value="{{ Auth::user()->email }}" placeholder="Email">
+                      </div>
+                      <div class="form-group col-md-6">
+                          <input type="text" id="phone" class="form-control" required name="phone" value="{{ Auth::user()->phone }}" placeholder="Phone">
+                      </div>                    
+                      <div class="form-group col-md-6"></div>
+                      <div class="form-group col-md-12">
+                          <input type="text" id="address" class="form-control" required name="address" value="{{ Auth::user()->address }}" placeholder="Address">
+                      </div>
+                    @endif
+
                     <div class="form-group col-md-6">
                         <input type="text" id="card-name" class="form-control" placeholder="Card Holder Name" required>
                     </div>
