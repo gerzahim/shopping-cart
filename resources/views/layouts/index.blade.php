@@ -5,12 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Electronics Miami">
     <meta name="author" content="Gerza Salas">
+    {{-- 
     <!--
     <meta name="keywords" content="electronics, miami, sales">
     <meta name="keywords" content="Hookah, miami, sales">
-    -->
+    
     <meta name="keywords" content="Hookah, miami, sales">
     <title>.:: Doral | Hookah ::.</title>
+    <title>.||| {{ dd($settings->title_site) }} ::.</title> --> --}}
     <link href="{{ URL::to('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ URL::to('css/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ URL::to('css/prettyPhoto.css') }}" rel="stylesheet">

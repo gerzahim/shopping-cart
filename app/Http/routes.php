@@ -12,6 +12,7 @@
 */
 
 
+
 Route::get('prueba', function(){
 	return view('welcome');
 });
@@ -25,13 +26,9 @@ Route::get('/', function(){
 });
 
 
-/*
-Route::get('/', [
-	'uses' => 'ProductController@getHome',
-	'as' => 'principal'
-]);
+//View::share('settings', $users = DB::table('settings')->get()) ;
 
-*/
+
 Route::get('/public_html', [
 	'uses' => 'ProductController@getHome',
 	'as' => 'principal3'

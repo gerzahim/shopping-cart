@@ -17,7 +17,8 @@ class DatabaseSeeder extends Seeder
     	$this->call(BrandTableSeeder::class);
         $this->call(ProductTableSeeder::class);
         $this->call(BannerTableSeeder::class);
-        $this->call(SubscriberTableSeeder::class);        
+        $this->call(SubscriberTableSeeder::class);
+        $this->call(SettingTableSeeder::class);        
         //php artisan db:seed --class=BannerTableSeeder
     }
 }

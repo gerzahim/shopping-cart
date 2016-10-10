@@ -163,9 +163,12 @@ si la tabla "A" tiene un foreignkeys con la tabla "B" genera primero el modelo B
 
 app/nameModels.php
 
+
+php artisan make:model nameModels -m
+
 # para crear automaticamente 
 
- $ php artisan make:model nameModels -m
+
  example:  $ php artisan make:model Movie -m
 
 php artisan make:model Articles -m
@@ -617,7 +620,7 @@ class Product extends Model
     protected $fillable = ['sku','title','description','imagepath','price','quantity','status','categories_id','brand_id'];
 }
 
-
+php artisan make:seed SettingTableSeeder
 
 
 php artisan make:seed ProductTableSeeder
@@ -1037,6 +1040,33 @@ Session::flash('alert-danger', 'danger');
 Session::flash('alert-warning', 'warning');
 Session::flash('alert-success', 'success');
 Session::flash('alert-info', 'info');
+
+
+
+
+DEFINE
+//////////////////////////
+
+
+if (Auth::check()) define('STARTUP_WALL', DB::table('walls')->where('id', Auth::user()->startup_wall)->pluck('name'));
+
+
+
+
+
+
+GLOBAL VARIABLES
+//////////////////////////
+
+http://itsolutionstuff.com/post/how-to-define-global-variables-in-laravel-5example.html
+
+
+
+view::share
+
+http://stackoverflow.com/questions/28897633/accessing-items-in-array-shared-using-laravel-viewshare?rq=1
+https://coderwall.com/p/kqxdug/share-a-variable-across-views-in-laravel
+https://www.youtube.com/watch?v=kds7xpA6X7Q
 
 
 
