@@ -150,6 +150,7 @@ return [
         Maatwebsite\Excel\ExcelServiceProvider::class,
         
         //Collective\Html\HtmlServiceProvider::class,
+        //php artisan make:provider SettingServiceProvider
 
         /*
          * Application Service Providers...
@@ -158,6 +159,8 @@ return [
         ShopCart\Providers\AuthServiceProvider::class,
         ShopCart\Providers\EventServiceProvider::class,
         ShopCart\Providers\RouteServiceProvider::class,
+        ShopCart\Providers\SettingServiceProvider::class,
+
         //Yajra\Datatables\DatatablesServiceProvider::class,
 
     ],

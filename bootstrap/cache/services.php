@@ -27,6 +27,7 @@
     23 => 'ShopCart\\Providers\\AuthServiceProvider',
     24 => 'ShopCart\\Providers\\EventServiceProvider',
     25 => 'ShopCart\\Providers\\RouteServiceProvider',
+    26 => 'ShopCart\\Providers\\SettingServiceProvider',
   ),
   'eager' => 
   array (
@@ -44,6 +45,7 @@
     11 => 'ShopCart\\Providers\\AuthServiceProvider',
     12 => 'ShopCart\\Providers\\EventServiceProvider',
     13 => 'ShopCart\\Providers\\RouteServiceProvider',
+    14 => 'ShopCart\\Providers\\SettingServiceProvider',
   ),
   'deferred' => 
   array (

@@ -12,13 +12,27 @@ class CreateSettingsTable extends Migration
      */
     public function up()
     {
+
         Schema::create('settings', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title_site')->nullable();
             $table->string('keywords_site')->nullable();
+            $table->string('description_site')->nullable();            
             $table->string('email_site')->nullable();
             $table->string('phone_site')->nullable();
             $table->string('address_site')->nullable();
+            $table->string('css_site')->nullable();
+            $table->string('logo_home')->nullable();
+            $table->string('logo_home_height')->nullable();
+            $table->string('logo_home_width')->nullable();
+            $table->integer('has_lema')->default('1'); //0 Doesn't have lema ; 1 has lema            
+            $table->string('lema_home')->nullable();
+            $table->string('lema_home_height')->nullable();
+            $table->string('lema_home_width')->nullable();
+            $table->string('logo_admin')->nullable();
+            $table->string('logo_admin_height')->nullable();
+            $table->string('logo_admin_width')->nullable();
+            $table->string('img_map')->nullable();
             $table->integer('pagination_home')->default('6');
             $table->integer('pagination_shop')->default('9');
             $table->string('link_facebook')->nullable();

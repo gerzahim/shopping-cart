@@ -203,6 +203,9 @@ i) Creando el controller
 
 $ php artisan make:controller Articles --resource
 
+
+php artisan make:controller Setting
+
 ii) Asignando Valores a los campos de la base de datos
 <?php
 
@@ -782,6 +785,19 @@ public/app/http/routes.php  to correspond
 public/.env 
 
 
+logo_home
+logo_home_height
+logo_home_width
+lema_home
+lema_home_height
+lema_home_width
+css
+logo_admin
+logo_admin_height
+logo_admin_width
+img_map
+
+
 
 
 . env  set email Account
@@ -1070,6 +1086,44 @@ https://www.youtube.com/watch?v=kds7xpA6X7Q
 
 
 
+
+PROVIDERS
+//////////////////////////
+
+https://scotch.io/tutorials/sharing-data-between-views-using-laravel-view-composers
+http://stackoverflow.com/questions/28608527/how-to-pass-data-to-all-views-in-laravel-5
+http://stackoverflow.com/questions/32615022/laravel-5-view-composer-with-multiple-variables
+
+A)  create a provider service
+php artisan make:provider SettingServiceProvider
+
+    app/Providers/SettingServiceProvider.php
+
+B) add new services providers to config/app 
+
+ add providers
+
+//ShopCart\Providers\RouteServiceProvider::class,
+ShopCart\Providers\SettingServiceProvider::class,
+
+C) Create new Folder to ViewComposers 
+    app/Http/ViewComposers/SettingComposer.php 
+
+D) remenber use $var to render on views 
+
+
+
+
+Eloquent-Collections
+//////////////////////////
+
+https://laravel.com/docs/5.3/eloquent-collections
+
+/*/*/*/*/*/*/*/*/*///////////////////////////////////////////////////////////
+/*/*/*/*/*/*/*/*/*///////////////////////////////////////////////////////////
+/*/*/*/*/*/*/*/*/*///////////////////////////////////////////////////////////
+/*/*/*/*/*/*/*/*/*///////////////////////////////////////////////////////////
+
 For Care 
 
 admin/index   line 87
@@ -1082,3 +1136,6 @@ header line 118
 
 footer  line 15, 14 
 
+
+GOOD TUTORIAL
+https://laracasts.com/series/laravel-5-fundamentals/episodes/25

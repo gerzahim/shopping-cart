@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Electronics Miami">
     <meta name="author" content="Gerza Salas">
+    <title>{{ $setting->title_site }}</title>
+    <meta name="keywords" content="{{ $setting->keywords_site }}">
     {{-- 
-    <!--
+   <!--
     <meta name="keywords" content="electronics, miami, sales">
     <meta name="keywords" content="Hookah, miami, sales">
     

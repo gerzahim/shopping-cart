@@ -12,6 +12,7 @@ use ShopCart\Brand;
 use ShopCart\Banner;
 use ShopCart\User;
 use ShopCart\Subscriber;
+use ShopCart\Settings;
 use Session;
 use Auth;
 use Stripe\Charge;
@@ -37,6 +38,7 @@ class ProductController extends Controller
         
         // Get info for Banner Section
         $categories = Categories::all();
+
 
         //Get Categories for SideBar        
         $tree =$this->ParentView($url);
@@ -83,12 +85,15 @@ class ProductController extends Controller
         // Get info for Banner Section
         $categories = Categories::all();
 
+
         //Get Categories for SideBar        
         $tree =$this->ParentView($url);
         $tree1 =$this->getBrands($url);    
 
         //$products = Product::all();
         $products = Product::where('brand_id', '=', $brand_id)->paginate(6);
+
+        $title = "Laracast";
         
         return view('shop.index', compact('products', 'categories', 'tree', 'tree1'));
     }        
