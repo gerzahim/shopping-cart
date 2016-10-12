@@ -12,7 +12,8 @@ class SettingTableSeeder extends Seeder
     public function run()
     {
         $setting = new \ShopCart\Settings([
-        	'id'=> '1',
+        	'id'=> '1',            
+            'name_site'=> 'Hookah Express',
         	'title_site'=> '.:: Hookah | Express ::.',
         	'keywords_site'=> 'Hookah, miami, sales',
             'description_site'=> 'Electronics Miami',            
@@ -26,7 +27,7 @@ class SettingTableSeeder extends Seeder
             'has_lema'=> '1',
             'lema_home'=> 'Lema1.jpg',
             'lema_home_height'=> '100',
-            'lema_home_width'=> '300',
+            'lema_home_width'=> '380',
             'logo_admin'=> 'Logoherbnkulture.png',
             'logo_admin_height'=> '50',
             'logo_admin_width'=> '60',
@@ -37,8 +38,10 @@ class SettingTableSeeder extends Seeder
         	'link_twitter'=> '#',
         	'link_linkedin'=> '#',
         	'link_dribbble'=> '#',
-        	'link_google-plus'=> '#',
+        	'link_google_plus'=> '#',
         	'bansidepath'=> 'poster1.jpg',
+            'payment_toorder'=> 1, 
+            'approve_user'=> 0,                        
         	'apipublickey'=> 'pk_test_bgDZl3Hlj03zb9UDeQYraAHk',
         	'apisecretkey'=> 'sk_test_HlLliwLgXEFhdQv4WQQamLii',
         	'loginshowprices'=> 0,

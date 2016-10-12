@@ -91,11 +91,11 @@
               </div>              
             </div>            
           </div>  
-
+          <hr>
           <div class="row">
             <div class="col-xs-12">
               <div class="form-group">
-                <label for="card-name">Current Product Image</label>
+                <label for="card-name"><h3><span>Current Product Image (width=300px ; Height=300px)</span></h3></label>
                   <br> 
                     <a href="{{ URL::to('images/template_products.psd') }}">Download PSD Template</a>
                   <br>
@@ -112,6 +112,7 @@
               </div>              
             </div>            
           </div> 
+          <hr>
           <div class="row">
             <div class="col-xs-12">
               <div class="form-group">

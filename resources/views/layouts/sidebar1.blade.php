@@ -23,7 +23,7 @@
     {{-- 
       <img height="329px" width="270px" src="{{ URL::to('media/poster.jpg') }}""  />
     --}}
-    <img src="{{ URL::to('media/poster1.jpg') }}""  />
+    <img  width="300px" src="{{ URL::to('media/') }}/{{$setting->bansidepath}}" alt="" />
     </div><!--/shipping-->
     <!--/Banner Poster-->
 

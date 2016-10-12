@@ -5,7 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <meta name="description" content="{{ $setting->description_site }}">
+    <meta name="author" content="Gerza Salas">
+    <title>{{ $setting->title_site }}</title>
+    <meta name="keywords" content="{{ $setting->keywords_site }}">
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
@@ -14,6 +17,11 @@
     <!-- Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
+    <link rel="shortcut icon" href="{{ URL::to('images/favicon.ico') }}">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ URL::to('images/favicon.ico') }}">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ URL::to('images/favicon.ico') }}">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ URL::to('images/favicon.ico') }}">
+    <link rel="apple-touch-icon-precomposed" href="{{ URL::to('images/favicon.ico') }}">
 
     <style>
         body {
@@ -47,7 +55,7 @@
                         <img height="50px" width="120px" src="{{ URL::to('images/Logosolodoral.jpg') }}" />
                         -->
                         --}}
-                        <img height="50px" width="60px" src="{{ URL::to('images/Logoherbnkulture.png') }}" />
+                        <img width="{{$setting->logo_admin_width}}px" height="{{$setting->logo_admin_height}}px" src="{{ URL::to('images/') }}/{{$setting->logo_admin}}" alt="" />
                 </a>
             </div>
 

@@ -269,6 +269,11 @@ Route::group(['middleware' => 'auth'], function () {
 		'uses' => 'ProductController@updateOrder',
 		'as' => 'orderupdate'
 	]);
+
+	Route::get('/settingedit/{id}', [
+		'uses' => 'SettingController@editSetting',
+		'as' => 'user.editUser'
+	]);	
   
 });
 

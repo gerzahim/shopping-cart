@@ -5,7 +5,7 @@
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                     <h2>Edit Banner </h2>   
+                     <h2>Edit Settings </h2>   
                     </div>
                 </div>              
                  <!-- /. ROW  -->
@@ -14,7 +14,16 @@
     <div class="container">
       <hr>
       <div class="table-responsive cart_info">
-        <form action="{{ route('banners.update', ['id' => $banner['id']]) }}" method="post" id="edit-form" enctype="multipart/form-data">
+        <form action="{{ route('banners.update', ['id' => $setting['id']]) }}" method="post" id="edit-form" enctype="multipart/form-data">
+
+          <div class="row">
+            <div class="col-xs-4">
+              <div class="form-group">
+                <label for="name" id="text_redl" name="text_red">Site Name</label>
+                <input type="text" id="text_red" class="form-control" name="text_red" value="{{ $setting['name_site'] }}" >
+              </div>              
+            </div>            
+          </div>
           <div class="row">
             <div class="col-xs-12">
               <div class="form-group">

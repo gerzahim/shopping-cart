@@ -29,7 +29,17 @@ class SettingController extends Controller
 
         //return $setting->title_site;
         return compact('setting');
-    }  
+    }
+
+    public function editSetting($id)
+    {
+
+        $id=1;
+        $setting = Settings::find($id);
+
+        //return view('admin.editproducts', ['product' => $product], compact('categories'), compact('brands'));
+        return view('admin.editsettings', compact('id', 'setting'));
+    }        
 }
 
 

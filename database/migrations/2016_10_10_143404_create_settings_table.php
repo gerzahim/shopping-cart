@@ -15,6 +15,7 @@ class CreateSettingsTable extends Migration
 
         Schema::create('settings', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name_site')->nullable();
             $table->string('title_site')->nullable();
             $table->string('keywords_site')->nullable();
             $table->string('description_site')->nullable();            
@@ -39,10 +40,12 @@ class CreateSettingsTable extends Migration
             $table->string('link_twitter')->nullable();
             $table->string('link_linkedin')->nullable();
             $table->string('link_dribbble')->nullable();
-            $table->string('link_google-plus')->nullable();
+            $table->string('link_google_plus')->nullable();
             $table->string('bansidepath')->nullable(); // Banner sidebar on Home
-            $table->string('apipublickey')->nullable(); // Banner sidebar on Home
-            $table->string('apisecretkey')->nullable(); // Banner sidebar on Home
+            $table->integer('payment_toorder')->default('1');   // 0 Don't check payment to order, 1 Payment to Order
+            $table->integer('approve_user')->default('0');   // 0 Don't need Aprroval, 1 Need Approval to Enter on website
+            $table->string('apipublickey')->nullable(); // Public Key Stripe.com
+            $table->string('apisecretkey')->nullable(); // Secret Key Stripe.com
             $table->integer('loginshowprices')->default('0');   // 0 Don't Show Prices, 1 Show prices
             $table->integer('buylikeguess')->default('0');   // 0 Don't Buy like Guess, 1 Buy like Guess
             $table->integer('select_home_prod')->default('1');   // 1  New Arrivals, 2 Select Especial Products, 3 Ramdom Products
@@ -53,10 +56,15 @@ class CreateSettingsTable extends Migration
             $table->integer('especial_prod_id5')->nullable();
             $table->integer('especial_prod_id6')->nullable();
             $table->integer('quick_cat_id1')->nullable();
+            $table->string('quick_cat_name1')->nullable();
             $table->integer('quick_cat_id2')->nullable();
+            $table->string('quick_cat_name2')->nullable();
             $table->integer('quick_cat_id3')->nullable();
+            $table->string('quick_cat_name3')->nullable();
             $table->integer('quick_cat_id4')->nullable();
+            $table->string('quick_cat_name4')->nullable();
             $table->integer('quick_cat_id5')->nullable();
+            $table->string('quick_cat_name5')->nullable();
             $table->timestamps();
         });
     }

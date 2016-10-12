@@ -19,11 +19,11 @@
             <div class="single-widget">
               <h2>Quick Shop</h2>
               <ul class="nav nav-pills nav-stacked">
-                <li><a href="#">T-Shirt</a></li>
-                <li><a href="#">Mens</a></li>
-                <li><a href="#">Womens</a></li>
-                <li><a href="#">Gift Cards</a></li>
-                <li><a href="#">Shoes</a></li>
+                <li><a href="{{ URL::to('selectByCategory') }}/{{$setting->quick_cat_id1}}"> {{$setting->quick_cat_name1}} </a></li>
+                <li><a href="{{ URL::to('selectByCategory') }}/{{$setting->quick_cat_id2}}"> {{$setting->quick_cat_name2}} </a></li>
+                <li><a href="{{ URL::to('selectByCategory') }}/{{$setting->quick_cat_id3}}"> {{$setting->quick_cat_name3}} </a></li>
+                <li><a href="{{ URL::to('selectByCategory') }}/{{$setting->quick_cat_id4}}"> {{$setting->quick_cat_name4}} </a></li>
+                <li><a href="{{ URL::to('selectByCategory') }}/{{$setting->quick_cat_id5}}"> {{$setting->quick_cat_name5}} </a></li>
               </ul>
             </div>
           </div>
@@ -49,30 +49,25 @@
 
           <div class="col-sm-3 col-sm-offset-1">
             <div class="companyinfo">
-              <h2><span>Hookah</span>-Express</h2>              
+              <?php
+               $keywords = preg_split("/[\s,]+/", $setting->name_site);
+              ?>
+              <h2><span>{{ $keywords[0] }}</span> - {{ $keywords[1]}}</h2>
             </div>
-            <div class="address">
-              <img src="{{ URL::to('images/map.png') }}" alt="" />
-              <p>8065 NW 54th St. Doral, FL 33166 USA</p>
-            </div>
-            {{-- 
-            <!--
-            <div class="companyinfo">
-              <h2><span>Crown</span>-Trading</h2>
-            </div>
-            <div class="address">
-              <img src="{{ URL::to('images/map.png') }}" alt="" />
-              <p>3062 NW 72 Ave. Doral, FL 33166 USA</p>
-            </div>            
-            <div class="companyinfo">
-              <h2><span>Hookah</span>-Express</h2>              
-            </div>
-            <div class="address">
-              <img src="{{ URL::to('images/map.png') }}" alt="" />
-              <p>8065 NW 54th St. Doral, FL 33166 USA</p>
-            </div>
-            -->
-            --}}
+            @if( $setting->css_site == 'main_doralhooak.css')
+              <div class="address">
+                <img src="{{ URL::to('images/') }}/{{$setting->img_map}}" alt="" />           
+              </div>
+              <div  class="companyaddress" align="center">
+                <p>{{$setting->address_site}}</p>
+              </div>                          
+            @else
+              <div class="address">
+                <img src="{{ URL::to('images/') }}/{{$setting->img_map}}" alt="" />
+                <p>{{$setting->address_site}}</p>
+              </div>
+              
+            @endif
           </div>
           
         </div>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Electronics Miami">
+    <meta name="description" content="{{ $setting->description_site }}">
     <meta name="author" content="Gerza Salas">
     <title>{{ $setting->title_site }}</title>
     <meta name="keywords" content="{{ $setting->keywords_site }}">
@@ -23,8 +23,9 @@
     <!--
     <link href="{{ URL::to('css/main.css') }}" rel="stylesheet">
     <link href="{{ URL::to('css/main1.css') }}" rel="stylesheet">
+    <link href="css/{{ $setting->css_site }}" rel="stylesheet">
     -->    
-  <link href="{{ URL::to('css/main.css') }}" rel="stylesheet">
+  <link href="{{ URL::to('css/') }}/{{ $setting->css_site }}" rel="stylesheet">
   <link href="{{ URL::to('css/responsive.css') }}" rel="stylesheet">
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>

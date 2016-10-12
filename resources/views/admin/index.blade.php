@@ -1,9 +1,13 @@
 ﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head>
-      <meta charset="utf-8" />
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Administrator | E-shopper</title>
+    <title>Administrator | {{ $setting->title_site }}</title>
+    <meta name="description" content="{{ $setting->description_site }}">
+    <meta name="author" content="Gerza Salas">
+    <meta name="keywords" content="{{ $setting->keywords_site }}">
+
 	<!-- BOOTSTRAP STYLES-->
     <link href="{{ URL::to('css/bootstrap.min.css') }}" rel="stylesheet" />
      <!-- FONTAWESOME STYLES-->
@@ -11,7 +15,9 @@
         <!-- CUSTOM STYLES-->
     <link href="{{ URL::to('css/custom_admin.css') }}" rel="stylesheet" />
      <!-- GOOGLE FONTS-->
-   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />  
+   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' /> 
+
+    
     <link rel="shortcut icon" href="{{ URL::to('images/favicon.ico') }}">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ URL::to('images/favicon.ico') }}">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ URL::to('images/favicon.ico') }}">
@@ -40,7 +46,7 @@
                         <img height="50px" width="120px" src="{{ URL::to('images/Logosolodoral.jpg') }}" />
                         -->
                         --}}
-                        <img height="50px" width="60px" src="{{ URL::to('images/Logoherbnkulture.png') }}" />
+                        <img width="{{$setting->logo_admin_width}}px" height="{{$setting->logo_admin_height}}px" src="{{ URL::to('images/') }}/{{$setting->logo_admin}}" alt="" />
                     </a>
                 </div>
               
@@ -93,7 +99,7 @@
                             <a href="{{ url('/subscribers') }}"><i class="fa fa-users"></i>Subscribers</a>
                         </li>                                                                         
                         <li>
-                            <a href="#"><i class="fa fa-cog"></i>Settings</a>
+                            <a href="{{ url('/settingedit/1') }}"><i class="fa fa-cog"></i>Settings</a>
                         </li>
                 </ul>
             </div>

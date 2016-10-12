@@ -14,19 +14,19 @@
                 <li><a href="#"><i class="fa fa-envelope"></i> hmitha@gmail.com </a></li>
                 -->
                 --}}                
-                <li><a href="#"><i class="fa fa-phone"></i> +1 786-464-1348</a></li>
-                <li><a href="#"><i class="fa fa-envelope"></i> thehookahexpress@gmail.com</a></li>                 
+                <li><a href="#"><i class="fa fa-phone"></i> {{ $setting->phone_site }}</a></li>
+                <li><a href="#"><i class="fa fa-envelope"></i> {{ $setting->email_site }}</a></li>                 
               </ul>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="social-icons pull-right">
               <ul class="nav navbar-nav">
-                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                <li><a href="{{ $setting->link_facebook }}"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="{{ $setting->link_twitter }}"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="{{ $setting->link_linkedin }}"><i class="fa fa-linkedin"></i></a></li>
+                <li><a href="{{ $setting->link_dribbble }}"><i class="fa fa-dribbble"></i></a></li>
+                <li><a href="{{ $setting->link_google_plus }}"><i class="fa fa-google-plus"></i></a></li>
               </ul>
             </div>
           </div>
@@ -55,12 +55,20 @@
                 </div>                  
                 -->
                 --}}  
-                <div class="logo pull-left">
-                  <a href="{{ url('/') }}"><img width="150px" height="120px" src="{{ URL::to('images/Logoherbnkulture.png') }}" alt="" /></a>
-                </div>
-                <div class="lema pull-right">
-                  <a href="{{ url('/') }}"><img width="380px" height="100px" src="{{ URL::to('images/Lema1.jpg') }}" alt="" /></a>
-                </div>                            
+                @if($setting->has_lema == '1')
+                  <div class="logo pull-left">
+                    <a href="{{ url('/') }}"><img width="{{$setting->logo_home_width}}px" height="{{$setting->logo_home_height}}px" src="{{ URL::to('images/') }}/{{$setting->logo_home}}" alt="" /></a>
+                  </div>
+                  <div class="lema pull-right">
+                    <a href="{{ url('/') }}"><img width="{{$setting->lema_home_width}}px" height="{{$setting->lema_home_height}}px" src="{{ URL::to('images/') }}/{{$setting->lema_home}}" alt="" /></a>
+                  </div>    
+                @else
+                  <div class="logo pull-left">
+                    <a href="{{ url('/') }}"><img  height="{{$setting->logo_home_height}}px" src="{{ URL::to('images/') }}/{{$setting->logo_home}}" alt="" /></a>
+                  </div>   
+                @endif
+
+                         
 
           </div>            
 <!--            

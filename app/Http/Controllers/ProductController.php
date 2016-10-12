@@ -669,10 +669,12 @@ class ProductController extends Controller
         }
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
+        //$setting->apisecretkey;
+        //Stripe::setApiKey('sk_test_HlLliwLgXEFhdQv4WQQamLii');
+        
+        $setting = Settings::find(1);        
+        Stripe::setApiKey($setting->apisecretkey);
 
-        Stripe::setApiKey('sk_test_HlLliwLgXEFhdQv4WQQamLii');
-
-      
 
         try {
             $charge = Charge::create(array(
