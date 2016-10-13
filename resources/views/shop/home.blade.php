@@ -25,7 +25,15 @@
                     <div class="single-products">
                         <div class="productinfo text-center">
                           <img height="249px" width="249px" src="{{ URL::to('/media/') }}/{{ $product->imagepath}}" alt="" />
-                          <h2>${{ $product->price}}</h2>
+                          @if( $setting->loginshowprices == 0)
+                            <h2>${{ $product->price}}</h2>
+                          @else
+                            @if (Auth::guest())
+                              <h2>Login for Price</h2>
+                            @else
+                              <h2>${{ $product->price}}</h2>
+                            @endif                            
+                          @endif
                           <p>{{ $product->title}}</p>
                           <a href="{{ route('product.addToCart', ['id' => $product->id]) }}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                         </div>

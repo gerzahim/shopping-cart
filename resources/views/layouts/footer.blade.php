@@ -19,11 +19,22 @@
             <div class="single-widget">
               <h2>Quick Shop</h2>
               <ul class="nav nav-pills nav-stacked">
-                <li><a href="{{ URL::to('selectByCategory') }}/{{$setting->quick_cat_id1}}"> {{$setting->quick_cat_name1}} </a></li>
-                <li><a href="{{ URL::to('selectByCategory') }}/{{$setting->quick_cat_id2}}"> {{$setting->quick_cat_name2}} </a></li>
-                <li><a href="{{ URL::to('selectByCategory') }}/{{$setting->quick_cat_id3}}"> {{$setting->quick_cat_name3}} </a></li>
-                <li><a href="{{ URL::to('selectByCategory') }}/{{$setting->quick_cat_id4}}"> {{$setting->quick_cat_name4}} </a></li>
-                <li><a href="{{ URL::to('selectByCategory') }}/{{$setting->quick_cat_id5}}"> {{$setting->quick_cat_name5}} </a></li>
+                @if($setting->quick_cat_id1 != 0)
+                  <li><a href="{{ URL::to('selectByCategory') }}/{{$setting->quick_cat_id1}}"> {{$setting->quick_cat_name1}} </a></li>
+                @endif
+                @if($setting->quick_cat_id2 != 0)
+                  <li><a href="{{ URL::to('selectByCategory') }}/{{$setting->quick_cat_id2}}"> {{$setting->quick_cat_name2}} </a></li>
+                @endif
+                @if($setting->quick_cat_id3 != 0)
+                  <li><a href="{{ URL::to('selectByCategory') }}/{{$setting->quick_cat_id3}}"> {{$setting->quick_cat_name3}} </a></li>
+                @endif
+                @if($setting->quick_cat_id4 != 0)
+                  <li><a href="{{ URL::to('selectByCategory') }}/{{$setting->quick_cat_id4}}"> {{$setting->quick_cat_name4}} </a></li>
+                @endif
+                @if($setting->quick_cat_id5 != 0)
+                  <li><a href="{{ URL::to('selectByCategory') }}/{{$setting->quick_cat_id5}}"> {{$setting->quick_cat_name5}} </a></li>
+                @endif                                                                
+                                                
               </ul>
             </div>
           </div>

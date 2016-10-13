@@ -1139,3 +1139,5 @@ footer  line 15, 14
 
 GOOD TUTORIAL
 https://laracasts.com/series/laravel-5-fundamentals/episodes/25
+
+

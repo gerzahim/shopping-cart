@@ -27,12 +27,19 @@
                 <p>Web ID: 1089772</p>
                 <img src="{{ URL::to('images/rating.png') }}" alt="" />
                 <span>
-                  <span>${{ $product->price}}</span>
+                          @if( $setting->loginshowprices == 0)
+                            <span>${{ $product->price}}</span>
+                          @else
+                            @if (Auth::guest())
+                              <span>Login for Price</span>
+                            @else
+                              <span>${{ $product->price}}</span>
+                            @endif                            
+                          @endif                
                   <a href="{{ route('product.addToCart', ['id' => $product->id]) }}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                 </span>
                 <p><b>Availability:</b> In Stock</p>
                 <p><b>Condition:</b> New</p>
-                <p><b>Brand:</b> ${{ $product->price}}</p>
                 <a href=""><img src="{{ URL::to('images/share.png') }}" class="share img-responsive"  alt="" /></a>
               </div><!--/product-information-->
             </div>

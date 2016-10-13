@@ -76,7 +76,7 @@
             <tr class="cart_menu">
               <td class="image"><img  width="100px" src="{{ URL::to('media/') }}/{{$setting->bansidepath}}" alt="" /></td>
               <td class="quantity">
-                <a href="{{ URL::to('selectByCategory') }}"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i> </a>
+                <a href="{{ URL::to('/settingeditbanner/1') }}"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i> </a>
               </td>
             </tr>  
           </tbody>

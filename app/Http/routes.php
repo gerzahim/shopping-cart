@@ -1,5 +1,5 @@
 <?php
-
+use ShopCart\Settings;
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -77,19 +77,32 @@ Route::get('/shopping-cart', [
 	'as' => 'product.shoppingCart'
 ]);
 
+$setting = Settings::find(1);
+if ($setting->buylikeguess == 0) {
+	Route::get('/checkout', [
+		'uses' => 'ProductController@getCheckout',
+		'as' => 'checkout',
+	]);
 
-Route::get('/checkout', [
-	'uses' => 'ProductController@getCheckout',
-	'as' => 'checkout',
-	'middleware' => 'auth'
-]);
+	Route::post('/checkout', [
+		'uses' => 'ProductController@postCheckout',
+		'as' => 'checkout',
+	]);
+}else{
+	Route::get('/checkout', [
+		'uses' => 'ProductController@getCheckout',
+		'as' => 'checkout',
+		'middleware' => 'auth'
+	]);
 
 
-Route::post('/checkout', [
-	'uses' => 'ProductController@postCheckout',
-	'as' => 'checkout',
-	'middleware' => 'auth'
-]);
+	Route::post('/checkout', [
+		'uses' => 'ProductController@postCheckout',
+		'as' => 'checkout',
+		'middleware' => 'auth'
+	]);	
+}
+
 
 Route::get('/account', [
 	'uses' => 'UserController@showAccount',
@@ -272,12 +285,22 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::get('/settingedit/{id}', [
 		'uses' => 'SettingController@editSetting',
-		'as' => 'user.editUser'
+		'as' => 'settings.edit'
 	]);
 
 	Route::post('/settingupdate/{id}', [
 		'uses' => 'SettingController@updateSetting',
 		'as' => 'settings.update'
+	]);
+
+	Route::get('/settingeditbanner/{id}', [
+		'uses' => 'SettingController@editBannerSetting',
+		'as' => 'settings.editbanner'
+	]);
+
+	Route::post('/settingupdatebanner/{id}', [
+		'uses' => 'SettingController@updateBannerSetting',
+		'as' => 'settings.updatebanner'
 	]);
 
 

@@ -64,6 +64,9 @@
                         <input type="text" id="card-cvc" class="form-control" placeholder="CVC" required>
                     </div>
                     <div class="form-group col-md-6">
+                        <input type="hidden" id="publishable_key" class="form-control" value="{{ $setting->apipublickey }}">
+                    </div>
+                    <div class="form-group col-md-6">
                         <button type="submit" class="btn btn-success">Place Your Order</button>              
                     </div>       
                   {{ csrf_field() }}                                                           

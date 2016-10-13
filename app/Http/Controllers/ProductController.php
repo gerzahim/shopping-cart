@@ -942,7 +942,7 @@ class ProductController extends Controller
 
         $input['sku'] = strtoupper($input['sku']);
 
-        // If Checked for Change Image
+        // If Checked for Change Image for L
         if ($request->cbox1 == '1') {
             
             // Validate File Ok

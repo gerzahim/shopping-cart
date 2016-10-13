@@ -27,7 +27,7 @@
                       <fieldset class="fsStyle" style="border: 4px solid #a1a1a1;margin-top: 15px;padding: 10px;">
                         <legend class="legendStyle">
 
-                        <a data-toggle="collapse" data-target="#demo" href="#">Filter by </a>
+                        <a data-toggle="collapse" data-target="#demo" href="#">&nbsp;Filter by </a>
 
                         </legend>
                         <form action="{{ route('productFilter') }}" method="get" id="filter-form" enctype="multipart/form-data">
