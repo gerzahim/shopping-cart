@@ -39,7 +39,18 @@ class SettingController extends Controller
 
         //return view('admin.editproducts', ['product' => $product], compact('categories'), compact('brands'));
         return view('admin.editsettings', compact('id', 'setting'));
-    }        
+    }  
+
+    public function updateSetting(Request $request, $id)
+    {
+
+        dd("HOLAA");
+        $id=1;
+        $setting = Settings::find($id);
+
+        //return view('admin.editproducts', ['product' => $product], compact('categories'), compact('brands'));
+        return redirect()->back();
+    }          
 }
 
 

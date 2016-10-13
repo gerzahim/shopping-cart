@@ -273,7 +273,14 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/settingedit/{id}', [
 		'uses' => 'SettingController@editSetting',
 		'as' => 'user.editUser'
-	]);	
+	]);
+
+	Route::post('/settingupdate/{id}', [
+		'uses' => 'SettingController@updateSetting',
+		'as' => 'settings.update'
+	]);
+
+
   
 });
 

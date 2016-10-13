@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Administrator | {{ $setting->title_site }}</title>
+    <title>Administrator | {{ $setting->name_site }}</title>
     <meta name="description" content="{{ $setting->description_site }}">
     <meta name="author" content="Gerza Salas">
     <meta name="keywords" content="{{ $setting->keywords_site }}">

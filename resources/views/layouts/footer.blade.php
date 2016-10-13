@@ -8,7 +8,7 @@
             <div class="single-widget">
               <h2>Service</h2>
               <ul class="nav nav-pills nav-stacked">
-                <li><a href="#">Contact Us</a></li>
+                <li><a href="{{ URL::to('contact') }}">Contact Us</a></li>
                 <li><a href="{{ URL::to('myorders') }}">Order Status</a></li>
                 <li><a href="{{ URL::to('faqs') }}">FAQ’s</a></li>
                 <li><a href="{{ URL::to('admin') }}">Backend</a></li>

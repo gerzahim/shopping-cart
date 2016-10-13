@@ -48,7 +48,7 @@ class CreateSettingsTable extends Migration
             $table->string('apisecretkey')->nullable(); // Secret Key Stripe.com
             $table->integer('loginshowprices')->default('0');   // 0 Don't Show Prices, 1 Show prices
             $table->integer('buylikeguess')->default('0');   // 0 Don't Buy like Guess, 1 Buy like Guess
-            $table->integer('select_home_prod')->default('1');   // 1  New Arrivals, 2 Select Especial Products, 3 Ramdom Products
+            $table->integer('select_home_prod')->default('1');   // 1  New Arrivals, 2 Random Products, 3 Select Especial Products 
             $table->integer('especial_prod_id1')->nullable();
             $table->integer('especial_prod_id2')->nullable();
             $table->integer('especial_prod_id3')->nullable();
