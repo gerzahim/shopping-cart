@@ -35,7 +35,8 @@ class ProductController extends Controller
         
         //get original path
         $url = str_replace($request->path(), '', $request->url());
-        
+        $url = str_replace('cart', 'shopcart', $url);
+
         // Get info for Banner Section
         $categories = Categories::all();
 
