@@ -46,7 +46,14 @@ class SettingTableSeeder extends Seeder
         	'apisecretkey'=> 'sk_test_HlLliwLgXEFhdQv4WQQamLii',
         	'loginshowprices'=> 0,
         	'buylikeguess'=> 0,
-        	'select_home_prod'=> 1,
+        	'select_home_prod'=> 3,
+            'especial_prod_sku1'=> '45voluptatibus855',
+            'especial_prod_sku2'=> '594et143',
+            'especial_prod_sku3'=> '414labore282',
+            'especial_prod_sku4'=> '329quia27',
+            'especial_prod_sku5'=> '976eligendi992',
+            'especial_prod_sku6'=> '236autem660',
+            
 
         ]);
         $setting->save();

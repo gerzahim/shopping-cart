@@ -45,8 +45,11 @@ class ProductController extends Controller
         $tree1 =$this->getBrands($url);    
 
         //$products = Product::all();
+        $id=1;
+        $setting = Settings::find($id);
+        //dd($setting->pagination_shop);        
 
-        $products = Product::paginate(10);
+        $products = Product::paginate($setting->pagination_shop);
 
         
         return view('shop.index', compact('products', 'categories', 'tree', 'tree1'));
@@ -64,12 +67,16 @@ class ProductController extends Controller
         // Get info for Banner Section
         $categories = Categories::all();
 
+        $id=1;
+        $setting = Settings::find($id);
+        //dd($setting->pagination_shop);            
+
         //Get Categories for SideBar        
         $tree =$this->ParentView($url);
         $tree1 =$this->getBrands($url);    
 
         //$products = Product::all();
-        $products = Product::where('categories_id', '=', $categories_id)->paginate(6);
+        $products = Product::where('categories_id', '=', $categories_id)->paginate($setting->pagination_shop);
         
         return view('shop.index', compact('products', 'categories', 'tree', 'tree1'));
     }  
@@ -85,15 +92,18 @@ class ProductController extends Controller
         // Get info for Banner Section
         $categories = Categories::all();
 
+        $id=1;
+        $setting = Settings::find($id);
+        //dd($setting->pagination_shop);    
 
         //Get Categories for SideBar        
         $tree =$this->ParentView($url);
         $tree1 =$this->getBrands($url);    
 
         //$products = Product::all();
-        $products = Product::where('brand_id', '=', $brand_id)->paginate(6);
+        $products = Product::where('brand_id', '=', $brand_id)->paginate($setting->pagination_shop);
 
-        $title = "Laracast";
+        //$title = "Laracast";
         
         return view('shop.index', compact('products', 'categories', 'tree', 'tree1'));
     }        
@@ -116,11 +126,46 @@ class ProductController extends Controller
         $tree =$this->ParentView($url);
         $tree1 =$this->getBrands($url);         
 
+        //DEFINE SELECT MODE HOME
+        $id=1;
+        $setting = Settings::find($id);
+        //dd($setting->pagination_shop);
+        //dd($setting->pagination_home);
+        
 
+        if ($setting->select_home_prod == '1') {
+            # New Arrivals
+            $products = Product::orderBy('id', 'desc')->paginate($setting->pagination_home);
+            //$products = Product::orderBy('created_at', 'desc')->paginate(6);
+            
+        }elseif ($setting->select_home_prod == '2') {
+            # Random Products
+            $products = Product::orderByRaw('RAND()')->paginate($setting->pagination_home);
+            dd($products);
+            //$questions = Question::orderByRaw('RAND()')->take(10)->get();
+        }else{
+            # Select Especial Products 
+            $skus = array();
+            $skus[] .= $setting->especial_prod_sku1;
+            $skus[] .= $setting->especial_prod_sku2;
+            $skus[] .= $setting->especial_prod_sku3;
+            $skus[] .= $setting->especial_prod_sku4;
+            $skus[] .= $setting->especial_prod_sku5;
+            $skus[] .= $setting->especial_prod_sku6;
+
+
+            //especial_prod_sku1
+            $products = Product::whereIn('sku', $skus)->paginate($setting->pagination_home);
+            //$products = Product::whereIn('sku', [$setting->especial_prod_sku1,$setting->especial_prod_sku2,$setting->especial_prod_sku3,$setting->especial_prod_sku4,$setting->especial_prod_sku5,$setting->especial_prod_sku6])->paginate(6);
+
+            //dd($products);
+        }
+
+        
 
         // Get info for Content Section Shop
         //$products = Product::all();
-        $products = Product::paginate(6);
+
 
         return view('shop.home', compact('products', 'categories', 'banners', 'tree', 'tree1'));
         //return view('shop.home', ['products' => $products], ['banners' => $banners]);
@@ -378,7 +423,8 @@ class ProductController extends Controller
 
 
             $Categorys = Categories::where('parent_id', '=', 0)->get();
-            //dd($Categorys);
+
+
                  $tree='';
                  $flag=0;
             foreach ($Categorys as $Category) {
