@@ -140,7 +140,6 @@ example:  Route::get('user/{id}', 'UserController@showProfile');
 # RESTful Resource Controllers
 
  $ php artisan make:controller PhotoController --resource
-
  //Next, you may register a resourceful route to the controller:
 	Route::resource('photo', 'PhotoController');
 
@@ -165,6 +164,8 @@ app/nameModels.php
 
 
 php artisan make:model nameModels -m
+
+php artisan make:model WishList
 
 # para crear automaticamente 
 

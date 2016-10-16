@@ -4,48 +4,13 @@
 
   @if(Session::has('cart'))
 
-{{-- 
-
-<!--
-
-    <div class='row'>
-      <div class="container">
-        <ul class="list-group">
-          @foreach($products as $product)
-            <li class="list-group-item">
-              <span class="badge">{{ $product['qty'] }}</span>              
-              <strong>{{ $product['item']['title'] }}</strong>
-              <span class="label label-success">{{ $product['price'] }}</span>
-              <div class="btn-group">
-                <button class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown"> Action <span class="caret"></span></button>
-                  <ul class="dropdown-menu">
-                    <li><a href="{{ route('product.reduceByOne', ['id' => $product['item']['id']]) }}">Reduce By 1</a></li> 
-                    <li><a href="{{ route('product.removeItem', ['id' => $product['item']['id']]) }}">Reduce All</a></li>
-                  </ul>
-              </div>
-            </li>
-          @endforeach  
-        </ul>        
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-sm6 col-md6 col-md-offset-3 col-sm-offset3">
-        <strong>Total: ${{ $totalPrice }}</strong>        
-      </div>
-    </div>
-    <hr>
-    <div class="row">
-      <div class="col-sm6 col-md6 col-md-offset-3 col-sm-offset3">
-        <a href="{{ route('checkout') }}" class="btn btn-success">Checkout</a>
-      </div>
-    </div>    
--->
---}}
-
+                <div class="row">
+                    <div class="col-md-12">
+                     <h2>Cart List</h2>   
+                    </div>
+                </div> 
   <section id="cart_items">
   
-
 
     <div class="container">
 <hr>

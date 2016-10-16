@@ -11,7 +11,15 @@
       </div>
     </div>
   @endif
-
+   <div class="col-sm-6 col-md-4 col-md-offset-4 col-sm-offset-3">  
+    <div class="flash-message">
+      @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+        @if(Session::has('alert-' . $msg))
+        <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }}</p>
+        @endif
+      @endforeach
+    </div>  
+    </div> 
   <div class="col-sm-9 padding-right">       
     <div class="features_items"><!--features_items-->
       <h2 class="title text-center">Features Items</h2>
@@ -46,7 +54,7 @@
                     </div>
                     <div class="choose">
                         <ul class="nav nav-pills nav-justified">
-                            <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
+                            <li><a href="{{ route('product.addToWishlist', ['id' => $product->id]) }}"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
                             <li><a href="{{ route('product.seeDetails', ['id' => $product->id]) }}"><i class="fa fa-eye"></i>See Details</a></li>
                         </ul>
                     </div>

@@ -77,6 +77,32 @@ Route::get('/shopping-cart', [
 	'as' => 'product.shoppingCart'
 ]);
 
+Route::get('/wishlist', [
+	'uses' => 'WishListController@getWishList',
+	'as' => 'product.wishlist'
+]);
+
+
+Route::get('/add-to-wishlist/{id}', [
+	'uses' => 'WishListController@getAddToWishList',
+	'as' => 'product.addToWishlist'
+]);
+
+Route::get('/getAddByOneWishlist/{id}', [
+	'uses' => 'WishListController@getAddByOne',
+	'as' => 'wishlist.addByOne'
+]);
+
+Route::get('/reduceByOneWishlist/{id}', [
+	'uses' => 'WishListController@getReduceByOne',
+	'as' => 'wishlist.reduceByOne'
+]);
+
+Route::get('/removeItemWishlist/{id}', [
+	'uses' => 'WishListController@getRemoveItem',
+	'as' => 'wishlist.removeItem'
+]);
+
 $setting = Settings::find(1);
 if ($setting->buylikeguess == 0) {
 	Route::get('/checkout', [
