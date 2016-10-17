@@ -1,5 +1,6 @@
 <?php
 use ShopCart\Settings;
+use ShopCart\User;
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -27,6 +28,28 @@ Route::get('/', function(){
 
 
 //View::share('settings', $users = DB::table('settings')->get()) ;
+Route::get('ajax',function(){
+   return view('message');
+});
+
+
+Route::get('/getRequest', function(){
+
+	
+	if (Request::ajax()){
+		return 'getRequest has loaded';
+	}
+/*
+	  $user = User::find(1);
+	  $user->name = "Mamalo";
+	  $user->save();
+
+*/ 
+});
+
+//Route::post('/getmsg','AjaxController@index');
+
+
 
 
 Route::get('/public_html', [

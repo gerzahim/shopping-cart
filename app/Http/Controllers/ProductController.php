@@ -13,6 +13,7 @@ use ShopCart\Banner;
 use ShopCart\User;
 use ShopCart\Subscriber;
 use ShopCart\Settings;
+use ShopCart\ShippingCost;
 use Session;
 use Auth;
 use Stripe\Charge;
@@ -142,7 +143,7 @@ class ProductController extends Controller
         }elseif ($setting->select_home_prod == '2') {
             # Random Products
             $products = Product::orderByRaw('RAND()')->paginate($setting->pagination_home);
-            dd($products);
+            //dd($products);
             //$questions = Question::orderByRaw('RAND()')->take(10)->get();
         }else{
             # Select Especial Products 
@@ -706,7 +707,11 @@ class ProductController extends Controller
 
         $total = $cart->totalPrice;
 
-        return view('shop.checkout', ['total' => $total, 'products' => $cart->items, 'totalPrice' => $cart->totalPrice, 'totalQty' => $cart->totalQty]);
+        $shippings = ShippingCost::all();
+
+        //dd($shippings);
+
+        return view('shop.checkout', ['total' => $total, 'products' => $cart->items, 'totalPrice' => $cart->totalPrice, 'totalQty' => $cart->totalQty, 'shippings' => $shippings]);
     }
 
 
@@ -806,7 +811,13 @@ class ProductController extends Controller
 
     public function getShipping(){
 
-        return view('shop.shipping');
+        $shippings = ShippingCost::all();
+
+        //dd($shippings);
+
+        return view('shop.shipping', ['shippings' => $shippings]);        
+
+
     }     
 
     public function getAboutUs(){

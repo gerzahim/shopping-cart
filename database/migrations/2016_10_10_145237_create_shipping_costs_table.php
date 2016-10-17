@@ -14,10 +14,11 @@ class CreateShippingCostsTable extends Migration
     {
         Schema::create('shipping_costs', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('range_value_min')->unsigned();
-            $table->integer('range_value_max')->unsigned();
+            $table->string('name')->nullable();
+            $table->float('range_value_min')->unsigned();
+            $table->float('range_value_max')->unsigned();
             $table->integer('ground')->unsigned();
-            $table->integer('2nd_day')->unsigned();
+            $table->integer('second_day')->unsigned();
             $table->integer('next_day')->unsigned();
             $table->timestamps();
         });

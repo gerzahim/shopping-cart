@@ -74,16 +74,16 @@
                 <h2 class="title text-center">Social Networking</h2>
               <ul>
                 <li>
-                  <a href="#"><i class="fa fa-facebook"></i></a>
+                  <a href="{{ $setting->link_facebook }}"><i class="fa fa-facebook"></i></a>
                 </li>
                 <li>
-                  <a href="#"><i class="fa fa-twitter"></i></a>
+                  <a href="{{ $setting->link_twitter }}"><i class="fa fa-twitter"></i></a>
                 </li>
                 <li>
-                  <a href="#"><i class="fa fa-google-plus"></i></a>
+                  <a href="{{ $setting->link_google_plus }}"><i class="fa fa-google-plus"></i></a>
                 </li>
                 <li>
-                  <a href="#"><i class="fa fa-youtube"></i></a>
+                  <a href="{{ $setting->link_linkedin }}"><i class="fa fa-linkedin"></i></a>
                 </li>
               </ul>
               </div>

@@ -23,14 +23,54 @@
                     <tr>
                       <td align="center"><b>Order Value</b></td>
                       <td align="center"><b>Ground</b><br>2-7 Business days*</td>
-                      <td align="center"><b>3rd Day</b><br>3 Business days*</td>
                       <td align="center"><b>2nd Day</b><br>2 Business days*</td>
                       <td align="center"><b>Next Day</b><br>1 Business day*</td>
                     </tr>
+        
+                    
+                    @foreach( $shippings as $shipping)
+
+                        <?php (isset($i))?$i++:($i = 0); ?>
+                        
+
+                        @if ($i % 2 == 0)
+                          {{-- // is even --}}
+                          <tr>
+                            <td align="center"><b> {{ $shipping->name }}</b></td>
+                            <td align="right"> $ {{ $shipping->ground }}</td>
+                            <td align="right"> $ {{ $shipping->second_day }}</td>
+                            <td align="right"> $ {{ $shipping->next_day }}</td>
+                          </tr>  
+                        @else
+                          {{-- // is odd --}}
+                          <tr>
+                            <td align="center" bgcolor="#cccccc"><b> {{ $shipping->name }}</b></td>
+                            <td align="right" bgcolor="#cccccc"> $ {{ $shipping->ground }}</td>
+                            <td align="right" bgcolor="#cccccc"> $ {{ $shipping->second_day }}</td>
+                            <td align="right" bgcolor="#cccccc"> $ {{ $shipping->next_day }}</td>
+                          </tr>                          
+                        @endif 
+
+                    
+
+                    @endforeach   
+
+
+                    {{--
+
+                    @foreach( $shippings as $shipping)
+
+                      <tr>
+                        <td align="center"><b> {{ $shipping->name }}</b></td>
+                        <td align="right"> {{ $shipping->ground }}</td>
+                        <td align="right"> {{ $shipping->second_day }}</td>
+                        <td align="right"> {{ $shipping->next_day }}</td>
+                      </tr>                      
+
+                    @endforeach                    
                     <tr>
                       <td><b>Up to $25.00</b></td>
                       <td align="right">$ 6.25</td>
-                      <td align="right">$ 8.00</td>
                       <td align="right">$ 11.00</td>
                       <td align="right">$ 20.00</td>
                     </tr>
@@ -55,6 +95,7 @@
                       <td align="right" bgcolor="#cccccc">$ 20.00</td>
                       <td align="right" bgcolor="#cccccc">$ 40.00</td>
                     </tr>
+                    --}}                   
                     <tr>
                       <td align="right" colspan="5"><b>*Add 1-2 business days for processing</b></td>
                     </tr>

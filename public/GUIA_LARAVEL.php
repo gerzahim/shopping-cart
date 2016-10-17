@@ -207,6 +207,8 @@ $ php artisan make:controller Articles --resource
 
 php artisan make:controller Setting
 
+php artisan make:controller AjaxController
+
 ii) Asignando Valores a los campos de la base de datos
 <?php
 
@@ -629,6 +631,7 @@ php artisan make:seed SettingTableSeeder
 
 php artisan make:seed ProductTableSeeder
 php artisan make:seed SubscriberTableSeeder
+php artisan make:seed ShippingCostTableSeeder
 
 It'll create 2 seeds Files in database/seeds 
 
