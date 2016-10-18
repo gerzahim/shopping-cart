@@ -23,7 +23,8 @@
               <td class="price">Price</td>
               <td class="quantity">Quantity</td>
               <td class="total">Total</td>
-              <td></td>
+              <td align="center">Delete</td>
+              <td align="center">Move to WishList</td>
             </tr>
           </thead>
           <tbody>
@@ -49,9 +50,12 @@
               <td class="cart_total">
                 <p class="cart_total_price">${{ $product['item']['price']*$product['qty'] }}</p>
               </td>
-              <td class="cart_delete">
+              <td class="cart_delete" align="center">
                 <a class="cart_quantity_delete" href="{{ route('product.removeItem', ['id' => $product['item']['id']]) }}"><i class="fa fa-times"></i></a>
               </td>
+             <td class="cart_total" align="center">
+                <a class="cart_quantity_delete" href="{{ route('wishlist.MovetoWishList', ['id' => $product['item']['id']]) }}"><i class="fa fa-arrow-circle-up fa-2x"></i></a>
+              </td>               
             </tr>
             @endforeach
 
@@ -93,11 +97,13 @@
 
 
   @else
+  <div class="container">
     <div class="row">
-      <div class="col-sm6 col-md6 col-md-offset-3 col-sm-offset3">
-        <strong>No Items in Cart</strong>        
+      <div class="col-md-12">
+        <strong><h1>No Items in Cart</h1></strong>        
       </div>
-    </div>  
+    </div> 
+</div>   
   @endif
 
 

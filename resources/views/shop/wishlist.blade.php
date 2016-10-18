@@ -2,7 +2,8 @@
 
 @section('content')
 
-  @if(Session::has('cart'))
+  @if(!empty($products))
+  
 
   <div class="row">
       <div class="col-md-12">
@@ -23,7 +24,8 @@
               <td class="price">Price</td>
               <td class="quantity">Quantity</td>
               <td class="total">Total</td>
-              <td></td>
+              <td align="center">Delete</td>
+              <td align="center">Move to Cart</td>
             </tr>
           </thead>
           <tbody>
@@ -43,15 +45,18 @@
                 <div class="cart_quantity_button">
                   <a class="cart_quantity_down" href="{{ route('wishlist.reduceByOne', ['id' => $product['id']]) }}"> - </a>
                   <input class="cart_quantity_input" type="text" name="quantity" value="{{ $quantity[$product['id']]['qty'] }}" autocomplete="off" size="2">
-                  <a class="cart_quantity_up" href="{{ route('product.addToWishlist', ['id' => $product['id']]) }}"> + </a>
+                  <a class="cart_quantity_up" href="{{ route('wishlist.addByOne', ['id' => $product['id']]) }}"> + </a>
                 </div>
               </td>
               <td class="cart_total">
                 <p class="cart_total_price">${{ $product['price']*$quantity[$product['id']]['qty'] }}</p>
               </td>
-              <td class="cart_delete">
+              <td class="cart_delete" align="center">
                 <a class="cart_quantity_delete" href="{{ route('wishlist.removeItem', ['id' => $product['id']]) }}"><i class="fa fa-times"></i></a>
               </td>
+              <td class="cart_total" align="center">
+                <a class="cart_quantity_delete" href="{{ route('wishlist.MovetoCart', ['id' => $product['id']]) }}"><i class="fa fa-shopping-cart fa-2x"></i></a>
+              </td>              
             </tr>
             @endforeach
 
@@ -71,11 +76,13 @@
 
 
   @else
+  <div class="container">
     <div class="row">
-      <div class="col-sm6 col-md6 col-md-offset-3 col-sm-offset3">
-        <strong>No Items in WishList</strong>        
+      <div class="col-md-12">
+        <strong><h1>No Items in WishList</h1></strong>        
       </div>
-    </div>  
+    </div> 
+</div> 
   @endif
 
 

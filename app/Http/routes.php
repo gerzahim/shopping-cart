@@ -126,6 +126,17 @@ Route::get('/removeItemWishlist/{id}', [
 	'as' => 'wishlist.removeItem'
 ]);
 
+Route::get('/movetoCart/{id}', [
+	'uses' => 'WishListController@getMovetoCart',
+	'as' => 'wishlist.MovetoCart'
+]);
+
+Route::get('/movetoWishList/{id}', [
+	'uses' => 'WishListController@getMovetoWishList',
+	'as' => 'wishlist.MovetoWishList'
+]);
+
+
 $setting = Settings::find(1);
 if ($setting->buylikeguess == 0) {
 	Route::get('/checkout', [
