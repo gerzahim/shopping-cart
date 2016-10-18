@@ -71,6 +71,8 @@
                                   </ul>
                                 </div>
                                 <div class="panel-footer"><strong>Total Price: ${{ $order->cart->totalPrice }}</strong></div>
+                                <div class="panel-footer"><strong>Shipping Price: ${{ $order->cart->shippingCost }}</strong></div>
+                                <div class="panel-footer"><strong>Total Cost: ${{ $order->cart->totalCost }}</strong></div>
                               </div>
 
                     </div>

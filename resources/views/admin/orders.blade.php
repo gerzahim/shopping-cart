@@ -43,10 +43,10 @@
             @foreach($orders as $order)
             <tr>
               <td class="cart_description">
-                <h4><a href="">{{ $order['created_at'] }}</a></h4>
+                <h4>{{ $order['created_at'] }}</h4>
               </td>
               <td class="cart_description">
-                <h4><a href="">{{ $order['email'] }}</a></h4>
+                <h4>{{ $order['email'] }}</h4>
               </td>
               <td class="cart_price">
                 <p>{{ $order['id'] }}</p>

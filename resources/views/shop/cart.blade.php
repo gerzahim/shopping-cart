@@ -83,8 +83,6 @@
           <div class="total_area">
             <ul>
               <li>Cart Sub Total <span>${{ $totalPrice }}</span></li>
-              <li>Shipping Cost <span>Free</span></li>
-              <li>Total <span>${{ $totalPrice }}</span></li>
             </ul>
               <a class="btn btn-default check_out" href="{{ route('checkout') }}">Check Out</a>
           </div>

@@ -717,8 +717,15 @@ class ProductController extends Controller
 
     public function postCheckout(Request $request){
         if (!Session::has('cart')) {
-            return redirect('product.shoppingCart');
+            return redirect()->route('product.shoppingCart');
         }
+
+        $shipping_id = $request->input('shipping_id');
+        if ($shipping_id == '0') {
+            Session::flash('alert-danger', 'Please Select Shipping Mode!');
+            return redirect()->route('checkout');
+        }
+
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
         //$setting->apisecretkey;
@@ -730,7 +737,7 @@ class ProductController extends Controller
 
         try {
             $charge = Charge::create(array(
-              "amount" => $cart->totalPrice * 100,
+              "amount" => $cart->totalCost * 100,
               "currency" => "usd",
               "source" => $request->input('stripeToken'), // obtained with Stripe.js
               "description" => "Charge for ShopCart"

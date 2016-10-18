@@ -55,7 +55,7 @@ class ShippingCostTableSeeder extends Seeder
 		$product = new \ShopCart\ShippingCost([
         	'name'=> '$200.01 & Over',
             'range_value_min'=> '200.01',
-            'range_value_max'=> '',
+            'range_value_max'=> '999999.99',
             'ground'=> '9.25',
             'second_day'=> '20',
             'next_day'=> '40',

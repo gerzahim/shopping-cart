@@ -7,6 +7,8 @@ class Cart
     public $items = null;
     public $totalQty =0;
     public $totalPrice =0;
+    public $shippingCost =0;
+    public $totalCost =0;
 
     public function __construct($oldCart)
     {
@@ -14,6 +16,8 @@ class Cart
     		$this->items = $oldCart->items;
     		$this->totalQty = $oldCart->totalQty;
     		$this->totalPrice = $oldCart->totalPrice;
+            $this->shippingCost = $oldCart->shippingCost;
+            $this->totalCost = $oldCart->totalCost;
     	}
     }
 
@@ -31,6 +35,13 @@ class Cart
     	$this->totalQty++;
     	$this->totalPrice += $item->price;
     }
+
+    public function addShippingCost($totalPrice, $shippingCost){
+
+        $this->shippingCost = $shippingCost;
+        $this->totalCost = $totalPrice + $shippingCost;
+
+    }    
 
     public function reduceByOne($id){
 

@@ -17,6 +17,13 @@
               <div id="charge-error" class="alert alert-danger {{ !Session::has('error') ? 'hidden' : '' }}">
                   {{ Session::get('error') }}
               </div>
+                <div class="flash-message">
+                  @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+                    @if(Session::has('alert-' . $msg))
+                    <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }}</p>
+                    @endif
+                  @endforeach
+                </div>               
               <form action="{{ route('checkout') }}" id="checkout-form" class="contact-form row" name="checkout-form" method="post">
                     @if (Auth::guest())
                       <div class="form-group col-md-6">
@@ -64,7 +71,7 @@
                         <input type="text" id="card-cvc" class="form-control" placeholder="CVC" required>
                     </div>
                     <div class="form-group col-md-6">
-                      <select onchange="getMessage()" id="parent_id" name="parent_id" required>
+                      <select id="shipping_id" name="shipping_id" required>
                           <option value="0">Please Select Shipping</option>
                           <option value="1">Pick up Store</option>
                           <option value="2">Ground Shipping</option>
@@ -78,11 +85,6 @@
                     <div class="form-group col-md-6">
                         <button type="submit" class="btn btn-success">Place Your Order</button>              
                     </div>  
-                    <div id='getRequestData'>
-                      
-                    </div>
-         <button onclick="getMessage()">Click me</button>
-         <button type="button" class="btn btn-warning" id="getRequest">getRequest</button>
  
                   {{ csrf_field() }}                                                           
                 </form>
@@ -164,8 +166,8 @@
           <div class="total_area">
             <ul>
               <li>Cart Sub Total <span>${{ $totalPrice }}</span></li>
-              <li>Shipping Cost <span>Please Select Shipping</span></li>
-              <li>Total <span>${{ $totalPrice }}</span></li>
+              <li>Shipping Cost <span id="shippingcost">Please Select Shipping</span></li>
+              <li>Total <span id="totalprice">${{ $totalPrice }}</span></li>
             </ul>
           </div>
         </div>
@@ -192,16 +194,40 @@
 @section('scripts')
     <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
       <script src="js/checkout.js"></script>
-<script type="text/javascript">        
+
+<script type="text/javascript">
+var token = '{{ Session::token() }}';
+var url = '{{ route('getshippingcost') }}';
+var totalprice = '{{ $totalPrice }}';
+</script>
+
+<script type="text/javascript">
+
 $(document).ready(function(){  
-    $("#getRequest").click(function(){
-        //alert($(this).text());
-        
-        $.get('getRequest', function(data){
-            $('#getRequestData').append(data);
-            console.log(data);
-        });
+
+    $('#shipping_id').on('change', function() {
+      var shipping_id = $('#shipping_id').val()
+      //alert( this.value ); // or $(this).val()
+      var dataString = "id="+shipping_id;
+      //alert(dataString);
+
+      $.ajax({
+        method: "POST",
+        url: url,
+        //data: dataString,
+        data: { id: $('#shipping_id').val(), _token: token, _totalprice: totalprice},
+        success: function(data) {
+         //console.log(data);
+         console.log( data.shippingcost );         
+         console.log( data.total_cost );
+          $('#shippingcost').html('$'+data.shippingcost);
+          $('#totalprice').html('$'+data.total_cost);
+          //$('#myshipping').append(token);
+        }
+      });
+
     });
+
 });
 /*
          function getMessage(){
