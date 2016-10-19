@@ -17,9 +17,6 @@ class CreateImagesProductsTable extends Migration
             $table->integer('product_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('products');
             $table->string('imagepath1')->nullable();
-            $table->string('imagepath2')->nullable();
-            $table->string('imagepath3')->nullable();
-            $table->string('imagepath4')->nullable();
             $table->timestamps();
         });
     }

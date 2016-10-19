@@ -32,7 +32,7 @@
 									@foreach($order->cart->items as $item)
 										<li class="list-group-item">
 											<span class="badge">${{ $item['price'] }}</span>
-											{{ $item['item']['title'] }} | {{ $item['qty'] }} Units
+											{{ $item['item']['title'] }} | <strong> Sku: </strong> {{ $item['item']['sku'] }} | <strong> {{ $item['qty'] }} </strong> Units 
 										</li>
 									@endforeach
 								</ul>

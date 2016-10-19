@@ -51,7 +51,9 @@ class ProductController extends Controller
         $setting = Settings::find($id);
         //dd($setting->pagination_shop);        
 
-        $products = Product::paginate($setting->pagination_shop);
+        //$products = Product::paginate($setting->pagination_shop);
+        //$products = Product::where('status', '=', 1)->paginate($setting->pagination_shop);
+        $products = Product::where('status', '=', 1)->orderBy('id', 'desc')->paginate($setting->pagination_shop);
 
         
         return view('shop.index', compact('products', 'categories', 'tree', 'tree1'));
@@ -137,12 +139,14 @@ class ProductController extends Controller
 
         if ($setting->select_home_prod == '1') {
             # New Arrivals
-            $products = Product::orderBy('id', 'desc')->paginate($setting->pagination_home);
+            //$products = Product::orderBy('id', 'desc')->paginate($setting->pagination_home);
             //$products = Product::orderBy('created_at', 'desc')->paginate(6);
+            $products = Product::where('status', '=', 1)->orderBy('id', 'desc')->paginate($setting->pagination_shop);
             
         }elseif ($setting->select_home_prod == '2') {
             # Random Products
-            $products = Product::orderByRaw('RAND()')->paginate($setting->pagination_home);
+            //$products = Product::orderByRaw('RAND()')->paginate($setting->pagination_home);
+            $products = Product::where('status', '=', 1)->orderByRaw('RAND()')->paginate($setting->pagination_home);
             //dd($products);
             //$questions = Question::orderByRaw('RAND()')->take(10)->get();
         }else{
@@ -157,7 +161,9 @@ class ProductController extends Controller
 
 
             //especial_prod_sku1
-            $products = Product::whereIn('sku', $skus)->paginate($setting->pagination_home);
+            //$products = Product::whereIn('sku', $skus)->paginate($setting->pagination_home);
+            $products = Product::whereIn('sku', $skus)->where('status', '=', 1)->paginate($setting->pagination_home);
+                                                                    
             //$products = Product::whereIn('sku', [$setting->especial_prod_sku1,$setting->especial_prod_sku2,$setting->especial_prod_sku3,$setting->especial_prod_sku4,$setting->especial_prod_sku5,$setting->especial_prod_sku6])->paginate(6);
 
             //dd($products);

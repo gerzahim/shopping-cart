@@ -29,7 +29,15 @@
                   <div class="product-image-wrapper">
                     <div class="single-products">
                         <div class="productinfo text-center">
+                          {{-- 
                           <img height="249px" width="249px" src="{{ URL::to('/media/') }}/{{ $product->imagepath}}" alt="" />
+                          --}}
+                          @if( file_exists(URL::to('/media/')).$product->imagepath) 
+                            <img height="249px" width="249px" src="{{ URL::to('/media/') }}/{{ $product->imagepath}}" alt="" />
+                          @else
+                            <img height="249px" width="249px" src="{{ URL::to('/images/') }}/no-image.jpg" alt="" />
+                          @endif 
+
                           @if( $setting->loginshowprices == 0)
                             <h2>${{ $product->price}}</h2>
                           @else

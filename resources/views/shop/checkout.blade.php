@@ -1,5 +1,6 @@
 @extends('layouts.cleancontent')
 
+
 @section('content')
    <div id="contact-page" class="container">
           <div class="row">       

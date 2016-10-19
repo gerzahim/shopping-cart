@@ -36,6 +36,8 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ URL::to('images/favicon.ico') }}">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ URL::to('images/favicon.ico') }}">
     <link rel="apple-touch-icon-precomposed" href="{{ URL::to('images/favicon.ico') }}">
+
+ @include('layouts.head')    
 </head><!--/head-->
 
 <body>
@@ -102,7 +104,7 @@
   <script src="{{ URL::to('js/price-range.js') }}"></script>
   <script src="{{ URL::to('js/jquery.prettyPhoto.js') }}"></script>
   <script src="{{ URL::to('js/main.js') }}"></script>
-
+ @include('layouts.scripts')    
 
 </body>
 </html>

@@ -23,6 +23,8 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/favicon.ico">
     <link rel="apple-touch-icon-precomposed" href="images/favicon.ico">
+
+ @include('layouts.head')    
 </head><!--/head-->
 
 <body>
