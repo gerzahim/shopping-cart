@@ -15,7 +15,7 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
             //$table->string('gender',array(‘M’,’F’)->default(‘M’);
-            $table->integer('status')->unsigned()->default('1');   // 1 order Pending for Delivery, 2 Out for delivery          
+            $table->integer('status')->unsigned()->default('1');   // 0 Pick Up Order, 1 order Pending for Delivery, 2 Out for delivery,         
             $table->string('shipcompany')->nullable();  
             $table->string('tracking')->nullable();  
             $table->integer('user_id');

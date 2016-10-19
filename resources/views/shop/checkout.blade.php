@@ -23,7 +23,10 @@
                     <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }}</p>
                     @endif
                   @endforeach
-                </div>               
+                </div>
+
+
+              @if ($payment_toorder == '1')
               <form action="{{ route('checkout') }}" id="checkout-form" class="contact-form row" name="checkout-form" method="post">
                     @if (Auth::guest())
                       <div class="form-group col-md-6">
@@ -54,7 +57,7 @@
                           <input type="text" id="address" class="form-control" required name="address" value="{{ Auth::user()->address }}" placeholder="Address">
                       </div>
                     @endif
-
+                    
                     <div class="form-group col-md-6">
                         <input type="text" id="card-name" class="form-control" placeholder="Card Holder Name" required>
                     </div>
@@ -70,6 +73,7 @@
                     <div class="form-group col-md-6">
                         <input type="text" id="card-cvc" class="form-control" placeholder="CVC" required>
                     </div>
+                    
                     <div class="form-group col-md-6">
                       <select id="shipping_id" name="shipping_id" required>
                           <option value="0">Please Select Shipping</option>
@@ -88,6 +92,61 @@
  
                   {{ csrf_field() }}                                                           
                 </form>
+                @else
+              <form action="{{ route('checkout') }}" id="checkout-form1" class="contact-form row" name="checkout-form1" method="post">
+                    @if (Auth::guest())
+                      <div class="form-group col-md-6">
+                          <input type="text" id="name" class="form-control" required name="name" placeholder="Full Name">
+                      </div>                      
+                      <div class="form-group col-md-6">
+                          <input type="text" id="email" class="form-control" required name="email" placeholder="Email">
+                      </div>
+                      <div class="form-group col-md-6">
+                          <input type="text" id="phone" class="form-control" required name="phone" placeholder="Phone">
+                      </div>
+                      <div class="form-group col-md-6"></div>
+                      <div class="form-group col-md-12">
+                          <input type="text" id="address" class="form-control" required name="address" placeholder="Address">
+                      </div>                      
+                    @else
+                    <div class="form-group col-md-6">
+                        <input type="text" id="name" class="form-control" required name="name" value="{{ Auth::user()->name }}" placeholder="Full Name">
+                    </div>                    
+                      <div class="form-group col-md-6">
+                          <input type="text" id="email" class="form-control" required name="email" value="{{ Auth::user()->email }}" placeholder="Email">
+                      </div>
+                      <div class="form-group col-md-6">
+                          <input type="text" id="phone" class="form-control" required name="phone" value="{{ Auth::user()->phone }}" placeholder="Phone">
+                      </div>                    
+                      <div class="form-group col-md-6"></div>
+                      <div class="form-group col-md-12">
+                          <input type="text" id="address" class="form-control" required name="address" value="{{ Auth::user()->address }}" placeholder="Address">
+                      </div>
+                    @endif
+                    
+                    <div class="form-group col-md-6">
+                      <select id="shipping_id" name="shipping_id" required>
+                          <option value="0">Please Select Shipping</option>
+                          <option value="1">Pick up Store</option>
+                          <option value="2">Ground Shipping</option>
+                          <option value="3">2nd-Day Shipping</option>
+                          <option value="4">Next-Day Shipping</option>
+                      </select> 
+                    </div>                    
+                    <div class="form-group col-md-6">
+                        <input type="hidden" id="publishable_key" class="form-control" value="{{ $setting->apipublickey }}">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <button type="submit" class="btn btn-success">Place Your Order</button>              
+                    </div>  
+ 
+                  {{ csrf_field() }}                                                           
+                </form>
+
+                @endif
+
+
+
             </div>
           </div>          
    </div>

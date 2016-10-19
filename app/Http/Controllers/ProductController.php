@@ -710,8 +710,10 @@ class ProductController extends Controller
         $shippings = ShippingCost::all();
 
         //dd($shippings);
+        $setting = Settings::find(1);
 
-        return view('shop.checkout', ['total' => $total, 'products' => $cart->items, 'totalPrice' => $cart->totalPrice, 'totalQty' => $cart->totalQty, 'shippings' => $shippings]);
+
+        return view('shop.checkout', ['total' => $total, 'products' => $cart->items, 'totalPrice' => $cart->totalPrice, 'totalQty' => $cart->totalQty, 'shippings' => $shippings, 'payment_toorder' => $setting->payment_toorder]);
     }
 
 
@@ -726,23 +728,38 @@ class ProductController extends Controller
             return redirect()->route('checkout');
         }
 
+
+
+
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
         //$setting->apisecretkey;
         //Stripe::setApiKey('sk_test_HlLliwLgXEFhdQv4WQQamLii');
         
-        $setting = Settings::find(1);        
-        Stripe::setApiKey($setting->apisecretkey);
+        $setting = Settings::find(1);
 
+        # Select if payment to Order
+        if ($setting->payment_toorder == '1') {
+            # code...
 
-        try {
-            $charge = Charge::create(array(
-              "amount" => $cart->totalCost * 100,
-              "currency" => "usd",
-              "source" => $request->input('stripeToken'), // obtained with Stripe.js
-              "description" => "Charge for ShopCart"
-            ));     
-            
+            Stripe::setApiKey($setting->apisecretkey);
+
+            try {
+                $charge = Charge::create(array(
+                  "amount" => $cart->totalCost * 100,
+                  "currency" => "usd",
+                  "source" => $request->input('stripeToken'), // obtained with Stripe.js
+                  "description" => "Charge for ShopCart"
+                ));     
+                
+            } catch(\Exception $e){
+                return redirect()->route('checkout')->with('error', $e->getMessage());
+            }
+
+        } else {
+            # code...
+        }
+                        
             // Saving Order on Database
             $order = new Order();
             $order->cart = serialize($cart);            
@@ -750,9 +767,23 @@ class ProductController extends Controller
             $order->name = $request->input('name');
             $order->email = $request->input('email');
             $order->phone = $request->input('phone');
-            $order->payment_id = $charge->id;
-            
+            //$order->payment_id = $charge->id;
 
+            // Define ID Payment
+            if ($setting->payment_toorder == '1') {
+                # code...
+                $order->payment_id = $charge->id;                
+            } else {
+                # code...
+                $order->payment_id = "No Payment";
+            }
+
+            // Set order_status to Pick Up Order
+            if ($shipping_id == '1') {
+                $order->status = "0";
+            }            
+            
+            // Save like Guess or Id_user
             if (Auth::check()) {
                 // The user is logged in...
                 Auth::user()->orders()->save($order);
@@ -767,7 +798,6 @@ class ProductController extends Controller
 
             // Delete Product From Stock 
             //dd($cart);
-
             $cart = is_array($cart) ? $cart : array($cart);
 
             
@@ -787,11 +817,6 @@ class ProductController extends Controller
                     $product->save();
                 }
             }
-
-
-        } catch(\Exception $e){
-            return redirect()->route('checkout')->with('error', $e->getMessage());
-        }
 
     
         //delete cart session

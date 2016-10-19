@@ -84,10 +84,16 @@
                     <div class="form-group col-md-6">
                                         <label for="address">Status Order:</label>  <br>
                       <select id="status" name="status">
-                        @if($order['status'] == '1'))
+                        @if($order['status'] == '0'))
+                          <option selected="selected" value="0">Pick Up Order</option>
+                          <option value="1">Pending to Delivery</option>
+                          <option value="2">Out to Delivery</option>
+                        @elseif($order['status'] == '1'))
+                          <option value="0">Pick Up Order</option>
                           <option selected="selected" value="1">Pending to Delivery</option>
                           <option value="2">Out to Delivery</option>
                         @else
+                          <option value="0">Pick Up Order</option>
                           <option value="1">Pending to Delivery</option>
                           <option selected="selected" value="2">Out to Delivery</option>
                         @endif

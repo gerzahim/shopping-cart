@@ -53,7 +53,9 @@
               </td>
 
               <td class="cart_price">
-                  @if($order['status'] == "1")
+                  @if($order['status'] == "0")
+                      <p>Pick Up Order</p>
+                  @elseif($order['status'] == "1")
                       <p>Pending to Delivery</p>
                   @else
                       <p>Out to Delivery</p>   
