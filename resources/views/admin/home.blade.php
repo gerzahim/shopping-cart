@@ -80,7 +80,16 @@
                                 <h4>Subscribers</h4>
                               </a>
                         </div>              
-                    </div>                                          
+                    </div>  
+
+                   <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                        <div class="div-square">
+                             <a href="{{ url('/shipping-admin') }}" >
+                                <i class="fa fa-truck fa-5x"></i>
+                                <h4>Shipping Cost</h4>
+                              </a>
+                        </div>              
+                    </div>                                                             
                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
                         <div class="div-square">
                              <a href="{{ url('/settingedit/1') }}" >

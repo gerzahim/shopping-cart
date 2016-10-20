@@ -25,6 +25,9 @@ class CategoriesController extends Controller
                  $flag=0;
             foreach ($Categorys as $Category) {
                  //$tree .= $Category->name;
+
+                dd($Category->childs);
+                
                 if ($flag = 0) {
                     $flag =1;
 
@@ -109,7 +112,7 @@ class CategoriesController extends Controller
                      $html.='</td>';
                      $html.='<td class="cart_description">';
                      $html.='<a class="cart_quantity_delete" href="'.$url.'/'.$arr->id.'/edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>';
-                     $tree.='</td>';
+                     $html.='</td>';
                      $html.='<td class="cart_description">';
                      $html.='<a class="cart_quantity_delete" href="'.$url.'/removeCategory/'.$arr->id.'"><i class="fa fa-times" aria-hidden="true"></i></a>';
                      $html.='</td>';

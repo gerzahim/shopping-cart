@@ -211,9 +211,11 @@ Route::get('/refunds', [
 
 
 Route::get('/shipping', [
-	'uses' => 'ProductController@getShipping',
+	'uses' => 'ShippingCostController@getShipping',
 	'as' => 'getshipping'
 ]);
+
+
 
 Route::get('/faqs', [
 	'uses' => 'ProductController@getFaqs',
@@ -349,6 +351,50 @@ Route::group(['middleware' => 'auth'], function () {
 		'as' => 'settings.updatebanner'
 	]);
 
+	Route::get('/editgallery/{id}', [
+		'uses' => 'ImagesProductController@editGallery',
+		'as' => 'editgallery'
+	]);
+
+	Route::get('/addimagegallery/{id}', [
+		'uses' => 'ImagesProductController@addImgGallery',
+		'as' => 'addimagegallery'
+	]);
+
+	Route::post('/storegallery/{id}', [
+		'uses' => 'ImagesProductController@storeGallery',
+		'as' => 'imagesstoregallery'
+	]);		
+
+	Route::get('/imagesedit/{id}', [
+		'uses' => 'ImagesProductController@imagesEdit',
+		'as' => 'imageseditgallery'
+	]);
+
+	Route::post('/updategallery/{id}', [
+		'uses' => 'ImagesProductController@updateGallery',
+		'as' => 'imagesupdategallery'
+	]);		
+
+	Route::get('/imagesdelete/{id}', [
+		'uses' => 'ImagesProductController@imagesDelete',
+		'as' => 'imagesdeletegallery'
+	]);
+
+	Route::get('/shipping-admin', [
+		'uses' => 'ShippingCostController@getShippingAdmin',
+		'as' => 'getshipping'
+	]);		
+			
+	Route::get('/shippingedit/{id}', [
+		'uses' => 'ShippingCostController@editShipping',
+		'as' => 'shippingedit'
+	]);				
+
+	Route::post('/shippingupdate/{id}', [
+		'uses' => 'ShippingCostController@updateShipping',
+		'as' => 'shippingupdate'
+	]);
 
   
 });

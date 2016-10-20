@@ -95,9 +95,9 @@
           <div class="row">
             <div class="col-xs-12">
               <div class="form-group">
-                <label for="card-name"><h3><span>Current Product Image (width=300px ; Height=300px)</span></h3></label>
+                <label for="card-name"><h3><span>Current Main Product Image (width=300px ; Height=300px)</span></h3></label>
                   <br> 
-                    <a href="{{ URL::to('images/template_products.psd') }}">Download PSD Template</a>
+                    <a target="_blank" href="{{ URL::to('images/template_products.psd') }}">Download PSD Template</a>
                   <br>
                 
                 @if($product['imagepath'] == '')
@@ -111,7 +111,23 @@
                 <input type="file" id="imagepath" name="imagepath" accept="image/*">
               </div>              
             </div>            
-          </div> 
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="form-group">
+                <label for="card-name"><h3><span>Gallery Product Image </span></h3></label>
+                <br>   
+                    @foreach($imgproducts as $imgproduct)
+                      <img height="50px" width="50px" src="{{ URL::to('/') }}/media/{{ $imgproduct['imagepath1'] }}" alt="No Images"> 
+                    @endforeach
+                <br><br>                              
+                <a target="_blank" href="{{ URL::to('/') }}/editgallery/{{ $product['id'] }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;[Edit Product Gallery Images]</a>
+              </div>              
+            </div>            
+          </div>
+
+           
           <hr>
           <div class="row">
             <div class="col-xs-12">

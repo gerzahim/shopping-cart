@@ -140,6 +140,10 @@ example:  Route::get('user/{id}', 'UserController@showProfile');
 # RESTful Resource Controllers
 
  $ php artisan make:controller PhotoController --resource
+
+    php artisan make:controller ShippingCostController
+    php artisan make:controller ImagesProductController
+
  //Next, you may register a resourceful route to the controller:
 	Route::resource('photo', 'PhotoController');
 
@@ -632,6 +636,9 @@ php artisan make:seed SettingTableSeeder
 php artisan make:seed ProductTableSeeder
 php artisan make:seed SubscriberTableSeeder
 php artisan make:seed ShippingCostTableSeeder
+php artisan make:seed ImagesProductTableSeeder
+
+php artisan db:seed --class=ImagesProductTableSeeder
 
 It'll create 2 seeds Files in database/seeds 
 

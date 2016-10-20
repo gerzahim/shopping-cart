@@ -97,7 +97,10 @@
                         </li>  
                         <li>
                             <a href="{{ url('/subscribers') }}"><i class="fa fa-users"></i>Subscribers</a>
-                        </li>                                                                         
+                        </li> 
+                        <li>
+                            <a href="{{ url('/shipping-admin') }}"><i class="fa fa-truck"></i>Shipping Cost</a>
+                        </li>                                                                                                 
                         <li>
                             <a href="{{ url('/settingedit/1') }}"><i class="fa fa-cog"></i>Settings</a>
                         </li>

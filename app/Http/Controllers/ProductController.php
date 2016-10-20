@@ -14,6 +14,7 @@ use ShopCart\User;
 use ShopCart\Subscriber;
 use ShopCart\Settings;
 use ShopCart\ShippingCost;
+use ShopCart\ImagesProduct;
 use Session;
 use Auth;
 use Stripe\Charge;
@@ -437,6 +438,8 @@ class ProductController extends Controller
                  $flag=0;
             foreach ($Categorys as $Category) {
                  //$tree .= $Category->name;
+                
+
                 if ($flag = 0) {
                     $flag =1;
 
@@ -524,11 +527,14 @@ class ProductController extends Controller
 
         $product = Product::find($id);
 
+
         //Get Categories for SideBar        
         $tree =$this->ParentView($url);
-        $tree1 =$this->getBrands($url);         
+        $tree1 =$this->getBrands($url);
 
-        return view('shop.product_details', compact('product', 'categories', 'brands', 'tree', 'tree1'));        
+        $imgproducts = ImagesProduct::where('product_id', '=', $id)->get();
+
+        return view('shop.product_details', compact('product', 'categories', 'brands', 'tree', 'tree1', 'imgproducts'));        
     }
 
     public function getContact(){
@@ -1019,9 +1025,10 @@ class ProductController extends Controller
         $brands = Brand::all();   
 
         $product = Product::find($id);
+        $imgproducts = ImagesProduct::where('product_id', '=', $id)->get();
 
         //return view('admin.editproducts', ['product' => $product], compact('categories'), compact('brands'));
-        return view('admin.editproducts', compact('product', 'categories', 'brands'));
+        return view('admin.editproducts', compact('product', 'categories', 'brands', 'imgproducts'));
     }
 
     /**

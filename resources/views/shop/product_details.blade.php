@@ -40,11 +40,20 @@
                       <ul>
                         <li>
                           @if( file_exists(URL::to('/media/')).$product->imagepath)
-                            <img height="300px" width="300px" src="{{ URL::to('media/') }}/{{ $product->imagepath}}" alt="" title="" id="wows1_0"/> 
+                            <a target="_blank" href="{{ URL::to('media/') }}/{{ $product->imagepath}}">
+                              <img height="300px" width="300px" src="{{ URL::to('media/') }}/{{ $product->imagepath}}" alt="" title="" id="wows1_0"/>
+                            </a>          
                           @else
                             <img height="300px" width="300px" src="{{ URL::to('/images/') }}/no-image.jpg" alt="" title="" id="wows1_0"/> 
                           @endif  
                         </li>
+                        @foreach($imgproducts as $imgproduct)
+                            <li>
+                              <a target="_blank" href="{{ URL::to('media/') }}/{{ $imgproduct->imagepath1}}">
+                                <img height="300px" width="300px" src="{{ URL::to('media/') }}/{{ $imgproduct->imagepath1}}" alt="" title="" id="wows1_1"/>
+                              </a>
+                            </li>
+                        @endforeach
                         <!--
                         <li><img width="300px" height="300px" src="{{ URL::to('/images/') }}/no-image.jpg" alt="" title="" id="wows1_1"/></li>
                         <li><img width="300px" height="300px" src="{{ URL::to('/images/') }}/no-image.jpg" alt="" title="" id="wows1_2"/></li>
@@ -60,7 +69,13 @@
                             <a href="#wows1_0" title=""><img width="48px" height="48px" src="{{ URL::to('media/') }}/{{ $product->imagepath}}" alt="" /></a> 
                           @else
                             <a href="#wows1_0" title=""><img width="48px" height="48px" src="{{ URL::to('/images/') }}/no-image.jpg" alt="" /></a>
-                          @endif                       
+                          @endif
+
+                          @foreach($imgproducts as $imgproduct)
+                              <a href="#wows1_0" title="">
+                                <img height="48px" width="48px" src="{{ URL::to('media/') }}/{{ $imgproduct->imagepath1}}" alt="" />
+                              </a>
+                          @endforeach                                                 
                         <!-- 
                         <a href="#wows1_0" title=""><img width="48px" height="48px" src="{{ URL::to('/images/') }}/no-image.jpg" alt="" /></a>
                         <a href="#wows1_1" title=""><img width="48px" height="48px" src="{{ URL::to('/images/') }}/no-image.jpg" alt="" /></a>
