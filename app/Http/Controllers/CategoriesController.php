@@ -18,16 +18,42 @@ class CategoriesController extends Controller
 
             $url = $request->url();
             //dd($url);
+            //$categories = Categories::with('children')->whereNull('parent_id')->orderBy('name', 'asc')->get();
+                
+            $find = array();
+            $subcategories = Categories::all();
+            foreach ($subcategories as $subcategorie) {
+                $subcategorie->parent_id
+                $subcategorie->name
+                # code...
+                $subcategories = Categories::Find($Category->parent_id);
+                $Category_id = $subcategories['name'];                
+                $find[$subcategorie->parent_id] =  
+            }
+
+            if ($Category->parent_id == 0) {
+                $Category_id = "No Parent";
+            }else{
+                $subcategories = Categories::Find($Category->parent_id);
+                $Category_id = $subcategories['name'];
+            }            
+
+            $categories = Categories::with('children')->orderBy('name', 'asc')->get();
+
+            return view('admin.categories', compact('categories'));
+
+
+            /*
 
             $Categorys = Categories::where('parent_id', '=', 0)->get();
-            //dd($Categorys);
+
+            dd($Categorys);
+
                  $tree='';
                  $flag=0;
             foreach ($Categorys as $Category) {
                  //$tree .= $Category->name;
 
-                dd($Category->childs);
-                
                 if ($flag = 0) {
                     $flag =1;
 
@@ -76,6 +102,7 @@ class CategoriesController extends Controller
 
             // return $tree;
             return view('admin.categories', compact('tree'));
+            */
             
     }
 
@@ -204,6 +231,11 @@ class CategoriesController extends Controller
         }else{
             $input['imagepath'] = Null;    
         }
+
+        if ($input['parent_id'] == 'NULL' ) {
+            # code...
+            $input['parent_id'] = Null; 
+        }
         
         $category->fill($input)->save();
 
@@ -298,6 +330,10 @@ class CategoriesController extends Controller
 
         }         
 
+        if ($input['parent_id'] == 'NULL' ) {
+            # code...
+            $input['parent_id'] = Null; 
+        }
 
         $category->fill($input)->save();  
 

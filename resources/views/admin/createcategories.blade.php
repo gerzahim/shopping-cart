@@ -43,7 +43,7 @@
               <div class="form-group">
                 <label for="card-number">Parent Category</label>
                   <select id="parent_id" name="parent_id">
-                      <option value="0">No Parent</option>
+                      <option value="NULL">No Parent</option>
                     @foreach($categories as $category)
                       <option value="{{ $category['id'] }}">{{ $category['name'] }}</option>
                     @endforeach
