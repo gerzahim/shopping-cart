@@ -259,6 +259,11 @@ Route::group(['middleware' => 'auth'], function () {
 		'as' => 'categories.removeCategory'
 	]);
 
+	Route::get('/removeCategory/{id}', [
+		'uses' => 'CategoriesController@RemoveCategory',
+		'as' => 'category.removeCategory'
+	]);	
+
 	Route::get('/brands/removeBrand/{id}', [
 		'uses' => 'BrandsController@getRemoveBrand',
 		'as' => 'brands.removeBrand'

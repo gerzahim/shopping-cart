@@ -431,9 +431,92 @@ class ProductController extends Controller
     public function ParentView($url){
 
 
-            $Categorys = Categories::where('parent_id', '=', 0)->get();
+            //$Categorys = Categories::where('parent_id', '=', 0)->get();
+            $categories = Categories::with('children')->whereNull('parent_id')->orderBy('name', 'asc')->get();
+/*
+            $tree='
+ <div id="MainMenu">
+  <div class="list-group panel">
+
+    <a href="#demo3" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">Parent</a>
+    <div class="collapse" id="demo3">
+      <a href="#SubMenu1" class="list-group-item" data-toggle="collapse" data-parent="#SubMenu1">Child Subitem 1 <i class="fa fa-caret-down"></i></a>
+      <div class="collapse list-group-submenu" id="SubMenu1">
+        <a href="#" class="list-group-item" data-parent="#SubMenu1">Grandson Subitem 1 a</a>
+        <a href="#" class="list-group-item" data-parent="#SubMenu1">Grandson Subitem 2 b</a>
+        <a href="#SubSubMenu1" class="list-group-item" data-toggle="collapse" data-parent="#SubSubMenu1">Subitem 3 c <i class="fa fa-caret-down"></i></a>
+        <div class="collapse list-group-submenu list-group-submenu-1" id="SubSubMenu1">
+          <a href="#" class="list-group-item" data-parent="#SubSubMenu1">Sub sub item 1</a>
+          <a href="#" class="list-group-item" data-parent="#SubSubMenu1">Sub sub item 2</a>
+        </div>
+        <a href="#" class="list-group-item" data-parent="#SubMenu1">Subitem 4 d</a>
+      </div>
+      <a href="javascript:;" class="list-group-item">Subitem 2</a>
+      <a href="javascript:;" class="list-group-item">Subitem 3</a>
+    </div>
+
+    <a href="#demo4" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">Item 4</a>
+    <div class="collapse" id="demo4">
+      <a href="" class="list-group-item">Subitem 1</a>
+      <a href="" class="list-group-item">Subitem 2</a>
+      <a href="" class="list-group-item">Subitem 3</a>
+    </div>
+
+  </div>
+</div> ';
+
+*/
+$tree='';
+            $tree.='<div id="MainMenu">';
+            $tree.='<div class="list-group panel ">';
+            foreach ($categories as $parent) {
+                if ($parent->children->count()) {
+                    # code...
+                    $tree.='<a href="#menu'.$parent->id.'" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">'.
+                        $parent->name.'
+                    </a>';
+                    $tree.='<div class="collapse" id="menu'.$parent->id.'">';
+                    foreach ($parent->children as $child) {
+                        if ($child->children->count()) {
+                            $tree.='<a href="#submenu'.$child->id.'" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#menu'.$parent->id.'">'.
+                                $child->name.'
+                            <i class="fa fa-caret-down"></i></a>';
+                            $tree.='<div class="collapse" id="submenu'.$child->id.'">';
+                            foreach ($child->children as $grandson) {
+                                    $tree.='<a href="'.$url.'selectByCategory/'.$grandson->id.'" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#submenu'.$child->id.'">'.
+                                        $grandson->name.'
+                                   </a>';
+
+                            }
+                            $tree.='</div>';                            
+                        }else{
+
+                            $tree.='<a href="'.$url.'selectByCategory/'.$child->id.'" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#menu'.$child->id.'">'.$child->name.'
+                            </a>';                            
+
+                        }
+
+                    }
+                    $tree.='</div>';
+
+                }else{
+                    
+                    $tree.='<a href="'.$url.'selectByCategory/'.$parent->id.'" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">
+                    '.$parent->name.'
+                    </a>';                      
+                }
+
+            }
+
+            $tree.='</div>';
+            $tree.='</div>';
 
 
+
+        
+
+
+/*
                  $tree='';
                  $flag=0;
             foreach ($Categorys as $Category) {
@@ -467,7 +550,7 @@ class ProductController extends Controller
                 }
             }// End Foreach
                              
-
+*/
             // return $tree;
             return $tree;
             

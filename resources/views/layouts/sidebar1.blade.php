@@ -4,8 +4,9 @@
 <div class="left-sidebar">
     <!--category-products-->
     <h2>Categories</h2>
+          {!! $tree !!} 
     <div class="panel-group category-products" id="accordian">              
-      {!! $tree !!}                      
+                     
     </div>
     <!--/category-products-->
 
@@ -33,3 +34,5 @@
 
         <!-- END sidebar -->    
 @endsection 
+
+

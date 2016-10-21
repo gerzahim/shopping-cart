@@ -20,30 +20,23 @@ class CategoriesController extends Controller
             //dd($url);
             //$categories = Categories::with('children')->whereNull('parent_id')->orderBy('name', 'asc')->get();
                 
-            $find = array();
+            $findnamecat = array();
             $subcategories = Categories::all();
             foreach ($subcategories as $subcategorie) {
-                $subcategorie->parent_id
-                $subcategorie->name
-                # code...
-                $subcategories = Categories::Find($Category->parent_id);
-                $Category_id = $subcategories['name'];                
-                $find[$subcategorie->parent_id] =  
+                $findnamecat[$subcategorie['id']] =  $subcategorie['name'];             
             }
 
-            if ($Category->parent_id == 0) {
-                $Category_id = "No Parent";
-            }else{
-                $subcategories = Categories::Find($Category->parent_id);
-                $Category_id = $subcategories['name'];
-            }            
+            $findnamecat[Null] =  "No Parent";
 
-            $categories = Categories::with('children')->orderBy('name', 'asc')->get();
+            $checkcategories = $subcategories;
+            //dd($checkcategories);           
 
-            return view('admin.categories', compact('categories'));
+            //$categories = Categories::with('children')->orderBy('name', 'asc')->get();
+            $categories = Categories::with('children')->whereNull('parent_id')->orderBy('name', 'asc')->get();
+            return view('admin.categories', compact('categories', 'findnamecat'));
 
 
-            /*
+             /*
 
             $Categorys = Categories::where('parent_id', '=', 0)->get();
 
@@ -253,7 +246,17 @@ class CategoriesController extends Controller
 
         return redirect()->route('categories.index');
         
-    }     
+    } 
+
+    public function RemoveCategory($id)
+    {
+        $category = new Categories();
+
+        $category->find($id)->delete();
+
+        return redirect()->route('categories.index');
+        
+    }         
 
     /**
      * Display the specified resource.

@@ -16,7 +16,7 @@ class CategoriesTableSeeder extends Seeder
         	'name'=> 'No Category', 
         	'description'=> 'No Category',
             'imagepath'=> 'no-categories.png',
-        	'parent_id'=> '0',
+        	//'parent_id'=> '0',
         ]);
         $product->save();
     }

@@ -27,6 +27,11 @@
 
 
 
+
+
+
+
+
         <table class="table table-condensed">
           <thead>
             <tr class="cart_menu">
@@ -40,6 +45,52 @@
             </tr>
           </thead>
           <tbody>
+            @foreach ($categories as $parent)
+                @include('admin.tablecategories', ['category' => $parent, 'level' => '1'])
+                @if ($parent->children->count())
+                  @foreach ($parent->children as $child)
+                    @include('admin.tablecategories', ['category' => $child, 'level' => '2'])
+                    @if ($child->children->count())
+                      @foreach ($child->children as $grandson)
+                        @include('admin.tablecategories', ['category' => $grandson, 'level' => '3'])
+                      @endforeach        
+                    @endif 
+                  @endforeach 
+                @endif
+            @endforeach 
+          </tbody>
+          <tfoot>
+            <tr class="cart_menu">
+              <td class="image"></td>
+              <td class="description"></td>
+              <td class="price"></td>
+              <td class="price"></td>
+              <td class="quantity"><a class="btn btn-success" href="{{ route('categories.create') }}">Create Category</a></td>
+              <td class="total"></td>
+              <td class="total"></td>
+            </tr>            
+          </tfoot>
+        </table>
+
+      </div>
+
+
+
+
+
+    </div>
+  </section> <!--/#cart_items-->                 <!-- /. ROW  -->           
+                </div>
+             <!-- /. PAGE INNER  -->
+        </div>
+         <!-- /. PAGE WRAPPER  -->
+
+@endsection
+
+
+   {{--   
+<!--
+
 
             @foreach($categories as $category)
             <tr>
@@ -55,14 +106,14 @@
                 <h4><a href="">{{ $category['id'] }}</a></h4>
               </td>
               <td class="cart_description">
-                <h4><a href="">{{ $category['name'] }}</a></h4>
+                <h4><a href="#">{{ $category['name'] }}</a></h4>
               </td>
               <td class="cart_price">
                 <p>{{ $category['description'] }}</p>
               </td>
 
               <td class="cart_price">
-                <p>{{ $category['parent_id'] }}</p>
+                <p>{{ $findnamecat[$category['parent_id']] }}</p>
               </td>
               <td class="cart_delete">
                 <a class="cart_quantity_delete" href="{{ route('product.removeItem', ['id' => $category['id']]) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
@@ -73,14 +124,7 @@
             </tr>
             @endforeach  
 
-
-
-
-
-
-
-   {{--        
-       <ul>
+<ul>
   @foreach ($categories as $parent)
     <li>{{ $parent->name }}
       @if ($parent->children->count())
@@ -140,7 +184,7 @@
     @foreach ($categories as $parent)
       
       @if ($parent->children->count())
-        <!-- Parent Item 1 -->
+        <!-- Parent Item 1 -+->
         <a href="#menu{{ $parent->id }}" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">
           {{ $parent->name }}
         </a>
@@ -148,20 +192,20 @@
             @foreach ($parent->children as $child)
                 @if ($child->children->count())
                   <a href="#submenu{{ $parent->id }}" class="list-group-item" data-toggle="collapse" data-parent="#SubMenu1">
-                    <!-- Child Subitem 1 -->
+                    <!-- Child Subitem 1 -+->
                     {{ $child->name }}
                     <i class="fa fa-caret-down"></i>
                   </a>
                   <div class="collapse" id="submenu{{ $parent->id }}">
                     @foreach ($child->children as $grandson)
-                        <!-- Grandson SubSubitem 1 / No childs-->
+                        <!-- Grandson SubSubitem 1 / No childs -+->
                         <a href="#" class="list-group-item">{{ $grandson->name }}</a>
                     @endforeach
                   </div>
 
 
                 @else
-                  <!-- Child Subitem 1 / No childs-->
+                  <!-- Child Subitem 1 / No childs-+->
                   <a href="#" class="list-group-item">{{ $child->name }}</a>
                 @endif
 
@@ -169,7 +213,7 @@
             @endforeach
           </div>
       @else
-        <!-- Parent Item 1 / No childs-->
+        <!-- Parent Item 1 / No childs -+->
         <a href="#" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">
           {{ $parent->name }}
         </a>      
@@ -208,35 +252,6 @@
               </td>
             </tr>
             @endforeach  
+
+            -->
             --}}  
-
-
-
-          </tbody>
-          <tfoot>
-            <tr class="cart_menu">
-              <td class="image"></td>
-              <td class="description"></td>
-              <td class="price"></td>
-              <td class="price"></td>
-              <td class="quantity"><a class="btn btn-success" href="{{ route('categories.create') }}">Create Category</a></td>
-              <td class="total"></td>
-              <td class="total"></td>
-            </tr>            
-          </tfoot>
-        </table>
-
-      </div>
-
-
-
-
-
-    </div>
-  </section> <!--/#cart_items-->                 <!-- /. ROW  -->           
-                </div>
-             <!-- /. PAGE INNER  -->
-        </div>
-         <!-- /. PAGE WRAPPER  -->
-
-@endsection
