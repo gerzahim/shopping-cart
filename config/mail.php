@@ -54,7 +54,8 @@ return [
     | used globally for all e-mails that are sent by your application.
     |
     */
-    'from' => ['address' => 'herbnkulture@gmail.com', 'name' => 'Herbn Kulture'],
+
+    'from' => ['address' => env('MAIL_USERNAME'), 'name' => env('MAIL_NAME')],
     //'from' => ['address' => 'herbnkulture@gmail.com', 'name' => 'Herbn Kulture'],
     //'from' => ['address' => 'info@doralhookah.com', 'name' => 'Doral Hookah'],
     //'from' => ['address' => 'info@crowntradingmiami.com', 'name' => 'Crown Trading Miami.com'],

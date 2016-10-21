@@ -54,10 +54,10 @@
             <div class="contact-info">
               <h2 class="title text-center">Contact Info</h2>
               <address>
-                <p>Hookah Express.</p>
-                <p>8065 NW 54th St. Doral, FL 33166 USA</p>
-                <p>Phone: +1 786-464-1348</p>
-                <p>Email: thehookahexpress@gmail.com</p>
+                <p>{{ $setting->name_site }}</p>
+                <p>{{ $setting->address_site }}</p>
+                <p>Phone: {{ $setting->phone_site }} </p>
+                <p>Email: {{ $setting->email_site }}</p>
               </address>
               {{--               
               <!--

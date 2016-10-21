@@ -20,9 +20,11 @@ class CreateSettingsTable extends Migration
             $table->string('keywords_site')->nullable();
             $table->string('description_site')->nullable();            
             $table->string('email_site')->nullable();
+            $table->string('web_site')->nullable(); // http://www.Herbnkulture.com
             $table->string('phone_site')->nullable();
             $table->string('address_site')->nullable();
             $table->string('css_site')->nullable();
+            $table->integer('dark_menu')->default('0'); //0 Have Clear Menu ; 1 Have Dark Menu Menu Top
             $table->string('logo_home')->nullable();
             $table->string('logo_home_height')->nullable();
             $table->string('logo_home_width')->nullable();

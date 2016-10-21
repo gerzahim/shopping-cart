@@ -926,7 +926,7 @@ config/mail.php
 
 
 
-controllers/ProductController.php line 509
+controllers/ProductController.php line 698
 
 public function postSubscriber(Request $request){
             Mail::send('emails.subscriber', $data, function ($message) use ($data){
@@ -936,6 +936,33 @@ public function postSubscriber(Request $request){
 
             }); 
 
+controllers/ProductController.php line 658
+    public function postContact(Request $request){
+        Mail::send('emails.contact', $data, function ($message) use ($data){
+            $id=1;
+            $setting = Settings::find($id);
+
+
+            $message->from($data['email']);
+            $message->to($setting->email_site, $setting->name_site);
+            //$message->to('herbnkulture@gmail.com', 'Info HerbnKulture');
+            $message->subject($data['subject']);
+
+        });  
+
+controllers/ProductController.php line 834
+    public function postCheckout(Request $request){
+    Mail::send('emails.order', $data, function ($message) use ($data){
+
+        $id=1;
+        $setting = Settings::find($id);                
+
+        $message->from($setting->email_site, $setting->name_site);
+        //$message->from('herbnkulture@gmail.com', 'Info HerbnKulture');
+        $message->to($data['email']);
+        $message->subject('You have a New Order on '.$setting->name_site.'');
+
+    });   
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////

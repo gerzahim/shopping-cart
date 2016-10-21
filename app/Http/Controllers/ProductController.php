@@ -448,6 +448,7 @@ class ProductController extends Controller
         <div class="collapse list-group-submenu list-group-submenu-1" id="SubSubMenu1">
           <a href="#" class="list-group-item" data-parent="#SubSubMenu1">Sub sub item 1</a>
           <a href="#" class="list-group-item" data-parent="#SubSubMenu1">Sub sub item 2</a>
+          <a href="'.$url.'selectByCategory/1" class="list-group-item">Sub sub item 3</a>
         </div>
         <a href="#" class="list-group-item" data-parent="#SubMenu1">Subitem 4 d</a>
       </div>
@@ -459,31 +460,31 @@ class ProductController extends Controller
     <div class="collapse" id="demo4">
       <a href="" class="list-group-item">Subitem 1</a>
       <a href="" class="list-group-item">Subitem 2</a>
-      <a href="" class="list-group-item">Subitem 3</a>
+      <a href="'.$url.'selectByCategory/1" class="list-group-item">Subitem 3</a>
     </div>
 
   </div>
 </div> ';
+        */
 
-*/
 $tree='';
             $tree.='<div id="MainMenu">';
-            $tree.='<div class="list-group panel ">';
+            $tree.='<div class="list-group panel cat-prod ">';
             foreach ($categories as $parent) {
                 if ($parent->children->count()) {
                     # code...
-                    $tree.='<a href="#menu'.$parent->id.'" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">'.
+                    $tree.='<a href="#menu'.$parent->id.'" class="list-group-item" data-toggle="collapse" data-parent="#MainMenu" >'.
                         $parent->name.'
                     </a>';
                     $tree.='<div class="collapse" id="menu'.$parent->id.'">';
                     foreach ($parent->children as $child) {
                         if ($child->children->count()) {
-                            $tree.='<a href="#submenu'.$child->id.'" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#menu'.$parent->id.'">'.
+                            $tree.='<a href="#submenu'.$child->id.'" class="list-group-item" data-toggle="collapse" data-parent="#menu'.$parent->id.'">&nbsp;&nbsp;'.
                                 $child->name.'
                             <i class="fa fa-caret-down"></i></a>';
                             $tree.='<div class="collapse" id="submenu'.$child->id.'">';
                             foreach ($child->children as $grandson) {
-                                    $tree.='<a href="'.$url.'selectByCategory/'.$grandson->id.'" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#submenu'.$child->id.'">'.
+                                    $tree.='<a href="'.$url.'selectByCategory/'.$grandson->id.'" class="list-group-itema">&nbsp;&nbsp;&nbsp;&nbsp;'.
                                         $grandson->name.'
                                    </a>';
 
@@ -491,7 +492,7 @@ $tree='';
                             $tree.='</div>';                            
                         }else{
 
-                            $tree.='<a href="'.$url.'selectByCategory/'.$child->id.'" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#menu'.$child->id.'">'.$child->name.'
+                            $tree.='<a href="'.$url.'selectByCategory/'.$child->id.'" class="list-group-itema">'.$child->name.'
                             </a>';                            
 
                         }
@@ -501,7 +502,7 @@ $tree='';
 
                 }else{
                     
-                    $tree.='<a href="'.$url.'selectByCategory/'.$parent->id.'" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">
+                    $tree.='<a href="'.$url.'selectByCategory/'.$parent->id.'" class="list-group-item">
                     '.$parent->name.'
                     </a>';                      
                 }
@@ -513,7 +514,7 @@ $tree='';
 
 
 
-        
+
 
 
 /*
@@ -622,7 +623,10 @@ $tree='';
 
     public function getContact(){
 
-        return view('shop.contact');        
+        $id=1;
+        $setting = Settings::find($id);        
+
+        return view('shop.contact', compact('setting'));        
     }   
 
     public function postContact(Request $request){
@@ -655,8 +659,13 @@ $tree='';
         });
         */   
         Mail::send('emails.contact', $data, function ($message) use ($data){
+            $id=1;
+            $setting = Settings::find($id);
+
+
             $message->from($data['email']);
-            $message->to('herbnkulture@gmail.com', 'Info HerbnKulture');
+            $message->to($setting->email_site, $setting->name_site);
+            //$message->to('herbnkulture@gmail.com', 'Info HerbnKulture');
             $message->subject($data['subject']);
 
         }); 
@@ -687,6 +696,7 @@ $tree='';
     } 
 
     public function postSubscriber(Request $request){
+  
 
         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
@@ -721,14 +731,23 @@ $tree='';
                 'email' => $request->email, 
                 );
 
+
+
+            //dd($setting->email_site, $setting->name_site);
+
             Mail::send('emails.subscriber', $data, function ($message) use ($data){
-                $message->from('herbnkulture@gmail.com', 'Info HerbnKulture');
+
+                $id=1;
+                $setting = Settings::find($id);                
+
+                $message->from($setting->email_site, $setting->name_site);
+                //$message->from('herbnkulture@gmail.com', 'Info HerbnKulture');
                 $message->to($data['email']);
                 $message->subject('Welcome New Subcriber');
 
             }); 
 
-            Session::flash('message', 'Your was subscribed successfully!');
+            Session::flash('message_header', 'Your was subscribed successfully!');
             return redirect('principal');               
           
         }            
@@ -887,7 +906,39 @@ $tree='';
                 $order->user_id = "1";
                 //orders()->save($order);
                 $order->save();
-            }            
+            }
+
+            $order->cart = unserialize($order->cart);
+
+            $id=1;
+            $settings = Settings::find($id);  
+
+
+            //Send Email 
+            $data = array(
+                'email' => $order->email,
+                'costumer' => $order->name,
+                'idorder' => $order->id,
+                'name_site' => $settings->name_site,
+                'order' => $order->cart
+            ); 
+
+            //dd($data);           
+
+
+            //dd($setting->email_site, $setting->name_site);
+
+            Mail::send('emails.order', $data, function ($message) use ($data){
+
+                $id=1;
+                $setting = Settings::find($id);                
+
+                $message->from($setting->email_site, $setting->name_site);
+                //$message->from('herbnkulture@gmail.com', 'Info HerbnKulture');
+                $message->to($data['email']);
+                $message->subject('You have a New Order on '.$setting->name_site.'');
+
+            });                         
             
             //Auth::user()->orders()->save($order);
 
@@ -921,19 +972,23 @@ $tree='';
     }
 
     public function getPolicy(){
-
-        return view('shop.policy');
+        $id=1;
+        $setting = Settings::find($id);        
+      
+        return view('shop.policy', compact('setting')); 
     }        
 
 
     public function getTerms(){
-
-        return view('shop.terms');
-    }
+        $id=1;
+        $setting = Settings::find($id);    
+        return view('shop.terms', compact('setting'));
+    } 
 
     public function getRefunds(){
-
-        return view('shop.returns');
+        $id=1;
+        $setting = Settings::find($id);    
+        return view('shop.returns', compact('setting') ); 
     } 
 
     public function getShipping(){
@@ -948,13 +1003,15 @@ $tree='';
     }     
 
     public function getAboutUs(){
-
-        return view('shop.aboutus');
+        $id=1;
+        $setting = Settings::find($id);    
+        return view('shop.aboutus', compact('setting')); 
     }
 
     public function getFaqs(){
-
-        return view('shop.faqs');
+        $id=1;
+        $setting = Settings::find($id);    
+        return view('shop.faqs', compact('setting')); 
     }        
 
 

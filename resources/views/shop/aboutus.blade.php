@@ -4,7 +4,7 @@
    <div id="contact-page" class="container">
           <div class="row">       
             <div class="col-sm-12">                 
-              <h2 class="title text-center">Herb'n Kulture HISTORY</h2>
+              <h2 class="title text-center">{{ $setting->name_site }} HISTORY</h2>
               <br>                             
             </div>          
           </div>
@@ -42,7 +42,7 @@
               Sincerely,
               </p>
               <p>      
-              The Herb'n Kutture Family
+              {{ $setting->name_site }} Family
               </p>
             </div>
           </div>

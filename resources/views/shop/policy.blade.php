@@ -14,7 +14,7 @@
           <div class="col-sm-12">
             <div class="contact-form">
                 <p>Last updated: 3/25/2016</p>
-                <p>Herb&#8217; N Kulture (&#8220;us&#8221;, &#8220;we&#8221;, or &#8220;our&#8221;) operates http://www.Herbnkulture.com) (the &#8220;Site&#8221;). This page informs you of our policies regarding the collection, use and disclosure of Personal Information we receive from users of the Site.</p>
+                <p>{{ $setting->name_site }} (&#8220;us&#8221;, &#8220;we&#8221;, or &#8220;our&#8221;) operates {{ $setting->web_site }}) (the &#8220;Site&#8221;). This page informs you of our policies regarding the collection, use and disclosure of Personal Information we receive from users of the Site.</p>
                 <p>We use your Personal Information only for providing and improving the Site. By using the Site, you agree to the collection and use of information in accordance with this policy.</p>
                 <p><strong>Information Collection And Use</strong></p>
                 <p>While using our Site, we may ask you to provide us with certain personally identifiable information that can be used to contact or identify you. Personally identifiable information may include, but is not limited to your name (&#8220;Personal Information&#8221;).</p>

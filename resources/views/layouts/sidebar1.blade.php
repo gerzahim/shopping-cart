@@ -5,9 +5,11 @@
     <!--category-products-->
     <h2>Categories</h2>
           {!! $tree !!} 
-    <div class="panel-group category-products" id="accordian">              
-                     
+
+    {{--
+    <div class="panel-group category-products" id="accordian">                          
     </div>
+    --}}
     <!--/category-products-->
 
     <div class="brands_products"><!--brands_products-->

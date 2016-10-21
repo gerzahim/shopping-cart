@@ -80,6 +80,14 @@
             </div>            
           </div>
           <div class="row">
+            <div class="form-group col-md-6">
+              <div class="form-group">
+                <label for="name" id="text_redl" name="text_red">Site Website Link</label>
+                <input type="text" id="web_site" class="form-control" name="web_site" value="{{ $setting['web_site'] }}" required>
+              </div>              
+            </div>
+          </div>          
+          <div class="row">
             <div class="col-xs-12">
               <hr> 
             </div>
@@ -360,7 +368,23 @@
                       @endif
                 </select>                
               </div>             
-            </div>           
+            </div>
+             <div class="form-group col-md-4">
+              <div class="form-group">
+                <label for="card-number">Select Dark Menu Top</label>
+                <select id="dark_menu" name="dark_menu">                  
+                      @if($setting['dark_menu'] == '0')
+                        <option selected="selected" value="0">No</option>
+                        <option value="1">Yes</option>
+                      @else
+                        <option value="0">No</option>
+                        <option selected="selected" value="1">Yes</option>      
+                      @endif
+                </select>                 
+              </div>             
+            </div>        
+         
+
           </div> 
           <div class="row">
             <div class="col-xs-12">

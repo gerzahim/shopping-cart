@@ -69,6 +69,7 @@ Route::get('/selectByBrand/{id}', [
 Route::post('/postsubscribers', 'ProductController@postSubscriber');
 
 Route::get('/contact', 'ProductController@getContact');
+
 Route::post('/contact', 'ProductController@postContact');
 
 Route::get('/add-to-cart/{id}', [

@@ -24,8 +24,10 @@
     <link href="{{ URL::to('css/main.css') }}" rel="stylesheet">
     <link href="{{ URL::to('css/main1.css') }}" rel="stylesheet">
     <link href="css/{{ $setting->css_site }}" rel="stylesheet">
+    <link href="{{ URL::to('css/') }}/{{ $setting->css_site }}" rel="stylesheet">
     -->    
-  <link href="{{ URL::to('css/') }}/{{ $setting->css_site }}" rel="stylesheet">
+  
+  <link href="{{ URL::to('css/main_doralhookah.css') }}" rel="stylesheet">
   <link href="{{ URL::to('css/responsive.css') }}" rel="stylesheet">
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
@@ -48,7 +50,13 @@
 <!-- END HEADER -->
 
 <!-- END MENUTOP -->
- @include('layouts.menutop')
+@if( $setting->dark_menu == 0)
+  @include('layouts.menutop')
+@else{
+  @include('layouts.menutop_dark')
+}
+@endif
+
    </header><!--/header-->
 <!-- END MENUTOP -->
 

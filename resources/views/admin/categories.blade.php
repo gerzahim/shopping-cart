@@ -27,11 +27,6 @@
 
 
 
-
-
-
-
-
         <table class="table table-condensed">
           <thead>
             <tr class="cart_menu">

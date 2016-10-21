@@ -133,9 +133,9 @@
                           </ul>
                       </div>
                   @else
-                    @if(Session::has('message'))
+                    @if(Session::has('message_header'))
                       <div class="alert alert-success">
-                        {{ Session::get('message') }}
+                        {{ Session::get('message_header') }}
                       </div>
                     @else
                       <p>Get the most recent updates from our site...</p>    

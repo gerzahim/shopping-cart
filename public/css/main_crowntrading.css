@@ -66,7 +66,7 @@ a#scrollUp i{
 /*************************
 *******Header CSS******
 #fe980f Color Hex 
-990000 ROJO
+FF0000 ROJO
 990000 VINOTINTO
 
 **************************/
@@ -660,6 +660,37 @@ ul.sub-menu {
 .right {
   right: 0;
 }
+
+
+.list-group-item {  
+  position: relative;  
+  display: block;  
+  padding: 10px 15px;  
+  margin-bottom: -1px;  
+  background-color: #FFFFFF;  
+  border: 1px solid #dddddd;  
+}  
+
+.list-group-itema {  
+  color: #363432;
+  font-family: 'Roboto', sans-serif;  
+  position: relative;  
+  display: block;  
+  padding: 10px 15px;  
+  margin-bottom: -1px;  
+  background-color: #F7F7F0;  
+  border: 1px solid #dddddd;  
+} 
+
+.list-group-itema:hover{
+  color: #990000 ;
+  background-color: #F7F7F0;  
+} 
+
+.list-group-item:hover{
+  color: #333333 ;
+  background-color: #F7F7F0;  
+} 
 
 .category-products {
   border: 1px solid #F7F7F0;
