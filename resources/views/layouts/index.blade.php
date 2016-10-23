@@ -14,7 +14,9 @@
     
     <meta name="keywords" content="Hookah, miami, sales">
     <title>.:: Doral | Hookah ::.</title>
-    <title>.||| {{ dd($settings->title_site) }} ::.</title> --> --}}
+    <title>.||| {{ dd($settings->title_site) }} ::.</title> --> 
+
+    --}}
     <link href="{{ URL::to('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ URL::to('css/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ URL::to('css/prettyPhoto.css') }}" rel="stylesheet">
@@ -24,11 +26,12 @@
     <link href="{{ URL::to('css/main.css') }}" rel="stylesheet">
     <link href="{{ URL::to('css/main1.css') }}" rel="stylesheet">
     <link href="css/{{ $setting->css_site }}" rel="stylesheet">
-    <link href="{{ URL::to('css/') }}/{{ $setting->css_site }}" rel="stylesheet">
+    <link href="{{ URL::to('css/main_doralhookah.css') }}" rel="stylesheet">
+    
     -->    
   
-  <link href="{{ URL::to('css/main_doralhookah.css') }}" rel="stylesheet">
-  <link href="{{ URL::to('css/responsive.css') }}" rel="stylesheet">
+  
+  <link href="{{ URL::to('css/'.$setting->css_site) }}" rel="stylesheet">
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>

@@ -7,22 +7,40 @@
     <meta name="author" content="Gerza Salas">
     <title>{{ $setting->title_site }}</title>
     <meta name="keywords" content="{{ $setting->keywords_site }}">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/prettyPhoto.css" rel="stylesheet">
-    <link href="css/price-range.css" rel="stylesheet">
-    <link href="css/animate.css" rel="stylesheet">
-  <link href="css/{{ $setting->css_site }}" rel="stylesheet">
-  <link href="css/responsive.css" rel="stylesheet">
+    {{-- 
+   <!--
+    <meta name="keywords" content="electronics, miami, sales">
+    <meta name="keywords" content="Hookah, miami, sales">
+    
+    <meta name="keywords" content="Hookah, miami, sales">
+    <title>.:: Doral | Hookah ::.</title>
+    <title>.||| {{ dd($settings->title_site) }} ::.</title> --> 
+
+    --}}
+    <link href="{{ URL::to('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ URL::to('css/font-awesome.min.css') }}" rel="stylesheet">
+    <link href="{{ URL::to('css/prettyPhoto.css') }}" rel="stylesheet">
+    <link href="{{ URL::to('css/price-range.css') }}" rel="stylesheet">
+    <link href="{{ URL::to('css/animate.css') }}" rel="stylesheet">
+    <!--
+    <link href="{{ URL::to('css/main.css') }}" rel="stylesheet">
+    <link href="{{ URL::to('css/main1.css') }}" rel="stylesheet">
+    <link href="css/{{ $setting->css_site }}" rel="stylesheet">
+    <link href="{{ URL::to('css/main_doralhookah.css') }}" rel="stylesheet">
+    
+    -->    
+  
+  <link href="{{ URL::to('css/'.$setting->css_site) }}" rel="stylesheet">
+
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
     <![endif]-->       
-    <link rel="shortcut icon" href="images/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" href="images/favicon.ico">
+    <link rel="shortcut icon" href="{{ URL::to('images/favicon.ico') }}">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ URL::to('images/favicon.ico') }}">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ URL::to('images/favicon.ico') }}">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ URL::to('images/favicon.ico') }}">
+    <link rel="apple-touch-icon-precomposed" href="{{ URL::to('images/favicon.ico') }}">
 
  @include('layouts.head')    
 </head><!--/head-->
@@ -36,9 +54,16 @@
 <!-- END HEADER -->
 
 <!-- END MENUTOP -->
- @include('layouts.menutop')
+@if( $setting->dark_menu == 0)
+  @include('layouts.menutop')
+@else{
+  @include('layouts.menutop_dark')
+}
+@endif
+
    </header><!--/header-->
 <!-- END MENUTOP -->
+
 
 <!-- BEGIN BODY -->
   <section>
@@ -61,14 +86,14 @@
  @include('layouts.footer')
 <!-- END FOOTER -->
    
-  <script src="js/jquery.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/jquery.scrollUp.min.js"></script>
-  <script src="js/price-range.js"></script>
-  <script src="js/jquery.prettyPhoto.js"></script>
-  <script src="js/main.js"></script>
+  <script src="{{ URL::to('js/jquery.js') }}"></script>
+  <script src="{{ URL::to('js/bootstrap.min.js') }}"></script>
+  <script src="{{ URL::to('js/jquery.scrollUp.min.js') }}"></script>
+  <script src="{{ URL::to('js/price-range.js') }}"></script>
+  <script src="{{ URL::to('js/jquery.prettyPhoto.js') }}"></script>
+  <script src="{{ URL::to('js/main.js') }}"></script>
+ @include('layouts.scripts')    
 
-  @include('layouts.scripts')   
 </body>
 </html>
 

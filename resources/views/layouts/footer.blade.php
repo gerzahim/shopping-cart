@@ -65,7 +65,7 @@
               ?>
               <h2><span>{{ $keywords[0] }}</span> - {{ $keywords[1]}}</h2>
             </div>
-            @if( $setting->css_site == 'main_doralhooak.css')
+            @if( $setting->dark_menu == '1')
               <div class="address">
                 <img src="{{ URL::to('images/') }}/{{$setting->img_map}}" alt="" />           
               </div>

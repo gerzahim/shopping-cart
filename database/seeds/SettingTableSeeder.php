@@ -11,18 +11,20 @@ class SettingTableSeeder extends Seeder
      */
     public function run()
     {
+
+        /*
         // HOOKAH EXPRESS        
         $setting = new \ShopCart\Settings([
         	'id'=> '1',            
-            'name_site'=> 'Hookah Express',
-        	'title_site'=> '.:: Hookah | Express ::.',
-        	'keywords_site'=> 'Hookah, miami, sales',
-            'description_site'=> 'Hookah Miami',            
+            'name_site'=> 'Herb&#039;n Kulture',
+        	'title_site'=> '.:: Herb&#039;n Kulture  ::. Wholesale Smoke Shop &amp; Hookah needs',
+        	'keywords_site'=> 'Wholesale, Smoke, Hookah, miami, doral, sales',
+            'description_site'=> 'Smoke Shop &amp; Hookah needs Wholesale, Glass accesories, Glass Pipes, Grinders, Scales, Smoking accesories, Vape accesories, butanes and torches and more',            
         	'email_site'=> 'herbnkulture@gmail.com',
             'web_site'=> 'http://www.herbnkulture.com',
         	'phone_site'=> '+1 786-464-1348',
         	'address_site'=> '8065 NW 54th St. Doral, FL 33166 USA',
-            'css_site'=> 'main.css',
+            'css_site'=> 'main_herbnkulture.css',
             'dark_menu'=> 0,
             'logo_home'=> 'Logoherbnkulture.png',
             'logo_home_height'=> '120',
@@ -61,15 +63,18 @@ class SettingTableSeeder extends Seeder
         ]);
         $setting->save();
 
-/*
+
+        /* */
+        
+        /*
         // DORAL HOOKAH
         $setting = new \ShopCart\Settings([
             'id'=> '1',            
             'name_site'=> 'Doral Hookah',
             'title_site'=> '.:: Doral | Hookah ::.',
             'keywords_site'=> 'Hookah, miami, sales',
-            'description_site'=> 'Hookah Miami',            
-            'email_site'=> 'herbnkulture@gmail.com',
+            'description_site'=> 'Shop for hookahs, smokes, vapes, tobacco, raw, 420 & more new smokes stuffs. In-store pickup & free 2-day',               
+            'email_site'=> 'doralhookahs@gmail.com',
             'web_site'=> 'http://www.doralhookah.com',
             'phone_site'=> '+1 305-879-6662',
             'address_site'=> '7884 NW 52nd St. Doral, FL 33166 USA',
@@ -111,17 +116,17 @@ class SettingTableSeeder extends Seeder
 
         ]);
         $setting->save();
-*/
+        /* */
 
-/*        
 
+        
         // CROWN TRADING
         $setting = new \ShopCart\Settings([
             'id'=> '1',            
             'name_site'=> 'Crown Trading',
-            'title_site'=> '.:: Crown | Trading Miami ::.',
+            'title_site'=> '.:: Crown Trading Miami: Expert Service. Unbeatable Price. ::.',
             'keywords_site'=> 'Electronics, miami, sales',
-            'description_site'=> 'Electronics Miami',            
+            'description_site'=> 'Shop for electronics, computers, appliances, cell phones, video games & more new tech. In-store pickup & free 2-day',            
             'email_site'=> 'hmitha@gmail.com',
             'web_site'=> 'http://www.crowntradingmiami.com/',
             'phone_site'=> '+1 954-790-2620',
@@ -164,7 +169,7 @@ class SettingTableSeeder extends Seeder
 
         ]);
         $setting->save();    
-*/
+        /* */
 
     }
 }

@@ -124,31 +124,15 @@ Route::get('/movetoWishList/{id}', [
 ]);
 
 
-$setting = Settings::find(1);
-if ($setting->buylikeguess == 0) {
-	Route::get('/checkout', [
-		'uses' => 'ProductController@getCheckout',
-		'as' => 'checkout',
-	]);
+Route::get('/checkout', [
+	'uses' => 'ProductController@getCheckout',
+	'as' => 'checkout',
+]);
 
-	Route::post('/checkout', [
-		'uses' => 'ProductController@postCheckout',
-		'as' => 'checkout',
-	]);
-}else{
-	Route::get('/checkout', [
-		'uses' => 'ProductController@getCheckout',
-		'as' => 'checkout',
-		'middleware' => 'auth'
-	]);
-
-
-	Route::post('/checkout', [
-		'uses' => 'ProductController@postCheckout',
-		'as' => 'checkout',
-		'middleware' => 'auth'
-	]);	
-}
+Route::post('/checkout', [
+	'uses' => 'ProductController@postCheckout',
+	'as' => 'checkout',
+]);
 
 
 Route::get('/account', [

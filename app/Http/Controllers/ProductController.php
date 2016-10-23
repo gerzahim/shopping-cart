@@ -813,6 +813,17 @@ $tree='';
 
 
     public function getCheckout(){
+
+        $setting = Settings::find(1);
+        if ($setting->buylikeguess == 0) {
+
+            if (Auth::guest()){
+                Session::flash('message', 'Please Login to Order !!!');     
+                return redirect('principal');                  
+            }
+          
+        }
+
         if (!Session::has('cart')) {
             return view('shop.cart');
         }
@@ -832,6 +843,17 @@ $tree='';
 
 
     public function postCheckout(Request $request){
+
+        $setting = Settings::find(1);
+        if ($setting->buylikeguess == 0) {
+
+            if (Auth::guest()){
+                Session::flash('message', 'Please Login to Order !!!');     
+                return redirect('principal');                  
+            }
+          
+        }
+                
         if (!Session::has('cart')) {
             return redirect()->route('product.shoppingCart');
         }
