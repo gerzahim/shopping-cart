@@ -57,5 +57,65 @@ class CategoriesTableSeeder extends Seeder
             'parent_id'=> '3',
         ]);
         $product->save();
+
+
+        $product = new \ShopCart\Categories([
+            'id'=> '6',
+            'name'=> 'ACCESORIES', 
+            'description'=> 'No Category',
+            'imagepath'=> 'no-categories.png',
+            //'parent_id'=> '3',
+        ]);
+        $product->save();
+
+
+        $product = new \ShopCart\Categories([
+            'id'=> '7',
+            'name'=> 'DETOX', 
+            'description'=> 'No Category',
+            'imagepath'=> 'no-categories.png',
+            //'parent_id'=> '3',
+        ]);
+        $product->save();
+
+
+        $product = new \ShopCart\Categories([
+            'id'=> '8',
+            'name'=> 'GLASS', 
+            'description'=> 'No Category',
+            'imagepath'=> 'no-categories.png',
+            //'parent_id'=> '3',
+        ]);
+        $product->save();
+
+
+        $product = new \ShopCart\Categories([
+            'id'=> '9',
+            'name'=> 'GRINDERS', 
+            'description'=> 'No Category',
+            'imagepath'=> 'no-categories.png',
+            //'parent_id'=> '3',
+        ]);
+        $product->save();
+
+
+        $product = new \ShopCart\Categories([
+            'id'=> '10',
+            'name'=> 'HOOKAH', 
+            'description'=> 'No Category',
+            'imagepath'=> 'no-categories.png',
+            //'parent_id'=> '3',
+        ]);
+        $product->save();
+
+
+        $product = new \ShopCart\Categories([
+            'id'=> '11',
+            'name'=> 'ZAHRAH', 
+            'description'=> 'No Category',
+            'imagepath'=> 'no-categories.png',
+            'parent_id'=> '10',
+        ]);
+        $product->save();
     }
 }

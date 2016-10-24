@@ -79,9 +79,11 @@
                 <li>
                   <a href="{{ $setting->link_twitter }}"><i class="fa fa-twitter"></i></a>
                 </li>
+                {{-- 
                 <li>
                   <a href="{{ $setting->link_google_plus }}"><i class="fa fa-google-plus"></i></a>
                 </li>
+                --}}
                 <li>
                   <a href="{{ $setting->link_linkedin }}"><i class="fa fa-linkedin"></i></a>
                 </li>

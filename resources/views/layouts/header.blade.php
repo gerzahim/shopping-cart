@@ -25,8 +25,10 @@
                 <li><a href="{{ $setting->link_facebook }}"><i class="fa fa-facebook"></i></a></li>
                 <li><a href="{{ $setting->link_twitter }}"><i class="fa fa-twitter"></i></a></li>
                 <li><a href="{{ $setting->link_linkedin }}"><i class="fa fa-linkedin"></i></a></li>
+                {{-- 
                 <li><a href="{{ $setting->link_dribbble }}"><i class="fa fa-dribbble"></i></a></li>
                 <li><a href="{{ $setting->link_google_plus }}"><i class="fa fa-google-plus"></i></a></li>
+                --}}
               </ul>
             </div>
           </div>
@@ -110,7 +112,7 @@
                   <li><a href="{{ url('/login') }}"><i class="fa fa-lock"></i> Login</a></li>
                 @else                
                   <li><a href="{{ url('/account') }}"><i class="fa fa-user"></i> Account</a></li>
-                  <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
+                  <li><a href="{{ url('/wishlist') }}"><i class="fa fa-star"></i> Wishlist</a></li>
                   <li><a href="{{ url('/checkout') }}"><i class="fa fa-crosshairs"></i> Checkout</a></li>
                   <li><a href="{{ route('product.shoppingCart') }}"><i class="fa fa-shopping-cart"></i> Cart
                     <span class="badge">{{ Session::has('cart') ? Session::get('cart')->totalQty : '' }}</span>

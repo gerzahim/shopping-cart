@@ -1,13 +1,14 @@
 <?php
-
+/* 
 
 $servername = "127.0.0.1";
 $username = "root";
 $password = "";
 
+*/
 $servername = "127.0.0.1";
-$username = "shopcartdor_user";
-$password = "gWd13qrIP8n.";
+$username = "shopcart";
+$password = "ToXz8G6zDxhz";
 
 
 // Create connection

@@ -47,6 +47,25 @@ class UserTableSeeder extends Seeder
             'status'=> '1',
         ]);
         $product->save();
+
+        $product = new \ShopCart\User([
+            'name'=> 'Doral Hookah',
+            'email'=> 'doralhookahs@gmail.com',
+            'role'=> '2',
+            'password' => bcrypt('12345'),
+            'status'=> '1',
+        ]);
+        $product->save();
+
+        $product = new \ShopCart\User([
+            'name'=> 'HerbnKulture',
+            'email'=> 'herbnkulture@gmail.com',
+            'role'=> '2',
+            'password' => bcrypt('12345'),
+            'status'=> '1',
+        ]);
+        $product->save();
+        
             
     }
 }

@@ -12,7 +12,7 @@ class SettingTableSeeder extends Seeder
     public function run()
     {
 
-        /*
+        
         // HOOKAH EXPRESS        
         $setting = new \ShopCart\Settings([
         	'id'=> '1',            
@@ -119,7 +119,7 @@ class SettingTableSeeder extends Seeder
         /* */
 
 
-        
+        /*
         // CROWN TRADING
         $setting = new \ShopCart\Settings([
             'id'=> '1',            
