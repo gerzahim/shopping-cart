@@ -23,9 +23,12 @@
             <div class="social-icons pull-right">
               <ul class="nav navbar-nav">
                 <li><a href="{{ $setting->link_facebook }}"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="{{ $setting->link_twitter }}"><i class="fa fa-instagram"></i></a></li>
                 <li><a href="{{ $setting->link_twitter }}"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="{{ $setting->link_linkedin }}"><i class="fa fa-linkedin"></i></a></li>
+                
+
                 {{-- 
+                <li><a href="{{ $setting->link_linkedin }}"><i class="fa fa-linkedin"></i></a></li>
                 <li><a href="{{ $setting->link_dribbble }}"><i class="fa fa-dribbble"></i></a></li>
                 <li><a href="{{ $setting->link_google_plus }}"><i class="fa fa-google-plus"></i></a></li>
                 --}}

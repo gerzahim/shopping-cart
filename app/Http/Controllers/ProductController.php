@@ -314,6 +314,36 @@ class ProductController extends Controller
 
         $order->fill($array)->save();
 
+ 
+        $order->cart = unserialize($order->cart);
+
+        $id=1;
+        $settings = Settings::find($id);  
+
+
+        //Send Email 
+        $data = array(
+            'email' => $order->email,
+            'costumer' => $order->name,
+            'idorder' => $order->id,
+            'name_site' => $settings->name_site,
+            'order' => $order->cart,
+            'shipcompany' => $order->shipcompany,
+            'tracking' => $order->tracking
+        );         
+
+        Mail::send('emails.orderupdate', $data, function ($message) use ($data){
+
+            $id=1;
+            $setting = Settings::find($id);                
+
+            $message->from($setting->email_site, $setting->name_site);
+            //$message->from('herbnkulture@gmail.com', 'Info HerbnKulture');
+            $message->to($data['email']);
+            $message->subject('You Order has been shipped !!!');
+
+        });          
+
         Session::flash('message', 'Order successfully updated!');
         return redirect()->back();
 
@@ -603,8 +633,8 @@ $tree='';
 
     public function getDetails(Request $request, $id)
     {
-
-        $url = $request->url();
+        //get original path
+        $url = str_replace($request->path(), '', $request->url());
 
         $categories = Categories::all();   
         $brands = Brand::all();   

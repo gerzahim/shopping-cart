@@ -32,7 +32,7 @@
           </div>
           <hr>                
           {{ csrf_field() }}          
-          <button type="submit" class="btn btn-success">Update Image Gallery</button>
+          <button type="submit" class="btn btn-success">Add Image Gallery</button>
         </form>
             <br>
           <br>

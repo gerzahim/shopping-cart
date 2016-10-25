@@ -39,7 +39,8 @@ class CreateSettingsTable extends Migration
             $table->integer('pagination_home')->default('6');
             $table->integer('pagination_shop')->default('9');
             $table->string('link_facebook')->nullable();
-            $table->string('link_twitter')->nullable();
+            $table->string('link_twitter')->nullable();            
+            $table->string('link_instagram')->nullable();
             $table->string('link_linkedin')->nullable();
             $table->string('link_dribbble')->nullable();
             $table->string('link_google_plus')->nullable();

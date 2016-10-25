@@ -96,7 +96,9 @@
                 <img src="{{ URL::to('images/new.jpg') }}" class="newarrival" alt="" />
                 <h2>{{ $product->title}}</h2>
                 <p><b>Sku:</b> {{ $product->sku}}</p>
+                <!-- 
                 <img src="{{ URL::to('images/rating.png') }}" alt="" />
+                -->
                 <span>
                           @if( $setting->loginshowprices == 0)
                             <span>${{ $product->price}}</span>
@@ -106,13 +108,16 @@
                             @else
                               <span>${{ $product->price}}</span>
                             @endif                            
-                          @endif                
+                          @endif
+                          <br>                
                   <a href="{{ route('product.addToCart', ['id' => $product->id]) }}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                 </span>
                 <p><b>Availability:</b> In Stock</p>
                 <p><b>Condition:</b> New</p>
                 <p><b>Description:</b> {{ $product->description }}</p>
+                <!-- 
                 <a href=""><img src="{{ URL::to('images/share.png') }}" class="share img-responsive"  alt="" /></a>
+                -->
               </div><!--/product-information-->
             </div>
           </div><!--/product-details-->

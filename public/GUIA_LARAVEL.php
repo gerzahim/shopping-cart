@@ -1179,3 +1179,33 @@ GOOD TUTORIAL
 https://laracasts.com/series/laravel-5-fundamentals/episodes/25
 
 
+
+for update
+
+css
+main.css todos
+
+email
+add - orderupdate.blade
+
+shop
+contact.blade
+checkout.blade
+
+layouts
+header.blade
+products_Details.blade
+
+admin 
+editsetting.blade
+edituser.blade
+
+controllers
+ImagesProductController
+ProductController
+SettingController
+
+
+database
+create_Settings_table
+seed settings table

@@ -25,7 +25,10 @@ class ImagesProductController extends Controller
     public function addImgGallery(Request $request, $id)
     {
         $imgproduct = ImagesProduct::find($id);
-        $product = Product::find($imgproduct->product_id);
+        //dd($imgproduct);
+
+        //$product = Product::find($imgproduct->product_id);
+        $product = Product::find($id);
 
         return view('admin.addimagesproducts', ['imgproduct' => $imgproduct, 'id' => $id, 'sku' => $product->sku, 'product_id' => $product->id]);
 
@@ -152,6 +155,8 @@ class ImagesProductController extends Controller
     {
         
         $imgproduct = ImagesProduct::find($id);
+
+        //dd($imgproduct);
         
 		try { 
 		    unlink('media/'.$imgproduct->imagepath1);
@@ -162,7 +167,10 @@ class ImagesProductController extends Controller
         $imgproduct->delete();
 		
         Session::flash('message', 'Image on Gallery Deleted!');
-        return redirect()->back();
+        //return redirect()->back();
+        $imgproducts = ImagesProduct::where('product_id', '=', $imgproduct->product_id)->get();
+        return view('admin.imagesproducts', ['imgproducts' => $imgproducts, 'id' => $imgproduct->product_id]);
+
         
     }   
 

@@ -89,8 +89,20 @@
                       <option value="0">Inactive</option>
                       <option selected="selected" value="1">Active</option>
                     @endif
-                </select>           
-                    </div>                                                           
+                    </select>           
+                    </div>  
+                    <div class="form-group col-md-6">
+                    <label for="phone">Role:</label>
+                    <select id="role" name="role">
+                    @if($user['role'] == '1'))
+                      <option selected="selected" value="1">Costumer</option>
+                      <option value="2">Administrator</option>
+                    @else
+                      <option value="1">Costumer</option>
+                      <option selected="selected" value="2">Administrator</option>
+                    @endif
+                    </select>           
+                    </div>                                                                             
                     <div class="form-group col-md-6"></div>
                     <div class="form-group col-md-6">
                   <button type="submit" class="btn btn-success">Update Info</button>       

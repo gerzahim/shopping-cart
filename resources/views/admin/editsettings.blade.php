@@ -255,8 +255,8 @@
 
             <div class="form-group col-md-4">
               <div class="form-group">
-                <label for="name" id="text_redl" name="text_red">Link Linkedin </label>
-                <input type="text" id="link_linkedin" class="form-control" name="link_linkedin" value="{{ $setting['link_linkedin'] }}" >
+                <label for="name" id="text_redl" name="text_red">Link Instagram </label>
+                <input type="text" id="link_instagram" class="form-control" name="link_instagram" value="{{ $setting['link_instagram'] }}" >
               </div>              
             </div>            
           </div>  
@@ -275,7 +275,14 @@
                 <label for="name" id="text_redl" name="text_red">Link Google-plus </label>
                 <input type="text" id="link_google_plus" class="form-control" name="link_google_plus" value="{{ $setting['link_google_plus'] }}" >
               </div>              
-            </div>            
+            </div>  
+            <div class="form-group col-md-4">
+              <div class="form-group">
+                <label for="name" id="text_redl" name="text_red">Link Linkedin </label>
+                <input type="text" id="link_linkedin" class="form-control" name="link_linkedin" value="{{ $setting['link_linkedin'] }}" >
+              </div>              
+            </div> 
+
           </div>
 
           <div class="row">

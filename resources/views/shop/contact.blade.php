@@ -85,7 +85,7 @@
                 </li>
                 --}}
                 <li>
-                  <a href="{{ $setting->link_linkedin }}"><i class="fa fa-linkedin"></i></a>
+                  <a href="{{ $setting->link_linkedin }}"><i class="fa fa-instagram"></i></a>
                 </li>
               </ul>
               </div>

@@ -146,21 +146,42 @@ class SettingController extends Controller
             $input['quick_cat_id1'] = $setting->quick_cat_id1;
         }else{
             $category = Categories::find($input['quick_cat_id1']);
-            $input['quick_cat_name1']= $category->name;  
+            //$input['quick_cat_name1']= $category->name;
+            if ($category == null) {
+                # code...
+                $input['quick_cat_name1']= "Not Valid";
+            } else {
+                # code...
+                $input['quick_cat_name1']= $category->name; 
+            }     
         }
 
         if($input['quick_cat_id2'] == '' || $input['quick_cat_id2'] == 0){
             $input['quick_cat_id2'] = $setting->quick_cat_id2;
         }else{
             $category = Categories::find($input['quick_cat_id2']);
-            $input['quick_cat_name2']= $category->name;  
+            //$input['quick_cat_name2']= $category->name; 
+            if ($category == null) {
+                # code...
+                $input['quick_cat_name2']= "Not Valid";
+            } else {
+                # code...
+                $input['quick_cat_name2']= $category->name; 
+            }               
         }
                 
         if($input['quick_cat_id3'] == '' || $input['quick_cat_id3'] == 0){
             $input['quick_cat_id3'] = $setting->quick_cat_id3;
         }else{
             $category = Categories::find($input['quick_cat_id3']);
-            $input['quick_cat_name3']= $category->name;  
+            //$input['quick_cat_name3']= $category->name;
+            if ($category == null) {
+                # code...
+                $input['quick_cat_name3']= "Not Valid";
+            } else {
+                # code...
+                $input['quick_cat_name3']= $category->name; 
+            }                
         }
 
 
@@ -168,14 +189,28 @@ class SettingController extends Controller
             $input['quick_cat_id4'] = $setting->quick_cat_id4;
         }else{
             $category = Categories::find($input['quick_cat_id4']);
-            $input['quick_cat_name4']= $category->name;  
+           // $input['quick_cat_name4']= $category->name;
+            if ($category == null) {
+                # code...
+                $input['quick_cat_name4']= "Not Valid";
+            } else {
+                # code...
+                $input['quick_cat_name4']= $category->name; 
+            }                
         }
 
         if($input['quick_cat_id5'] == '' || $input['quick_cat_id5'] == 0){
             $input['quick_cat_id5'] = $setting->quick_cat_id5;
         }else{
             $category = Categories::find($input['quick_cat_id5']);
-            $input['quick_cat_name5']= $category->name;  
+            //$input['quick_cat_name5']= $category->name; 
+            if ($category == null) {
+                # code...
+                $input['quick_cat_name5']= "Not Valid";
+            } else {
+                # code...
+                $input['quick_cat_name5']= $category->name; 
+            }               
         }
 
 
