@@ -57,7 +57,21 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label for="state">State:</label>
+	                      <select id="state" class="form-control" name="state">
+	                          @foreach($states as $state)            
+	                              @if( $user['state'] == $state->code)
+	                                    <option value="{{ $state->code }}" selected>{{ $state->name }}</option>                                
+	                              @else
+	                                    <option value="{{ $state->code }}">{{ $state->name }}</option>                                
+	                              @endif
+	                          @endforeach
+	                      </select>                            
+							{{-- 
+							<!--
+
 		                <input type="text" id="state" class="form-control" name="state" placeholder="{{ $user['state'] }}">
+							-->
+							--}}
                     </div>
                     <div class="form-group col-md-6">
 		                <label for="zip">Zip Code:</label>
@@ -70,9 +84,25 @@
                     <div class="form-group col-md-6">
 		                <label for="phone">Telephone:</label>
 		                <input type="text" id="phone" class="form-control" name="phone" placeholder="{{ $user['phone'] }}">	      
-                    </div>                    
-                    <div class="form-group col-md-6"></div>
+                    </div>   
+                    <div class="form-group col-md-12">
+	                <hr>
+                	<label for="zip">Company Information:</label>
+                    </div>
                     <div class="form-group col-md-6">
+		                <label for="phone">Company Name:</label>
+		                <input type="text" id="phone" class="form-control" name="phone" placeholder="{{ $user['phone'] }}">	      
+                    </div>    
+                    
+                     <div class="form-group col-md-6">
+		                <label for="phone">Upload - Resale Certificate for Sales Tax*:</label>
+		                <input type="text" id="phone" class="form-control" name="phone" placeholder="{{ $user['phone'] }}">	      
+                    </div>  
+                    <div class="form-group col-md-6">
+		                <label for="phone">Website:</label>
+		                <input type="text" id="phone" class="form-control" name="phone" placeholder="{{ $user['phone'] }}">	      
+                    </div>                                                                             
+                    <div class="form-group col-md-12" align="center">
 				          <button type="submit" class="btn btn-success">Update Info</button>       
                     </div>       
                   {{ csrf_field() }}                                                           

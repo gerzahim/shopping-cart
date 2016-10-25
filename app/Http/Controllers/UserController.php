@@ -6,6 +6,7 @@ namespace ShopCart\Http\Controllers;
 use Illuminate\Http\Request;
 use ShopCart\Http\Requests;
 use ShopCart\User;
+use ShopCart\States;
 use Session;
 use Auth;
 
@@ -32,8 +33,9 @@ class UserController extends Controller
         $user_id = (auth()->check()) ? auth()->user()->id : null;
 
         $user = User::find($user_id);
+        $states = States::all();
 
-        return view('user.form', ['user' => $user]);
+        return view('user.form', ['user' => $user, 'states' => $states]);
 
     }
 
@@ -124,9 +126,11 @@ class UserController extends Controller
     {
 
         $user = User::find($id);
+        $states = States::all();
 
         //return view('admin.editproducts', ['product' => $product], compact('categories'), compact('brands'));
-        return view('admin.editusers', compact('user'));
+        return view('admin.editusers', compact('user', 'states'));
+
     }     
 
 
@@ -148,20 +152,9 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function getSignup()
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+        return view('user.signup');
     }
 
     /**
@@ -170,10 +163,42 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function postSignup(Request $request)
     {
         //
+        $this->validate($request, [
+            //'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required'
+        ]);
+
+        /*
+        $user = new User([
+            'email' => $request->input('email'),
+            'password' => bcrypt($request->input('password'))
+        ]);
+        $user->save();
+        return redirect()->route('/principal');
+        */
+
+        $user = User::create($request->all());
+        //$mailer->sendEmailConfirmationTo($user);
+        flash('We will Notify you by email Authorization to Login.');
+        return redirect()->back();
     }
+
+    /**
+     * Confirm a user's email address.
+     *
+     * @param  string $token
+     * @return mixed
+     */
+    public function confirmEmail($token)
+    {
+        User::whereToken($token)->firstOrFail()->confirmEmail();
+        flash('You are now confirmed. Please login.');
+        return redirect('login');
+    }    
 
     /**
      * Show the form for editing the specified resource.
@@ -181,9 +206,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function getSignin()
     {
         //
+        return view('auth.login');
     }
 
     /**
@@ -193,10 +219,57 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function postSignin(Request $request)
     {
         //
+        $this->validate($request, ['email' => 'required|email', 'password' => 'required']);
+        if ($this->signIn($request)) {
+            flash('Welcome back!');
+            return redirect()->intended('/principal');
+        }
+        flash('Could not sign you in.');
+        return redirect()->back();        
     }
+
+    /**
+     * Destroy the user's current session.
+     *
+     * @return \Redirect
+     */
+    public function logout()
+    {
+        Auth::logout();
+        flash('You have now been signed out. See ya.');
+        return redirect('login');
+    }
+    
+
+    /**
+     * Attempt to sign in the user.
+     *
+     * @param  Request $request
+     * @return boolean
+     */
+    protected function signIn(Request $request)
+    {
+        return Auth::attempt($this->getCredentials($request), $request->has('remember'));
+    }
+
+
+    /**
+     * Get the login credentials and requirements.
+     *
+     * @param  Request $request
+     * @return array
+     */
+    protected function getCredentials(Request $request)
+    {
+        return [
+            'email'    => $request->input('email'),
+            'password' => $request->input('password'),
+            'verified' => true
+        ];
+    }    
 
     /**
      * Remove the specified resource from storage.

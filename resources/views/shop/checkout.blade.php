@@ -31,113 +31,115 @@
               <form action="{{ route('checkout') }}" id="checkout-form" class="contact-form row" name="checkout-form" method="post">
                     @if (Auth::guest())
                       <div class="form-group col-md-6">
+                          <label for="country">Full Name:</label>
                           <input type="text" id="name" class="form-control" required name="name" placeholder="Full Name">
                       </div>                      
                       <div class="form-group col-md-6">
+                          <label for="country">Email:</label>
                           <input type="text" id="email" class="form-control" required name="email" placeholder="Email">
                       </div>
                       <div class="form-group col-md-6">
+                          <label for="country">Phone:</label>
                           <input type="text" id="phone" class="form-control" required name="phone" placeholder="Phone">
                       </div>
                       <div class="form-group col-md-6"></div>
                       <div class="form-group col-md-12">
+                          <label for="country">Address:</label>
                           <input type="text" id="address" class="form-control" required name="address" placeholder="Address">
                       </div>  
+                   <div class="form-group col-md-6">
+                        <label for="city">City:</label>                    
+                        <input type="text" id="city" class="form-control" name="city" placeholder="City">                      
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="state">State:</label>
+                    <select id="state" class="form-control" name="state">
+                        @foreach($states as $state)
+                                <option value="{{ $state->code }}">{{ $state->name }}</option>              
+                        @endforeach
+                    </select>                        
+                    </div>
+                    <div class="form-group col-md-6">
+                    <label for="zip">Zip Code:</label>
+                    <input type="text" id="zip" class="form-control" name="zip" placeholder="33174">             
+                    </div>
+                    <div class="form-group col-md-6">
+                    <label for="country">Country:</label>
+                    <input type="text" id="country" class="form-control" name="country" placeholder="USA">
+                    </div>                      
 
                     @else
                     <div class="form-group col-md-6">
+                        <label for="country">Full Name:</label>
                         <input type="text" id="name" class="form-control" required name="name" value="{{ Auth::user()->name }}" placeholder="Full Name">
                     </div>                    
                       <div class="form-group col-md-6">
+                          <label for="country">Email:</label>
                           <input type="text" id="email" class="form-control" required name="email" value="{{ Auth::user()->email }}" placeholder="Email">
                       </div>
                       <div class="form-group col-md-6">
+                          <label for="country">Phone:</label>
                           <input type="text" id="phone" class="form-control" required name="phone" value="{{ Auth::user()->phone }}" placeholder="Phone">
                       </div>                    
                       <div class="form-group col-md-6"></div>
                       <div class="form-group col-md-12">
+                          <label for="country">Address:</label>
                           <input type="text" id="address" class="form-control" required name="address" value="{{ Auth::user()->address }}" placeholder="Address">
                       </div>
-                    @endif
-                    <div class="form-group col-md-6">
-                        <input type="text" id="zipcode" class="form-control" placeholder="City" >
-                    </div>
+                     <div class="form-group col-md-6">
+                          <label for="city">City:</label>                    
+                          <input type="text" id="city" class="form-control" name="city"  value="{{ Auth::user()->city }}" placeholder="City">                      
+                      </div>
                       <div class="form-group col-md-6">
-<select>
-  <option value="AL">Alabama</option>
-  <option value="AK">Alaska</option>
-  <option value="AZ">Arizona</option>
-  <option value="AR">Arkansas</option>
-  <option value="CA">California</option>
-  <option value="CO">Colorado</option>
-  <option value="CT">Connecticut</option>
-  <option value="DE">Delaware</option>
-  <option value="DC">District Of Columbia</option>
-  <option value="FL">Florida</option>
-  <option value="GA">Georgia</option>
-  <option value="HI">Hawaii</option>
-  <option value="ID">Idaho</option>
-  <option value="IL">Illinois</option>
-  <option value="IN">Indiana</option>
-  <option value="IA">Iowa</option>
-  <option value="KS">Kansas</option>
-  <option value="KY">Kentucky</option>
-  <option value="LA">Louisiana</option>
-  <option value="ME">Maine</option>
-  <option value="MD">Maryland</option>
-  <option value="MA">Massachusetts</option>
-  <option value="MI">Michigan</option>
-  <option value="MN">Minnesota</option>
-  <option value="MS">Mississippi</option>
-  <option value="MO">Missouri</option>
-  <option value="MT">Montana</option>
-  <option value="NE">Nebraska</option>
-  <option value="NV">Nevada</option>
-  <option value="NH">New Hampshire</option>
-  <option value="NJ">New Jersey</option>
-  <option value="NM">New Mexico</option>
-  <option value="NY">New York</option>
-  <option value="NC">North Carolina</option>
-  <option value="ND">North Dakota</option>
-  <option value="OH">Ohio</option>
-  <option value="OK">Oklahoma</option>
-  <option value="OR">Oregon</option>
-  <option value="PA">Pennsylvania</option>
-  <option value="RI">Rhode Island</option>
-  <option value="SC">South Carolina</option>
-  <option value="SD">South Dakota</option>
-  <option value="TN">Tennessee</option>
-  <option value="TX">Texas</option>
-  <option value="UT">Utah</option>
-  <option value="VT">Vermont</option>
-  <option value="VA">Virginia</option>
-  <option value="WA">Washington</option>
-  <option value="WV">West Virginia</option>
-  <option value="WI">Wisconsin</option>
-  <option value="WY">Wyoming</option>
-</select>
-                      </div>                       
-                    <div class="form-group col-md-6">
-                        <input type="number" id="zipcode" class="form-control" placeholder="ZIP CODE" >
-                    </div>
+                          <label for="state">State:</label>
+                      <select id="state" class="form-control" name="state">
+                          @foreach($states as $state)            
+                              @if( Auth::user()->city == $state->code)
+                                    <option value="{{ $state->code }}" selected>{{ $state->name }}</option>                                
+                              @else
+                                    <option value="{{ $state->code }}">{{ $state->name }}</option>                                
+                              @endif
+                          @endforeach
+                      </select>                        
+                      </div>
+                      <div class="form-group col-md-6">
+                      <label for="zip">Zip Code:</label>
+                      <input type="text" id="zip" class="form-control" name="zip" value="{{ Auth::user()->zip }}" placeholder="33174">             
+                      </div>
+                      <div class="form-group col-md-6">
+                      <label for="country">Country:</label>
+                      <input type="text" id="country" class="form-control" name="country" value="{{ Auth::user()->country }}" placeholder="USA">
+                      </div>                      
+                    @endif
+   
+                    <div class="form-group col-md-12">
+                      <hr>
+                      <label for="country">Payment Info</label>
+                    </div>                    
                     <div class="form-group col-md-6"></div><div class="form-group col-md-6"></div>
                     <div class="form-group col-md-6">
+                        <label for="country">Card Holder Name:</label>
                         <input type="text" id="card-name" class="form-control" placeholder="Card Holder Name" required>
                     </div>
                     <div class="form-group col-md-6">
+                        <label for="country">Credit Card Number:</label>
                         <input type="text" id="card-number" class="form-control" placeholder="Credit Card Number" required>                      
                     </div>
                     <div class="form-group col-md-6">
+                        <label for="country">Expiration Month:</label>
                         <input type="text" id="card-expiry-month" class="form-control" placeholder="Expiration Month" required>
                     </div>
                     <div class="form-group col-md-6">
+                        <label for="country">Expiration Year:</label>
                         <input type="text" id="card-expiry-year" class="form-control" placeholder="Expiration Year" required>                
                     </div>
                     <div class="form-group col-md-6">
+                        <label for="country">CVC:</label>
                         <input type="text" id="card-cvc" class="form-control" placeholder="CVC" required>
                     </div>
                     
                     <div class="form-group col-md-6">
+                      <label for="country">Please Select Shipping:</label>
                       <select id="shipping_id" name="shipping_id" required>
                           <option value="0">Please Select Shipping</option>
                           <option value="1">Pick up Store</option>
@@ -149,7 +151,7 @@
                     <div class="form-group col-md-6">
                         <input type="hidden" id="publishable_key" class="form-control" value="{{ $setting->apipublickey }}">
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-12" align="center">
                         <button type="submit" class="btn btn-success">Place Your Order</button>              
                     </div>  
  

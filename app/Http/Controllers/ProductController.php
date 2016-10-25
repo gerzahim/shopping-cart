@@ -15,6 +15,7 @@ use ShopCart\Subscriber;
 use ShopCart\Settings;
 use ShopCart\ShippingCost;
 use ShopCart\ImagesProduct;
+use ShopCart\States;
 use Session;
 use Auth;
 use Stripe\Charge;
@@ -863,12 +864,13 @@ $tree='';
         $total = $cart->totalPrice;
 
         $shippings = ShippingCost::all();
+        $states = States::all();
 
         //dd($shippings);
         $setting = Settings::find(1);
 
 
-        return view('shop.checkout', ['total' => $total, 'products' => $cart->items, 'totalPrice' => $cart->totalPrice, 'totalQty' => $cart->totalQty, 'shippings' => $shippings, 'payment_toorder' => $setting->payment_toorder]);
+        return view('shop.checkout', ['total' => $total, 'products' => $cart->items, 'totalPrice' => $cart->totalPrice, 'totalQty' => $cart->totalQty, 'shippings' => $shippings, 'payment_toorder' => $setting->payment_toorder, 'states' => $states]);
     }
 
 

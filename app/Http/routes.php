@@ -12,7 +12,26 @@ use ShopCart\User;
 |
 */
 
+Route::get('/signup', [
+	'uses' => 'UserController@getSignup',
+	'as' => 'user.signup'
+]);
 
+Route::post('/signup', [
+	'uses' => 'UserController@postSignup',
+	'as' => 'user.signup'
+]);
+
+
+Route::get('/signin', [
+	'uses' => 'UserController@getSignin',
+	'as' => 'user.signup'
+]);
+
+Route::post('/signin', [
+	'uses' => 'UserController@postSignin',
+	'as' => 'user.signup'
+]);
 
 Route::get('prueba', function(){
 	return view('welcome');

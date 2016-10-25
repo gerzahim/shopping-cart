@@ -1211,3 +1211,16 @@ SettingController
 database
 create_Settings_table
 seed settings table
+
+
+
+commands
+
+php artisan make:model nameModels -m
+php artisan db:seed --class=ProductTableSeeder
+php artisan migrate:refresh --seed
+php artisan make:seed SettingTableSeeder
+
+
+php artisan make:model States -m
+php artisan make:seed StatesTableSeeder
