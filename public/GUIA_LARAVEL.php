@@ -1191,12 +1191,14 @@ add - orderupdate.blade
 shop
 contact.blade
 checkout.blade
+products_Details.blade
 
 layouts
 header.blade
-products_Details.blade
+
 
 admin 
+addimagesproducts.blade 
 editsetting.blade
 edituser.blade
 
