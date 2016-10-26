@@ -38,7 +38,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">
+                    <a class="navbar-brand" href="{{ url('/') }}">
                         {{-- 
                         <!--
                         <img height="80px" width="90px" src="{{ URL::to('images/CrownTrading.png') }}" />

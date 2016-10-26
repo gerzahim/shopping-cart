@@ -5,11 +5,14 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
+                <div class="panel-heading">Register Wholesale</div>
+                    @if(Session::has('message'))
+                      <div class="alert alert-success">
+                        {{ Session::get('message') }}
+                      </div>
+                    @endif  
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/signup') }}">
-                        {{ csrf_field() }}
-
+                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/signupw') }}" enctype="multipart/form-data">
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-4 control-label">Name</label>
 
@@ -23,6 +26,32 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                            <label for="name" class="col-md-4 control-label">Company Name</label>
+
+                            <div class="col-md-6">
+                                <input id="companyname" type="text" class="form-control" name="companyname" value="{{ old('companyname') }}">
+
+                                @if ($errors->has('name'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('companyname') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                            <label for="name" class="col-md-4 control-label">Phone</label>
+
+                            <div class="col-md-6">
+                                <input id="phone" type="text" class="form-control" name="phone" value="{{ old('phone') }}">
+
+                                @if ($errors->has('phone'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('phone') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>                         
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-4 control-label">E-Mail Address</label>
@@ -66,13 +95,30 @@
                             </div>
                         </div>
 
+
+                        <div class="form-group{{ $errors->has('salestax') ? ' has-error' : '' }}">
+                            <label for="password-confirm" class="col-md-4 control-label">Upload Sales Tax Certificate Copy</label>
+
+                            <div class="col-md-6">
+                                <input type="file" id="salestax" name="salestax" class="form-control">
+
+
+                                @if ($errors->has('salestax'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('salestax') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-user"></i> Register
+                                    <i class="fa fa-btn fa-briefcase"></i> Register Wholesale
                                 </button>
                             </div>
                         </div>
+                        {{ csrf_field() }} 
                     </form>
                 </div>
             </div>

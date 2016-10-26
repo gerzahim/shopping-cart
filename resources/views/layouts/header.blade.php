@@ -106,13 +106,24 @@
             <div class="shop-menu pull-right">
               <ul class="nav navbar-nav">
                 @if (Auth::guest())                
-                  <li><a href="{{ url('/wishlist') }}"><i class="fa fa-star"></i> Wishlist</a></li>
-                  <li><a href="{{ url('/checkout') }}"><i class="fa fa-crosshairs"></i> Checkout</a></li>
+                  <li><a href="{{ url('/wishlist') }}"><i class="fa fa-heart"></i> Wishlist</a></li>
+                  <li><a href="{{ url('/checkout') }}"><i class="fa fa-credit-card"></i> Checkout</a></li>
                   <li><a href="{{ route('product.shoppingCart') }}"><i class="fa fa-shopping-cart"></i> Cart
                   <span class="badge">{{ Session::has('cart') ? Session::get('cart')->totalQty : '' }}</span>
                   </a></li>
-                  <li><a href="{{ url('/register') }}"><i class="fa fa-user"></i> Join Now</a></li>
-                  <li><a href="{{ url('/login') }}"><i class="fa fa-lock"></i> Login</a></li>
+                  @if($setting->kind_web == '2')
+                    <li><a href="{{ url('/signupw') }}"><i class="fa fa-briefcase"></i> Wholesale Registration</a></li>
+                  @else
+                    <li><a href="{{ url('/register') }}"><i class="fa fa-user"></i> Join Now</a></li> 
+                  @endif    
+
+                  @if($setting->approve_user == '1')
+                    <li><a href="{{ url('/loginap') }}"><i class="fa fa-lock"></i> Login</a></li>
+                  @else
+                    <li><a href="{{ url('/login') }}"><i class="fa fa-lock"></i> Login</a></li>
+                  @endif                              
+                  
+                  
                 @else                
                   <li><a href="{{ url('/account') }}"><i class="fa fa-user"></i> Account</a></li>
                   <li><a href="{{ url('/wishlist') }}"><i class="fa fa-star"></i> Wishlist</a></li>

@@ -26,7 +26,7 @@
           <div class="col-sm-8">
             <div class="contact-form">
 
-              <form action="{{ route('userupdate', $user->id) }}" id="upd-form-user" class="contact-form row" name="upd-form-user" method="post">
+              <form action="{{ route('userupdate', $user->id) }}" id="upd-form-user" class="contact-form row" name="upd-form-user" method="post" enctype="multipart/form-data">
                     <div class="form-group col-md-6">
                     	<label for="address">Email:</label>
                     	<input type="text" id="email" class="form-control" placeholder="{{ $user['email'] }}" readonly>	
@@ -91,17 +91,26 @@
                     </div>
                     <div class="form-group col-md-6">
 		                <label for="phone">Company Name:</label>
-		                <input type="text" id="phone" class="form-control" name="phone" placeholder="{{ $user['phone'] }}">	      
+		                <input type="text" id="companyname" class="form-control" name="companyname" placeholder="{{ $user['companyname'] }}">	      
                     </div>    
-                    
-                     <div class="form-group col-md-6">
-		                <label for="phone">Upload - Resale Certificate for Sales Tax*:</label>
-		                <input type="text" id="phone" class="form-control" name="phone" placeholder="{{ $user['phone'] }}">	      
-                    </div>  
                     <div class="form-group col-md-6">
 		                <label for="phone">Website:</label>
-		                <input type="text" id="phone" class="form-control" name="phone" placeholder="{{ $user['phone'] }}">	      
-                    </div>                                                                             
+		                <input type="text" id="website" class="form-control" name="website" placeholder="{{ $user['website'] }}">	      
+                    </div>                    
+                     <div class="form-group col-md-6">
+		                <label for="phone">Current -  Sales Tax*:</label>   <br>  
+	                              @if( $user['salestax'] != "")
+	                                    <label for="phone">-- {{ $user['salestax'] }} </label>                               
+	                              @else
+	                                    <label for="phone"><i>-- No File</i></label>                                
+	                              @endif
+                    </div>  
+                     <div class="form-group col-md-12">
+                     	<label><input type="checkbox" id="cbox1" name="cbox1" value="1"></label>
+                		<label for="card-name">Check If Want To Change Current Sales Tax File </label><br>
+		                <label for="phone">Upload - Resale Certificate for Sales Tax copy*:</label>
+		                <input type="file" id="salestax" class="form-control" name="salestax">	      
+                    </div>                                                                                                 
                     <div class="form-group col-md-12" align="center">
 				          <button type="submit" class="btn btn-success">Update Info</button>       
                     </div>       

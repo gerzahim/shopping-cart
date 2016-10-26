@@ -20,7 +20,13 @@ class CreateOrdersTable extends Migration
             $table->string('tracking')->nullable();  
             $table->integer('user_id');
             $table->text('cart');
+            $table->string('phone')->nullable();
+            $table->string('companyname')->nullable();            
             $table->text('address');
+            $table->text('city');
+            $table->text('state');
+            $table->text('zip');
+            $table->text('country');
             $table->string('name');
             $table->string('email');            
             $table->string('phone');

@@ -47,6 +47,7 @@ class CreateSettingsTable extends Migration
             $table->string('bansidepath')->nullable(); // Banner sidebar on Home
             $table->integer('payment_toorder')->default('1');   // 0 Don't check payment to order, 1 Payment to Order
             $table->integer('approve_user')->default('0');   // 0 Don't need Aprroval, 1 Need Approval to Enter on website
+            $table->integer('kind_web')->default('1');   // 1 Shopcart , 2 Wholesale
             $table->string('apipublickey')->nullable(); // Public Key Stripe.com
             $table->string('apisecretkey')->nullable(); // Secret Key Stripe.com
             $table->integer('loginshowprices')->default('0');   // 0 Don't Show Prices, 1 Show prices

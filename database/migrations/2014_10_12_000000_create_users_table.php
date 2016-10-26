@@ -24,6 +24,9 @@ class CreateUsersTable extends Migration
             $table->string('zip')->nullable();            
             $table->string('country')->nullable();
             $table->string('phone')->nullable();
+            $table->string('companyname')->nullable();
+            $table->string('salestax')->nullable();
+            $table->string('website')->nullable();
             $table->integer('status')->unsigned()->nullable();                      
             $table->rememberToken();
             $table->timestamps();

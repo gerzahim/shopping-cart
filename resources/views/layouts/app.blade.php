@@ -47,7 +47,7 @@
                 </button>--> --}}
 
                 <!-- Branding Image -->
-                <a class="" href="{{ url('/') }}">
+                <a href="{{ url('/') }}">
                         {{-- 
                         <!--
                         <img height="50px" width="60px" src="{{ URL::to('images/Logoherbnkulture.png') }}" />
@@ -69,8 +69,24 @@
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
                     @if (Auth::guest())
-                        <li><a href="{{ url('/login') }}">Login</a></li>
-                        <li><a href="{{ url('/register') }}">Register</a></li>
+
+
+                          @if($setting->approve_user == '1')
+                            <li><a href="{{ url('/loginap') }}"><i class="fa fa-lock"></i> Login</a></li>
+                          @else
+                            <li><a href="{{ url('/login') }}"><i class="fa fa-lock"></i> Login</a></li>
+                          @endif                     
+                          @if($setting->kind_web == '2')
+                            <li><a href="{{ url('/signupw') }}"><i class="fa fa-briefcase"></i> Wholesale Registration</a></li>
+                          @else
+                            <li><a href="{{ url('/register') }}"><i class="fa fa-user"></i> Join Now</a></li> 
+                          @endif    
+                          {{-- 
+                          <!-- 
+                            <li><a href="{{ url('/login') }}">Login</a></li>
+                            <li><a href="{{ url('/register') }}">Register</a></li>
+                            -->
+                            --}}                          
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">

@@ -290,6 +290,7 @@
               <hr> 
             </div>
           </div>
+ 
 
           <div class="row">
             <div class="form-group col-md-4">
@@ -390,9 +391,26 @@
                 </select>                 
               </div>             
             </div>        
-         
+         </div>
+          <div class="row">
+            <div class="form-group col-md-4">
+              <div class="form-group">
+                <label for="card-number"> Mode Register required Sales_tax <br> Auth to Register on Wholesale </label>
+                <select id="kind_web" name="kind_web">                  
+                      @if($setting['kind_web'] == '1')
+                        <option selected="selected" value="1">Shopcart</option>
+                        <option value="2">Wholesale</option>
+                      @else
+                        <option value="1">Shopcart</option>
+                        <option selected="selected" value="2">Wholesale</option>      
+                      @endif
+                </select>                
+              </div>              
+            </div>            
+            <div class="form-group col-md-4"></div>
+            <div class="form-group col-md-4"></div>
 
-          </div> 
+          </div>             
           <div class="row">
             <div class="col-xs-12">
               <hr> 

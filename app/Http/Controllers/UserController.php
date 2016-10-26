@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use ShopCart\Http\Requests;
 use ShopCart\User;
 use ShopCart\States;
+use ShopCart\Settings;
 use Session;
 use Auth;
 
@@ -69,6 +70,46 @@ class UserController extends Controller
                 
                next($array);
         }
+
+
+        // If Checked for Change Image for L
+        if ($request->cbox1 == '1') {
+
+            // Validate File Ok
+            if ($request->hasFile('salestax') && $request->file('salestax')->isvalid()){
+
+
+
+
+                $array['salestax'] = $request->file('salestax');
+
+                $file=$request->file('salestax');
+                $imgrealpath= $file->getRealPath(); 
+                $nameonly=preg_replace('/\..+$/', '', $file->getClientOriginalName());
+                $nameonly = str_replace(' ', '_', $nameonly);            
+                $fullname=$nameonly.'.'.$file->getClientOriginalExtension();
+
+                
+
+                $fileName = 'salestax_'.$user->id.'.'.$file->getClientOriginalExtension();
+
+                $array['salestax'] = $fileName;
+
+
+                //$request->file('photo')->move($destinationPath, $fileName); 
+                $request->file('salestax')->move('media/documents/', $fileName);
+
+            }else{
+                //$input['imagepath'] = Null; 
+                $array['salestax'] = $user->salestax;    
+                
+            }         
+
+        }else{
+            $array['salestax'] = $user->salestax;   
+
+        } 
+
 
         $user->fill($array)->save();
 
@@ -147,45 +188,6 @@ class UserController extends Controller
 
 
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function getSignup()
-    {
-        return view('user.signup');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function postSignup(Request $request)
-    {
-        //
-        $this->validate($request, [
-            //'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'password' => 'required'
-        ]);
-
-        /*
-        $user = new User([
-            'email' => $request->input('email'),
-            'password' => bcrypt($request->input('password'))
-        ]);
-        $user->save();
-        return redirect()->route('/principal');
-        */
-
-        $user = User::create($request->all());
-        //$mailer->sendEmailConfirmationTo($user);
-        flash('We will Notify you by email Authorization to Login.');
-        return redirect()->back();
-    }
 
     /**
      * Confirm a user's email address.
@@ -200,76 +202,6 @@ class UserController extends Controller
         return redirect('login');
     }    
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function getSignin()
-    {
-        //
-        return view('auth.login');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function postSignin(Request $request)
-    {
-        //
-        $this->validate($request, ['email' => 'required|email', 'password' => 'required']);
-        if ($this->signIn($request)) {
-            flash('Welcome back!');
-            return redirect()->intended('/principal');
-        }
-        flash('Could not sign you in.');
-        return redirect()->back();        
-    }
-
-    /**
-     * Destroy the user's current session.
-     *
-     * @return \Redirect
-     */
-    public function logout()
-    {
-        Auth::logout();
-        flash('You have now been signed out. See ya.');
-        return redirect('login');
-    }
-    
-
-    /**
-     * Attempt to sign in the user.
-     *
-     * @param  Request $request
-     * @return boolean
-     */
-    protected function signIn(Request $request)
-    {
-        return Auth::attempt($this->getCredentials($request), $request->has('remember'));
-    }
-
-
-    /**
-     * Get the login credentials and requirements.
-     *
-     * @param  Request $request
-     * @return array
-     */
-    protected function getCredentials(Request $request)
-    {
-        return [
-            'email'    => $request->input('email'),
-            'password' => $request->input('password'),
-            'verified' => true
-        ];
-    }    
 
     /**
      * Remove the specified resource from storage.

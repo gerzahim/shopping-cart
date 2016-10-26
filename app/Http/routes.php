@@ -12,25 +12,34 @@ use ShopCart\User;
 |
 */
 
+Route::get('signupw', function(){
+	return view('user.signupwholesale');
+});
+
+
+Route::post('signupw', 'ProductController@postWholesale');
+
+
 Route::get('/signup', [
 	'uses' => 'UserController@getSignup',
-	'as' => 'user.signup'
+	'as' => 'user.signupe'
 ]);
 
 Route::post('/signup', [
 	'uses' => 'UserController@postSignup',
-	'as' => 'user.signup'
+	'as' => 'user.signupe'
 ]);
 
 
-Route::get('/signin', [
-	'uses' => 'UserController@getSignin',
-	'as' => 'user.signup'
-]);
 
-Route::post('/signin', [
-	'uses' => 'UserController@postSignin',
-	'as' => 'user.signup'
+Route::get('loginap', function(){
+	return view('user.loginw');
+});
+
+
+Route::post('/loginap', [
+	'uses' => 'ProductController@postLoginw',
+	'as' => 'postLogin'
 ]);
 
 Route::get('prueba', function(){

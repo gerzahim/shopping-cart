@@ -932,6 +932,10 @@ $tree='';
             $order = new Order();
             $order->cart = serialize($cart);            
             $order->address = $request->input('address');
+            $order->city = $request->input('city');
+            $order->state = $request->input('state');
+            $order->zip = $request->input('zip');
+            $order->country = $request->input('country');
             $order->name = $request->input('name');
             $order->email = $request->input('email');
             $order->phone = $request->input('phone');
@@ -970,11 +974,21 @@ $tree='';
 
             //Send Email 
             $data = array(
+
+                'email_site' => $setting->email_site, 
+                'name_site' => $setting->name_site,                
                 'email' => $order->email,
                 'costumer' => $order->name,
                 'idorder' => $order->id,
                 'name_site' => $settings->name_site,
-                'order' => $order->cart
+                'order' => $order->cart,
+                'phone' => $order->address,
+                'companyname' => $order->address,
+                'address' => $order->address,
+                'city' => $order->city,
+                'state' => $order->state,
+                'zip' => $order->zip,
+                'country' => $order->country
             ); 
 
             //dd($data);           
@@ -982,19 +996,37 @@ $tree='';
 
             //dd($setting->email_site, $setting->name_site);
 
-            Mail::send('emails.order', $data, function ($message) use ($data){
+            Mail::send('emails.order', $data, function ($message) use ($data){              
 
-                $id=1;
-                $setting = Settings::find($id);                
-
-                $message->from($setting->email_site, $setting->name_site);
+                $message->from($data['email_site'], $data['name_site']);
                 //$message->from('herbnkulture@gmail.com', 'Info HerbnKulture');
                 $message->to($data['email']);
                 $message->subject('You have a New Order on '.$setting->name_site.'');
 
             });                         
-            
-            //Auth::user()->orders()->save($order);
+              /*      
+        $data = array(
+
+            'email_site' => $setting->email_site, 
+            'name_site' => $setting->name_site,
+            'name' => $request->name,
+            'email' => $request->email,  
+            'phone' => $request->phone, 
+            'companyname' => $request->companyname,
+            'salestax' => $path_salestax,
+            'subject' => "New Costumer Waiting for Authorization"
+
+            );
+
+        */   
+            Mail::send('emails.neworder', $data, function ($message) use ($data){
+
+                $message->from($data['email']);
+                $message->to($data['email_site'], $data['name_site']);
+                //$message->to('herbnkulture@gmail.com', 'Info HerbnKulture');
+                $message->subject('You have a New Order Waiting for');
+            });             
+        
 
             // Delete Product From Stock 
             //dd($cart);
@@ -1162,6 +1194,7 @@ $tree='';
 
             $input['imagepath'] = $request->file('imagepath');
 
+
             $file=$request->file('imagepath');
             $imgrealpath= $file->getRealPath(); 
             $nameonly=preg_replace('/\..+$/', '', $file->getClientOriginalName());
@@ -1291,4 +1324,194 @@ $tree='';
     {
         //
     }
+
+
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function postWholesale(Request $request)
+    {
+        //
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'min:6|required|confirmed',
+            'phone' => 'required',
+            'companyname' => 'required',
+            'salestax' => 'required',
+        ]);
+
+
+        $user = new User();
+        
+        $input = $request->all();
+                            
+        $input['password'] = bcrypt($request->input('password'));
+   
+        $id=1;
+        $setting = Settings::find($id);
+        if($setting->approve_user == 1){
+            $input['status'] = 0;
+        }                    
+        
+        
+        //$input['salestax'] = strtoupper($input['salestax']);
+
+        if ($request->hasFile('salestax') && $request->file('salestax')->isvalid()){
+
+
+            $input['salestax'] = $request->file('salestax');
+
+            $file=$request->file('salestax');
+            $imgrealpath= $file->getRealPath(); 
+            $nameonly=preg_replace('/\..+$/', '', $file->getClientOriginalName());
+            $nameonly = str_replace(' ', '_', $nameonly);            
+            $fullname=$nameonly.'.'.$file->getClientOriginalExtension();
+
+            $lastInsertId = User::orderBy('id', 'desc')->first();
+
+            $lastInsertId = $lastInsertId->id+1;            
+
+            $fileName = 'salestax_'.$lastInsertId.'.'.$file->getClientOriginalExtension();
+
+            $input['salestax'] = $fileName;
+
+            //$request->file('photo')->move($destinationPath, $fileName); 
+            $request->file('salestax')->move('media/documents/', $fileName);
+
+        }else{
+            $input['salestax'] = Null;    
+        }
+
+
+        
+        $url = str_replace($request->path(), '', $request->url() );
+        $path_salestax = $url.'media/documents/'.$input['salestax'];
+         
+
+        $user->fill($input)->save();
+
+        //Send Email to Notify Admin New Costumer
+        $data = array(
+
+            'email_site' => $setting->email_site, 
+            'name_site' => $setting->name_site,
+            'name' => $request->name,
+            'email' => $request->email,  
+            'phone' => $request->phone, 
+            'companyname' => $request->companyname,
+            'salestax' => $path_salestax,
+            'subject' => "New Costumer Waiting for Authorization"
+
+            );
+
+        //dd($data);
+        /*
+        Mail::send('emails.contact', $data, function ($message) use ($data){
+            $message->from($data['email']);
+            $message->to('info@crowntradingmiami.com', 'Info Crown Trading Miami');
+            $message->subject($data['subject']);
+            $message->attach($path[$url.'media/documents/'.)]);
+
+        });
+        */   
+        Mail::send('emails.newcostumer', $data, function ($message) use ($data){
+
+            $message->from($data['email']);
+            $message->to($data['email_site'], $data['name_site']);
+            //$message->to('herbnkulture@gmail.com', 'Info HerbnKulture');
+            $message->subject($data['subject']);
+            $message->attach($data['salestax']);
+
+        }); 
+
+
+
+        //$user = User::create($request->all());
+        Session::flash('message', 'Thank you for registering, We will Notify by email Authorization to Login.!');
+        return redirect('principal');
+
+
+        //return redirect()->back();
+
+        //return dd($request);
+
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function postLoginw(Request $request)
+    {
+        //
+        $this->validate($request, ['email' => 'required|email', 'password' => 'required']);
+
+        $id=1;
+        $setting = Settings::find($id);
+        if($setting->approve_user == 1){
+            //$input['status'] = 0;
+        } 
+
+        $input['email'] = $request->input('email');
+        try {
+            $product_update = User::where('email',$input['email'])->first();  
+
+            if ($product_update != null) {
+                # code...
+                if($product_update->status == 0){
+                    Session::flash('message', 'No Authorization to access!');
+                    return redirect('principal');
+                }    
+
+            }             
+        } catch(\Exception $e){
+            // 
+        }
+        
+        if ($this->signIn($request)) {
+            //Session::flash('message', 'Sucessfully Login.!');
+            return redirect('principal');
+        }
+
+        Session::flash('message', 'Email/Password do not match our records.!');
+        return redirect('principal');
+    } 
+    
+    /**
+     * Attempt to sign in the user.
+     *
+     * @param  Request $request
+     * @return boolean
+     */
+    protected function signIn(Request $request)
+    {
+        return Auth::attempt($this->getCredentials($request), $request->has('remember'));
+    }
+
+
+    /**
+     * Get the login credentials and requirements.
+     *
+     * @param  Request $request
+     * @return array
+     */
+    protected function getCredentials(Request $request)
+    {
+        return [
+            'email'    => $request->input('email'),
+            'password' => $request->input('password')
+        ];
+    }          
+
+
+
+
 }
