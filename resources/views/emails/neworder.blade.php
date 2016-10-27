@@ -5,9 +5,12 @@
                 <h3>You have a New Order Notification Waiting for </h3>
 
                 <p>Details </p>
-                <p>Costumer #{{ $name }}</p>
-                <p>Email #{{ $email }}</p>                
-                <p>Phone #{{ $phone }}</p>
+                <p>Costumer : {{ $costumer }}</p>
+                <p>Company : {{ $companyname }}</p>
+                <p>Email : {{ $email }}</p>                
+                <p>Phone : {{ $phone }}</p>
+                <p>Address : {{ $address }}.</p>
+                <p>{{ $city }}, {{ $state }} {{ $zip}} {{ $country }}.</p>
                 <br>                
                 <p>Order id #{{ $idorder }}</p>
 

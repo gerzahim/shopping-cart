@@ -33,7 +33,11 @@
                       <div class="form-group col-md-6">
                           <label for="country">Full Name:</label>
                           <input type="text" id="name" class="form-control" required name="name" placeholder="Full Name">
-                      </div>                      
+                      </div>
+                      <div class="form-group col-md-6">
+                          <label for="country">Company Name:</label>
+                          <input type="text" id="companyname" class="form-control" name="companyname" placeholder="Company Name">
+                      </div>                                              
                       <div class="form-group col-md-6">
                           <label for="country">Email:</label>
                           <input type="text" id="email" class="form-control" required name="email" placeholder="Email">
@@ -72,7 +76,11 @@
                     <div class="form-group col-md-6">
                         <label for="country">Full Name:</label>
                         <input type="text" id="name" class="form-control" required name="name" value="{{ Auth::user()->name }}" placeholder="Full Name">
-                    </div>                    
+                    </div>
+                      <div class="form-group col-md-6">
+                          <label for="country">Company Name:</label>
+                          <input type="text" id="companyname" class="form-control" name="companyname" value="{{ Auth::user()->companyname }}" placeholder="Company Name">
+                      </div>                                         
                       <div class="form-group col-md-6">
                           <label for="country">Email:</label>
                           <input type="text" id="email" class="form-control" required name="email" value="{{ Auth::user()->email }}" placeholder="Email">
