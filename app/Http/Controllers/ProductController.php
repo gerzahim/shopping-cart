@@ -1001,7 +1001,7 @@ $tree='';
                 $message->from($data['email_site'], $data['name_site']);
                 //$message->from('herbnkulture@gmail.com', 'Info HerbnKulture');
                 $message->to($data['email']);
-                $message->subject('You have a New Order on '.$setting->name_site.'');
+                $message->subject('You have a New Order on '.$data['name_site'].'');
 
             });                         
               /*      
