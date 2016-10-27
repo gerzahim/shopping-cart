@@ -21,13 +21,14 @@
                         </ul>
                     </div>
                     <div class="panel-footer">
-                        <strong>
-                            <p>SubTotal: ${{ $order->totalPrice }}</p>
-                            <p>Shipping: ${{ $order->shippingCost }}</p>
-                            <p>Total Cost: ${{ $order->totalCost }}</p>
-                        </strong>
+                            <p>SubTotal: <strong>${{ $order->totalPrice }}</strong></p>
+                            <p>Shipping: <strong>${{ $order->shippingCost }}</strong></p>
+                            <p>Total Before Tax : <strong>${{ $order->totalPrice+$order->shippingCost }}</strong></p>
+                            <p>State Tax to be Collected : <strong>${{ $order->taxCost }}</strong></p>
+                            <p>Total Cost: <strong>${{ $order->totalCost }}</strong></p>
                     </div>
-                </div>                
+                </div>
+                <p>Delivery Option : <strong>{{ $shipping }}</strong></p>                
                 <p> We hope to see you again soon. </p>
                 <p>{{ $name_site }}  </p>
                 <p>. </p>

@@ -876,6 +876,7 @@ $tree='';
 
     public function postCheckout(Request $request){
 
+
         $setting = Settings::find(1);
         if ($setting->buylikeguess == 0) {
 
@@ -890,13 +891,17 @@ $tree='';
             return redirect()->route('product.shoppingCart');
         }
 
-        $shipping_id = $request->input('shipping_id');
-        if ($shipping_id == '0') {
-            Session::flash('alert-danger', 'Please Select Shipping Mode!');
+        $state = $request->input('state');
+        if ($state == '0') {
+            Session::flash('alert-danger', 'Please Select State !');
             return redirect()->route('checkout');
         }
 
-
+        $shipping_id = $request->input('shipping_id');
+        if ($shipping_id == '0') {
+            Session::flash('alert-danger', 'Please Select Delivey Option!');
+            return redirect()->route('checkout');
+        }
 
 
         $oldCart = Session::get('cart');
@@ -939,6 +944,8 @@ $tree='';
             $order->name = $request->input('name');
             $order->email = $request->input('email');
             $order->phone = $request->input('phone');
+            $order->companyname = $request->input('companyname');
+            
             //$order->payment_id = $charge->id;
 
             // Define ID Payment
@@ -972,6 +979,28 @@ $tree='';
             $settings = Settings::find($id);  
 
 
+            $shipping_id = $request->input('shipping_id');
+
+            switch ($shipping_id) {
+                case '1':
+                    $shipping_id = "Pick up Store";
+                    break;
+                case '2':
+                    $shipping_id = "Ground Shipping";
+                    break;
+                case '3':
+                    $shipping_id = "2nd-Day Shipping";
+                    break;
+                case '4':
+                    $shipping_id = "Next-Day Shipping";
+                    break;                                                            
+                
+                default:
+                    # code...
+                    break;
+            }
+
+
             //Send Email 
             $data = array(
 
@@ -982,18 +1011,20 @@ $tree='';
                 'idorder' => $order->id,
                 'name_site' => $settings->name_site,
                 'order' => $order->cart,
-                'phone' => $order->address,
-                'companyname' => $order->address,
+                'phone' => $order->phone,
+                'companyname' => $order->companyname,
                 'address' => $order->address,
                 'city' => $order->city,
                 'state' => $order->state,
                 'zip' => $order->zip,
-                'country' => $order->country
+                'country' => $order->country,
+                'shipping' => $shipping_id
             ); 
 
-            //dd($data);           
+                     
 
-
+            $data['name_site'] = str_replace("&#039;","'",$data['name_site']);
+            //dd($data['name_site']);  
             //dd($setting->email_site, $setting->name_site);
 
             Mail::send('emails.order', $data, function ($message) use ($data){              
@@ -1004,28 +1035,14 @@ $tree='';
                 $message->subject('You have a New Order on '.$data['name_site'].'');
 
             });                         
-              /*      
-        $data = array(
 
-            'email_site' => $setting->email_site, 
-            'name_site' => $setting->name_site,
-            'name' => $request->name,
-            'email' => $request->email,  
-            'phone' => $request->phone, 
-            'companyname' => $request->companyname,
-            'salestax' => $path_salestax,
-            'subject' => "New Costumer Waiting for Authorization"
-
-            );
-
-        */   
             Mail::send('emails.neworder', $data, function ($message) use ($data){
 
                 $message->from($data['email']);
                 $message->to($data['email_site'], $data['name_site']);
                 //$message->to('herbnkulture@gmail.com', 'Info HerbnKulture');
-                $message->subject('You have a New Order Waiting for');
-            });             
+                $message->subject('New Order Pending on '.$data['name_site'].'');
+            });            
         
 
             // Delete Product From Stock 

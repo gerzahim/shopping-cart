@@ -1,3 +1,5 @@
+
+
 @extends('layouts.cleancontent')
 
 
@@ -27,6 +29,121 @@
                 </div>
 
 
+              <form action="{{ route('checkout') }}" id="checkout-form" class="contact-form row" name="checkout-form" method="post">
+                
+                    <div class="form-group col-md-6">
+                          <label for="country">Full Name:</label>
+                        <input type="text" id="name" class="form-control" required name="name" value="{{ Auth::guest() ? '' : Auth::user()->name }}" placeholder="Full Name">                          
+                    </div>                    
+                      <div class="form-group col-md-6">
+                          <label for="country">Email:</label>
+                          <input type="text" id="email" class="form-control" required name="email" value="{{ Auth::guest() ? '' : Auth::user()->email }}" placeholder="Email">
+                      </div>
+                      <div class="form-group col-md-6">
+                          <label for="country">Phone:</label>
+                          <input type="text" id="phone" class="form-control" required name="phone" value="{{ Auth::guest() ? '' : Auth::user()->phone }}" placeholder="Phone">
+                      </div>
+                      <div class="form-group col-md-6">
+                          <label for="country">Company:</label>
+                          <input type="text" id="companyname" class="form-control" name="companyname" value="{{ Auth::guest() ? '' : Auth::user()->companyname }}" placeholder="Company Name">
+                      </div>                                          
+                      <div class="form-group col-md-6"></div>
+                      <div class="form-group col-md-12">
+                          <label for="country">Address:</label>
+                          <input type="text" id="address" class="form-control" required name="address" value="{{ Auth::guest() ? '' : Auth::user()->address }}" placeholder="Address">
+                      </div>
+                      <div class="form-group col-md-6">
+                          <label for="city">City:</label>                    
+                          <input type="text" id="city" class="form-control" name="city"  value="{{ Auth::guest() ? '' : Auth::user()->city }}" placeholder="City">                      
+                      </div>
+                      <div class="form-group col-md-6">
+                          <label for="state">State:</label>
+                          <select  id="state" name="state" class="form-control" >
+                            @if (Auth::guest())                                                                        
+                                  @foreach($states as $state)
+                                          <option value="{{ $state->code }}">{{ $state->name }}</option>                                                 
+                                  @endforeach
+                              </select>                       
+                            @else
+                                  @foreach($states as $state)            
+                                      @if( Auth::user()->city == $state->code)
+                                            <option value="{{ $state->code }}" selected>{{ $state->name }}</option>                                
+                                      @else
+                                            <option value="{{ $state->code }}">{{ $state->name }}</option>                                
+                                      @endif
+                                  @endforeach
+                                                     
+                            @endif
+                          </select>                         
+                      </div>
+                      <div class="form-group col-md-6">
+                      <label for="zip">Zip Code:</label>
+                      <input type="text" id="zip" class="form-control" name="zip" value="{{ Auth::guest() ? '' : Auth::user()->zip }}" placeholder="33174">             
+                      </div>
+                      <div class="form-group col-md-6">
+                      <label for="country">Country:</label>
+                      <input type="text" id="country" class="form-control" name="country" value="{{ Auth::guest() ? '' : Auth::user()->country }}" placeholder="USA">
+                      </div>                       
+
+
+                    @if ($payment_toorder == '1')
+                        <div class="form-group col-md-12">
+                          <hr>
+                          <label for="country">Payment Info</label>
+                        </div>                    
+                        <div class="form-group col-md-6"></div><div class="form-group col-md-6"></div>
+                        <div class="form-group col-md-6">
+                            <label for="country">Card Holder Name:</label>
+                            <input type="text" id="card-name" class="form-control" placeholder="Card Holder Name" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="country">Credit Card Number:</label>
+                            <input type="text" id="card-number" class="form-control" placeholder="Credit Card Number" required>                      
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="country">Expiration Month:</label>
+                            <input type="text" id="card-expiry-month" class="form-control" placeholder="Expiration Month" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="country">Expiration Year:</label>
+                            <input type="text" id="card-expiry-year" class="form-control" placeholder="Expiration Year" required>                
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="country">CVC:</label>
+                            <input type="text" id="card-cvc" class="form-control" placeholder="CVC" required>
+                        </div>                    
+                    @endif
+                    
+                    <div class="form-group col-md-6">
+                      <label for="country">Please Select Delivery Option:</label>
+                      <select id="shipping_id" name="shipping_id" required>
+                          <option value="0">Select Shipping...</option>
+                          <option value="1">Pick up Store</option>
+                          <option value="2">Ground Shipping</option>
+                          <option value="3">2nd-Day Shipping</option>
+                          <option value="4">Next-Day Shipping</option>
+                      </select> 
+                    </div>                    
+                    <div class="form-group col-md-6">
+                        <input type="hidden" id="publishable_key" class="form-control" value="{{ $setting->apipublickey }}">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <button type="submit" class="btn btn-success">Place Your Order</button>              
+                    </div>  
+ 
+                  {{ csrf_field() }}                                                           
+                </form>
+
+
+
+
+
+
+
+
+
+                {{-- 
+<!-- 
               @if ($payment_toorder == '1')
               <form action="{{ route('checkout') }}" id="checkout-form" class="contact-form row" name="checkout-form" method="post">
                     @if (Auth::guest())
@@ -217,8 +334,9 @@
                 </form>
 
                 @endif
+                -->
 
-
+--}}
 
             </div>
           </div>          
@@ -234,21 +352,21 @@
     <div class="container">
 
       <div class="table-responsive cart_info">
-        <table class="table table-condensed">
+        <table class="table table-condensed" border="0">
           <thead>
             <tr class="cart_menu">
-              <td class="image">Item</td>
-              <td class="description"></td>
+              <td class="image">Product</td>
+              <td class="description">Item</td>
               <td class="price">Price</td>
               <td class="quantity">Quantity</td>
-              <td class="total">Total</td>
-              <td></td>
+              <td class="total" align="center">Total</td>
+              <td class="total" align="center">Delete</td>
             </tr>
           </thead>
           <tbody>
             @foreach($products as $product)
             <tr>
-              <td class="cart_product">
+              <td class="">
                 <a href=""><img height="110px" width="110px" src="media/{{ $product['item']['imagepath']}}" alt=""></a>
               </td>
               <td class="cart_description">
@@ -258,18 +376,18 @@
               <td class="cart_price">
                 <p>${{ $product['item']['price'] }}</p>
               </td>
-              <td class="cart_quantity">
+              <td class="cart_quantity" align="center">
                 <div class="cart_quantity_button">
                   <a class="cart_quantity_down" href="{{ route('product.reduceByOne', ['id' => $product['item']['id']]) }}"> - </a>
                   <input class="cart_quantity_input" type="text" name="quantity" value="{{ $product['qty'] }}" autocomplete="off" size="2">
                   <a class="cart_quantity_up" href="{{ route('product.addByOne', ['id' => $product['item']['id']]) }}"> + </a>
                 </div>
               </td>
-              <td class="cart_total">
+              <td class="cart_price" align="center">
                 <p class="cart_total_price">${{ $product['item']['price']*$product['qty'] }}</p>
               </td>
-              <td class="cart_delete">
-                <a class="cart_quantity_delete" href="{{ route('product.removeItem', ['id' => $product['item']['id']]) }}"><i class="fa fa-times"></i></a>
+              <td class="cart_price" align="center">
+                <a class="cart_quantity_delete" href="{{ route('product.removeItem', ['id' => $product['item']['id']]) }}"><i class="fa fa-times fa-2x"></i></a>
               </td>
             </tr>
             @endforeach
@@ -297,9 +415,11 @@
         <div class="col-sm-6">
           <div class="total_area">
             <ul>
-              <li>Cart Sub Total <span>${{ $totalPrice }}</span></li>
-              <li>Shipping Cost <span id="shippingcost">Please Select Shipping</span></li>
-              <li>Total <span id="totalprice">${{ $totalPrice }}</span></li>
+              <li>Cart Sub Total : <span>${{ $totalPrice }}</span></li>
+              <li>Shipping Cost : <span id="shippingcost">Please Select Delivery Option</span></li>
+              <li>Total Before Tax : <span id="totalbeforetax">${{ $totalPrice }}</span></li>
+              <li>State Tax to be Collected : <span id="taxcost">Please Select State</span></li>
+              <li>Grand Total : <span id="totalcost">${{ $totalPrice }}</span></li>
             </ul>
           </div>
         </div>
@@ -339,7 +459,8 @@ $(document).ready(function(){
 
     $('#shipping_id').on('change', function() {
       var shipping_id = $('#shipping_id').val()
-      //alert( this.value ); // or $(this).val()
+      var state = $('#state').val()
+      //alert( state ); // or $(this).val()
       var dataString = "id="+shipping_id;
       //alert(dataString);
 
@@ -347,23 +468,34 @@ $(document).ready(function(){
         method: "POST",
         url: url,
         //data: dataString,
-        data: { id: $('#shipping_id').val(), _token: token, _totalprice: totalprice},
+        data: { id: $('#shipping_id').val(),  state: $('#state').val(), _token: token, _totalprice: totalprice},
         success: function(data) {
          //console.log(data);
          console.log( data.shippingcost );         
          console.log( data.total_cost );
-          $('#shippingcost').html('$'+data.shippingcost);
-          $('#totalprice').html('$'+data.total_cost);
+         console.log( data.totalbeforetax );
+         console.log( data.taxcost );
+          $('#shippingcost').html('$ '+data.shippingcost);
+          $('#totalbeforetax').html('$ '+data.totalbeforetax);
+          $('#taxcost').html('$ '+data.taxcost);
+          $('#totalcost').html('$ '+data.totalcost);          
+          $('#totalprice').html('$ '+data.totalprice);
           //$('#myshipping').append(token);
         }
       });
 
-    });
+      });
 
 });
 /*
          function getMessage(){
           //alert('Helloo');
+
+              $totalprice       98
+    $shippingcost      2
+    $totalbeforetax   100
+    $taxcost           7
+    $totalcost         107  
 
 $.ajax({
     url: '/getmsg',

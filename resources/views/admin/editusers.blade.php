@@ -37,7 +37,7 @@
               <form action="{{ route('userupdate', $user->id) }}" id="upd-form-user" class="contact-form row" name="upd-form-user" method="post" enctype="multipart/form-data">
                     <div class="form-group col-md-6">
                       <label for="address">Email:</label>
-                      <input type="text" id="email" class="form-control" placeholder="{{ $user['email'] }}" readonly> 
+                      <input type="text" id="email" name="email" class="form-control" placeholder="{{ $user['email'] }}" readonly> 
                     </div>
                     <div class="form-group col-md-6">
                       <label for="address">Name:</label>

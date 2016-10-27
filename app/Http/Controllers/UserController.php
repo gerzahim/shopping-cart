@@ -10,7 +10,7 @@ use ShopCart\States;
 use ShopCart\Settings;
 use Session;
 use Auth;
-
+use Mail;
 
 
 
@@ -115,68 +115,29 @@ class UserController extends Controller
 
 
         $id=1;
-        $settings = Settings::find($id);  
-
+        $setting = Settings::find($id);  
 
         //Send Email 
         $data = array(
-            'email' => $order->email,
-            'costumer' => $order->name,
-            'idorder' => $order->id,
-            'name_site' => $settings->name_site,
-            'order' => $order->cart,
-            'shipcompany' => $order->shipcompany,
-            'tracking' => $order->tracking
-        );         
+            'email_site' => $setting->email_site, 
+            'name_site' => $setting->name_site, 
+            'costumer' => $array['name'],
+            'email' => $array['email']
+        );
 
-        Mail::send('emails.orderupdate', $data, function ($message) use ($data){
+        $data['name_site'] = str_replace("&#039;","'",$data['name_site']);         
 
-            $id=1;
-            $setting = Settings::find($id);                
 
-            $message->from($setting->email_site, $setting->name_site);
+        //dd($data);
+
+        Mail::send('emails.userupdate', $data, function ($message) use ($data){
+          
+            $message->from($data['email_site'], $data['name_site']);
             //$message->from('herbnkulture@gmail.com', 'Info HerbnKulture');
             $message->to($data['email']);
             $message->subject('You Info account has been updated !!!');
 
         }); 
-
-        //Send Email to Notify Admin New Costumer
-        $data = array(
-
-            'email_site' => $setting->email_site, 
-            'name_site' => $setting->name_site,
-            'name' => $request->name,
-            'email' => $request->email,  
-            'phone' => $request->phone, 
-            'companyname' => $request->companyname,
-            'salestax' => $path_salestax,
-            'subject' => "New Costumer Waiting for Authorization"
-
-            );
-
-        //dd($data);
-        /*
-        Mail::send('emails.contact', $data, function ($message) use ($data){
-            $message->from($data['email']);
-            $message->to('info@crowntradingmiami.com', 'Info Crown Trading Miami');
-            $message->subject($data['subject']);
-            $message->attach($path[$url.'media/documents/'.)]);
-
-        });
-        */   
-        Mail::send('emails.newcostumer', $data, function ($message) use ($data){
-
-            $message->from($data['email']);
-            $message->to($data['email_site'], $data['name_site']);
-            //$message->to('herbnkulture@gmail.com', 'Info HerbnKulture');
-            $message->subject($data['subject']);
-            $message->attach($data['salestax']);
-
-        });                 
-
-
-
 
         Session::flash('message', 'User successfully updated!');
         return redirect()->back();

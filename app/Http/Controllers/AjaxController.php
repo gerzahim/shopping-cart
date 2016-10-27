@@ -14,6 +14,7 @@ use ShopCart\User;
 use ShopCart\Subscriber;
 use ShopCart\Settings;
 use ShopCart\ShippingCost;
+use ShopCart\States;
 use Session;
 use Auth;
 use Stripe\Charge;
@@ -30,7 +31,11 @@ class AjaxController extends Controller
       
       $shipping_id= $input['id'];
       $totalprice= $input['_totalprice'];
+      $state= $input['state'];
+
       $shippingCost = 0;
+      $taxcost = 0;
+      
       $shipcosts = ShippingCost::all(); 
 
       foreach ($shipcosts as $shipcost) {
@@ -58,13 +63,29 @@ class AjaxController extends Controller
 
         //$total = $cart->totalPrice;		
 		$cart->addShippingCost($totalprice, $shippingCost);
-		$request->session()->put('cart', $cart);
-		$totalprice = $totalprice + $shippingCost;
 
-/*
-	  $user = User::find(1);
-	  $user->name = serialize($cart);
-	  $user->save();
+    $totalbeforetax = $totalprice + $shippingCost;
+    $totalcost = $totalbeforetax;
+
+
+
+    $taxcost = $state;
+    $state_code = States::where('code',$state)->first();
+    $taxcost = ($state_code->tax * $totalbeforetax) / 100;
+
+    $totalcost = $totalbeforetax + $taxcost;
+    $cart->addTaxCost($totalbeforetax, $taxcost);  
+
+
+		$request->session()->put('cart', $cart);
+		
+
+/*  
+    $totalprice       98
+    $shippingcost      2
+    $totalbeforetax   100
+    $taxcost           7
+    $totalcost         107  
 
       $msg = "This is a simple message 1";
       $msg2 = "This is a simple message 2";
@@ -73,7 +94,7 @@ class AjaxController extends Controller
       //return response()->json(array('msg'=> $msg), 200);
       //return response()->json(['new_body' => $post->body], 200);
       //return response()->json(['shippingcost' => $shippingCost, 'total_cost' => $totalprice], 200);
-      return response()->json(['shippingcost' => $shippingCost, 'total_cost' => $totalprice], 200);
+      return response()->json(['totalprice' => $totalprice, 'shippingcost' => $shippingCost, 'totalbeforetax' => $totalbeforetax, 'taxcost' => $taxcost, 'totalcost' => $totalcost], 200);
       //turn response('Hello World', 200)
    }
 }

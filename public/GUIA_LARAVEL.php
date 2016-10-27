@@ -1224,3 +1224,9 @@ php artisan make:seed SettingTableSeeder
 
 php artisan make:model States -m
 php artisan make:seed StatesTableSeeder
+
+
+php artisan make:controller Articles --resource
+php artisan make:controller Setting
+
+php artisan make:controller StatesController --resource

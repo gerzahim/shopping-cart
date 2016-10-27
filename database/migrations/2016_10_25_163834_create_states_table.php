@@ -16,7 +16,7 @@ class CreateStatesTable extends Migration
             $table->increments('id');
             $table->string('code');
             $table->string('name');
-            $table->integer('tax')->unsigned()->nullable();
+            $table->integer('tax')->unsigned()->default('0');
             $table->timestamps();
         });
     }

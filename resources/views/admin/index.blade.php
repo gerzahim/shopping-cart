@@ -86,9 +86,15 @@
                                 <h4>Banner Home</h4>
                               </a>                    
                     --> --}}  
-                     <li>
+                        <li>
                             <a href="{{ url('/brands') }}"><i class="fa fa-rocket"></i>Brands</a>
                         </li>
+                        <li>
+                            <a href="{{ url('/states') }}"><i class="fa fa-flag"></i>Tax States</a>
+                        </li>
+                        <li>
+                            <a href="{{ url('/brands') }}"><i class="fa fa-exchange"></i>Products Associate</a>
+                        </li>                                                  
                         <li>
                             <a href="{{ url('/product') }}"><i class="fa fa-tags"></i>Products</a>
                         </li> 

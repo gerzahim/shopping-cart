@@ -15,22 +15,22 @@
     <div class="container">
 <hr>
       <div class="table-responsive cart_info">
-        <table class="table table-condensed">
+        <table class="table table-condensed" border="0">
           <thead>
             <tr class="cart_menu">
-              <td class="image">Item</td>
-              <td class="description"></td>
+              <td class="image">Product</td>
+              <td class="description">Item</td>
               <td class="price">Price</td>
               <td class="quantity">Quantity</td>
               <td class="total">Total</td>
-              <td align="center">Delete</td>
-              <td align="center">Move to WishList</td>
+              <td class="description">Delete</td>
+              <td class="description" align="center">Move to WishList</td>
             </tr>
           </thead>
           <tbody>
             @foreach($products as $product)
             <tr>
-              <td class="cart_product">
+              <td class="">
                 <a href=""><img height="110px" width="110px" src="media/{{ $product['item']['imagepath']}}" alt=""></a>
               </td>
               <td class="cart_description">
@@ -50,10 +50,10 @@
               <td class="cart_total">
                 <p class="cart_total_price">${{ $product['item']['price']*$product['qty'] }}</p>
               </td>
-              <td class="cart_delete" align="center">
-                <a class="cart_quantity_delete" href="{{ route('product.removeItem', ['id' => $product['item']['id']]) }}"><i class="fa fa-times"></i></a>
+             <td class="cart_price" align="center">
+                <a class="cart_quantity_delete" href="{{ route('product.removeItem', ['id' => $product['item']['id']]) }}"><i class="fa fa-times fa-2x"></i></a>
               </td>
-             <td class="cart_total" align="center">
+             <td class="cart_price" align="center">
                 <a class="cart_quantity_delete" href="{{ route('wishlist.MovetoWishList', ['id' => $product['item']['id']]) }}"><i class="fa fa-arrow-circle-up fa-2x"></i></a>
               </td>               
             </tr>
