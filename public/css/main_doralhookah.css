@@ -543,12 +543,24 @@ ul.sub-menu {
   width: 212px;
 }
 
+.searchformhd input {
+  border: 1px solid #DDDDDD;
+  color: #000000;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  margin-top: 7px;
+  outline: medium none;
+  padding: 7px;
+  width: 150px;
+}
+
 .searchformhh button {
   background: #FF0000;
   border: medium none;
   border-radius: 0;
   margin-left: -5px;
   margin-top: -3px;
+  margin-right: 30px;
   padding: 7px 17px;
 }
 

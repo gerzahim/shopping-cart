@@ -1313,6 +1313,8 @@ $tree='';
         $product = Product::find($id);
         $imgproducts = ImagesProduct::where('product_id', '=', $id)->get();
 
+        //$imgproducts = ImagesProduct::where('product_id', '=', $id)->get();
+
         //return view('admin.editproducts', ['product' => $product], compact('categories'), compact('brands'));
         return view('admin.editproducts', compact('product', 'categories', 'brands', 'imgproducts'));
     }

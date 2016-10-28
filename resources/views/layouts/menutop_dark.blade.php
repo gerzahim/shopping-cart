@@ -3,7 +3,7 @@
       <div class="container">
         <div class="row">
 
-          <div class="col-sm-8">
+          <div class="col-sm-12">
      <nav class="navbar navbar-inverse" role="banner">
             <div class="container">
                 <div class="navbar-header">
@@ -28,23 +28,23 @@
                         <li><a href="{{ url('/checkout') }}">Checkout</a></li>
                         <li><a href="{{ route('product.shoppingCart') }}">Cart</a></li>
                         <li><a href="{{ url('/contact') }}">Contact</a></li>
-                 
+
                     </ul>
+
+
                 </div>
+
+                            <div class="searchformhd pull-right" align="right">
+                              <form action="{{ url('search') }}" id="main-contact-form" class="searchformhh" name="contact-form" method="get">
+                                <input type="text" name="search" id="search" placeholder="Search"/>
+                                <button type="submit" class=""><i class="fa fa-search" aria-hidden="true"></i></button>  
+                                {{ csrf_field() }} 
+                              </form>
+                            </div>                
             </div><!--/.container-->
         </nav><!--/nav-->
             
           </div>
-          <div class="col-sm-4">
-            <div class="search_box pull-right">
-            <form action="{{ url('search') }}" id="main-contact-form" class="searchformhh" name="contact-form" method="get">
-              <input type="text" name="search" id="search" placeholder="Search"/>
-              <button type="submit" class=""><i class="fa fa-search" aria-hidden="true"></i></button>  
-              {{ csrf_field() }} 
-            </form>
-            </div>
-          </div>
-
         </div>
       </div>
     </div><!--/header-bottom-->

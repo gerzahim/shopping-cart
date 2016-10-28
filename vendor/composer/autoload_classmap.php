@@ -6,16 +6,23 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AttributesTableSeeder' => $baseDir . '/database/seeds/AttributesTableSeeder.php',
+    'AttributesValuesTableSeeder' => $baseDir . '/database/seeds/AttributesValuesTableSeeder.php',
     'BannerTableSeeder' => $baseDir . '/database/seeds/BannerTableSeeder.php',
     'BrandTableSeeder' => $baseDir . '/database/seeds/BrandTableSeeder.php',
     'CategoriesTableSeeder' => $baseDir . '/database/seeds/CategoriesTableSeeder.php',
     'Cpdf' => $vendorDir . '/dompdf/dompdf/lib/Cpdf.php',
+    'CreateAssociateProductsAttributesTable' => $baseDir . '/database/migrations/2016_10_28_170011_create_associate_products_attributes_table.php',
+    'CreateAssociatesAttributesTable' => $baseDir . '/database/migrations/2016_10_28_165955_create_associates_attributes_table.php',
+    'CreateAttributesTable' => $baseDir . '/database/migrations/2016_10_28_165820_create_attributes_table.php',
+    'CreateAttributesValuesTable' => $baseDir . '/database/migrations/2016_10_28_165836_create_attributes_values_table.php',
     'CreateBannersTable' => $baseDir . '/database/migrations/2016_08_29_175321_create_banners_table.php',
     'CreateBrandsTable' => $baseDir . '/database/migrations/2016_08_02_194853_create_brands_table.php',
     'CreateCategoriesTable' => $baseDir . '/database/migrations/2016_08_01_193101_create_categories_table.php',
     'CreateImagesProductsTable' => $baseDir . '/database/migrations/2016_10_10_145351_create_images_products_table.php',
     'CreateOrdersTable' => $baseDir . '/database/migrations/2016_08_24_151634_create_orders_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
+    'CreateProductAttributeValuesTable' => $baseDir . '/database/migrations/2016_10_28_165915_create_product_attribute_values_table.php',
     'CreateProductsTable' => $baseDir . '/database/migrations/2016_08_18_193117_create_products_table.php',
     'CreateRolesTable' => $baseDir . '/database/migrations/2016_08_18_201356_create_roles_table.php',
     'CreateSettingsTable' => $baseDir . '/database/migrations/2016_10_10_143404_create_settings_table.php',

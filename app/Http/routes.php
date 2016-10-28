@@ -261,6 +261,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('/categories', 'CategoriesController');
 	Route::resource('/brands', 'BrandsController');
 	Route::resource('/states', 'StatesController');
+	Route::resource('/attributes', 'AttributesController');
 	Route::resource('/product', 'ProductController');
 	Route::resource('/banners', 'BannerController');	
 	Route::resource('/subscribers', 'SubscriberController');
@@ -372,6 +373,25 @@ Route::group(['middleware' => 'auth'], function () {
 		'as' => 'settings.updatebanner'
 	]);
 
+	Route::get('/showattributeproduct/{id}', [
+		'uses' => 'ProductAttributeValueController@showProductAttribute',
+		'as' => 'showattributeproduct'
+	]);
+
+	Route::get('/selecattributeproduct/{id}', [
+		'uses' => 'ProductAttributeValueController@selectProductAttribute',
+		'as' => 'selecattributeproduct'
+	]);	
+
+	Route::get('/addattributeproduct/{id}', [
+		'uses' => 'ProductAttributeValueController@addProductAttribute',
+		'as' => 'addattributeproduct'
+	]);
+
+
+
+
+
 	Route::get('/editgallery/{id}', [
 		'uses' => 'ImagesProductController@editGallery',
 		'as' => 'editgallery'
@@ -416,6 +436,32 @@ Route::group(['middleware' => 'auth'], function () {
 		'uses' => 'ShippingCostController@updateShipping',
 		'as' => 'shippingupdate'
 	]);
+
+	Route::get('/attributesvaluescreate/{id}', [
+		'uses' => 'AttributesController@createValue',
+		'as' => 'attributesvalue.create'
+	]);				
+
+
+	Route::post('/attributesvaluesstore/{id}', [
+		'uses' => 'AttributesController@storeValue',
+		'as' => 'attributesvalue.store'
+	]);	
+
+	Route::get('/attributesvaluesedit/{id}/{idv}', [
+		'uses' => 'AttributesController@editValue',
+		'as' => 'attributesvalue.edit'
+	]);
+
+	Route::get('/attributesvaluesdestroy/{id}/{idv}', [
+		'uses' => 'AttributesController@destroyValue',
+		'as' => 'attributesvalue.destroy'
+	]);				
+
+	Route::post('/attributesvaluesupdate/{id}/{idv}', [
+		'uses' => 'AttributesController@updateValue',
+		'as' => 'attributesvalue.update'
+	]);	
 
   
 });

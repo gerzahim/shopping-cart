@@ -93,11 +93,15 @@
                             <a href="{{ url('/states') }}"><i class="fa fa-flag"></i>Tax States</a>
                         </li>
                         <li>
-                            <a href="{{ url('/brands') }}"><i class="fa fa-exchange"></i>Products Associate</a>
-                        </li>                                                  
-                        <li>
                             <a href="{{ url('/product') }}"><i class="fa fa-tags"></i>Products</a>
-                        </li> 
+                        </li>                         
+                        <li>
+                            <a href="{{ url('/attributes') }}"><i class="fa fa-puzzle-piece"></i>Products Attributes</a>
+                        </li>
+                        <li>
+                            <a href="{{ url('/brands') }}"><i class="fa fa-code-fork"></i>Products Associates</a>
+                        </li>                                                                           
+
                         <li>
                             <a href="{{ url('/users') }}"><i class="fa fa-user"></i>Users</a>
                         </li>  

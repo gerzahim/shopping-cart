@@ -116,6 +116,20 @@
           <div class="row">
             <div class="col-xs-12">
               <div class="form-group">
+                <label for="card-name"><h3><span>Attributes Product </span></h3></label>
+                <br>   
+                    @foreach($imgproducts as $imgproduct)
+                      <img height="50px" width="50px" src="{{ URL::to('/') }}/media/{{ $imgproduct['imagepath1'] }}" alt="No Images"> 
+                    @endforeach
+                <br><br>                              
+                <a target="_blank" href="{{ URL::to('/') }}/showattributeproduct/{{ $product['id'] }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;[Edit Attributes Product]</a>
+              </div>              
+            </div>            
+          </div>
+         <hr>
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="form-group">
                 <label for="card-name"><h3><span>Gallery Product Image </span></h3></label>
                 <br>   
                     @foreach($imgproducts as $imgproduct)
@@ -126,7 +140,6 @@
               </div>              
             </div>            
           </div>
-
            
           <hr>
           <div class="row">

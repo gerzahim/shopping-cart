@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateImagesProductsTable extends Migration
+class CreateAttributesValuesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,11 @@ class CreateImagesProductsTable extends Migration
      */
     public function up()
     {
-        Schema::create('images_products', function (Blueprint $table) {
+        Schema::create('attributes_values', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('product_id')->unsigned();
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');   
-            $table->string('imagepath1')->nullable();
+            $table->string('att_value');
+            $table->integer('attributes_id')->unsigned();
+            $table->foreign('attributes_id')->references('id')->on('attributes')->onDelete('cascade');         
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateImagesProductsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('images_products');
+        Schema::drop('attributes_values');
     }
 }

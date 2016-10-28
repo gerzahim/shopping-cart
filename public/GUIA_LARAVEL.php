@@ -1226,7 +1226,11 @@ php artisan make:model States -m
 php artisan make:seed StatesTableSeeder
 
 
-php artisan make:controller Articles --resource
-php artisan make:controller Setting
+php artisan make:controller SettingController
+php artisan make:controller AttributesController --resource
 
-php artisan make:controller StatesController --resource
+php artisan make:model Attributes -m
+
+php artisan make:seed AttributesTableSeeder
+
+php artisan make:controller ProductAttributeValueController --resource

@@ -321,16 +321,23 @@ class ComposerStaticInitd8b534feeeb600bf819f4e29fa5ea60c
     );
 
     public static $classMap = array (
+        'AttributesTableSeeder' => __DIR__ . '/../..' . '/database/seeds/AttributesTableSeeder.php',
+        'AttributesValuesTableSeeder' => __DIR__ . '/../..' . '/database/seeds/AttributesValuesTableSeeder.php',
         'BannerTableSeeder' => __DIR__ . '/../..' . '/database/seeds/BannerTableSeeder.php',
         'BrandTableSeeder' => __DIR__ . '/../..' . '/database/seeds/BrandTableSeeder.php',
         'CategoriesTableSeeder' => __DIR__ . '/../..' . '/database/seeds/CategoriesTableSeeder.php',
         'Cpdf' => __DIR__ . '/..' . '/dompdf/dompdf/lib/Cpdf.php',
+        'CreateAssociateProductsAttributesTable' => __DIR__ . '/../..' . '/database/migrations/2016_10_28_170011_create_associate_products_attributes_table.php',
+        'CreateAssociatesAttributesTable' => __DIR__ . '/../..' . '/database/migrations/2016_10_28_165955_create_associates_attributes_table.php',
+        'CreateAttributesTable' => __DIR__ . '/../..' . '/database/migrations/2016_10_28_165820_create_attributes_table.php',
+        'CreateAttributesValuesTable' => __DIR__ . '/../..' . '/database/migrations/2016_10_28_165836_create_attributes_values_table.php',
         'CreateBannersTable' => __DIR__ . '/../..' . '/database/migrations/2016_08_29_175321_create_banners_table.php',
         'CreateBrandsTable' => __DIR__ . '/../..' . '/database/migrations/2016_08_02_194853_create_brands_table.php',
         'CreateCategoriesTable' => __DIR__ . '/../..' . '/database/migrations/2016_08_01_193101_create_categories_table.php',
         'CreateImagesProductsTable' => __DIR__ . '/../..' . '/database/migrations/2016_10_10_145351_create_images_products_table.php',
         'CreateOrdersTable' => __DIR__ . '/../..' . '/database/migrations/2016_08_24_151634_create_orders_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
+        'CreateProductAttributeValuesTable' => __DIR__ . '/../..' . '/database/migrations/2016_10_28_165915_create_product_attribute_values_table.php',
         'CreateProductsTable' => __DIR__ . '/../..' . '/database/migrations/2016_08_18_193117_create_products_table.php',
         'CreateRolesTable' => __DIR__ . '/../..' . '/database/migrations/2016_08_18_201356_create_roles_table.php',
         'CreateSettingsTable' => __DIR__ . '/../..' . '/database/migrations/2016_10_10_143404_create_settings_table.php',
