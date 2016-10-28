@@ -2,7 +2,7 @@
    <div class="header-bottom"><!--header-bottom-->
       <div class="container">
         <div class="row">
-          <div class="col-sm-9">
+          <div class="col-sm-8">
             <div class="navbar-header">
               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="sr-only">Toggle navigation</span>
@@ -27,13 +27,17 @@
             </div>
             
           </div>
-          {{-- 
-          <div class="col-sm-3">
+          
+          <div class="col-sm-4">
             <div class="search_box pull-right">
-              <input type="text" placeholder="Search"/>
+            <form action="{{ url('search') }}" id="main-contact-form" class="searchformhh" name="contact-form" method="get">
+              <input type="text" name="search" id="search" placeholder="Search"/>
+              <button type="submit" class=""><i class="fa fa-search" aria-hidden="true"></i></button>  
+              {{ csrf_field() }} 
+            </form>
             </div>
           </div>
-          --}}
+   
         </div>
       </div>
     </div><!--/header-bottom-->

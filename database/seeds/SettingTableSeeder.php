@@ -11,7 +11,7 @@ class SettingTableSeeder extends Seeder
      */
     public function run()
     {
-
+/*
         
         // HOOKAH EXPRESS        
         $setting = new \ShopCart\Settings([
@@ -68,7 +68,7 @@ class SettingTableSeeder extends Seeder
 
         /* */
         
-        /*
+        
         // DORAL HOOKAH
         $setting = new \ShopCart\Settings([
             'id'=> '1',            

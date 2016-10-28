@@ -62,6 +62,48 @@ class ProductController extends Controller
     }
 
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getSearch(Request $request)
+    {
+        //Get Current Path
+        //$url = $request->url();
+        
+        $input = $request->all();
+        $search=$input['search'];
+
+        //get original path
+        $url = str_replace($request->path(), '', $request->url());
+        $url = str_replace('cart', 'shopcart', $url);
+
+        // Get info for Banner Section
+        $categories = Categories::all();
+
+
+        //Get Categories for SideBar        
+        $tree =$this->ParentView($url);
+        $tree1 =$this->getBrands($url);    
+
+        //$products = Product::all();
+        $id=1;
+        $setting = Settings::find($id);
+        //dd($setting->pagination_shop);        
+
+
+        //Player::where('name', 'LIKE', '%'.$name.'%')->get();
+
+        //$products = Product::paginate($setting->pagination_shop);
+        //$products = Product::where('status', '=', 1)->paginate($setting->pagination_shop);
+        $products = Product::where('status', '=', 1)->where('title', 'LIKE', '%'.$search.'%')->orWhere('description', 'LIKE', "%$search%")->paginate($setting->pagination_shop);
+
+        
+        return view('shop.search', compact('products', 'categories', 'tree', 'tree1', 'search'));
+    }    
+
+
     public function getByCategory(Request $request, $categories_id)
     {
         //Get Current Path

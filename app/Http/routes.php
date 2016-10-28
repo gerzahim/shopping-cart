@@ -96,6 +96,8 @@ Route::get('/selectByBrand/{id}', [
 
 Route::post('/postsubscribers', 'ProductController@postSubscriber');
 
+Route::get('/search', 'ProductController@getSearch');
+
 Route::get('/contact', 'ProductController@getContact');
 
 Route::post('/contact', 'ProductController@postContact');

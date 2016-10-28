@@ -519,9 +519,10 @@ ul.sub-menu {
 }
 
 
+
 .searchform input {
   border: 1px solid #DDDDDD;
-  color: #CCCCC6;
+  color: #000000;
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
   margin-top: 0;
@@ -531,6 +532,26 @@ ul.sub-menu {
 }
 
 
+.searchformhh input {
+  border: 1px solid #DDDDDD;
+  color: #000000;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  margin-top: 0;
+  outline: medium none;
+  padding: 7px;
+  width: 212px;
+}
+
+.searchformhh button {
+  background: #FF0000;
+  border: medium none;
+  border-radius: 0;
+  margin-left: -5px;
+  margin-top: -3px;
+  padding: 7px 17px;
+}
+
 .searchform button {
   background: #FF0000;
   border: medium none;
@@ -538,6 +559,11 @@ ul.sub-menu {
   margin-left: -5px;
   margin-top: -3px;
   padding: 7px 17px;
+}
+
+.searchformhh button i {
+  color: #FFFFFF;
+  font-size: 20px;
 }
 
 .searchform button i {
