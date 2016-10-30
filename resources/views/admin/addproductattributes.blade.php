@@ -9,16 +9,18 @@
                     </div>
                 </div>              
                  <!-- /. ROW  -->
-
+              <div id="charge-error" class="alert alert-danger {{ !Session::has('error') ? 'hidden' : '' }}">
+                  {{ Session::get('error') }}
+              </div>
   <section id="cart_items">
     <div class="container">
       <hr>
       <div class="table-responsive cart_info">
-        <form action="{{ route('imagesstoregallery', ['id' => $product_id]) }}" method="post" id="edit-form" enctype="multipart/form-data">
+        <form action="{{ route('storeattributeproduct', ['id' => $product_id]) }}" method="post" id="edit-form" enctype="multipart/form-data">
         <input type="hidden" id="product_id" name="product_id" value="{{ $product_id }}">
             <div class="form-group">
               <label for="card-number">Value</label>
-                <select id="attributes_id" name="attributes_id">
+                <select id="attributes_values_id" name="attributes_values_id">
                   @foreach($attributes as $attribute)              
                       <option value="{{ $attribute['id'] }}">{{ $attribute['att_value'] }}</option>
                   @endforeach

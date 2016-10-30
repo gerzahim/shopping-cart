@@ -95,7 +95,7 @@ class AjaxController extends Controller
       //return response()->json(['new_body' => $post->body], 200);
       //return response()->json(['shippingcost' => $shippingCost, 'total_cost' => $totalprice], 200);
       return response()->json(['totalprice' => $totalprice, 'shippingcost' => $shippingCost, 'totalbeforetax' => $totalbeforetax, 'taxcost' => $taxcost, 'totalcost' => $totalcost], 200);
-      //turn response('Hello World', 200)
+      //return response('Hello World', 200)
    }
 }
 

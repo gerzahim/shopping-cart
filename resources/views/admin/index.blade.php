@@ -99,7 +99,7 @@
                             <a href="{{ url('/attributes') }}"><i class="fa fa-puzzle-piece"></i>Products Attributes</a>
                         </li>
                         <li>
-                            <a href="{{ url('/brands') }}"><i class="fa fa-code-fork"></i>Products Associates</a>
+                            <a href="{{ url('/associates') }}"><i class="fa fa-code-fork"></i>Associates Products </a>
                         </li>                                                                           
 
                         <li>

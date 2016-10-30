@@ -12,6 +12,17 @@ use ShopCart\User;
 |
 */
 
+/*
+Event::listen('Illuminate\Database\Events\QueryExecuted', function ($query) {
+    var_dump($query->sql);
+    var_dump($query->bindings);
+    var_dump($query->time);
+});
+
+
+
+*/
+
 Route::get('signupw', function(){
 	return view('user.signupwholesale');
 });
@@ -262,6 +273,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('/brands', 'BrandsController');
 	Route::resource('/states', 'StatesController');
 	Route::resource('/attributes', 'AttributesController');
+	Route::resource('/associates', 'AssociatesController');	
 	Route::resource('/product', 'ProductController');
 	Route::resource('/banners', 'BannerController');	
 	Route::resource('/subscribers', 'SubscriberController');
@@ -389,7 +401,16 @@ Route::group(['middleware' => 'auth'], function () {
 	]);
 
 
+	Route::post('/storeattributeproduct/{id}', [
+		'uses' => 'ProductAttributeValueController@storeProductAttribute',
+		'as' => 'storeattributeproduct'
+	]);	
 
+
+	Route::get('/deleteProductAttribute/id/{id}/product_id/{product_id}', [
+		'uses' => 'ProductAttributeValueController@deleteProductAttribute',
+		'as' => 'deleteProductAttribute'
+	]);	
 
 
 	Route::get('/editgallery/{id}', [
@@ -463,6 +484,20 @@ Route::group(['middleware' => 'auth'], function () {
 		'as' => 'attributesvalue.update'
 	]);	
 
+	Route::get('/associateproductcreate/{id}', [
+		'uses' => 'AssociatesController@addProduct',
+		'as' => 'associateproduct.create'
+	]);	
+
+	Route::post('/associateproductstore/{id}', [
+		'uses' => 'AssociatesController@storeProductAssociate',
+		'as' => 'associateproduct.store'
+	]);	
+		
+	Route::get('/associateproductdestroy/{id}/{idv}', [
+		'uses' => 'AssociatesController@destroyProductAssociate',
+		'as' => 'associateproduct.destroy'
+	]);
   
 });
 

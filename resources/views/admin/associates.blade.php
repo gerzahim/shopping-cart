@@ -11,7 +11,7 @@
                   @endif             
                 <div class="row">
                     <div class="col-md-12">
-                     <h2>List Attributes </h2>   
+                     <h2>List Associates Attributes </h2>   
                     </div>
                 </div>              
                  <!-- /. ROW  -->
@@ -35,16 +35,16 @@
             </tr>
           </thead>
           <tbody>
-            @foreach( $attributes as $attribute)
+            @foreach( $associates as $associate)
               <tr>
-                <td align="center">{{ $attribute->id }}</td>
-                <td align="left"><b>{{ $attribute->name }}</b></td>
+                <td align="center">{{ $associate->id }}</td>
+                <td align="left"><b>{{ $associate->name }} Associate by: {{ $listattributes[$associate->attributes_id] }}</b></td>
               <td class="cart_delete">
-                <a class="cart_quantity_delete" href="{{ URL::to('/attributes/') }}/{{ $attribute['id'] }}/edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                <a class="cart_quantity_delete" href="{{ URL::to('/associates/') }}/{{ $associate['id'] }}/edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
               </td>
               <td class="cart_delete">
                 <a href="javascript:void(0);" onclick="$(this).find('form').submit();" >
-                  <form action="{{ URL::route('attributes.destroy', $attribute['id']) }}" method="post">
+                  <form action="{{ URL::route('associates.destroy', $associate['id']) }}" method="post">
                       <input type="hidden" name="_method" value="DELETE">
                       {{ csrf_field() }}
                   </form>
@@ -58,7 +58,7 @@
           <tfoot>
             <tr class="cart_menu">
               <td class="price"></td>
-              <td class="quantity"><a class="btn btn-success" href="{{ route('attributes.create') }}">Create Attribute</a></td>
+              <td class="quantity"><a class="btn btn-success" href="{{ route('associates.create') }}">Create Associate</a></td>
               <td class="total"></td>
               <td class="total"></td>
             </tr>            

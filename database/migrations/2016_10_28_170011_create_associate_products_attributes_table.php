@@ -13,7 +13,10 @@ class CreateAssociateProductsAttributesTable extends Migration
     public function up()
     {
         Schema::create('associate_products_attributes', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id');            
+            $table->integer('product_attributes_values_id')->unsigned();
+            //$table->integer('attributes_values_id')->unsigned();            
+            $table->integer('associates_attributes_id')->unsigned();            
             $table->timestamps();
         });
     }

@@ -115,6 +115,26 @@
                 <p><b>Availability:</b> In Stock</p>
                 <p><b>Condition:</b> New</p>
                 <p><b>Description:</b> {{ $product->description }}</p>
+                    @foreach($attributesproducts as $attributesproduct)
+                    <p><b>
+                    {{ $attributeName[$attributeId[$attributesproduct->attributes_values_id]] }}: 
+                    </b>
+                      {{ $attributeValueName[$attributesproduct->attributes_values_id] }}
+                    </p>
+                    @endforeach 
+                    <br>
+                    @foreach($listassociates as $listassociate)
+                    <p>Compare by:<b>
+                    {{ $listassociate['name'] }}: 
+                    </b><br> 
+                     @foreach($listassociate['ids'] as $listassociat)
+                      <a target="_blank" href="{{ URL::to('/see-details/') }}/{{ $listassociat->id }}" title="{{ $listassociat->sku }}">
+                        <img height="70px" width="70px" src="{{ URL::to('media/') }}/{{ $listassociat->imagepath }}" alt="" />
+                      </a>                      
+                     @endforeach  
+                    </p>
+                    <br>
+                    @endforeach                
                 <!-- 
                 <a href=""><img src="{{ URL::to('images/share.png') }}" class="share img-responsive"  alt="" /></a>
                 -->

@@ -16,6 +16,12 @@ use ShopCart\Settings;
 use ShopCart\ShippingCost;
 use ShopCart\ImagesProduct;
 use ShopCart\States;
+use ShopCart\Attributes;
+use ShopCart\AttributesValues;
+use ShopCart\ProductAttributeValues;
+use ShopCart\AssociatesAttributes;
+use ShopCart\AssociateProductsAttributes;
+use DB;
 use Session;
 use Auth;
 use Stripe\Charge;
@@ -691,7 +697,78 @@ $tree='';
 
         $imgproducts = ImagesProduct::where('product_id', '=', $id)->get();
 
-        return view('shop.product_details', compact('product', 'categories', 'brands', 'tree', 'tree1', 'imgproducts'));        
+
+        $attributesproducts = ProductAttributeValues::where('product_id', '=', $id)->get();
+
+        //$imgproducts = ImagesProduct::where('product_id', '=', $id)->get();
+        $attributesvalues = AttributesValues::all();
+        $attributeId = array();
+        $attributeValueName= array();
+        foreach ($attributesvalues as $attributesvalue) {
+            # code...
+            $attributeId[$attributesvalue->id] = $attributesvalue->attributes_id;
+            $attributeValueName[$attributesvalue->id] = $attributesvalue->att_value;
+        }
+
+
+        $attributes = Attributes::all();
+        $attributeName = array();
+        foreach ($attributes as $attribute) {
+            # code...
+            $attributeName[$attribute->id] = $attribute->name;
+        }
+
+//            ->join('attributes', 'associates_attributes.attributes_id', '=', 'attributes.id')
+
+            $associates = DB::table('associates_attributes')
+            ->join('attributes', 'associates_attributes.attributes_id', '=', 'attributes.id')
+            ->join('associate_products_attributes', 'associates_attributes.id', '=', 'associate_products_attributes.associates_attributes_id')
+            ->join('product_attribute_values', 'associate_products_attributes.product_attributes_values_id', '=', 'product_attribute_values.id')
+            ->where('product_attribute_values.product_id', '=', $id)
+            ->select('associates_attributes.attributes_id', 'attributes.name')
+            ->get();
+/*
+            dd($associates);  
+
+            $associates = DB::table('products')
+            ->join('product_attribute_values', 'product_attribute_values.attributes_values_id', '=', 'products.id')
+            ->join('associate_products_attributes', 'product_attribute_values.attributes_values_id', '=', 'associate_products_attributes.id')
+            ->join('associates_attributes', 'associate_products_attributes.associates_attributes_id', '=', 'associates_attributes.id')
+            ->join('attributes', 'associates_attributes.attributes_id', '=', 'attributes.id')
+            ->where('associates_attributes.attributes_id', '=', $id)
+            ->select('products.*', 'attributes.name', 'attributes.name')
+            ->get();   
+
+            dd($associates);          
+*/
+
+
+            $listassociates = array();
+            $i=0;
+            foreach ($associates as $associate) {
+                # code...
+                //dd($associate); 
+                $listassociates[$i]['name'] = $associate->name;
+
+                $products = DB::table('products')
+                ->join('product_attribute_values', 'product_attribute_values.attributes_values_id', '=', 'products.id')
+                ->join('associate_products_attributes', 'product_attribute_values.attributes_values_id', '=', 'associate_products_attributes.id')
+                ->join('associates_attributes', 'associate_products_attributes.associates_attributes_id', '=', 'associates_attributes.id')
+                ->join('attributes', 'associates_attributes.attributes_id', '=', 'attributes.id')
+                ->where('associates_attributes.attributes_id', '=', $associate->attributes_id)
+                ->select('products.*', 'attributes.name', 'attributes.name')
+                ->get();
+
+                $listassociates[$i]['ids'] = $products;
+                
+                $i++;                    
+            }           
+
+            //dd($listassociates);    
+
+
+
+        return view('shop.product_details', compact('product', 'categories', 'brands', 'tree', 'tree1', 'imgproducts', 'attributesproducts', 'productAttributeValues', 'id', 'attributeName', 'attributeId', 'attributeValueName', 'listassociates'));        
     }
 
     public function getContact(){
@@ -1313,10 +1390,29 @@ $tree='';
         $product = Product::find($id);
         $imgproducts = ImagesProduct::where('product_id', '=', $id)->get();
 
+        $attributesproducts = ProductAttributeValues::where('product_id', '=', $id)->get();
+
         //$imgproducts = ImagesProduct::where('product_id', '=', $id)->get();
+        $attributesvalues = AttributesValues::all();
+        $attributeId = array();
+        $attributeValueName= array();
+        foreach ($attributesvalues as $attributesvalue) {
+            # code...
+            $attributeId[$attributesvalue->id] = $attributesvalue->attributes_id;
+            $attributeValueName[$attributesvalue->id] = $attributesvalue->att_value;
+        }
+
+
+        $attributes = Attributes::all();
+        $attributeName = array();
+        foreach ($attributes as $attribute) {
+            # code...
+            $attributeName[$attribute->id] = $attribute->name;
+        }        
 
         //return view('admin.editproducts', ['product' => $product], compact('categories'), compact('brands'));
-        return view('admin.editproducts', compact('product', 'categories', 'brands', 'imgproducts'));
+        return view('admin.editproducts', compact('product', 'categories', 'brands', 'imgproducts', 'attributesproducts', 'productAttributeValues', 'id', 'attributeName', 'attributeId', 'attributeValueName'));
+
     }
 
     /**

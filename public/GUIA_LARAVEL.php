@@ -1229,8 +1229,43 @@ php artisan make:seed StatesTableSeeder
 php artisan make:controller SettingController
 php artisan make:controller AttributesController --resource
 
-php artisan make:model Attributes -m
 
+php artisan make:model Attributes -m
 php artisan make:seed AttributesTableSeeder
 
-php artisan make:controller ProductAttributeValueController --resource
+
+associates_attributes`.`id
+
+SELECT ass.id, *
+FROM associates_attributes ass
+JOIN associate_products_attributes asp ON asp.associates_attributes_id = ass.id
+JOIN product_attribute_values pav ON pav.id = asp.product_attributes_values_id
+WHERE pav.product_id = 1
+
+SELECT *
+FROM user u
+JOIN user_clockits uc ON u.user_id=uc.user_id
+JOIN clockits cl ON cl.clockits_id=uc.clockits_id
+WHERE user_id = 158
+
+select s.name as Student, c.name as Course 
+from student s
+inner join bridge b on s.id = b.sid
+inner join course c on b.cid  = c.id 
+order by s.name 
+
+
+
+SELECT * FROM `associate_products_attributes` WHERE 1
+select e1.name as 'Manager', e2.name as 'Staff'
+from employee e1 
+
+
+SELECT ass.attributes_id as attributes_id, asp.product_attributes_values_id as product_value_id, att.name as attname
+FROM associates_attributes ass
+JOIN attributes att ON att.id = ass.id
+JOIN associate_products_attributes asp ON asp.associates_attributes_id = ass.id
+JOIN product_attribute_values pav ON pav.id = asp.product_attributes_values_id
+WHERE pav.product_id = 1
+
+SELECT * FROM products po JOIN product_attribute_values pav ON pav.attributes_values_id = po.id JOIN associate_products_attributes apa ON pav.attributes_values_id = apa.id JOIN associates_attributes ass ON ass.id = apa.associates_attributes_id WHERE ass.attributes_id = 1

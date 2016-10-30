@@ -14,6 +14,8 @@ class CreateAssociatesAttributesTable extends Migration
     {
         Schema::create('associates_attributes', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
+            $table->integer('attributes_id')->unsigned();
             $table->timestamps();
         });
     }
