@@ -1624,7 +1624,7 @@ $tree='';
             if ($product_update != null) {
                 # code...
                 if($product_update->status == 0){
-                    Session::flash('message', 'No Authorization to access!');
+                    Session::flash('alert-danger', 'No Authorization to access!');
                     return redirect('principal');
                 }    
 
