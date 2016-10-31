@@ -12,7 +12,7 @@ class SettingTableSeeder extends Seeder
     public function run()
     {
 
-        
+        /*
         // HOOKAH EXPRESS        
         $setting = new \ShopCart\Settings([
         	'id'=> '1',            
@@ -46,20 +46,20 @@ class SettingTableSeeder extends Seeder
         	'link_dribbble'=> '#',
         	'link_google_plus'=> '#',
         	'bansidepath'=> 'poster1.jpg',
-            'payment_toorder'=> 1, 
+            'payment_toorder'=> 0, 
             'approve_user'=> 1, 
             'kind_web'=> 2,
         	'apipublickey'=> 'pk_test_bgDZl3Hlj03zb9UDeQYraAHk',
         	'apisecretkey'=> 'sk_test_HlLliwLgXEFhdQv4WQQamLii',
-        	'loginshowprices'=> 0,
+        	'loginshowprices'=> 1,
         	'buylikeguess'=> 0,
         	'select_home_prod'=> 1,
-            'especial_prod_sku1'=> '45voluptatibus855',
-            'especial_prod_sku2'=> '594et143',
-            'especial_prod_sku3'=> '414labore282',
-            'especial_prod_sku4'=> '329quia27',
-            'especial_prod_sku5'=> '976eligendi992',
-            'especial_prod_sku6'=> '236autem660',
+            'especial_prod_sku1'=> '',
+            'especial_prod_sku2'=> '',
+            'especial_prod_sku3'=> '',
+            'especial_prod_sku4'=> '',
+            'especial_prod_sku5'=> '',
+            'especial_prod_sku6'=> '',
             
 
         ]);
@@ -109,12 +109,12 @@ class SettingTableSeeder extends Seeder
             'loginshowprices'=> 0,
             'buylikeguess'=> 1,
             'select_home_prod'=> 1,
-            'especial_prod_sku1'=> '45voluptatibus855',
-            'especial_prod_sku2'=> '594et143',
-            'especial_prod_sku3'=> '414labore282',
-            'especial_prod_sku4'=> '329quia27',
-            'especial_prod_sku5'=> '976eligendi992',
-            'especial_prod_sku6'=> '236autem660',
+            'especial_prod_sku1'=> '',
+            'especial_prod_sku2'=> '',
+            'especial_prod_sku3'=> '',
+            'especial_prod_sku4'=> '',
+            'especial_prod_sku5'=> '',
+            'especial_prod_sku6'=> '',
             
 
         ]);
@@ -122,7 +122,7 @@ class SettingTableSeeder extends Seeder
         /* */
 
 
-        /*
+
         // CROWN TRADING
         $setting = new \ShopCart\Settings([
             'id'=> '1',            
@@ -151,6 +151,7 @@ class SettingTableSeeder extends Seeder
             'pagination_shop'=> '9',
             'link_facebook'=> '#',
             'link_twitter'=> '#',
+            'link_instagram'=> '#',
             'link_linkedin'=> '#',
             'link_dribbble'=> '#',
             'link_google_plus'=> '#',
@@ -163,14 +164,13 @@ class SettingTableSeeder extends Seeder
             'loginshowprices'=> 0,
             'buylikeguess'=> 0,
             'select_home_prod'=> 1,
-            'especial_prod_sku1'=> '45voluptatibus855',
-            'especial_prod_sku2'=> '594et143',
-            'especial_prod_sku3'=> '414labore282',
-            'especial_prod_sku4'=> '329quia27',
-            'especial_prod_sku5'=> '976eligendi992',
-            'especial_prod_sku6'=> '236autem660',
-            
-
+            'especial_prod_sku1'=> '',
+            'especial_prod_sku2'=> '',
+            'especial_prod_sku3'=> '',
+            'especial_prod_sku4'=> '',
+            'especial_prod_sku5'=> '',
+            'especial_prod_sku6'=> '',  
+           
         ]);
         $setting->save();    
         /* */

@@ -54,7 +54,7 @@
                 <a class="cart_quantity_delete" href="{{ route('product.removeItem', ['id' => $product['item']['id']]) }}"><i class="fa fa-times fa-2x"></i></a>
               </td>
              <td class="cart_price" align="center">
-                <a class="cart_quantity_delete" href="{{ route('wishlist.MovetoWishList', ['id' => $product['item']['id']]) }}"><i class="fa fa-arrow-circle-up fa-2x"></i></a>
+                <a class="cart_quantity_delete" href="{{ route('wishlist.MovetoWishList', ['id' => $product['item']['id']]) }}"><i class="fa fa-heart fa-2x"></i></a>
               </td>               
             </tr>
             @endforeach
