@@ -571,7 +571,7 @@ $tree='';
                             $tree.='</div>';                            
                         }else{
 
-                            $tree.='<a href="'.$url.'selectByCategory/'.$child->id.'" class="list-group-itema">'.$child->name.'
+                            $tree.='<a href="'.$url.'selectByCategory/'.$child->id.'" class="list-group-itema">&nbsp;&nbsp;'.$child->name.'
                             </a>';                            
 
                         }
@@ -1030,6 +1030,7 @@ $tree='';
         
         $setting = Settings::find(1);
 
+        
         # Select if payment to Order
         if ($setting->payment_toorder == '1') {
             # code...
@@ -1045,11 +1046,10 @@ $tree='';
                 ));     
                 
             } catch(\Exception $e){
+                DD("HELLAAAAA");
                 return redirect()->route('checkout')->with('error', $e->getMessage());
             }
 
-        } else {
-            # code...
         }
                         
             // Saving Order on Database

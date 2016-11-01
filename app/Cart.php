@@ -38,19 +38,21 @@ class Cart
     	$this->totalPrice += $item->price;
     }
 
-    public function addShippingCost($totalPrice, $shippingCost){
 
-        $this->shippingCost = $shippingCost;
-        $this->totalCost = $totalPrice + $shippingCost;
 
-    }
 
     public function addTaxCost($totalPrice, $taxCost){
 
         $this->taxCost = $taxCost;
         $this->totalCost = $totalPrice + $taxCost;
 
-    }        
+    }      
+
+    public function addShippingCost($totalPrice, $shippingCost){
+
+        $this->shippingCost = $shippingCost;
+        $this->totalCost = $totalPrice + $shippingCost;
+    }    
 
     public function reduceByOne($id){
 

@@ -335,6 +335,23 @@ Route::group(['middleware' => 'auth'], function () {
 	'as' => 'import.import'
 	]);
 
+
+	Route::get('/form-csvCat', [
+	'uses' => 'ImportController@formImportCat',
+	'as' => 'import.formCat'
+	]);	
+
+	Route::post('/upload-csvCat', [
+	'uses' => 'ImportController@storeCSVCat',
+	'as' => 'import.uploadCat'
+	]);
+
+	Route::get('/import-csvCat', [
+	'uses' => 'ImportController@getImportCat',
+	'as' => 'import.importCat'
+	]);
+
+
 	Route::get('/users', [
 		'uses' => 'UserController@getUsers',
 		'as' => 'userslist'

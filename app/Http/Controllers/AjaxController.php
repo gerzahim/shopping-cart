@@ -61,17 +61,38 @@ class AjaxController extends Controller
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
 
-        //$total = $cart->totalPrice;		
-		$cart->addShippingCost($totalprice, $shippingCost);
+        // Get Tax Cost
+        $taxcost = $state;
+        $state_code = States::where('code',$state)->first();
+        $taxcost = ($state_code->tax * $totalprice) / 100;
+        $taxcost = round($taxcost, 2);
 
+
+        // Get Total + Tax
+        $subtotalwtax = round($totalprice + $taxcost, 2);
+        $cart->addTaxCost($totalprice, $taxcost);
+
+
+        $totalcost = round($totalprice + $shippingCost + $taxcost, 2);
+        $cart->addShippingCost($subtotalwtax, $shippingCost);
+
+        $request->session()->put('cart', $cart);
+        //$total = $cart->totalPrice;		
+		
+
+/*  
+$cart->addShippingCost($totalprice, $shippingCost);
+    $cart->addShippingCost($totalprice, $shippingCost);
     $totalbeforetax = $totalprice + $shippingCost;
+    $totalbeforetax = round($totalbeforetax, 2);
     $totalcost = $totalbeforetax;
 
-
+    //round($change, 2);
 
     $taxcost = $state;
     $state_code = States::where('code',$state)->first();
     $taxcost = ($state_code->tax * $totalbeforetax) / 100;
+    $taxcost = round($taxcost, 2);
 
     $totalcost = $totalbeforetax + $taxcost;
     $cart->addTaxCost($totalbeforetax, $taxcost);  
@@ -91,10 +112,12 @@ class AjaxController extends Controller
       $msg2 = "This is a simple message 2";
       //dd($msg);
 */      
+      $msg = "This is a simple message 1";
       //return response()->json(array('msg'=> $msg), 200);
-      //return response()->json(['new_body' => $post->body], 200);
+      return response()->json(['totalprice' => $totalprice, 'taxcost' => $taxcost, 'subtotalwtax' => $subtotalwtax, 'shippingcost' => $shippingCost, 'totalcost' => $totalcost], 200);
+
       //return response()->json(['shippingcost' => $shippingCost, 'total_cost' => $totalprice], 200);
-      return response()->json(['totalprice' => $totalprice, 'shippingcost' => $shippingCost, 'totalbeforetax' => $totalbeforetax, 'taxcost' => $taxcost, 'totalcost' => $totalcost], 200);
+      //return response()->json(['totalprice' => $totalprice, 'shippingcost' => $shippingCost, 'totalbeforetax' => $totalbeforetax, 'taxcost' => $taxcost, 'totalcost' => $totalcost], 200);
       //return response('Hello World', 200)
    }
 }

@@ -40,8 +40,11 @@
 							<div class="panel-footer">
 								<strong>
 									<p>SubTotal: ${{ $order->cart->totalPrice }}</p>
+									<p>Tax: ${{ $order->cart->taxCost }}</p>
+									<p>SubTotal + Tax: ${{ $order->cart->totalPrice+$order->cart->taxCost }}</p>
 									<p>Shipping: ${{ $order->cart->shippingCost }}</p>
 									<p>Total Cost: ${{ $order->cart->totalCost }}</p>
+                                             									
 									@if($order->status == '1')
 										<p>Status: Pending to Delivery</p>
 									@else

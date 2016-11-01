@@ -20,10 +20,10 @@ class DatabaseSeeder extends Seeder
         $this->call(SubscriberTableSeeder::class);
         $this->call(SettingTableSeeder::class);
         $this->call(ShippingCostTableSeeder::class);
-        $this->call(ImagesProductTableSeeder::class);
+        //$this->call(ImagesProductTableSeeder::class);
         $this->call(StatesTableSeeder::class);
-        $this->call(AttributesTableSeeder::class);
-        $this->call(AttributesValuesTableSeeder::class);
+        //$this->call(AttributesTableSeeder::class);
+        //$this->call(AttributesValuesTableSeeder::class);
                         
         //php artisan db:seed --class=BannerTableSeeder
     }

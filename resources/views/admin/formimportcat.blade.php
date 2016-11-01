@@ -28,18 +28,18 @@
     
     @if($file_found == true)
       <p>File is Upload ! 
-      <a href="{{ URL::to('/import-csv') }}"><button class="btn btn-success">Import CSV FILE</button></a>  
+      <a href="{{ URL::to('/import-csvCat') }}"><button class="btn btn-success">Import CSV FILE</button></a>  
       </p> 
       <br><br><br><br>
-      <form style="border: 4px solid #a1a1a1;margin-top: 15px;padding: 10px;" action="{{ URL::to('upload-csv') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
+      <form style="border: 4px solid #a1a1a1;margin-top: 15px;padding: 10px;" action="{{ URL::to('upload-csvCat') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
         <input type="file" name="import_file" />
         <br>
         <button class="btn btn-warning">Replace CSV File</button>
                   {{ csrf_field() }}   
       </form>
     @else  
-      <a href="{{ URL::to('import/sample.csv') }}"><button class="btn btn-primary">Download CSV Sample</button></a><br><br>
-      <form style="border: 4px solid #a1a1a1;margin-top: 15px;padding: 10px;" action="{{ URL::to('upload-csv') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
+      <a href="{{ URL::to('import/samplecategories.csv') }}"><button class="btn btn-primary">Download CSV Categories Sample</button></a><br><br>
+      <form style="border: 4px solid #a1a1a1;margin-top: 15px;padding: 10px;" action="{{ URL::to('upload-csvCat') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
         <input type="file" name="import_file" />
         <br>
         <button class="btn btn-warning">Upload CSV File</button>

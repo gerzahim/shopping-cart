@@ -70,12 +70,11 @@
                                     @endforeach
                                   </ul>
                                 </div>
-                                <div class="panel-footer"><strong>Total Price: ${{ $order->cart->totalPrice }}</strong></div>
-                                <div class="panel-footer"><strong>Shipping Price: ${{ $order->cart->shippingCost }}</strong></div>
-                                <div class="panel-footer"><strong>Total Before Tax: ${{ $order->cart->totalPrice+$order->cart->shippingCost }}</strong></div>
+                                <div class="panel-footer"><strong>SubTotal: ${{ $order->cart->totalPrice }}</strong></div>
                                 <div class="panel-footer"><strong>State Tax to be Collected: ${{ $order->cart->taxCost }}</strong></div>
-                                <div class="panel-footer"><strong>Total Cost: ${{ $order->cart->totalCost }}</strong></div>
-                        
+                                <div class="panel-footer"><strong>SubTotal + Tax: ${{ $order->cart->totalPrice+$order->cart->taxCost }}</strong></div>
+                                <div class="panel-footer"><strong>Shipping Cost: ${{ $order->cart->shippingCost }}</strong></div>
+                                <div class="panel-footer"><strong>Grand Total: ${{ $order->cart->totalCost }}</strong></div>
                               </div>
 
                     </div>

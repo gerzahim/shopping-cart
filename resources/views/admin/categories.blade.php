@@ -58,10 +58,10 @@
             <tr class="cart_menu">
               <td class="image"></td>
               <td class="description"></td>
-              <td class="price"></td>
-              <td class="price"></td>
               <td class="quantity"><a class="btn btn-success" href="{{ route('categories.create') }}">Create Category</a></td>
-              <td class="total"></td>
+              <td class="total"><a class="btn btn-warning" href="{{ route('import.formCat') }}">CSV Import Categories</a></td>
+              <td class="price"></td>
+              <td class="price"></td>              
               <td class="total"></td>
             </tr>            
           </tfoot>

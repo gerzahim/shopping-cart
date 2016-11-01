@@ -111,7 +111,10 @@
                         <div class="form-group col-md-6">
                             <label for="country">CVC:</label>
                             <input type="text" id="card-cvc" class="form-control" placeholder="CVC" required>
-                        </div>                    
+                        </div>  
+                        <div class="form-group col-md-6">
+                            <input type="hidden" id="publishable_key" class="form-control" value="{{ $setting->apipublickey }}">
+                        </div>                                          
                     @endif
                     
                     <div class="form-group col-md-6">
@@ -124,9 +127,7 @@
                           <option value="4">Next-Day Shipping</option>
                       </select> 
                     </div>                    
-                    <div class="form-group col-md-6">
-                        <input type="hidden" id="publishable_key" class="form-control" value="{{ $setting->apipublickey }}">
-                    </div>
+
                     <div class="form-group col-md-6">
                         <button type="submit" class="btn btn-success">Place Your Order</button>              
                     </div>  
@@ -415,11 +416,12 @@
         <div class="col-sm-6">
           <div class="total_area">
             <ul>
-              <li>Cart Sub Total : <span>${{ $totalPrice }}</span></li>
-              <li>Shipping Cost : <span id="shippingcost">Please Select Delivery Option</span></li>
-              <li>Total Before Tax : <span id="totalbeforetax">${{ $totalPrice }}</span></li>
+              <li>SubTotal : <span>${{ $totalPrice }}</span></li>
               <li>State Tax to be Collected : <span id="taxcost">Please Select State</span></li>
+              <li>SubTotal + Tax : <span id="subtotalwtax">${{ $totalPrice }}</span></li>
+              <li>Shipping Cost : <span id="shippingcost">Please Select Delivery Option</span></li>
               <li>Grand Total : <span id="totalcost">${{ $totalPrice }}</span></li>
+
             </ul>
           </div>
         </div>
@@ -470,17 +472,18 @@ $(document).ready(function(){
         //data: dataString,
         data: { id: $('#shipping_id').val(),  state: $('#state').val(), _token: token, _totalprice: totalprice},
         success: function(data) {
-         //console.log(data);
+         console.log(data);
          console.log( data.shippingcost );         
          console.log( data.total_cost );
-         console.log( data.totalbeforetax );
+         console.log( data.subtotalwtax );
          console.log( data.taxcost );
+         console.log( data.totalprice );
           $('#shippingcost').html('$ '+data.shippingcost);
-          $('#totalbeforetax').html('$ '+data.totalbeforetax);
+          $('#totalbeforetax').html('$ '+data.subtotalwtax);
           $('#taxcost').html('$ '+data.taxcost);
           $('#totalcost').html('$ '+data.totalcost);          
           $('#totalprice').html('$ '+data.totalprice);
-          //$('#myshipping').append(token);
+          $('#myshipping').append(token);
         }
       });
 
