@@ -79,7 +79,7 @@ class ProductController extends Controller
         //$url = $request->url();
         
         $input = $request->all();
-        $search=$input['search'];
+
 
         //get original path
         $url = str_replace($request->path(), '', $request->url());
@@ -99,11 +99,35 @@ class ProductController extends Controller
         //dd($setting->pagination_shop);        
 
 
-        //Player::where('name', 'LIKE', '%'.$name.'%')->get();
+        $search=$input['search'];
+
+        $search = explode(" ", $search);
+
+        //dd($pieces_search);
+
+        //$products = Product::where('status', '=', 1)->whereIn('title', $pieces_search)->orWhereIn('description', $pieces_search)->paginate($setting->pagination_shop);
+
+        $products = DB::Table('products')
+        ->select('*')                
+        ->Where(function ($query) use($search) {
+             for ($i = 0; $i < count($search); $i++){
+                $query->orwhere('title', 'like',  '%' . $search[$i] .'%');
+                $query->orwhere('description', 'like',  '%' . $search[$i] .'%');
+             }      
+        })->where('status', '=', 1)->paginate($setting->pagination_shop);
 
         //$products = Product::paginate($setting->pagination_shop);
         //$products = Product::where('status', '=', 1)->paginate($setting->pagination_shop);
-        $products = Product::where('status', '=', 1)->where('title', 'LIKE', '%'.$search.'%')->orWhere('description', 'LIKE', "%$search%")->paginate($setting->pagination_shop);
+        //$products = Product::where('status', '=', 1)->where('title', 'LIKE', '%'.$search.'%')->orWhere('description', 'LIKE', "%$search%")->paginate($setting->pagination_shop);
+        /*
+        $products = array();
+
+        foreach ($pieces_search as $pc_search) {
+            # code...
+            $products = Product::where('status', '=', 1)->where('title', 'LIKE', '%'.$pc_search.'%')->orwhere('description', 'LIKE', '%'.$pc_search.'%')->paginate($setting->pagination_shop);            
+        }
+    */
+        //dd($products);        
 
         
         return view('shop.search', compact('products', 'categories', 'tree', 'tree1', 'search'));

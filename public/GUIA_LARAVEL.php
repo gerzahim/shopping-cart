@@ -1278,22 +1278,6 @@ INNER JOIN associates ass ON ass.id = asp.associates_id
 WHERE ass.id = 3
 
 
-SELECT * 
-FROM products po 
-INNER JOIN products_attributes pav ON pav.product_id = po.id
-INNER JOIN associate_products asp ON asp.products_attributes_id = pav.id
-INNER JOIN associates ass ON ass.id = asp.associates_id 
-WHERE ass.id = 3
-
-
-SELECT * 
-FROM products po 
-INNER JOIN products_attributes pav ON pav.product_id = po.id
-INNER JOIN associate_products asp ON asp.products_attributes_id = pav.id
-INNER JOIN associates ass ON ass.id = asp.associates_id 
-INNER JOIN attributes att ON att.id = ass.attributes_id
-WHERE ass.id = 3
-
 
 SELECT * 
 FROM products po 
@@ -1313,24 +1297,3 @@ WHERE ass.id = 3
 ->select('products.*', 'attributes.name')
                 //->select('products.*')
 
-
-SELECT * 
-FROM associate_products apa 
-INNER JOIN associates ass ON ass.id = apa.associates_id 
-WHERE ass.id = 1   
-
-SELECT * 
-FROM associate_products apa 
-FULL OUTER JOIN associates ass ON ass.id = apa.associates_id 
-WHERE ass.id = 3
-
-SELECT * 
-FROM associate_products apa 
-INNER JOIN associates ass ON ass.id = apa.associates_id 
-WHERE ass.id = 3
-
-SELECT * 
-FROM products_attributes pav 
-FULL OUTER JOIN associate_products asp ON asp.products_attributes_id = pav.id
-FULL OUTER JOIN associates ass ON ass.id = apa.associates_id 
-WHERE ass.id = 3
