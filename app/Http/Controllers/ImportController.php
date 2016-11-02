@@ -107,6 +107,7 @@ class ImportController extends Controller{
 						'sku' => $value->sku,
 						'title' => $value->title,
 						'description' => $value->description,
+						'imagepath' => $value->imagepath,
 						'price' => $value->price,
 						'quantity' => $value->quantity,
 						'status' => $value->status,
@@ -118,6 +119,7 @@ class ImportController extends Controller{
 						'sku' => $value->sku,
 						'title' => $value->title,
 						'description' => $value->description,
+						'imagepath' => $value->imagepath,
 						'price' => $value->price,
 						'quantity' => $value->quantity,
 						'status' => $value->status,
@@ -160,6 +162,7 @@ class ImportController extends Controller{
 						$product_update = Product::where('sku',$upd['sku'])->first();
 				        $product_update->title = $upd['title'];
 				        $product_update->description = $upd['description'];
+				        $product_update->imagepath = $upd['imagepath'];
 				        $product_update->price = $upd['price'];
 				        $product_update->quantity = $upd['quantity'];
 				        $product_update->status = $upd['status'];

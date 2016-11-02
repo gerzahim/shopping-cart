@@ -91,7 +91,7 @@ class AssociatesController extends Controller
      */
     public function edit($id)
     {
-        $AssociatesProducts = AssociateProductsAttributes::where('associates_attributes_id', '=', $id)->get();
+        $AssociatesProducts = AssociateProductsAttributes::where('associates_id', '=', $id)->get();
 
 
         $attributes = Attributes::all();
@@ -210,13 +210,16 @@ class AssociatesController extends Controller
         $AssociatesProducts = new AssociateProductsAttributes();
         $input = $request->all();
 
-        $attributesvalues = AssociateProductsAttributes::where('associates_attributes_id', '=', $input['associates_attributes_id'])->where('product_attributes_values_id', '=', $input['product_attributes_values_id'])->get();
+        $attributesvalues = AssociateProductsAttributes::where('associates_id', '=', $input['associates_attributes_id'])->where('products_attributes_id', '=', $input['product_attributes_values_id'])->get();
         //$input['associates_attributes_id'] = 
         if (count($attributesvalues) > 0) {
             # code...
             Session::flash('alert-danger', 'Product Associated Already Exist!');
             return redirect()->route('associates.edit', $id);            
         }       
+
+        $input['associates_id']= $input['associates_attributes_id'];
+        $input['products_attributes_id']= $input['product_attributes_values_id'];
 
         //dd($input);
 

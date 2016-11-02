@@ -6,6 +6,8 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AssociateProductTableSeeder' => $baseDir . '/database/seeds/AssociateProductTableSeeder.php',
+    'AssociateTableSeeder' => $baseDir . '/database/seeds/AssociateTableSeeder.php',
     'AttributesTableSeeder' => $baseDir . '/database/seeds/AttributesTableSeeder.php',
     'AttributesValuesTableSeeder' => $baseDir . '/database/seeds/AttributesValuesTableSeeder.php',
     'BannerTableSeeder' => $baseDir . '/database/seeds/BannerTableSeeder.php',
@@ -534,6 +536,7 @@ return array(
     'PHP_Token_XOR_EQUAL' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
     'PHP_Token_YIELD' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
     'PHP_Token_YIELD_FROM' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
+    'ProductAttributeTableSeeder' => $baseDir . '/database/seeds/ProductAttributeTableSeeder.php',
     'ProductTableSeeder' => $baseDir . '/database/seeds/ProductTableSeeder.php',
     'RoleTableSeeder' => $baseDir . '/database/seeds/RoleTableSeeder.php',
     'SebastianBergmann\\Comparator\\ArrayComparator' => $vendorDir . '/sebastian/comparator/src/ArrayComparator.php',

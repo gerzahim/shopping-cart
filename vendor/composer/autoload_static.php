@@ -321,6 +321,8 @@ class ComposerStaticInitd8b534feeeb600bf819f4e29fa5ea60c
     );
 
     public static $classMap = array (
+        'AssociateProductTableSeeder' => __DIR__ . '/../..' . '/database/seeds/AssociateProductTableSeeder.php',
+        'AssociateTableSeeder' => __DIR__ . '/../..' . '/database/seeds/AssociateTableSeeder.php',
         'AttributesTableSeeder' => __DIR__ . '/../..' . '/database/seeds/AttributesTableSeeder.php',
         'AttributesValuesTableSeeder' => __DIR__ . '/../..' . '/database/seeds/AttributesValuesTableSeeder.php',
         'BannerTableSeeder' => __DIR__ . '/../..' . '/database/seeds/BannerTableSeeder.php',
@@ -849,6 +851,7 @@ class ComposerStaticInitd8b534feeeb600bf819f4e29fa5ea60c
         'PHP_Token_XOR_EQUAL' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_YIELD' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_YIELD_FROM' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
+        'ProductAttributeTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ProductAttributeTableSeeder.php',
         'ProductTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ProductTableSeeder.php',
         'RoleTableSeeder' => __DIR__ . '/../..' . '/database/seeds/RoleTableSeeder.php',
         'SebastianBergmann\\Comparator\\ArrayComparator' => __DIR__ . '/..' . '/sebastian/comparator/src/ArrayComparator.php',

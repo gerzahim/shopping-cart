@@ -12,11 +12,14 @@ class CreateAssociateProductsAttributesTable extends Migration
      */
     public function up()
     {
-        Schema::create('associate_products_attributes', function (Blueprint $table) {
+        Schema::create('associate_products', function (Blueprint $table) {
             $table->increments('id');            
-            $table->integer('product_attributes_values_id')->unsigned();
+            $table->integer('products_attributes_id')->unsigned();
+            $table->foreign('products_attributes_id')->references('id')->on('products_attributes')->onDelete('cascade');
+            //$table->foreign('products_attributes_id')->references('id')->on('products_attributes');
             //$table->integer('attributes_values_id')->unsigned();            
-            $table->integer('associates_attributes_id')->unsigned();            
+            $table->integer('associates_id')->unsigned();
+            $table->foreign('associates_id')->references('id')->on('associates')->onDelete('cascade');            
             $table->timestamps();
         });
     }
@@ -28,6 +31,6 @@ class CreateAssociateProductsAttributesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('associate_products_attributes');
+        Schema::drop('associate_products');
     }
 }

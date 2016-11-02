@@ -720,24 +720,17 @@ $tree='';
 
 //            ->join('attributes', 'associates_attributes.attributes_id', '=', 'attributes.id')
 
-            $associates = DB::table('associates_attributes')
-            ->join('attributes', 'associates_attributes.attributes_id', '=', 'attributes.id')
-            ->join('associate_products_attributes', 'associates_attributes.id', '=', 'associate_products_attributes.associates_attributes_id')
-            ->join('product_attribute_values', 'associate_products_attributes.product_attributes_values_id', '=', 'product_attribute_values.id')
-            ->where('product_attribute_values.product_id', '=', $id)
-            ->select('associates_attributes.attributes_id', 'attributes.name')
+            $associates = DB::table('associates')
+            ->join('attributes', 'associates.attributes_id', '=', 'attributes.id')
+            ->join('associate_products', 'associates.id', '=', 'associate_products.associates_id')
+            ->join('products_attributes', 'associate_products.products_attributes_id', '=', 'products_attributes.id')
+            ->where('products_attributes.product_id', '=', $id)
+            ->select('associates.*', 'attributes.name')
             ->get();
-/*
-            dd($associates);  
 
-            $associates = DB::table('products')
-            ->join('product_attribute_values', 'product_attribute_values.attributes_values_id', '=', 'products.id')
-            ->join('associate_products_attributes', 'product_attribute_values.attributes_values_id', '=', 'associate_products_attributes.id')
-            ->join('associates_attributes', 'associate_products_attributes.associates_attributes_id', '=', 'associates_attributes.id')
-            ->join('attributes', 'associates_attributes.attributes_id', '=', 'attributes.id')
-            ->where('associates_attributes.attributes_id', '=', $id)
-            ->select('products.*', 'attributes.name', 'attributes.name')
-            ->get();   
+            //dd($associates);
+
+/*
 
             dd($associates);          
 */
@@ -751,13 +744,17 @@ $tree='';
                 $listassociates[$i]['name'] = $associate->name;
 
                 $products = DB::table('products')
-                ->join('product_attribute_values', 'product_attribute_values.attributes_values_id', '=', 'products.id')
-                ->join('associate_products_attributes', 'product_attribute_values.attributes_values_id', '=', 'associate_products_attributes.id')
-                ->join('associates_attributes', 'associate_products_attributes.associates_attributes_id', '=', 'associates_attributes.id')
-                ->join('attributes', 'associates_attributes.attributes_id', '=', 'attributes.id')
-                ->where('associates_attributes.attributes_id', '=', $associate->attributes_id)
-                ->select('products.*', 'attributes.name', 'attributes.name')
+                ->join('products_attributes', 'products_attributes.product_id', '=', 'products.id')
+                ->join('associate_products', 'associate_products.products_attributes_id', '=', 'products_attributes.id')
+                ->join('associates', 'associate_products.associates_id', '=', 'associates.id')
+                ->join('attributes', 'associates.attributes_id', '=', 'attributes.id')
+                ->where('associates.id', '=', $associate->id)
+                ->where('products.id', '!=', $id)
+                ->select('products.*', 'attributes.name')
+                //->select('products.*')
                 ->get();
+
+
 
                 $listassociates[$i]['ids'] = $products;
                 

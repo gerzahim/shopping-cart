@@ -12,7 +12,7 @@ class CreateProductAttributeValuesTable extends Migration
      */
     public function up()
     {
-        Schema::create('product_attribute_values', function (Blueprint $table) {
+        Schema::create('products_attributes', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('product_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');    
@@ -29,6 +29,6 @@ class CreateProductAttributeValuesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('product_attribute_values');
+        Schema::drop('products_attributes');
     }
 }

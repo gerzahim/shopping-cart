@@ -124,8 +124,8 @@
                     @endforeach 
                     <br>
                     @foreach($listassociates as $listassociate)
-                    <p>Compare by:<b>
-                    {{ $listassociate['name'] }}: 
+                    <p>Anothers :<b>
+                    {{ $listassociate['name'] }} 
                     </b><br> 
                      @foreach($listassociate['ids'] as $listassociat)
                       <a target="_blank" href="{{ URL::to('/see-details/') }}/{{ $listassociat->id }}" title="{{ $listassociat->sku }}">

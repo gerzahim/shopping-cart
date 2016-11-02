@@ -7,5 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ProductAttributeValues extends Model
 {
     //
-    protected $fillable = ['product_id', 'attributes_values_id'];        
+    protected $table = 'products_attributes';
+    
+    protected $fillable = ['id', 'product_id', 'attributes_values_id'];        
 }

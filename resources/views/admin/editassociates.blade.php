@@ -80,9 +80,9 @@
                 <td align="center">{{ $AssociatesProduct->id }}</td>
                 <td align="left"><b>
                 {{-- 
-                {{ $AssociatesProduct->product_attributes_values_id }}--}}
-                {{ substr($titleproduct[$listassoproducts_pid[$AssociatesProduct->product_attributes_values_id]], 0, 15) }} / 
-                {{ $skuproduct[$listassoproducts_pid[$AssociatesProduct->product_attributes_values_id]]}} / {{ $listattributesv[$listassoproducts_aid[$AssociatesProduct->product_attributes_values_id]] }}
+                {{ $AssociatesProduct->products_attributes_id }}--}}
+                {{ substr($titleproduct[$listassoproducts_pid[$AssociatesProduct->products_attributes_id]], 0, 15) }} / 
+                {{ $skuproduct[$listassoproducts_pid[$AssociatesProduct->products_attributes_id]]}} / {{ $listattributesv[$listassoproducts_aid[$AssociatesProduct->products_attributes_id]] }}
                 </b></td>
                 <td class="cart_delete">
                   <a class="cart_quantity_delete" href="{{ URL::route('associateproduct.destroy', [$AssociatesProduct['id'],$assoattribute['id']]) }}"><i class="fa fa-times" aria-hidden="true"></i></a>

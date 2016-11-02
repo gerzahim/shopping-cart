@@ -1,8 +1,8 @@
-sku,title,description,price,quantity,status,categories_id,brand_id
-BT101,Product 1,Product Description 1,1.5,100,1,1,1
-BT102,Product 2,Product Description 2,8,100,1,1,1
-BT103,Product 3,Product Description 3,4,100,1,1,1
-BT104,Product 4,Product Description 4,5,100,1,1,1
-BT105,Product 5,Product Description 5,22,100,1,1,1
-BT106,Product 6,Product Description 6,55,100,1,1,1
-BT107,Product 7,Product Description 7,348,100,1,1,1
+sku,title,description,imagepath,price,quantity,status,categories_id,brand_id
+BT101,Product 1,Product Description 1,no-image.jpg,1.5,100,1,1,1
+BT102,Product 2,Product Description 2,no-image.jpg,8,100,1,1,1
+BT103,Product 3,Product Description 3,no-image.jpg,4,100,1,1,1
+BT104,Product 4,Product Description 4,no-image.jpg,5,100,1,1,1
+BT105,Product 5,Product Description 5,no-image.jpg,22,100,1,1,1
+BT106,Product 6,Product Description 6,no-image.jpg,55,100,1,1,1
+BT107,Product 7,Product Description 7,no-image.jpg,348,100,1,1,1

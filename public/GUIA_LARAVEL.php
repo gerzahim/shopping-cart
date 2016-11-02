@@ -1220,7 +1220,9 @@ php artisan make:model nameModels -m
 php artisan db:seed --class=ProductTableSeeder
 php artisan migrate:refresh --seed
 php artisan make:seed SettingTableSeeder
-
+php artisan make:seed ProductAttributeTableSeeder
+php artisan make:seed AssociateTableSeeder
+php artisan make:seed AssociateProductTableSeeder
 
 php artisan make:model States -m
 php artisan make:seed StatesTableSeeder
@@ -1263,9 +1265,72 @@ from employee e1
 
 SELECT ass.attributes_id as attributes_id, asp.product_attributes_values_id as product_value_id, att.name as attname
 FROM associates_attributes ass
-JOIN attributes att ON att.id = ass.id
-JOIN associate_products_attributes asp ON asp.associates_attributes_id = ass.id
-JOIN product_attribute_values pav ON pav.id = asp.product_attributes_values_id
+FULL OUTER JOIN attributes att ON att.id = ass.id
+FULL OUTER JOIN associate_products_attributes asp ON asp.associates_attributes_id = ass.id
+FULL OUTER JOIN product_attribute_values pav ON pav.id = asp.product_attributes_values_id
 WHERE pav.product_id = 1
 
-SELECT * FROM products po JOIN product_attribute_values pav ON pav.attributes_values_id = po.id JOIN associate_products_attributes apa ON pav.attributes_values_id = apa.id JOIN associates_attributes ass ON ass.id = apa.associates_attributes_id WHERE ass.attributes_id = 1
+
+SELECT * 
+FROM products_attributes pav 
+INNER JOIN associate_products asp ON asp.products_attributes_id = pav.id
+INNER JOIN associates ass ON ass.id = asp.associates_id 
+WHERE ass.id = 3
+
+
+SELECT * 
+FROM products po 
+INNER JOIN products_attributes pav ON pav.product_id = po.id
+INNER JOIN associate_products asp ON asp.products_attributes_id = pav.id
+INNER JOIN associates ass ON ass.id = asp.associates_id 
+WHERE ass.id = 3
+
+
+SELECT * 
+FROM products po 
+INNER JOIN products_attributes pav ON pav.product_id = po.id
+INNER JOIN associate_products asp ON asp.products_attributes_id = pav.id
+INNER JOIN associates ass ON ass.id = asp.associates_id 
+INNER JOIN attributes att ON att.id = ass.attributes_id
+WHERE ass.id = 3
+
+
+SELECT * 
+FROM products po 
+INNER JOIN products_attributes pav ON pav.product_id = po.id
+INNER JOIN associate_products asp ON asp.products_attributes_id = pav.id
+INNER JOIN associates ass ON asp.associates_id = ass.id
+INNER JOIN attributes att ON ass.attributes_id = att.id
+WHERE ass.id = 3
+
+
+
+->join('products_attributes', 'products_attributes.product_id', '=', 'products.id')
+->join('associate_products', 'associate_products.products_attributes_id', '=', 'products_attributes.id')
+->join('associates', 'associate_products.associates_id', '=', 'associates.id')
+->join('attributes', 'associates.attributes_id', '=', 'attributes.id')
+->where('associates.id', '=', $associate->id)
+->select('products.*', 'attributes.name')
+                //->select('products.*')
+
+
+SELECT * 
+FROM associate_products apa 
+INNER JOIN associates ass ON ass.id = apa.associates_id 
+WHERE ass.id = 1   
+
+SELECT * 
+FROM associate_products apa 
+FULL OUTER JOIN associates ass ON ass.id = apa.associates_id 
+WHERE ass.id = 3
+
+SELECT * 
+FROM associate_products apa 
+INNER JOIN associates ass ON ass.id = apa.associates_id 
+WHERE ass.id = 3
+
+SELECT * 
+FROM products_attributes pav 
+FULL OUTER JOIN associate_products asp ON asp.products_attributes_id = pav.id
+FULL OUTER JOIN associates ass ON ass.id = apa.associates_id 
+WHERE ass.id = 3

@@ -12,7 +12,7 @@ class CreateAssociatesAttributesTable extends Migration
      */
     public function up()
     {
-        Schema::create('associates_attributes', function (Blueprint $table) {
+        Schema::create('associates', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->integer('attributes_id')->unsigned();
@@ -27,6 +27,6 @@ class CreateAssociatesAttributesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('associates_attributes');
+        Schema::drop('associates');
     }
 }
