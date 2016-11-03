@@ -33,8 +33,9 @@
                 @endif                 
                 <!--h3>ZOOM</h3-->
 
-                --}}
                 <!-- Start WOWSlider.com BODY section --> <!-- add to the <body> of your page -->
+                
+                --}}
                   <div id="wowslider-container1">
                     <div class="ws_images">
                       <ul>
@@ -54,13 +55,7 @@
                               </a>
                             </li>
                         @endforeach
-                        <!--
-                        <li><img width="300px" height="300px" src="{{ URL::to('/images/') }}/no-image.jpg" alt="" title="" id="wows1_1"/></li>
-                        <li><img width="300px" height="300px" src="{{ URL::to('/images/') }}/no-image.jpg" alt="" title="" id="wows1_2"/></li>
-                        <li><img width="300px" height="300px" src="{{ URL::to('/images/') }}/no-image.jpg" alt="" title="" id="wows1_3"/></li>
-                        <li><a href="http://wowslider.com/vi"><img width="300px" height="300px" src="{{ URL::to('/images/') }}/no-image.jpg" alt="bootstrap carousel" title="" id="wows1_4"/></a></li>
-                        <li><img width="300px" height="300px" src="{{ URL::to('/images/') }}/no-image.jpg" alt="" title="" id="wows1_5"/></li>
-                        -->
+
                       </ul>
                     </div>
                     <div class="ws_thumbs">
@@ -88,7 +83,9 @@
                     </div>
                     <div class="ws_shadow"></div>
                   </div>
+                  {{-- 
                   <!-- End WOWSlider.com BODY section -->
+                  --}}
               </div>
             </div>
             <div class="col-sm-7">

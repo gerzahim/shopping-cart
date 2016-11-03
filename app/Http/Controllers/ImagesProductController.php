@@ -120,9 +120,16 @@ class ImagesProductController extends Controller
             $nameonly = str_replace(' ', '_', $nameonly);            
             $fullname=$nameonly.'.'.$file->getClientOriginalExtension();
 
-            $lastInsertId = ImagesProduct::orderBy('id', 'desc')->first();
 
-            $lastInsertId = $lastInsertId->id+1;            
+            try {
+                $lastInsertId = ImagesProduct::orderBy('id', 'desc')->first();
+                $lastInsertId = $lastInsertId->id+1;    
+                
+            } catch(\Exception $e){
+                $lastInsertId = 1;
+            }
+
+            //$lastInsertId = $lastInsertId->id+1;            
 
             $fileName = $input['sku'].'_'.$lastInsertId.'.'.$file->getClientOriginalExtension();
 

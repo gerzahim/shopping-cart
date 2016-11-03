@@ -1067,7 +1067,7 @@ $tree='';
                 ));     
                 
             } catch(\Exception $e){
-                DD("HELLAAAAA");
+                //DD("HELLAAAAA");
                 return redirect()->route('checkout')->with('error', $e->getMessage());
             }
 

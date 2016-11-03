@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,6 +23,9 @@
     <link href="{{ URL::to('css/prettyPhoto.css') }}" rel="stylesheet">
     <link href="{{ URL::to('css/price-range.css') }}" rel="stylesheet">
     <link href="{{ URL::to('css/animate.css') }}" rel="stylesheet">
+    <link href="{{ URL::to('engine_modal/sweetalert.css') }}" rel="stylesheet">
+
+
     <!--
     <link href="{{ URL::to('css/main.css') }}" rel="stylesheet">
     <link href="{{ URL::to('css/main1.css') }}" rel="stylesheet">
@@ -77,7 +81,6 @@
       </div>
     </div><!--/header-bottom-->
 
-
 @endif
 
 <!-- BEGIN BANNER -->
@@ -115,7 +118,47 @@
   <script src="{{ URL::to('js/price-range.js') }}"></script>
   <script src="{{ URL::to('js/jquery.prettyPhoto.js') }}"></script>
   <script src="{{ URL::to('js/main.js') }}"></script>
+    <script src="{{ URL::to('engine_modal/sweetalert-dev.js') }}"></script> 
  @include('layouts.scripts')    
+
+
+
+
+
+
+
+@if(!Session::has('modal_ask'))
+<script>
+  //$setting->modal_ask == 0
+  swal({
+    title: "Are you 18 or over?",
+    text: "You must be 18 or over to enter this website.!",
+    type: "warning",
+    showCancelButton: true,
+    confirmButtonColor: '#DD6B55',
+    confirmButtonText: 'Yes!',
+    cancelButtonText: "No!",
+    closeOnConfirm: false,
+    closeOnCancel: false
+  },
+  function(isConfirm){
+    if (isConfirm){
+      <?php
+        Session::put('modal_ask', '1');
+      ?>
+      swal("Welcome!", "", "success");
+    //window.location = "http://google.com";
+    } else {
+    window.location = "http://google.com";
+      //swal("Cancelled", "Your imaginary file is safe :)", "error");
+    }
+  });
+</script>
+@endif
+
+@if( $setting->modal_ask == 1)
+@endif
+
 
 </body>
 </html>

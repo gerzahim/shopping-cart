@@ -24,8 +24,8 @@ class DatabaseSeeder extends Seeder
         $this->call(StatesTableSeeder::class);
         $this->call(AttributesTableSeeder::class);
         $this->call(AttributesValuesTableSeeder::class);
-        $this->call(ProductAttributeTableSeeder::class);
-        $this->call(AssociateTableSeeder::class);
+        //$this->call(ProductAttributeTableSeeder::class);
+        //$this->call(AssociateTableSeeder::class);
         //$this->call(AssociateProductTableSeeder::class);
                         
         //php artisan db:seed --class=BannerTableSeeder

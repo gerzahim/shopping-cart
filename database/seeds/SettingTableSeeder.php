@@ -12,6 +12,7 @@ class SettingTableSeeder extends Seeder
     public function run()
     {
 
+        /**/
         
         // HOOKAH EXPRESS        
         $setting = new \ShopCart\Settings([
@@ -53,6 +54,7 @@ class SettingTableSeeder extends Seeder
         	'apisecretkey'=> 'sk_test_HlLliwLgXEFhdQv4WQQamLii',
         	'loginshowprices'=> 1,
         	'buylikeguess'=> 0,
+            'modal_ask'=> 1,
         	'select_home_prod'=> 1,
             'especial_prod_sku1'=> '',
             'especial_prod_sku2'=> '',
@@ -108,6 +110,7 @@ class SettingTableSeeder extends Seeder
             'apisecretkey'=> 'sk_test_HlLliwLgXEFhdQv4WQQamLii',
             'loginshowprices'=> 0,
             'buylikeguess'=> 1,
+            'modal_ask'=> 1,
             'select_home_prod'=> 1,
             'especial_prod_sku1'=> '',
             'especial_prod_sku2'=> '',
@@ -163,6 +166,7 @@ class SettingTableSeeder extends Seeder
             'apisecretkey'=> 'sk_test_HlLliwLgXEFhdQv4WQQamLii',
             'loginshowprices'=> 0,
             'buylikeguess'=> 0,
+            'modal_ask'=> 0,
             'select_home_prod'=> 1,
             'especial_prod_sku1'=> '',
             'especial_prod_sku2'=> '',
