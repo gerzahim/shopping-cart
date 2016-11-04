@@ -1,9 +1,67 @@
 id,name,description,parent_id
-5,CIGARRETE MACHINE,,0
-6,CLEANERS PIPE,,0
-7,CONCENTRATE ACCESSORIES,,0
-8,CERAMIC NAILS,,7
-9,OIL PADS,,8
-10,SILICOINE CONTAINER ,,7
-11,GLASS NAILS,,7
-12,TITANIUM NAILS,,7
+1,Butane,Butane,0
+2,Concentrate Accessories,Concentrate Accessories,0
+3,Ceramic Nails,Ceramic Nails,2
+4,Containers & Oil Pads,Containers & Oil Pads,2
+5,Dabbers,Dabbers,2
+6,Glass Nails,Glass Nails,2
+7,Joints,Joints,2
+8,Quartz Nails,Quartz Nails,2
+9,Screens,Screens,2
+10,Titanium Nails,Titanium Nails,2
+11,Extraction Tubes,Extraction Tubes,2
+12,Detox ,Detox ,0
+13,Detox ,Detox ,12
+14,Novelties,Novelties,12
+15,Glass,Glass,0
+16,Animals,Animals,15
+17,Bubblers,Bubblers,15
+18,Chillums,Chillums,15
+19,Cleaners,Cleaners,15
+20,Hand Pipes,Hand Pipes,15
+21,Oil Rigs,Oil Rigs,15
+22,Soft Glass,Soft Glass,15
+23,Water Pipes,Water Pipes,15
+24,Glass Accessories ,Glass Accessories ,0
+25,Ash Catchers,Ash Catchers,24
+26,Bowls,Bowls,24
+27,Connectors,Connectors,24
+28,Downstems,Downstems,24
+29,Drop Down,Drop Down,24
+30,Glass Screen,Glass Screen,24
+31,Slides,Slides,24
+32,Grinders,Grinders,0
+33,Aluminum,Aluminum,32
+34,Chromium Crusher,Chromium Crusher,32
+35,Metal,Metal,32
+36,Plastic,Plastic,32
+37,Wood,Wood,32
+38,Hookahs,Hookahs,0
+39,Glass Hookahs,Glass Hookahs,0
+40,Hookah Accessories,Hookah Accessories,0
+41,Accessories,Accessories,40
+42,Bowls,Bowls,40
+43,Charcoals,Charcoals,40
+44,Hoses ,Hoses ,40
+45,Jewelry Bags,Jewelry Bags,0
+46,Lighters,Lighters,0
+47,Lighters,Lighters,46
+48,Torch Lighters,Torch Lighters,46
+49,Newport,Newport,46
+50,Scorch,Scorch,46
+51,Zico,Zico,46
+52,Pipes,Pipes,0
+53,Metal Pipes,Metal Pipes,52
+54,Wood Pipes,Wood Pipes,52
+55,Rolling Papers,Rolling Papers,0
+56,Papers,Papers,55
+57,Rollers,Rollers,55
+58,Trays,Trays,55
+59,Tips,Tips,55
+60,Hemp Wick,Hemp Wick,55
+61,Safe Cans,Safe Cans,0
+62,Scales ,Scales ,0
+63,Calibration Weights,Calibration Weights,62
+64,Scales ,Scales ,62
+65,Smoking Accessories,Smoking Accessories,0
+66,Vaporizers & Accessories,Vaporizers & Accessories,0

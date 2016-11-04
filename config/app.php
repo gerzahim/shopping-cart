@@ -148,6 +148,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        Mpociot\ApiDoc\ApiDocGeneratorServiceProvider::class,
         
         //Collective\Html\HtmlServiceProvider::class,
         //php artisan make:provider SettingServiceProvider

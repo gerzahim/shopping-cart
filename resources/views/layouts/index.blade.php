@@ -67,6 +67,10 @@
    </header><!--/header-->
 <!-- END MENUTOP -->
 
+@if(Session::has('modal_ask'))
+      {{ Session::get('modal_ask') }}
+@endif
+
 @if(Session::has('message'))
 
    <div class="header-bottom"><!--header-bottom-->
@@ -123,41 +127,64 @@
 
 
 
-
-
-
-
-@if(!Session::has('modal_ask'))
-<script>
-  //$setting->modal_ask == 0
-  swal({
-    title: "Are you 18 or over?",
-    text: "You must be 18 or over to enter this website.!",
-    type: "warning",
-    showCancelButton: true,
-    confirmButtonColor: '#DD6B55',
-    confirmButtonText: 'Yes!',
-    cancelButtonText: "No!",
-    closeOnConfirm: false,
-    closeOnCancel: false
-  },
-  function(isConfirm){
-    if (isConfirm){
-      <?php
-        Session::put('modal_ask', '1');
-      ?>
-      swal("Welcome!", "", "success");
-    //window.location = "http://google.com";
-    } else {
-    window.location = "http://google.com";
-      //swal("Cancelled", "Your imaginary file is safe :)", "error");
-    }
-  });
-</script>
-@endif
-
+<!-- BEGIN MODAL ASK OVER +18 -->
 @if( $setting->modal_ask == 1)
+
+  @if(!Session::has('modal_ask'))
+    <script>
+
+      var token = '{{ Session::token() }}';
+      var url = '{{ route('setmodalask') }}';    
+      var urlu = '{{ route('unsetmodalask') }}';
+
+      //$setting->modal_ask == 0
+      swal({
+        title: "Are you 18 or over?",
+        text: "You must be 18 or over to enter this website.!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: '#DD6B55',
+        confirmButtonText: 'Yes!',
+        cancelButtonText: "No!",
+        closeOnConfirm: false,
+        closeOnCancel: false
+      },
+      function(isConfirm){
+        if (isConfirm){
+
+          $.ajax({
+            method: "POST",
+            url: url,
+            //data: dataString,
+            data: { _token: token},
+            success: function(data) {
+             console.log(data);
+            }
+          });
+
+          swal("Welcome!", "", "success");
+        //window.location = "http://google.com";
+        } else {
+
+          $.ajax({
+            method: "POST",
+            url: urlu,
+            //data: dataString,
+            data: { _token: token},
+            success: function(data) {
+             console.log(data);
+            }
+          });
+        
+          window.location = "http://google.com";
+          //swal("Cancelled", "Your imaginary file is safe :)", "error");
+        }
+      });
+    </script>
+  @endif
+
 @endif
+<!-- END MODAL ASK OVER +18 -->
 
 
 </body>

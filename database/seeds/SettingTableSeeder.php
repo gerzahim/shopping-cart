@@ -125,6 +125,7 @@ class SettingTableSeeder extends Seeder
         /* */
 
 
+        /**/
         /*
         // CROWN TRADING
         $setting = new \ShopCart\Settings([

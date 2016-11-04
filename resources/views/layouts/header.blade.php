@@ -22,9 +22,9 @@
           <div class="col-sm-6">
             <div class="social-icons pull-right">
               <ul class="nav navbar-nav">
-                <li><a href="{{ $setting->link_facebook }}"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="{{ $setting->link_twitter }}"><i class="fa fa-instagram"></i></a></li>
-                <li><a href="{{ $setting->link_twitter }}"><i class="fa fa-twitter"></i></a></li>
+                <li><a target="_blank" href="{{ $setting->link_facebook }}"><i class="fa fa-facebook"></i></a></li>
+                <li><a target="_blank" href="{{ $setting->link_twitter }}"><i class="fa fa-instagram"></i></a></li>
+                <li><a target="_blank" href="{{ $setting->link_twitter }}"><i class="fa fa-twitter"></i></a></li>
                 
 
                 {{-- 

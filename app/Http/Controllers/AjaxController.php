@@ -120,6 +120,21 @@ $cart->addShippingCost($totalprice, $shippingCost);
       //return response()->json(['totalprice' => $totalprice, 'shippingcost' => $shippingCost, 'totalbeforetax' => $totalbeforetax, 'taxcost' => $taxcost, 'totalcost' => $totalcost], 200);
       //return response('Hello World', 200)
    }
+
+   public function setModalask(Request $request){
+
+        Session::put('modal_ask', '1');
+
+    //        Session::forget('cart');
+   }
+
+   public function unsetModalask(Request $request){
+
+        Session::forget('modal_ask');
+   }
+
+
+
 }
 
 /*

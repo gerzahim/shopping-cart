@@ -190,6 +190,7 @@ class ProductController extends Controller
     {
         //Get Current Path
         //$url = $request->url();
+        //Session::forget('modal_ask');
         
         //get original path
         $url = str_replace($request->path(), '', $request->url());

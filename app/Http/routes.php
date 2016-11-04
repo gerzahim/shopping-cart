@@ -73,6 +73,19 @@ Route::post('/getshippingcost', [
 	'as' => 'getshippingcost'
 ]);
 
+
+Route::post('/setmodalask', [
+	'uses' => 'AjaxController@setModalask',
+	'as' => 'setmodalask'
+]);
+
+Route::post('/unsetmodalask', [
+	'uses' => 'AjaxController@unsetModalask',
+	'as' => 'unsetmodalask'
+]);
+
+
+
 //Route::post('/getmsg','AjaxController@index');
 
 

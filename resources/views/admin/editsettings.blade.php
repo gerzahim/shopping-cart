@@ -407,7 +407,20 @@
                 </select>                
               </div>              
             </div>            
-            <div class="form-group col-md-4"></div>
+            <div class="form-group col-md-4">
+              <div class="form-group">
+                <label for="card-number"> Confirm Window Over +18  </label>
+                <select id="modal_ask" name="modal_ask">                  
+                      @if($setting['modal_ask'] == '1')
+                        <option selected="selected" value="1">Yes</option>
+                        <option value="0">No</option>
+                      @else
+                        <option value="1">Yes</option>
+                        <option selected="selected" value="0">No</option>      
+                      @endif
+                </select>                
+              </div>              
+            </div>  
             <div class="form-group col-md-4"></div>
 
           </div>             
