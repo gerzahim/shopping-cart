@@ -8,9 +8,18 @@
                     <div class="col-md-12">
                      <h2>Cart List</h2>   
                     </div>
+                      
                 </div> 
   <section id="cart_items">
-  
+   <div class="container">
+       <div class="flash-message">
+      @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+        @if(Session::has('alert-' . $msg))
+        <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }}</p>
+        @endif
+      @endforeach
+    </div>
+   </div>
 
     <div class="container">
 <hr>

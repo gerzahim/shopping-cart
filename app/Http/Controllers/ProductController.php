@@ -154,7 +154,7 @@ class ProductController extends Controller
         $tree1 =$this->getBrands($url);    
 
         //$products = Product::all();
-        $products = Product::where('categories_id', '=', $categories_id)->paginate($setting->pagination_shop);
+        $products = Product::where('categories_id', '=', $categories_id)->where('status', '=', 1)->paginate($setting->pagination_shop);
         
         return view('shop.index', compact('products', 'categories', 'tree', 'tree1'));
     }  
@@ -179,7 +179,7 @@ class ProductController extends Controller
         $tree1 =$this->getBrands($url);    
 
         //$products = Product::all();
-        $products = Product::where('brand_id', '=', $brand_id)->paginate($setting->pagination_shop);
+        $products = Product::where('brand_id', '=', $brand_id)->where('status', '=', 1)->paginate($setting->pagination_shop);
 
         //$title = "Laracast";
         
@@ -697,6 +697,7 @@ $tree='';
         $product = Product::find($id);
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
         $cart = new Cart($oldCart);
+        //dd($product);
         $cart->add($product, $product->id);
 
         $request->session()->put('cart', $cart);
@@ -988,12 +989,10 @@ $tree='';
 
         $setting = Settings::find(1);
         if ($setting->buylikeguess == 0) {
-
             if (Auth::guest()){
                 Session::flash('message', 'Please Login to Order !!!');     
                 return redirect('principal');                  
-            }
-          
+            }          
         }
 
         if (!Session::has('cart')) {
@@ -1150,7 +1149,6 @@ $tree='';
                 'email' => $order->email,
                 'costumer' => $order->name,
                 'idorder' => $order->id,
-                'name_site' => $settings->name_site,
                 'order' => $order->cart,
                 'phone' => $order->phone,
                 'companyname' => $order->companyname,
@@ -1203,8 +1201,35 @@ $tree='';
                     //dd($product->quantity);
                     
                     $product->quantity = $product->quantity - $item['qty'];
-                   
+
+                    // Check if qty = 0 
+                    // Send Email to Administrator , Stock it's Over
+                    // Product Status = 0
+                    if ($product->quantity == 0) {
+
+                        //Send Email 
+                        $data = array(
+
+                            'email_site' => $setting->email_site,              
+                            'name_site' => $settings->name_site,
+                            'item' => $product->title,
+                            'sku' => $product->sku
+                        );
+
+                        $data['name_site'] = str_replace("&#039;","'",$data['name_site']);
+
+                        Mail::send('emails.stockover', $data, function ($message) use ($data){
+                            $message->from($data['email_site']);
+                            $message->to($data['email_site'], $data['name_site']);
+                            $message->subject(' this item it is over on '.$data['name_site'].'');
+                        });
+                        $product->status = 0;                           
+                    }
+
+                    
                     $product->save();
+
+
                 }
             }
 

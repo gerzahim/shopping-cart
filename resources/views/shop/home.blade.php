@@ -14,7 +14,7 @@
       </div>
     </div>
   @endif
-   <div class="col-sm-6 col-md-4 col-md-offset-4 col-sm-offset-3">  
+   <div class="col-sm-9 padding-right">  
     <div class="flash-message">
       @foreach (['danger', 'warning', 'success', 'info'] as $msg)
         @if(Session::has('alert-' . $msg))

@@ -1299,3 +1299,12 @@ WHERE ass.id = 3
 
 uploadshopcart@herbnkulture.com
 QbT*fbV@Nhbt
+
+
+fix title on shop
+
+checkqty Available
+if qty = 0 
+    send email
+    status = 0 
+

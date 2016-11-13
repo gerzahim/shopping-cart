@@ -1,6 +1,7 @@
 <?php
 
 namespace ShopCart;
+use Session;
 
 class Cart 
 {
@@ -24,18 +25,29 @@ class Cart
     }
 
     public function add($item, $id){
-    	$storedItem = ['qty' => 0, 'price' => $item->price, 'item' => $item];
-    	if ($this->items) {
+    	$storedItem = ['qty' => 0, 'price' => $item->price, 'item' => $item, 
+        'avail' => $item['quantity'] ];
+    	
+        
+        if ($this->items) {
     		if (array_key_exists($id, $this->items)) {
     			$storedItem = $this->items[$id];
     		}
     	}
 
-    	$storedItem['qty']++;
-    	$storedItem['price'] = $item->price * $storedItem['qty'];
-    	$this->items[$id] = $storedItem;
-    	$this->totalQty++;
-    	$this->totalPrice += $item->price;
+        $storedItem['avail']--;
+        if ($storedItem['avail'] == -1) {
+           //DD('Cant get more than this');
+           Session::flash('alert-danger', 'Add to Cart Failed! , no more this item available for sale');
+           $storedItem['avail']++;
+        }else{
+            $storedItem['qty']++;
+            $storedItem['price'] = $item->price * $storedItem['qty'];
+            $this->items[$id] = $storedItem;
+            $this->totalQty++;
+            $this->totalPrice += $item->price;                    
+        }
+
     }
 
 
@@ -56,6 +68,7 @@ class Cart
 
     public function reduceByOne($id){
 
+        $this->items[$id]['avail']++;
         $this->items[$id]['qty']--;
         $this->items[$id]['price'] -= $this->items[$id]['item']['price'];
         $this->totalQty--;
