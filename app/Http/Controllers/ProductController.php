@@ -57,11 +57,15 @@ class ProductController extends Controller
         //$products = Product::all();
         $id=1;
         $setting = Settings::find($id);
-        //dd($setting->pagination_shop);        
+        //dd($setting->pagination_shop); 
+
+
 
         //$products = Product::paginate($setting->pagination_shop);
         //$products = Product::where('status', '=', 1)->paginate($setting->pagination_shop);
         $products = Product::where('status', '=', 1)->orderBy('id', 'desc')->paginate($setting->pagination_shop);
+
+        $products =$this->getSortTitle($products);
 
         
         return view('shop.index', compact('products', 'categories', 'tree', 'tree1'));
@@ -127,7 +131,9 @@ class ProductController extends Controller
             $products = Product::where('status', '=', 1)->where('title', 'LIKE', '%'.$pc_search.'%')->orwhere('description', 'LIKE', '%'.$pc_search.'%')->paginate($setting->pagination_shop);            
         }
     */
-        //dd($products);        
+        //dd($products);
+
+        $products =$this->getSortTitle($products);       
 
         
         return view('shop.search', compact('products', 'categories', 'tree', 'tree1', 'search'));
@@ -155,6 +161,8 @@ class ProductController extends Controller
 
         //$products = Product::all();
         $products = Product::where('categories_id', '=', $categories_id)->where('status', '=', 1)->paginate($setting->pagination_shop);
+
+        $products =$this->getSortTitle($products);
         
         return view('shop.index', compact('products', 'categories', 'tree', 'tree1'));
     }  
@@ -181,7 +189,7 @@ class ProductController extends Controller
         //$products = Product::all();
         $products = Product::where('brand_id', '=', $brand_id)->where('status', '=', 1)->paginate($setting->pagination_shop);
 
-        //$title = "Laracast";
+        $products =$this->getSortTitle($products);
         
         return view('shop.index', compact('products', 'categories', 'tree', 'tree1'));
     }        
@@ -217,6 +225,7 @@ class ProductController extends Controller
             //$products = Product::orderBy('id', 'desc')->paginate($setting->pagination_home);
             //$products = Product::orderBy('created_at', 'desc')->paginate(6);
             $products = Product::where('status', '=', 1)->orderBy('id', 'desc')->paginate($setting->pagination_shop);
+
             
         }elseif ($setting->select_home_prod == '2') {
             # Random Products
@@ -244,6 +253,7 @@ class ProductController extends Controller
             //dd($products);
         }
 
+        $products =$this->getSortTitle($products);
         
 
         // Get info for Content Section Shop
@@ -360,6 +370,44 @@ class ProductController extends Controller
         
 
     }
+
+    public function getSortTitle($products){
+
+        foreach ($products as $product) {            
+            //dd($product->title);
+            # Explode title by Spaces
+            $keywords = preg_split('/\s+/', $product->title);
+
+            $product->title= "";
+            $flag_br= 0;
+            foreach ($keywords as $keyword) {
+                # Get lenght title                  
+                $lenght_title = strlen($product->title);
+                if($lenght_title < 25){
+                    $product->title.= " ";
+                    $product->title.= $keyword;
+                }elseif($lenght_title > 55){
+                    break;
+                }else{
+                    if ($flag_br == 0) {
+                        $product->title.= "<br>";
+                        //$product->title.= "<br>";
+                        $flag_br= 1;
+                    }
+                    $product->title.= " ";
+                    $product->title.= $keyword;                    
+                }
+
+           } # End Second Foreach
+               if ($flag_br == 0) {
+                    $product->title.= "<br>.";
+                } 
+
+        }
+        
+        return $products;
+
+    }    
 
     public function getOrders(){
 
