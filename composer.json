@@ -8,6 +8,7 @@
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*",
         "laravelcollective/html": "5.2.*",
+        "paypal/rest-api-sdk-php": "^1.6",
         "stripe/stripe-php": "3.*",
         "yajra/laravel-datatables-oracle": "~6.0",
         "maatwebsite/excel": "~2.1.0",

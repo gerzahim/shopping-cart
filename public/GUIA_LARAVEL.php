@@ -18,6 +18,7 @@ $ cd nombreRepositorio   "C:\xampp\htdocs"
 Para crear un Nuevo Proyecto "Cinema" - Instalacion Via Composer Create-Project
 $ composer create-project --prefer-dist laravel/laravel Cinema
 
+$ composer install
 
 Para ayudas con Artisan (Artisan es la interfaz de comandos de Laravel)
  $ php artisan -h
@@ -34,7 +35,11 @@ $ php artisan serve
 http://127.0.0.1/Cinema/public
 
 Para modificar el namespace en todo el proyecto "App" por "Cinema";
+ 
  $ php artisan app:name Cinema
+
+$ composer install 
+
 
 
 
