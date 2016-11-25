@@ -22,6 +22,10 @@ class CreateProductsTable extends Migration
             $table->integer('quantity')->nullable();
             $table->integer('status');
             $table->integer('categories_id')->unsigned();
+            //$table->foreign('category_id')
+                  //->references('id')
+                  //->on('categories')
+                  //->onDelete('cascade');
             //$table->foreign('categories_id')->references('id')->on('categories');
             $table->integer('brand_id')->unsigned();
             //$table->foreign('brand_id')->references('id')->on('brands');

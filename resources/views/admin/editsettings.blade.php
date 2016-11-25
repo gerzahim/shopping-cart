@@ -344,7 +344,7 @@
           <div class="row">
             <div class="form-group col-md-4">
               <div class="form-group">
-                <label for="card-number">Allow Buy Like Guess</label>
+                <label for="card-number">Allow Buy Like Guest</label>
                 <select id="buylikeguess" name="buylikeguess">                  
                       @if($setting['buylikeguess'] == '0')
                         <option selected="selected" value="0">No</option>
