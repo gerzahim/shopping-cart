@@ -40,21 +40,4 @@ function stripeResponseHandler(status, response){
     }
 }
 
-/*
-$(document).ready(function(){  
-    /*
-    jQuery("#getRequest").change(function() {
 
-    });
-   
-
-    $("#getRequest").click(function() {
-        alert('Hola');
-        $.get('getRequest', function(data){
-            console.log(data);
-            }
-        );
-        }
-    });
-});
- */

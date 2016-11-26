@@ -28,8 +28,14 @@
                   @endforeach
                 </div>
 
+                @if ($payment_toorder == '1')
+                  @if ($modal_pay == '0')
+                    <form action="{{ route('checkout') }}" id="checkout-form" class="contact-form row" name="checkout-form" method="post">
+                  @endif
+                @else
+                    <form action="{{ route('checkout') }}" id="checkout-form" class="contact-form row" name="checkout-form" method="post">                
+                @endif
 
-              <form action="{{ route('checkout') }}" id="checkout-form" class="contact-form row" name="checkout-form" method="post">
                 
                     <div class="form-group col-md-6">
                           <label for="country">Full Name:</label>
@@ -85,39 +91,7 @@
                       <input type="text" id="country" class="form-control" name="country" value="{{ Auth::guest() ? '' : Auth::user()->country }}" placeholder="USA">
                       </div>                       
 
-
-                    @if ($payment_toorder == '1')
-                        <div class="form-group col-md-12">
-                          <hr>
-                          <label for="country">Payment Info</label>
-                        </div>                    
-                        <div class="form-group col-md-6"></div><div class="form-group col-md-6"></div>
-                        <div class="form-group col-md-6">
-                            <label for="country">Card Holder Name:</label>
-                            <input type="text" id="card-name" class="form-control" placeholder="Card Holder Name" required>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="country">Credit Card Number:</label>
-                            <input type="text" id="card-number" class="form-control" placeholder="Credit Card Number" required>                      
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="country">Expiration Month:</label>
-                            <input type="text" id="card-expiry-month" class="form-control" placeholder="Expiration Month" required>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="country">Expiration Year:</label>
-                            <input type="text" id="card-expiry-year" class="form-control" placeholder="Expiration Year" required>                
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="country">CVC:</label>
-                            <input type="text" id="card-cvc" class="form-control" placeholder="CVC" required>
-                        </div>  
-                        <div class="form-group col-md-6">
-                            <input type="hidden" id="publishable_key" class="form-control" value="{{ $setting->apipublickey }}">
-                        </div>                                          
-                    @endif
-                    
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-12">
                       <label for="country">Please Select Delivery Option:</label>
                       <select id="shipping_id" name="shipping_id" required>
                           <option value="0">Select Shipping...</option>
@@ -126,218 +100,70 @@
                           <option value="3">2nd-Day Shipping</option>
                           <option value="4">Next-Day Shipping</option>
                       </select> 
-                    </div>                    
-
-                    <div class="form-group col-md-6">
-                        <button type="submit" class="btn btn-success">Place Your Order</button>              
-                    </div>  
- 
-                  {{ csrf_field() }}                                                           
-                </form>
+                    </div>   
 
 
 
+                    @if ($payment_toorder == '1')
 
 
+                        @if ($modal_pay == '1')
 
+                          <div class="form-group col-md-12">
+                            <button name="redirect" id="redirect" class="btn btn-success">  
+                              PAYMENT&nbsp;&nbsp;
+                              <i class="fa fa-credit-card" aria-hidden="true"></i>
+                              </button>
+                          </div>                          
 
+                        @else 
 
+                          <div class="form-group col-md-12">
+                            <hr>
+                            <label for="country">Payment Info</label>
+                          </div>                    
+                          <div class="form-group col-md-6"></div><div class="form-group col-md-6"></div>
+                          <div class="form-group col-md-6">
+                              <label for="country">Card Holder Name:</label>
+                              <input type="text" id="card-name" class="form-control" placeholder="Card Holder Name" required>
+                          </div>
+                          <div class="form-group col-md-6">
+                              <label for="country">Credit Card Number:</label>
+                              <input type="text" id="card-number" class="form-control" placeholder="Credit Card Number" required>                      
+                          </div>
+                          <div class="form-group col-md-6">
+                              <label for="country">Expiration Month:</label>
+                              <input type="text" id="card-expiry-month" class="form-control" placeholder="Expiration Month" required>
+                          </div>
+                          <div class="form-group col-md-6">
+                              <label for="country">Expiration Year:</label>
+                              <input type="text" id="card-expiry-year" class="form-control" placeholder="Expiration Year" required>                
+                          </div>
+                          <div class="form-group col-md-6">
+                              <label for="country">CVC:</label>
+                              <input type="text" id="card-cvc" class="form-control" placeholder="CVC" required>
+                          </div>  
+                          <div class="form-group col-md-6">
+                              <input type="hidden" id="publishable_key" class="form-control" value="{{ $setting->apipublickey }}">
+                          </div> 
 
-                {{-- 
-<!-- 
-              @if ($payment_toorder == '1')
-              <form action="{{ route('checkout') }}" id="checkout-form" class="contact-form row" name="checkout-form" method="post">
-                    @if (Auth::guest())
-                      <div class="form-group col-md-6">
-                          <label for="country">Full Name:</label>
-                          <input type="text" id="name" class="form-control" required name="name" placeholder="Full Name">
-                      </div>
-                      <div class="form-group col-md-6">
-                          <label for="country">Company Name:</label>
-                          <input type="text" id="companyname" class="form-control" name="companyname" placeholder="Company Name">
-                      </div>                                              
-                      <div class="form-group col-md-6">
-                          <label for="country">Email:</label>
-                          <input type="text" id="email" class="form-control" required name="email" placeholder="Email">
-                      </div>
-                      <div class="form-group col-md-6">
-                          <label for="country">Phone:</label>
-                          <input type="text" id="phone" class="form-control" required name="phone" placeholder="Phone">
-                      </div>
-                      <div class="form-group col-md-6"></div>
-                      <div class="form-group col-md-12">
-                          <label for="country">Address:</label>
-                          <input type="text" id="address" class="form-control" required name="address" placeholder="Address">
-                      </div>  
-                   <div class="form-group col-md-6">
-                        <label for="city">City:</label>                    
-                        <input type="text" id="city" class="form-control" name="city" placeholder="City">                      
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="state">State:</label>
-                    <select id="state" class="form-control" name="state">
-                        @foreach($states as $state)
-                                <option value="{{ $state->code }}">{{ $state->name }}</option>              
-                        @endforeach
-                    </select>                        
-                    </div>
-                    <div class="form-group col-md-6">
-                    <label for="zip">Zip Code:</label>
-                    <input type="text" id="zip" class="form-control" name="zip" placeholder="33174">             
-                    </div>
-                    <div class="form-group col-md-6">
-                    <label for="country">Country:</label>
-                    <input type="text" id="country" class="form-control" name="country" placeholder="USA">
-                    </div>                      
+                          <div class="form-group col-md-12">
+                              <button type="submit" class="btn btn-success">Place Your Order </button>              
+                          </div>                      
+                        @endif
 
                     @else
-                    <div class="form-group col-md-6">
-                        <label for="country">Full Name:</label>
-                        <input type="text" id="name" class="form-control" required name="name" value="{{ Auth::user()->name }}" placeholder="Full Name">
-                    </div>
-                      <div class="form-group col-md-6">
-                          <label for="country">Company Name:</label>
-                          <input type="text" id="companyname" class="form-control" name="companyname" value="{{ Auth::user()->companyname }}" placeholder="Company Name">
-                      </div>                                         
-                      <div class="form-group col-md-6">
-                          <label for="country">Email:</label>
-                          <input type="text" id="email" class="form-control" required name="email" value="{{ Auth::user()->email }}" placeholder="Email">
-                      </div>
-                      <div class="form-group col-md-6">
-                          <label for="country">Phone:</label>
-                          <input type="text" id="phone" class="form-control" required name="phone" value="{{ Auth::user()->phone }}" placeholder="Phone">
-                      </div>                    
-                      <div class="form-group col-md-6"></div>
-                      <div class="form-group col-md-12">
-                          <label for="country">Address:</label>
-                          <input type="text" id="address" class="form-control" required name="address" value="{{ Auth::user()->address }}" placeholder="Address">
-                      </div>
-                     <div class="form-group col-md-6">
-                          <label for="city">City:</label>                    
-                          <input type="text" id="city" class="form-control" name="city"  value="{{ Auth::user()->city }}" placeholder="City">                      
-                      </div>
-                      <div class="form-group col-md-6">
-                          <label for="state">State:</label>
-                      <select id="state" class="form-control" name="state">
-                          @foreach($states as $state)            
-                              @if( Auth::user()->city == $state->code)
-                                    <option value="{{ $state->code }}" selected>{{ $state->name }}</option>                                
-                              @else
-                                    <option value="{{ $state->code }}">{{ $state->name }}</option>                                
-                              @endif
-                          @endforeach
-                      </select>                        
-                      </div>
-                      <div class="form-group col-md-6">
-                      <label for="zip">Zip Code:</label>
-                      <input type="text" id="zip" class="form-control" name="zip" value="{{ Auth::user()->zip }}" placeholder="33174">             
-                      </div>
-                      <div class="form-group col-md-6">
-                      <label for="country">Country:</label>
-                      <input type="text" id="country" class="form-control" name="country" value="{{ Auth::user()->country }}" placeholder="USA">
-                      </div>                      
-                    @endif
-   
-                    <div class="form-group col-md-12">
-                      <hr>
-                      <label for="country">Payment Info</label>
-                    </div>                    
-                    <div class="form-group col-md-6"></div><div class="form-group col-md-6"></div>
-                    <div class="form-group col-md-6">
-                        <label for="country">Card Holder Name:</label>
-                        <input type="text" id="card-name" class="form-control" placeholder="Card Holder Name" required>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="country">Credit Card Number:</label>
-                        <input type="text" id="card-number" class="form-control" placeholder="Credit Card Number" required>                      
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="country">Expiration Month:</label>
-                        <input type="text" id="card-expiry-month" class="form-control" placeholder="Expiration Month" required>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="country">Expiration Year:</label>
-                        <input type="text" id="card-expiry-year" class="form-control" placeholder="Expiration Year" required>                
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="country">CVC:</label>
-                        <input type="text" id="card-cvc" class="form-control" placeholder="CVC" required>
-                    </div>
-                    
-                    <div class="form-group col-md-6">
-                      <label for="country">Please Select Shipping:</label>
-                      <select id="shipping_id" name="shipping_id" required>
-                          <option value="0">Please Select Shipping</option>
-                          <option value="1">Pick up Store</option>
-                          <option value="2">Ground Shipping</option>
-                          <option value="3">2nd-Day Shipping</option>
-                          <option value="4">Next-Day Shipping</option>
-                      </select> 
-                    </div>                    
-                    <div class="form-group col-md-6">
-                        <input type="hidden" id="publishable_key" class="form-control" value="{{ $setting->apipublickey }}">
-                    </div>
-                    <div class="form-group col-md-12" align="center">
-                        <button type="submit" class="btn btn-success">Place Your Order</button>              
-                    </div>  
- 
-                  {{ csrf_field() }}                                                           
-                </form>
-                @else
-              <form action="{{ route('checkout') }}" id="checkout-form1" class="contact-form row" name="checkout-form1" method="post">
-                    @if (Auth::guest())
-                      <div class="form-group col-md-6">
-                          <input type="text" id="name" class="form-control" required name="name" placeholder="Full Name">
-                      </div>                      
-                      <div class="form-group col-md-6">
-                          <input type="text" id="email" class="form-control" required name="email" placeholder="Email">
-                      </div>
-                      <div class="form-group col-md-6">
-                          <input type="text" id="phone" class="form-control" required name="phone" placeholder="Phone">
-                      </div>
-                      <div class="form-group col-md-6"></div>
-                      <div class="form-group col-md-12">
-                          <input type="text" id="address" class="form-control" required name="address" placeholder="Address">
-                      </div>                      
-                    @else
-                    <div class="form-group col-md-6">
-                        <input type="text" id="name" class="form-control" required name="name" value="{{ Auth::user()->name }}" placeholder="Full Name">
-                    </div>                    
-                      <div class="form-group col-md-6">
-                          <input type="text" id="email" class="form-control" required name="email" value="{{ Auth::user()->email }}" placeholder="Email">
-                      </div>
-                      <div class="form-group col-md-6">
-                          <input type="text" id="phone" class="form-control" required name="phone" value="{{ Auth::user()->phone }}" placeholder="Phone">
-                      </div>                    
-                      <div class="form-group col-md-6"></div>
-                      <div class="form-group col-md-12">
-                          <input type="text" id="address" class="form-control" required name="address" value="{{ Auth::user()->address }}" placeholder="Address">
-                      </div>
+                        <div class="form-group col-md-12">
+                            <button type="submit" class="btn btn-success">Place Your Order </button>              
+                        </div>  
                     @endif
                     
-                    <div class="form-group col-md-6">
-                      <select id="shipping_id" name="shipping_id" required>
-                          <option value="0">Please Select Shipping</option>
-                          <option value="1">Pick up Store</option>
-                          <option value="2">Ground Shipping</option>
-                          <option value="3">2nd-Day Shipping</option>
-                          <option value="4">Next-Day Shipping</option>
-                      </select> 
-                    </div>                    
-                    <div class="form-group col-md-6">
-                        <input type="hidden" id="publishable_key" class="form-control" value="{{ $setting->apipublickey }}">
-                    </div>
-                    <div class="form-group col-md-6">
-                        <button type="submit" class="btn btn-success">Place Your Order</button>              
-                    </div>  
+
+
  
                   {{ csrf_field() }}                                                           
                 </form>
 
-                @endif
-                -->
-
---}}
 
             </div>
           </div>          
@@ -446,14 +272,20 @@
 @endsection
 
 @section('scripts')
-    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-      <script src="js/checkout.js"></script>
+
+@if ($modal_pay == '0')
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script src="js/checkout.js"></script>
+@endif
+
 
 <script type="text/javascript">
 var token = '{{ Session::token() }}';
 var url = '{{ route('getshippingcost') }}';
 var totalprice = '{{ $totalPrice }}';
 </script>
+
+
 
 <script type="text/javascript">
 
@@ -489,26 +321,71 @@ $(document).ready(function(){
 
       });
 
-});
-/*
-         function getMessage(){
-          //alert('Helloo');
+    $("#redirect").click(function () {
+        //alert("test");
+        //name, email, phone, address, city, state, zip, country
+        var url = '{{ route('payment') }}'; 
 
-              $totalprice       98
-    $shippingcost      2
-    $totalbeforetax   100
-    $taxcost           7
-    $totalcost         107  
+        var nameReg = /^[A-Za-z]+$/;
+        var numberReg =  /^[0-9]+$/;
+        var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;        
 
-$.ajax({
-    url: '/getmsg',
-    type: 'POST',
-    data: {_token: CSRF_TOKEN},
-    dataType: 'JSON',
-    success: function (data) {
-        console.log(data);
-    }
+        var shipping_id = document.getElementById("shipping_id");
+        var name = document.getElementById("name");
+        var name = $('#name').val();
+        var email = $('#email').val();
+        var phone = $('#phone').val();
+        var address = $('#address').val();
+        var city = $('#city').val();
+        var state = $('#state').val();
+        var zip = $('#zip').val();
+        var country = $('#country').val();
+
+        if (name == '') {
+            alert('Please write full name !!!');
+             $( "#name" ).focus();
+        }  else if (email == '') {
+            alert('Please write email !!!');
+             $( "#email" ).focus();
+        }  else if (!emailReg.test(email)){
+            alert('Please write valid Email !!!');
+             $( "#email" ).focus();
+        } else if (phone == '') {
+            alert('Please write Phone !!!');
+             $( "#phone" ).focus();
+        }  else if (!numberReg.test(phone)){
+            alert('Please write valid Phone Number !!!');
+             $( "#phone" ).focus();
+        } else if (address == '') {
+            alert('Please write address !!!');
+             $( "#address" ).focus();
+        } else if (city == '') {
+            alert('Please write city !!!');
+             $( "#city" ).focus();
+        } else if (zip == '') {
+            alert('Please write Zip Code !!!');
+             $( "#zip" ).focus();
+        }  else if (!numberReg.test(zip)){
+            alert('Please write valid Zip Code !!!');
+             $( "#zip" ).focus();
+        } else if (country == '') {
+            alert('Please write country !!!');
+             $( "#country" ).focus();
+        } else if (shipping_id.selectedIndex == 0) {
+             alert('Select Method Shipping !!!');
+             $( "#shipping_id" ).focus();
+        }else {
+            var selectedText = shipping_id.options[shipping_id.selectedIndex].text;
+            //alert(url);
+            window.location.href = url; 
+        }         
+    });
+
 });
-*/
-</script>      
+
+</script>    
+
+
+
+
 @endsection

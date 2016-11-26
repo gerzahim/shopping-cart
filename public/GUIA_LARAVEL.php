@@ -1302,14 +1302,19 @@ WHERE ass.id = 3
 ->select('products.*', 'attributes.name')
                 //->select('products.*')
 
-uploadshopcart@herbnkulture.com
-QbT*fbV@Nhbt
 
+1) Set Paypal 
 
-fix title on shop
+login 
+developer.paypal.com
 
-checkqty Available
-if qty = 0 
-    send email
-    status = 0 
+Go to Dashboard
+Create App
+
+change sandbox to live 
+
+secret and client id
+
+change on Config/paypal.php
+
 

@@ -421,9 +421,46 @@
                 </select>                
               </div>              
             </div>  
-            <div class="form-group col-md-4"></div>
+            <div class="form-group col-md-4">
+              <div class="form-group">
+                <label for="card-number"> Select Payment Method </label>
+                <select id="modal_pay" name="modal_pay">                  
+                      @if($setting['modal_pay'] == '1')
+                        <option selected="selected" value="1">Paypal</option>
+                        <option value="0">Stripe</option>
+                      @else
+                        <option value="1">Paypal</option>
+                        <option selected="selected" value="0">Stripe</option>      
+                      @endif
+                </select>                
+              </div>              
+            </div> 
 
           </div>             
+          <div class="row">
+            <div class="col-xs-12">
+              <hr> 
+            </div>
+          </div>
+          <div class="row">
+            <fieldset class="fsStyle" style="border: 4px solid #a1a1a1;margin-top: 15px;padding: 10px;">
+              <legend class="legendStyle">
+                <a data-toggle="collapse" data-target="#demo" href="#">&nbsp;Paypal Account </a>
+              </legend>
+              <div class="form-group col-md-4">
+                <div class="form-group">
+                  <label for="name" id="text_redl" name="text_red">Paypal Client_Id </label>
+                  <input type="text" id="paypalclient_id" class="form-control" name="paypalclient_id" value="{{ $setting['paypalclient_id'] }}" >
+                </div>              
+              </div>
+              <div class="form-group col-md-4">
+                <div class="form-group">
+                  <label for="name" id="text_redl" name="text_red">Paypal Secret Key </label>
+                  <input type="text" id="paypalsecretkey" class="form-control" name="paypalsecretkey" value="{{ $setting['paypalsecretkey'] }}" >
+                </div>              
+              </div>                
+            </fieldset>            
+          </div>
           <div class="row">
             <div class="col-xs-12">
               <hr> 
@@ -448,7 +485,6 @@
               </div>                
             </fieldset>            
           </div>
-
 
           <div class="row">
             <fieldset class="fsStyle" style="border: 4px solid #a1a1a1;margin-top: 15px;padding: 10px;">
