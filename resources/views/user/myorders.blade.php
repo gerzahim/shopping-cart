@@ -27,6 +27,10 @@
 					<h2>My Orders</h2>
 					@foreach($orders as $order)
 						<div class="panel panel-default">
+							<div class="panel-footer">
+									Order Placed: <strong> {{ $order->created_at }} </strong> <br>
+									Order #: <strong> {{ $order->id }} </strong>
+							</div>
 							<div class="panel-body">
 								<ul class="list-group">
 									@foreach($order->cart->items as $item)
@@ -35,24 +39,25 @@
 											{{ $item['item']['title'] }} | <strong> Sku: </strong> {{ $item['item']['sku'] }} | <strong> {{ $item['qty'] }} </strong> Units 
 										</li>
 									@endforeach
-								</ul>
+
 							</div>
 							<div class="panel-footer">
-								<strong>
-									<p>SubTotal: ${{ $order->cart->totalPrice }}</p>
-									<p>Tax: ${{ $order->cart->taxCost }}</p>
-									<p>SubTotal + Tax: ${{ $order->cart->totalPrice+$order->cart->taxCost }}</p>
-									<p>Shipping: ${{ $order->cart->shippingCost }}</p>
-									<p>Total Cost: ${{ $order->cart->totalCost }}</p>
-                                             									
+									<strong>Cost Details</strong><br>
+									SubTotal: <strong>${{ $order->cart->totalPrice }}</strong><br>
+									Tax: <strong>${{ $order->cart->taxCost }}</strong><br>
+									SubTotal + Tax: <strong>${{ $order->cart->totalPrice+$order->cart->taxCost }}</strong><br>
+									Shipping: <strong>${{ $order->cart->shippingCost }}</strong><br>
+									Total Cost: <strong>${{ $order->cart->totalCost }}</strong><br>
+                                    <br>      									
+ 									<strong>Order Status</strong><br>
 									@if($order->status == '1')
-										<p>Status: Pending to Delivery</p>
+										Status: <strong>Pending to Delivery</strong><br>
 									@else
-										<p>Status: Out to Delivery</p>
-										<p>Shipping Company: {{ $order->shipcompany }}</p>
-										<p>Tracking Number: {{ $order->tracking }}</p>
+										Status: <strong>Out to Delivery</strong><br>
+										Shipping Company: <strong>{{ $order->shipcompany }}</strong><br>
+										Tracking Number: <strong>{{ $order->tracking }}</strong><br>
 									@endif
-								</strong>
+								
 							</div>
 						</div>
 					@endforeach

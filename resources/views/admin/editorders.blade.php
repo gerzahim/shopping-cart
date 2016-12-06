@@ -36,25 +36,37 @@
 
                   <form action="{{ route('orderupdate', $order->id) }}" id="upd-form-user" class="contact-form row" name="upd-form-user" method="post">
                     <div class="form-group col-md-6">
-                      <label for="address">Date Order:</label>
-                      <input type="text" id="email" class="form-control" value="{{ $order['created_at'] }}" readonly> 
+                      Date Order:  
+                      <label for="address"><strong>{{ $order['created_at']->format('F d, Y h:i:s A') }}</strong></label>
                     </div>
                     <div class="form-group col-md-6">
-                      <label for="address">Order Id:</label>
-                      <input type="text" id="id" class="form-control" value="{{ $order['id'] }}" readonly> 
+                      Order #:  
+                      <label for="address">{{ $order['id'] }}</strong></label>
                     </div>                    
                     <div class="form-group col-md-6">
-                      <label for="address">Email:</label>
-                      <input type="text" id="email" class="form-control" value="{{ $order['email'] }}" readonly> 
+                      Email:
+                      <label for="address">{{ $order['email'] }}</strong></label>
                     </div>
                     <div class="form-group col-md-6">
-                      <label for="address">Name:</label>
-                        <input type="text" id="name" class="form-control" name="name" value="{{ $order['name'] }}" readonly>
+                      Name:
+                      <label for="address">{{ $order['name'] }}</strong></label>
                     </div>
-                    <div class="form-group col-md-6">
-                    <label for="phone">Telephone:</label>
-                    <input type="text" id="phone" class="form-control" name="phone" value="{{ $order['phone'] }}" readonly>       
-                    </div>                    
+                    <div class="form-group col-md-12">
+                      Telephone:
+                      <label for="address">{{ $order['phone'] }}</strong></label>
+                    </div>
+                    <div class="form-group col-md-12">
+                      Address:  
+                      <strong>{{ $order['address'] }}</strong><br>
+                      City:
+                      <strong>{{ $order['city'] }}</strong>, &nbsp;&nbsp;
+                      State:
+                      <strong>{{ $order['state'] }}</strong>, &nbsp;&nbsp;
+                      Zip Code:
+                      <strong>{{ $order['zip'] }}</strong>
+                    </div>
+
+
                     <div class="form-group col-md-12">
 
                       <label for="address">Detail Order:</label>
@@ -70,11 +82,13 @@
                                     @endforeach
                                   </ul>
                                 </div>
-                                <div class="panel-footer"><strong>SubTotal: ${{ $order->cart->totalPrice }}</strong></div>
-                                <div class="panel-footer"><strong>State Tax to be Collected: ${{ $order->cart->taxCost }}</strong></div>
-                                <div class="panel-footer"><strong>SubTotal + Tax: ${{ $order->cart->totalPrice+$order->cart->taxCost }}</strong></div>
-                                <div class="panel-footer"><strong>Shipping Cost: ${{ $order->cart->shippingCost }}</strong></div>
-                                <div class="panel-footer"><strong>Grand Total: ${{ $order->cart->totalCost }}</strong></div>
+                                <div class="panel-footer">
+                                    SubTotal: <strong>${{ $order->cart->totalPrice }}</strong><br>
+                                    State Tax to be Collected: <strong>${{ $order->cart->taxCost }}</strong><br>
+                                    SubTotal + Tax: <strong>${{ $order->cart->totalPrice+$order->cart->taxCost }}</strong><br>
+                                    Shipping Cost: <strong>${{ $order->cart->shippingCost }}</strong><br>
+                                    Grand Total: <strong>${{ $order->cart->totalCost }}</strong><br>
+                                </div>
                               </div>
 
                     </div>

@@ -1104,6 +1104,35 @@ $tree='';
         if ($setting->payment_toorder == '1') {
             # code...
 
+            if ($setting->modal_pay == '1') {
+                // Select Paypal
+
+                # Don't do anything here, call by javascript paypal Controller
+
+            }else{
+                // Select Stripe
+                Stripe::setApiKey($setting->apisecretkey);
+
+                try {
+                    $charge = Charge::create(array(
+                      "amount" => $cart->totalCost * 100,
+                      "currency" => "usd",
+                      "source" => $request->input('stripeToken'), // obtained with Stripe.js
+                      "description" => "Charge for ShopCart"
+                    ));     
+                    
+                } catch(\Exception $e){
+                    //DD("HELLAAAAA");
+                    return redirect()->route('checkout')->with('error', $e->getMessage());
+                }
+            }
+
+
+
+
+
+            /*
+
             Stripe::setApiKey($setting->apisecretkey);
 
             try {
@@ -1117,7 +1146,7 @@ $tree='';
             } catch(\Exception $e){
                 //DD("HELLAAAAA");
                 return redirect()->route('checkout')->with('error', $e->getMessage());
-            }
+            }*/
 
         }
                         
@@ -1135,6 +1164,9 @@ $tree='';
             $order->companyname = $request->input('companyname');
             
             //$order->payment_id = $charge->id;
+
+
+
 
             // Define ID Payment
             if ($setting->payment_toorder == '1') {
@@ -1161,8 +1193,10 @@ $tree='';
                 $order->save();
             }
 
+            //Unserialize to email format
             $order->cart = unserialize($order->cart);
 
+            // Get General Parameters
             $id=1;
             $settings = Settings::find($id);  
 
@@ -1189,7 +1223,7 @@ $tree='';
             }
 
 
-            //Send Email 
+            //Data Email Format
             $data = array(
 
                 'email_site' => $setting->email_site, 
@@ -1197,6 +1231,7 @@ $tree='';
                 'email' => $order->email,
                 'costumer' => $order->name,
                 'idorder' => $order->id,
+                'order_placed' => date('F d, Y h:i:s A'),
                 'order' => $order->cart,
                 'phone' => $order->phone,
                 'companyname' => $order->companyname,
@@ -1214,6 +1249,7 @@ $tree='';
             //dd($data['name_site']);  
             //dd($setting->email_site, $setting->name_site);
 
+            // Send Email to Client
             Mail::send('emails.order', $data, function ($message) use ($data){              
 
                 $message->from($data['email_site'], $data['name_site']);
@@ -1223,6 +1259,7 @@ $tree='';
 
             });                         
 
+            // Send Email to Administrator
             Mail::send('emails.neworder', $data, function ($message) use ($data){
 
                 $message->from($data['email']);

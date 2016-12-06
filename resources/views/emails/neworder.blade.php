@@ -11,10 +11,12 @@
                 <p>Phone : {{ $phone }}</p>
                 <p>Address : {{ $address }}.</p>
                 <p>{{ $city }}, {{ $state }} {{ $zip}} {{ $country }}.</p>
-                <br>                
+                <br> 
+                <p>Order Placed: {{ $order_placed }}</p>               
                 <p>Order id #{{ $idorder }}</p>
                 <p>Delivery Option : <strong>{{ $shipping }}</strong></p>               
-
+                <br>
+                <br>
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <ul class="list-group">
@@ -26,6 +28,8 @@
                             @endforeach
                         </ul>
                     </div>
+                    <br>
+                    <br>
                     <div class="panel-footer">
                             <p>SubTotal: <strong>${{ $order->totalPrice }}</strong></p>
                             <p>Shipping: <strong>${{ $order->shippingCost }}</strong></p>

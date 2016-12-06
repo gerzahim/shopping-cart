@@ -106,7 +106,6 @@
 
                     @if ($payment_toorder == '1')
 
-
                         @if ($modal_pay == '1')
 
                           <div class="form-group col-md-12">
@@ -335,11 +334,13 @@ $(document).ready(function(){
         var name = $('#name').val();
         var email = $('#email').val();
         var phone = $('#phone').val();
+        var companyname = $('#companyname').val();
         var address = $('#address').val();
         var city = $('#city').val();
         var state = $('#state').val();
         var zip = $('#zip').val();
         var country = $('#country').val();
+        
 
         if (name == '') {
             alert('Please write full name !!!');
@@ -377,7 +378,10 @@ $(document).ready(function(){
         }else {
             var selectedText = shipping_id.options[shipping_id.selectedIndex].text;
             //alert(url);
-            window.location.href = url; 
+            //window.location.href = url;
+            window.location.href = url+"?name="+name+"&email="+email+"&phone="+phone+"&companyname="+companyname+"&address="+address+"&city="+city+"&state="+state+"&zip="+zip+"&shipping_id="+shipping_id.selectedIndex; 
+
+
         }         
     });
 

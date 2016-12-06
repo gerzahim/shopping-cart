@@ -1311,10 +1311,23 @@ developer.paypal.com
 Go to Dashboard
 Create App
 
-change sandbox to live 
+change sandbox to live on config/paypal
 
 secret and client id
 
 change on Config/paypal.php
 
+
+rasce88-buyer@gmail.com
+hermoine7
+
+
+rasce88-facilitator_api1.gmail.com
+Password:
+C2A2YJUS8LW7E6GF
+
+
+
+Order placed
+December 2, 2016
 
