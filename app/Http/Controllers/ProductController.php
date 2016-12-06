@@ -1058,7 +1058,7 @@ $tree='';
         $setting = Settings::find(1);
 
 
-        return view('shop.checkout', ['total' => $total, 'products' => $cart->items, 'totalPrice' => $cart->totalPrice, 'totalQty' => $cart->totalQty, 'shippings' => $shippings, 'payment_toorder' => $setting->payment_toorder, 'states' => $states]);
+        return view('shop.checkout', ['total' => $total, 'products' => $cart->items, 'totalPrice' => $cart->totalPrice, 'totalQty' => $cart->totalQty, 'shippings' => $shippings, 'payment_toorder' => $setting->payment_toorder, 'modal_pay' => $setting->modal_pay, 'states' => $states]);
     }
 
 

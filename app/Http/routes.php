@@ -261,6 +261,24 @@ Route::get('/faqs', [
 	'as' => 'getfaqs'
 ]);
 
+
+// Paypal
+
+// Send Order to Paypal
+Route::get('payment', array(
+	'as' => 'payment',
+	'uses' => 'PaypalController@postPayment',
+));
+
+// Return shopcart route success payment 
+Route::get('payment/status', array(
+	'as' => 'payment.status',
+	'uses' => 'PaypalController@getPaymentStatus',
+));
+
+
+
+
 //auth routes
 Route::group(['middleware' => 'auth'], function () {
 

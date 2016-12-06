@@ -311,7 +311,7 @@ $(document).ready(function(){
          console.log( data.taxcost );
          console.log( data.totalprice );
           $('#shippingcost').html('$ '+data.shippingcost);
-          $('#totalbeforetax').html('$ '+data.subtotalwtax);
+          $('#subtotalwtax').html('$ '+data.subtotalwtax);
           $('#taxcost').html('$ '+data.taxcost);
           $('#totalcost').html('$ '+data.totalcost);          
           $('#totalprice').html('$ '+data.totalprice);
