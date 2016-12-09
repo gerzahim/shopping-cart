@@ -1331,3 +1331,4 @@ C2A2YJUS8LW7E6GF
 Order placed
 December 2, 2016
 
+http://doralhookah.com/public/payment/status?token=EC-3WD37473M80464909

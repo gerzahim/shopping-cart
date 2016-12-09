@@ -80,6 +80,10 @@ class PaypalController extends BaseController
 		Session::put('zip', $input['zip']);
 		Session::put('shipping_id', $input['shipping_id']);
 
+        // Get General Parameters
+        $id=1;
+        $setting = Settings::find($id);  
+        $setting->name_site = str_replace("&#039;","'", $setting->name_site);
 
 
 		$payer = new Payer();
@@ -127,7 +131,7 @@ class PaypalController extends BaseController
 		$transaction = new Transaction();
 		$transaction->setAmount($amount)
 			->setItemList($item_list)
-			->setDescription('Pedido de prueba en mi Laravel App Store');
+			->setDescription('Order From '. $setting->name_site);
 
 		$redirect_urls = new RedirectUrls();
 		$redirect_urls->setReturnUrl(\URL::route('payment.status'))
@@ -374,7 +378,7 @@ class PaypalController extends BaseController
                     $data = array(
 
                         'email_site' => $setting->email_site,              
-                        'name_site' => $settings->name_site,
+                        'name_site' => $setting->name_site,
                         'item' => $product->title,
                         'sku' => $product->sku
                     );

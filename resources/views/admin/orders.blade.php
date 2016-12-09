@@ -43,7 +43,7 @@
             @foreach($orders as $order)
             <tr>
               <td class="cart_description">
-                <h4>{{ $order['created_at'] }}</h4>
+                <h4>{{ $order['created_at']->format('F d, Y h:i:s A') }}</h4>
               </td>
               <td class="cart_description">
                 <h4>{{ $order['email'] }}</h4>

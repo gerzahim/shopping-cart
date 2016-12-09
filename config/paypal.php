@@ -11,7 +11,8 @@ return array(
         /**
          * Available option 'sandbox' or 'live'
          */
-        'mode' => 'sandbox',
+        //'mode' => 'sandbox',
+        'mode' => 'live',
 
         /**
          * Specify the max request time in seconds
