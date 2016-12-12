@@ -41,9 +41,9 @@
                   <img height="50px" width="50px" src="{{ URL::to('/') }}/media/{{ $category['imagepath'] }}" alt="No Images">
                 @endif
                 <br><br>
-                <label><input type="checkbox" id="cbox1" name="cbox1" value="1"></label>
-                <label for="card-name">Check If Want To Change Current Image Category</label>
                 <input type="file" id="imagepath" name="imagepath" accept="image/*">
+                <label><input type="checkbox" id="cbox1" name="cbox1" value="1"></label>
+                <label for="card-name">Check If Want To Change Current Image Category</label>                
               </div>              
             </div>            
           </div>    

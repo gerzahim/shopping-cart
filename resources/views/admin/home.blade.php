@@ -52,8 +52,23 @@
                                 <h4>Brands</h4>
                               </a>
                         </div>              
-                    </div>                                          
-                   <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                    </div>   
+                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                        <div class="div-square">
+                             <a href="{{ url('/states') }}" >
+                                <i class="fa fa-flag fa-5x"></i>
+                                <h4>Tax States</h4>
+                              </a>
+                        </div>              
+                    </div>                                        
+
+                      
+                </div>   
+                  <!-- /. ROW  -->
+                <div class="row text-center pad-top">
+
+
+                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
                         <div class="div-square">
                              <a href="{{ url('/product') }}" >
                                 <i class="fa fa-tags fa-5x"></i>
@@ -61,11 +76,6 @@
                               </a>
                         </div>              
                     </div> 
-                      
-                </div>   
-                  <!-- /. ROW  -->
-                <div class="row text-center pad-top">
-
                      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
                         <div class="div-square">
                              <a href="{{ url('/attributes') }}" >
@@ -107,14 +117,7 @@
                               </a>
                         </div>              
                     </div>                                                             
-                   <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
-                        <div class="div-square">
-                             <a href="{{ url('/settingedit/1') }}" >
-                                <i class="fa fa-cog fa-5x"></i>
-                                <h4>Settings</h4>
-                              </a>
-                        </div>              
-                    </div>                   
+                 
                  
 
                   <!-- 
@@ -173,6 +176,17 @@
 
 
  </div>
+                   <!-- /. ROW  -->
+                <div class="row text-center pad-top">
+                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                        <div class="div-square">
+                             <a href="{{ url('/settingedit/1') }}" >
+                                <i class="fa fa-cog fa-5x"></i>
+                                <h4>Settings</h4>
+                              </a>
+                        </div>              
+                    </div>  
+                </div>
                  <!-- /. ROW  -->   
           <div class="row">
                     <div class="col-lg-12 ">

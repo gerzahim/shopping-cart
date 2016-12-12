@@ -105,10 +105,10 @@
                 @else
                   <img height="300px" width="300px" src="{{ URL::to('/') }}/media/{{ $product['imagepath'] }}" alt="No Images">
                 @endif
-                <br><br>
+                <br><br>                
+                <input type="file" id="imagepath" name="imagepath" accept="image/*">
                 <label><input type="checkbox" id="cbox1" name="cbox1" value="1"></label>                                  
                 <label for="card-name">Check If Want To Change Current Image Product</label>
-                <input type="file" id="imagepath" name="imagepath" accept="image/*">
               </div>              
             </div>            
           </div>

@@ -108,9 +108,9 @@
                     @endif
                   @endif
                 <br><br>
-                <label><input type="checkbox" id="cbox1" name="cbox1" value="1"></label>
-                <label for="card-name">Check If Want To Change Current Image Banner</label>
                 <input type="file" id="imagepath" name="imagepath" accept="image/*">
+                <label><input type="checkbox" id="cbox1" name="cbox1" value="1"></label>
+                <label for="card-name">Check If Want To Change Current Image Banner</label>                
               </div>              
             </div>            
           </div>
@@ -125,9 +125,9 @@
                     <img height="50px" width="50px" src="{{ URL::to('/') }}/media/{{ $banner['imagepath_price'] }}" alt="No Images" name="imagepath_price" >
                   @endif
                 <br><br>
+                <input type="file" id="imagepath_price" name="imagepath_price" accept="image/*">
                 <label><input type="checkbox" id="cbox2" name="cbox2" value="1"></label>
                 <label for="card-name" name="cbox2">If Want To Change Current Image Banner</label>
-                <input type="file" id="imagepath_price" name="imagepath_price" accept="image/*">
               </div>              
             </div>            
           </div>

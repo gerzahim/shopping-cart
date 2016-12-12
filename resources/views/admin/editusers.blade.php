@@ -87,10 +87,11 @@
                                       <label for="phone"><i>-- No File</i></label>                                
                                 @endif
                                 <br>                     
-                        <label><input type="checkbox" id="cbox1" name="cbox1" value="1"></label>
-                        <label for="card-name">Check If Want To Change Current Sales Tax File </label><br>
+
                         <label for="phone">Upload - Resale Certificate for Sales Tax copy*:</label>
-                        <input type="file" id="salestax" class="form-control" name="salestax">        
+                        <input type="file" id="salestax" class="form-control" name="salestax">     
+                        <label><input type="checkbox" id="cbox1" name="cbox1" value="1"></label>
+                        <label for="card-name">Check If Want To Change Current Sales Tax File </label><br>                           
                     </div> 
                     <div class="form-group col-md-6">
                     <label for="phone">Status:</label>
