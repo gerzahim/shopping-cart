@@ -84,13 +84,6 @@ class SettingController extends Controller
 
             $input = $request->all();
 
-            $input['especial_prod_sku1'] = strtoupper($input['especial_prod_sku1']);
-            $input['especial_prod_sku2'] = strtoupper($input['especial_prod_sku2']);
-            $input['especial_prod_sku3'] = strtoupper($input['especial_prod_sku3']);
-            $input['especial_prod_sku4'] = strtoupper($input['especial_prod_sku4']);
-            $input['especial_prod_sku5'] = strtoupper($input['especial_prod_sku5']);
-            $input['especial_prod_sku6'] = strtoupper($input['especial_prod_sku6']);
-
             // If Checked for Change Image for Logo Home
             if ($request->cbox1 == '1') {
                 
