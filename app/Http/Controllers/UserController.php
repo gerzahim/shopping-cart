@@ -8,6 +8,7 @@ use ShopCart\Http\Requests;
 use ShopCart\User;
 use ShopCart\States;
 use ShopCart\Settings;
+use ShopCart\Order;
 use Session;
 use Auth;
 use Mail;
@@ -159,15 +160,36 @@ class UserController extends Controller
         return trim($field) !== '' ? $field : null;
     }    
 
-    public function getOrders(){
+    public function getOrders($id){
 
-        $orders = Auth::user()->orders;
+        //$orders = Auth::user()->orders;
+
+        $order = Order::find($id);
+        $order->cart = unserialize($order->cart);
+
+/*
         $orders->transform(function($order, $key){
             $order->cart = unserialize($order->cart);
+            //$order->cart = var_dump(unserialize($order->cart));
+            //print_r ($order->cart);
+            //$order->cart = unserialize(base64_decode($order->cart));
             return $order;
         });
 
-        return view('user.myorders', ['orders' => $orders]);
+*/
+
+        //return view('user.myorders', ['orders' => $orders]);
+        return view('user.myorders', ['order' => $order]);
+    } 
+
+
+    public function getListOrders(){
+
+        $orders = Auth::user()->orders;
+
+        $orders = Order::orderBy('id', 'desc')->paginate(20);
+
+        return view('user.mylistorders', ['orders' => $orders]);
 
     } 
 

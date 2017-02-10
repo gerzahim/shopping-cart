@@ -74,6 +74,17 @@ Route::post('/getshippingcost', [
 ]);
 
 
+Route::post('/addtocart', [
+	'uses' => 'AjaxController@getAddByOneToCart',
+	'as' => 'addtocart'
+]);
+
+Route::post('/setqtyitemtocart', [
+	'uses' => 'AjaxController@setQtyItemToCart',
+	'as' => 'setqtyitemtocart'
+]);
+
+
 Route::post('/setmodalask', [
 	'uses' => 'AjaxController@setModalask',
 	'as' => 'setmodalask'
@@ -162,6 +173,7 @@ Route::get('/reduceByOneWishlist/{id}', [
 	'as' => 'wishlist.reduceByOne'
 ]);
 
+
 Route::get('/removeItemWishlist/{id}', [
 	'uses' => 'WishListController@getRemoveItem',
 	'as' => 'wishlist.removeItem'
@@ -195,10 +207,16 @@ Route::get('/account', [
 ]);
 
 
-Route::get('/myorders', [
+Route::get('/myorders/{id}', [
 	'uses' => 'UserController@getOrders',
 	'as' => 'product.myorders'
 ]);
+
+Route::get('/mylistorders', [
+	'uses' => 'UserController@getListOrders',
+	'as' => 'product.myorders'
+]);
+
 
 
 Route::get('/useredit', [
@@ -340,6 +358,11 @@ Route::group(['middleware' => 'auth'], function () {
 	]);
 
 
+	Route::get('/searchProducts', [
+		'uses' => 'ProductController@getProductsBySearch',
+		'as' => 'searchproducts'
+	]);
+
 	Route::post('/multipleupdate', [
 		'uses' => 'ProductController@getMultipleUpdate',
 		'as' => 'product.multipleupdate'
@@ -407,6 +430,12 @@ Route::group(['middleware' => 'auth'], function () {
 		'uses' => 'ProductController@editOrder',
 		'as' => 'order.editOrder'
 	]);				
+
+	Route::get('/seepicturesorder/{id}', [
+		'uses' => 'ProductController@seePicturesOrder',
+		'as' => 'order.seepicturesOrder'
+	]);	
+
 
 	Route::post('/orderupdate/{id}', [
 		'uses' => 'ProductController@updateOrder',

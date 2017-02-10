@@ -37,6 +37,7 @@
               <td class="price">Order Id</td>
               <td class="price">Status</td>
               <td class="quantity">Edit Tracking</td>
+              <td class="quantity">See Pictures</td>
             </tr>
           </thead>
           <tbody>
@@ -64,6 +65,9 @@
               <td class="cart_delete">
                 <a class="cart_quantity_delete" href="ordersedit/{{ $order['id'] }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
               </td>
+              <td class="cart_delete">
+                <a class="cart_quantity_delete" href="seepicturesorder/{{ $order['id'] }}"><i class="fa fa-eye" aria-hidden="true"></i></a>
+              </td>              
             </tr>
             @endforeach 
 

@@ -38,7 +38,8 @@
 						        <div class="col-sm-6">
 						            <div class="a-row">
 						            	<h4 class=""></h4>
-						            	<a href="{{ url('/myorders') }}">Your Orders</a>
+						            	{{-- <a href="{{ url('/myorders') }}">Your Orders</a>--}}
+						            	<a href="{{ url('/mylistorders') }}">Your List Orders</a>
 						            </div>
 						        </div>							
 							</div>

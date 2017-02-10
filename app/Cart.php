@@ -84,7 +84,42 @@ class Cart
         $this->totalPrice -= $this->items[$id]['price'];
         unset($this->items[$id]);        
 
-    }   
+    }
+
+    public function setQtyItem($id, $qty){
+        
+        //Delete from qty 
+        //$this->totalQty = $this->totalQty - $this->items[$id]['qty'];
+        //$this->totalPrice = $this->totalPrice - ($this->items[$id]['price']*$this->items[$id]['qty'] );
+
+        unset($this->items[$id]);
+
+        $storedItem = ['qty' => 0, 'price' => $item->price, 'item' => $item, 
+        'avail' => $item['quantity'] ];
+        
+        if ($this->items) {
+            if (array_key_exists($id, $this->items)) {
+                $storedItem = $this->items[$id];
+            }
+        }
+
+        //$storedItem['avail']--;
+        $storedItem['avail'] = $storedItem['avail'] - $qty;
+        if ($storedItem['avail'] < 0) {
+           //DD('Cant get more than this');
+           Session::flash('alert-danger', 'Add to Cart Failed! , no more this item available for sale');
+           $storedItem['avail'] = $storedItem['avail'] + $qty;
+        }else{
+            $storedItem['qty'] = $qty;
+            $storedItem['price'] = $item->price * $storedItem['qty'];
+            $this->items[$id] = $storedItem;
+            //$this->totalQty++;
+            $this->totalQty = $this->totalQty + $qty;
+            //$this->totalPrice += $item->price;                    
+            $this->totalPrice = $this->totalPrice + ($storedItem['price']*$qty);                    
+        }
+
+    }       
 
 
 }

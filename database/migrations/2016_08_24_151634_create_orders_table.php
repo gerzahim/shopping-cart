@@ -19,7 +19,8 @@ class CreateOrdersTable extends Migration
             $table->string('shipcompany')->nullable();  
             $table->string('tracking')->nullable();  
             $table->integer('user_id');
-            $table->text('cart');                     
+            //$table->text('cart');
+            $table->mediumText('cart');                     
             $table->string('address');
             $table->string('city')->nullable();  
             $table->string('state')->nullable();  

@@ -33,7 +33,7 @@
                 <br><br> 
 
                 <br>
-                <label for="name" id="text_redl" name="text_red">#suggest (width=300px )</label>
+                <label for="name" id="text_redl" name="text_red">#suggest (width=260px )</label>
                 <input type="file" id="bansidepath" name="bansidepath" accept="image/*">
                 <label><input type="checkbox" id="cbox1" name="cbox1" value="1"></label>
                 <label for="card-name">Check If Want To Change Current Image Logo Home</label>

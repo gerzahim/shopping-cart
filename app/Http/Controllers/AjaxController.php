@@ -134,21 +134,35 @@ $cart->addShippingCost($totalprice, $shippingCost);
    }
 
 
+   public function getAddByOneToCart(Request $request){
+
+        $product = Product::find($id);
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->add($product, $product->id);
+
+        Session::put('cart', $cart);
+   }
+
+   public function setQtyItemToCart(Request $request){
+
+
+      $input = $request->all();
+      
+      $id_qty= $input['id_qty'];
+
+      list($id, $qty) = split("-", $id_qty);
+      
+        //$product = Product::find($id);
+        //$oldCart = Session::has('cart') ? Session::get('cart') : null;
+        //$cart = new Cart($oldCart);
+        //$cart->setQtyItem($id, $qty);
+
+        //Session::put('cart', $cart);
+        //return response()->json(['totalprice' => $cart->totalPrice]);
+        //return response()->json(['totalprice' => $cart->totalPrice], 200);
+   }
 
 }
 
-/*
-
-		$oldCart = Session::has('cart') ? Session::get('cart') : null;
-		$cart = new Cart($oldCart);
-		$cart->addShippingCost($totalPrice, $shippingCost);
-		$request->session()->put('cart', $cart);
-		$totalprice = $totalprice + $shippingCost;
-
-                          <option value="0">Please Select Shipping</option>
-                          <option value="1">Pick up Store</option>
-                          <option value="2">Ground Shipping</option>
-                          <option value="3">2nd-Day Shipping</option>
-                          <option value="4">Next-Day Shipping</option>
-
-*/                          
+                       

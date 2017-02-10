@@ -57,20 +57,11 @@
               </td>
               <td class="cart_quantity" >
                 <div class="cart_quantity_button">
-                  <select name="quantity" id="quantity">
-                    <option value="{{ $product['item']['id'] }}-1">1</option> 
-                    <option value="{{ $product['item']['id'] }}-2">2</option>
-                    <option value="{{ $product['item']['id'] }}-3">3</option>
-                    <option value="{{ $product['item']['id'] }}-4">4</option>
-                    <option value="{{ $product['item']['id'] }}-5">5</option>
-                  </select>
-
-                  {{-- <!--
                   <a class="cart_quantity_down" href="{{ route('product.reduceByOne', ['id' => $product['item']['id']]) }}"> - </a>                    
                     <input class="cart_quantity_input" type="text" name="quantity" value="{{ $product['qty'] }}" autocomplete="off" size="2" readonly>
                   <a class="cart_quantity_up" href="{{ route('product.addByOne', ['id' => $product['item']['id']]) }}"> + </a>
 
-                  
+                  {{-- <!--
                   <input type="text" name="quantity" min="1" max="500" value="{{ $product['qty'] }}">
                   <input class="cart_quantity_input" type="text" name="quantity" value="{{ $product['qty'] }}" autocomplete="off" size="2" readonly>
                   <a class="cart_quantity_up" href="{{ route('product.addByOne', ['id' => $product['item']['id']]) }}"> + </a>
@@ -82,7 +73,7 @@
                 </div>
               </td>
               <td class="cart_total">
-                <p class="cart_total_price" name="cart_total_price">${{ $product['item']['price']*$product['qty'] }}</p>
+                <p class="cart_total_price">${{ $product['item']['price']*$product['qty'] }}</p>
               </td>
              <td class="cart_price" align="center">
                 <a class="cart_quantity_delete" href="{{ route('product.removeItem', ['id' => $product['item']['id']]) }}"><i class="fa fa-times fa-2x"></i></a>
@@ -116,7 +107,7 @@
         <div class="col-sm-6">
           <div class="total_area">
             <ul>
-              <li>Cart Sub Total <span class="totalPrice">${{ $totalPrice }}</span></li>
+              <li>Cart Sub Total <span>${{ $totalPrice }}</span></li>
             </ul>
               <a class="btn btn-default check_out" href="{{ route('checkout') }}">Check Out</a>
           </div>
@@ -147,7 +138,7 @@
 
 <script type="text/javascript">
 var token = '{{ Session::token() }}';
-var url = '{{ route('setqtyitemtocart') }}';
+var url = '{{ route('addtocart') }}';
 </script>
 
 
@@ -157,30 +148,36 @@ var url = '{{ route('setqtyitemtocart') }}';
 $(document).ready(function(){  
 
 
-    $("select[name='quantity']").change(function(){
+    $("#addcart").click(function(e){ 
 
-        var id_qty = $(this).val();
-        var token = $("input[name='_token']").val();
+            e.preventDefault();
+            var category = $(e.target).text();
 
-        $.ajax({
-          method: "POST",
-          url: url,
-          data: { id_qty: id_qty, _token:token},
-                 
-          success: function(data) {
+            alert(category);
 
-              alert(data); 
-              //console.log(data);
-              //$("p.cart_total_price").html('');
-              //$("p.cart_total_price").html('VERGA');
-          }
-
-        });
-
-        alert("me cago en tooooo");
-    
+            $.ajax({
+              method: "POST",
+              url: url,
+              //data: dataString,
+              data: { id: $('#shipping_id').val(),  state: $('#state').val(), _token: token, _totalprice: totalprice},
+              success: function(data) {
+               console.log(data);
+               console.log( data.shippingcost );         
+               console.log( data.total_cost );
+               console.log( data.subtotalwtax );
+               console.log( data.taxcost );
+               console.log( data.totalprice );
+                $('#shippingcost').html('$ '+data.shippingcost);
+                $('#subtotalwtax').html('$ '+data.subtotalwtax);
+                $('#taxcost').html('$ '+data.taxcost);
+                $('#totalcost').html('$ '+data.totalcost);          
+                $('#totalprice').html('$ '+data.totalprice);
+                $('#myshipping').append(token);
+              }
+            });            
+      
+      
     });
-
 
 });
 

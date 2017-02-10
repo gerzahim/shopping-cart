@@ -29,15 +29,23 @@
                   <div class="product-image-wrapper">
                     <div class="single-products">
                         <div class="productinfo text-center">
-                          {{-- 
+                        {{--
+                          
+                            <object  height="249px" width="249px" data="{{ URL::to('/images/') }}/no-image.jpg" type="image/jpg">
+                              <img height="249px" width="249px" src="{{ URL::to('/media/') }}/{{ $product->imagepath}}" alt="" />
+                            </object> 
+                          
                           <img height="249px" width="249px" src="{{ URL::to('/media/') }}/{{ $product->imagepath}}" alt="" />
-                          --}}
-                          @if( file_exists(URL::to('/media/')).$product->imagepath) 
-                            <img height="249px" width="249px" src="{{ URL::to('/media/') }}/{{ $product->imagepath}}" alt="" />
-                          @else
-                            <img height="249px" width="249px" src="{{ URL::to('/images/') }}/no-image.jpg" alt="" />
-                          @endif 
 
+                          --}}
+                          <a href="{{ route('product.seeDetails', ['id' => $product->id]) }}">
+                            @if( file_exists(URL::to('/media/')).$product->imagepath) 
+                                <img id="currentPhoto" src="{{ URL::to('/media/') }}/{{ $product->imagepath}}" onerror="this.src='{{ URL::to('/images/') }}/no-image.jpg'" width="249px" height="249px">
+                            @else
+                              <img height="249px" width="249px" src="{{ URL::to('/images/') }}/no-image.jpg" alt="" />
+                            @endif  
+                          </a>
+                          
                           @if( $setting->loginshowprices == 0)
                             <h2>${{ $product->price}}</h2>
                           @else

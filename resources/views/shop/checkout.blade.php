@@ -95,6 +95,7 @@
                       <label for="country">Please Select Delivery Option:</label>
                       <select id="shipping_id" name="shipping_id" required>
                           <option value="0">Select Shipping...</option>
+                          <option value="5">Local Free Delivery</option>
                           <option value="1">Pick up Store</option>
                           <option value="2">Ground Shipping</option>
                           <option value="3">2nd-Day Shipping</option>
@@ -316,7 +317,9 @@ $(document).ready(function(){
           $('#totalprice').html('$ '+data.totalprice);
           $('#myshipping').append(token);
         }
+
       });
+      //alert(dataString);
 
       });
 

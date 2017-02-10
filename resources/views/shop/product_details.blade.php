@@ -42,7 +42,12 @@
                         <li>
                           @if( file_exists(URL::to('/media/')).$product->imagepath)
                             <a target="_blank" href="{{ URL::to('media/') }}/{{ $product->imagepath}}">
+                              {{-- 
                               <img height="300px" width="300px" src="{{ URL::to('media/') }}/{{ $product->imagepath}}" alt="" title="" id="wows1_0"/>
+                              --}}
+
+                              <img id="currentPhoto" src="{{ URL::to('/media/') }}/{{ $product->imagepath}}" onerror="this.src='{{ URL::to('/images/') }}/no-image.jpg'" width="300px" height="300px" alt="" title="" id="wows1_0"/>
+
                             </a>          
                           @else
                             <img height="300px" width="300px" src="{{ URL::to('/images/') }}/no-image.jpg" alt="" title="" id="wows1_0"/> 
@@ -51,7 +56,12 @@
                         @foreach($imgproducts as $imgproduct)
                             <li>
                               <a target="_blank" href="{{ URL::to('media/') }}/{{ $imgproduct->imagepath1}}">
+                                {{--
                                 <img height="300px" width="300px" src="{{ URL::to('media/') }}/{{ $imgproduct->imagepath1}}" alt="" title="" id="wows1_1"/>
+                                --}}
+
+                                <img id="currentPhoto1" src="{{ URL::to('/media/') }}/{{ $imgproduct->imagepath1}}" onerror="this.src='{{ URL::to('/images/') }}/no-image.jpg'" width="300px" height="300px" alt="" title="" id="wows1_1"/>
+
                               </a>
                             </li>
                         @endforeach
@@ -68,7 +78,7 @@
 
                           @foreach($imgproducts as $imgproduct)
                               <a href="#wows1_0" title="">
-                                <img height="48px" width="48px" src="{{ URL::to('media/') }}/{{ $imgproduct->imagepath1}}" alt="" />
+                                  <img height="48px" width="48px" src="{{ URL::to('media/') }}/{{ $imgproduct->imagepath1}}" alt="" />
                               </a>
                           @endforeach                                                 
                         <!-- 

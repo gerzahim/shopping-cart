@@ -117,6 +117,7 @@ class ProductController extends Controller
              for ($i = 0; $i < count($search); $i++){
                 $query->orwhere('title', 'like',  '%' . $search[$i] .'%');
                 $query->orwhere('description', 'like',  '%' . $search[$i] .'%');
+                $query->orwhere('sku', 'like',  '%' . $search[$i] .'%');
              }      
         })->where('status', '=', 1)->paginate($setting->pagination_shop);
 
@@ -137,7 +138,7 @@ class ProductController extends Controller
 
         
         return view('shop.search', compact('products', 'categories', 'tree', 'tree1', 'search'));
-    }    
+    }               
 
 
     public function getByCategory(Request $request, $categories_id)
@@ -264,10 +265,7 @@ class ProductController extends Controller
         //return view('shop.home', ['products' => $products], ['banners' => $banners]);
     }
 
-    public function getProductsByFilter(Request $request)
-    {
-
-        
+    public function getProductsByFilter(Request $request){
 
         //Get Current Path
         $url = $request->url();
@@ -371,6 +369,91 @@ class ProductController extends Controller
 
     }
 
+
+    public function getProductsBySearch(Request $request){
+
+
+       //Get Current Path
+        $url = $request->url();
+        
+        //get original path
+        $url = str_replace('filterProducts', 'product', $request->url());
+        
+
+        $categories = Categories::all();
+        $categories1 = $categories;
+        $brands = Brand::all();
+        $brands1 = $brands;
+
+        //Get Categories for SideBar        
+        $tree =$this->ParentView($url);
+        $tree1 =$this->getBrands($url);         
+
+
+        //$products = new Product();
+        
+        $input = $request->all();
+
+        
+        $search=$input['search'];
+        $search = explode(" ", $search);
+
+
+        $products = DB::Table('products')
+        ->select('*')                
+        ->Where(function ($query) use($search) {
+             for ($i = 0; $i < count($search); $i++){
+                $query->orwhere('title', 'like',  '%' . $search[$i] .'%');
+                $query->orwhere('description', 'like',  '%' . $search[$i] .'%');
+                $query->orwhere('sku', 'like',  '%' . $search[$i] .'%');
+             }      
+        })->where('status', '=', 1)->paginate(100);
+
+
+        $products =$this->getSortTitle($products);       
+        
+        $tree='';  
+        foreach ($products as $product ) {
+            $tree.='<tr>';
+            $tree.='<td class="cart_description"><input type="checkbox" id="checkbox_'.$product->id.'" name="checkboxes['.$product->id.']"></td>';
+            $tree.='<td class="cart_product">';
+            if ($product->imagepath == Null) {
+             $tree.='<img height="50px" width="50px" src="images/no-image.jpg"  alt="No Images">';
+            } else {
+             $tree.='<img height="50px" width="50px" src="media/'.$product->imagepath.'" alt="No Images">';
+            }
+            $tree.='</td>';
+            $tree.='<td class="cart_description">'.$product->sku.'</td>';
+            $tree.='<td class="cart_description">'.$product->title.'</td>';
+            $tree.='<td class="cart_description">'.$product->price.'</td>';
+            $tree.='<td class="cart_description">'.$product->quantity.'</td>';
+           
+            $brands = Brand::Find($product->brand_id);
+            $brandName = $brands['name'];
+            $tree.='<td class="cart_description">'.$brandName.'</td>';
+            $categories = Categories::Find($product->categories_id);
+            $categoryName = $categories['name'];                
+
+            $tree.='<td class="cart_description">'.$categoryName.'</td>';
+            if ($product->status == 1) {
+                $tree.='<td class="cart_description"> Active </td>';
+            }else{
+                $tree.='<td class="cart_description"> Inactive </td>';                }
+            
+            $tree.='<td class="cart_description">';
+            $tree.='<a class="cart_quantity_delete" href="'.$url.'/'.$product->id.'/edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>';
+            $tree.='</td>';
+            $tree.='<td class="cart_description">';
+            $tree.='<a class="cart_quantity_delete" href="'.$url.'/removeProduct/'.$product->id.'"><i class="fa fa-times" aria-hidden="true"></i></a>';
+            $tree.='</td>';
+            $tree.='</tr>';           
+            
+        }                 
+
+        return view('admin.products', compact('products', 'brands1', 'categories1', 'tree'));       
+
+    }    
+
     public function getSortTitle($products){
 
         foreach ($products as $product) {            
@@ -423,9 +506,20 @@ class ProductController extends Controller
 
         $order = Order::find($id);
         $order->cart = unserialize($order->cart);
+        //$order->cart = unserialize(base64_decode($order->cart));
 
         return view('admin.editorders', compact('order'));
     }
+
+    public function seePicturesOrder($id)
+    {
+
+        $order = Order::find($id);
+        $order->cart = unserialize($order->cart);
+        //$order->cart = unserialize(base64_decode($order->cart));
+
+        return view('admin.seepicturesorders', compact('order'));
+    }    
 
     public function updateOrder(Request $request, $id){
 
@@ -438,6 +532,7 @@ class ProductController extends Controller
 
  
         $order->cart = unserialize($order->cart);
+        //$order->cart = unserialize(base64_decode($order->cart));
 
         $id=1;
         $settings = Settings::find($id);  
@@ -1153,6 +1248,8 @@ $tree='';
             // Saving Order on Database
             $order = new Order();
             $order->cart = serialize($cart);            
+            //$order->cart = base64_encode(serialize($cart));
+
             $order->address = $request->input('address');
             $order->city = $request->input('city');
             $order->state = $request->input('state');
@@ -1195,6 +1292,7 @@ $tree='';
 
             //Unserialize to email format
             $order->cart = unserialize($order->cart);
+            //$order->cart = unserialize(base64_decode($order->cart));
 
             // Get General Parameters
             $id=1;
@@ -1257,7 +1355,8 @@ $tree='';
                 $message->to($data['email']);
                 $message->subject('You have a New Order on '.$data['name_site'].'');
 
-            });                         
+            });
+
 
             // Send Email to Administrator
             Mail::send('emails.neworder', $data, function ($message) use ($data){
@@ -1638,6 +1737,8 @@ $tree='';
         $user = new User();
         
         $input = $request->all();
+
+        //dd($input);
                             
         $input['password'] = bcrypt($request->input('password'));
    

@@ -112,7 +112,7 @@
                   <span class="badge">{{ Session::has('cart') ? Session::get('cart')->totalQty : '' }}</span>
                   </a></li>
                   @if($setting->kind_web == '2')
-                    <li><a href="{{ url('/signupw') }}"><i class="fa fa-briefcase"></i> Wholesale Registration</a></li>
+                    <li><a href="{{ url('/signupw') }}"><i class="fa fa-briefcase"></i> Wholesale <br> &nbsp;&nbsp; Registration</a></li>
                   @else
                     <li><a href="{{ url('/register') }}"><i class="fa fa-user"></i> Join Now</a></li> 
                   @endif    

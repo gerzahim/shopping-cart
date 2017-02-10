@@ -48,7 +48,7 @@
 
                           <div class="col-md-2">
                             <div class="form-group">
-                            <label for="card-number">Brand</label>
+                            <label for="card-number">Brand</label><br>
                             <select id="brand_id" name="brand_id">
                               <option value="0">All Brands</option>
                               @foreach($brands1 as $brand)              
@@ -60,7 +60,7 @@
 
                           <div class="col-md-2">
                             <div class="form-group">
-                            <label for="card-number">Show Entries</label>
+                            <label for="card-number">Show Entries</label><br>
                             <select id="ShowEntries" name="ShowEntries">
                               <option value="10">10</option>
                               <option value="25">25</option>
@@ -72,6 +72,7 @@
                           </div> 
 
                           {{ csrf_field() }}   
+                          <br>
                           <button type="submit" class="btn btn-warning">Filter</button>
 
 
@@ -81,7 +82,36 @@
                     </div> 
                   </div>
                   
-                           
+                    <div class="row">
+                    <div class="col-md-12">
+                      <h2>Search Products </h2>  
+                      <fieldset class="fsStyle" style="border: 4px solid #a1a1a1;margin-top: 15px;padding: 10px;">
+                        <legend class="legendStyle">
+
+                        <a data-toggle="collapse" data-target="#demo" href="#">&nbsp;Search: </a>
+
+                        </legend>
+                        <form action="{{ route('searchproducts') }}" method="get" id="filter-form" enctype="multipart/form-data">
+                        <div class="row collapse in" id="demo">
+
+                          <div class="col-md-3">
+
+                              <div class="search_box pull-right">
+                              <form action="{{ url('search') }}" id="main-contact-form" class="searchformhh" name="contact-form" method="get">
+                                <input type="text" name="search" id="search" placeholder="Search"/>
+                                <button type="submit" class="btn btn-warning">Search</button> 
+                                {{ csrf_field() }} 
+                              </form>
+                              </div>
+                          
+                          </div>  
+
+                          
+                        </div>
+                        </form>
+                      </fieldset>
+                    </div> 
+                  </div>                         
                  <!-- /. ROW  -->
                   
 

@@ -165,7 +165,7 @@
     <script src="{{ URL::to('js/bootstrap.min.js') }}"></script>
       <!-- CUSTOM SCRIPTS -->
     <script src="{{ URL::to('js/custom.js') }}"></script>
-
+ @include('admin.scripts')  
 
 </body>
 </html>
