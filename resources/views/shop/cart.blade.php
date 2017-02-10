@@ -120,6 +120,11 @@
             </ul>
               <a class="btn btn-default check_out" href="{{ route('checkout') }}">Check Out</a>
           </div>
+
+          <div class='wrapper'>
+              <ul id='post'>Please make an ajax call by clicking above...</ul>
+          </div>
+
         </div>
       </div>
 
@@ -163,23 +168,48 @@ $(document).ready(function(){
         var token = $("input[name='_token']").val();
 
         $.ajax({
-          method: "POST",
-          url: url,
-          data: { id_qty: id_qty, _token:token},
-                 
-          success: function(data) {
-
-              alert(data); 
-              //console.log(data);
-              //$("p.cart_total_price").html('');
+            method: "POST",
+            url: url,
+            data: { id_qty: id_qty, _token:token},
+            success: function(data) {
+              console.log(data);
+                $('#post').html(data.responseText);
+                              //$("p.cart_total_price").html('');
               //$("p.cart_total_price").html('VERGA');
-          }
-
+            },
+            error: function (jqXHR, exception) {
+                console.log(jqXHR);
+                getErrorMessage(jqXHR, exception);
+            },
         });
 
-        alert("me cago en tooooo");
+
+
     
     });
+
+    // This function is used to get error message for all ajax calls
+    function getErrorMessage(jqXHR, exception) {
+        var msg = '';
+        if (jqXHR.status === 0) {
+            msg = 'Not connect.\n Verify Network.';
+        } else if (jqXHR.status == 404) {
+            msg = 'Requested page not found. [404]';
+        } else if (jqXHR.status == 500) {
+            msg = 'Internal Server Error [500].';
+            //alert('Internal error: ' + jqXHR.responseText);
+
+        } else if (exception === 'parsererror') {
+            msg = 'Requested JSON parse failed.';
+        } else if (exception === 'timeout') {
+            msg = 'Time out error.';
+        } else if (exception === 'abort') {
+            msg = 'Ajax request aborted.';
+        } else {
+            msg = 'Uncaught Error.\n' + jqXHR.responseText;
+        }
+        $('#post').html(msg);
+    }
 
 
 });
