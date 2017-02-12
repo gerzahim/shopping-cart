@@ -121,10 +121,12 @@
               <a class="btn btn-default check_out" href="{{ route('checkout') }}">Check Out</a>
           </div>
 
-          <div class='wrapper'>
-              <ul id='post'>Please make an ajax call by clicking above...</ul>
-          </div>
-
+           
+              <div class='wrapper'>
+                  <ul id='post'>Please make an ajax call by clicking above...</ul>
+              </div>
+               {{-- <!--
+            --> --}}
         </div>
       </div>
 
@@ -152,7 +154,7 @@
 
 <script type="text/javascript">
 var token = '{{ Session::token() }}';
-var url = '{{ route('setqtyitemtocart') }}';
+var url = '{{ route('changeqtyitemcart') }}';
 </script>
 
 
@@ -173,9 +175,13 @@ $(document).ready(function(){
             data: { id_qty: id_qty, _token:token},
             success: function(data) {
               console.log(data);
-                $('#post').html(data.responseText);
-                              //$("p.cart_total_price").html('');
-              //$("p.cart_total_price").html('VERGA');
+                //$('#post').html(data.responseText);
+                $("p.cart_total_price").html('');
+                //$("p.cart_total_price").html('$ VERGA');
+                $("p.cart_total_price").html('$ '+data.totalprice);
+                $("span.totalPrice").html('');
+                $("span.totalPrice").html('$ '+data.totalprice);
+
             },
             error: function (jqXHR, exception) {
                 console.log(jqXHR);

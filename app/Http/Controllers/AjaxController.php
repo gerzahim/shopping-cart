@@ -144,23 +144,27 @@ $cart->addShippingCost($totalprice, $shippingCost);
         Session::put('cart', $cart);
    }
 
-   public function setQtyItemToCart(Request $request){
+   public function changeQtyItemCart(Request $request){
 
 
       $input = $request->all();
-      
-      $id_qty= $input['id_qty'];
+      $id_qty = "6-2";
+      //$id_qty= $input['id_qty'];
 
-      list($id, $qty) = split("-", $id_qty);
-      
-        //$product = Product::find($id);
-        //$oldCart = Session::has('cart') ? Session::get('cart') : null;
-        //$cart = new Cart($oldCart);
-        //$cart->setQtyItem($id, $qty);
+      list($id, $qty) = explode("-", $id_qty);
 
-        //Session::put('cart', $cart);
+
+      $product = Product::find($id);
+      $oldCart = Session::has('cart') ? Session::get('cart') : null;
+      $cart = new Cart($oldCart);
+      
+      //$cart->add($product, $product->id);
+
+      $cart->setQtyItem($product, $product->id, $qty);
+
+      Session::put('cart', $cart);
         //return response()->json(['totalprice' => $cart->totalPrice]);
-        //return response()->json(['totalprice' => $cart->totalPrice], 200);
+      return response()->json(['totalprice' => $cart->totalPrice], 200);
    }
 
 }

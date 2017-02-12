@@ -79,9 +79,9 @@ Route::post('/addtocart', [
 	'as' => 'addtocart'
 ]);
 
-Route::post('/setqtyitemtocart', [
-	'uses' => 'AjaxController@setQtyItemToCart',
-	'as' => 'setqtyitemtocart'
+Route::get('/changeqtyitemcart', [
+	'uses' => 'AjaxController@changeQtyItemCart',
+	'as' => 'changeqtyitemcart'
 ]);
 
 

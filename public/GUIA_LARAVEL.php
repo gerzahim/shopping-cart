@@ -105,6 +105,9 @@ Finally, add two class aliases to the aliases array of config/app.php:
 
 php artisan route:clear
 php artisan cache:clear
+
+php artisan route:list
+
 composer update
 
 5) Declarando Rutas 
@@ -1332,3 +1335,22 @@ Order placed
 December 2, 2016
 
 http://doralhookah.com/public/payment/status?token=EC-3WD37473M80464909
+
+
+
+
+For Do
+Line 151 AjaxController
+      $id_qty = "6-2";
+      //$id_qty= $input['id_qty'];
+
+-  Line 118  Cart.php
+if ($storedItem['avail'] < 0) {
+
+    Select more than Available
+}
+
+- route  get on ajax call changeqtyitemcart
+
+- add unique name class to line 85
+<p class="cart_total_price"
