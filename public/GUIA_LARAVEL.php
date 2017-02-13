@@ -1336,6 +1336,13 @@ December 2, 2016
 
 http://doralhookah.com/public/payment/status?token=EC-3WD37473M80464909
 
+HOW TO DEbugging AJAX 
+
+- Change method POST to GET
+- Declare $hello = _POST['verga']; to manual 
+          $hello = "Verga Dura"
+- open in new tab call directly the page to call GET page
+  call the page that call the route in get or post
 
 
 

@@ -99,12 +99,12 @@ class ProductTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
-        foreach (range(1,6) as $index) {
+        foreach (range(1,18) as $index) {
             $nrand = rand(1,999);
             $rrand = rand(1,999);
             DB::table('products')->insert([
                 'sku'=> $rrand.$faker->word(8).$nrand,
-                'title'=> $faker->name,
+                'title'=> 'pp'.$faker->name,
                 'description'=>'Lorem Ipsum is simply dummy text of the printing and pesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
                 'imagepath'=> 'MM106.jpg',
                 'price'=> $nrand,

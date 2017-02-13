@@ -115,9 +115,10 @@ class ProductController extends Controller
         ->select('*')                
         ->Where(function ($query) use($search) {
              for ($i = 0; $i < count($search); $i++){
-                $query->orwhere('title', 'like',  '%' . $search[$i] .'%');
-                $query->orwhere('description', 'like',  '%' . $search[$i] .'%');
-                $query->orwhere('sku', 'like',  '%' . $search[$i] .'%');
+                $searche = $search[$i];
+                $query->orwhere('title', 'like',  '%' . $searche .'%');
+                $query->orwhere('description', 'like',  '%' . $searche .'%');
+                $query->orwhere('sku', 'like',  '%' . $searche .'%');
              }      
         })->where('status', '=', 1)->paginate($setting->pagination_shop);
 
@@ -136,7 +137,6 @@ class ProductController extends Controller
 
         $products =$this->getSortTitle($products);       
 
-        
         return view('shop.search', compact('products', 'categories', 'tree', 'tree1', 'search'));
     }               
 

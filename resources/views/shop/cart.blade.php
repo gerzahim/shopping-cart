@@ -28,9 +28,9 @@
           <thead>
             <tr class="cart_menu">
               <td class="image" width="10%">Product</td>
-              <td class="description" width="40%">Item</td>
+              <td class="description" width="50%">Item</td>
               <td class="price" width="10%">Price</td>
-              <td class="quantity" width="15%">Quantity</td>
+              <td class="quantity" width="5%">Quantity</td>
               <td class="total" width="10%">Total</td>
               <td class="description" width="5%">Delete</td>
               <td class="description" align="center" width="10%">Move to WishList</td>
@@ -58,14 +58,31 @@
               <td class="cart_quantity" >
                 <div class="cart_quantity_button">
                   <select name="quantity" id="quantity">
-                    <option value="{{ $product['item']['id'] }}-1">1</option> 
-                    <option value="{{ $product['item']['id'] }}-2">2</option>
-                    <option value="{{ $product['item']['id'] }}-3">3</option>
-                    <option value="{{ $product['item']['id'] }}-4">4</option>
-                    <option value="{{ $product['item']['id'] }}-5">5</option>
+                    @for ($i = 1; $i <= 30; $i++)
+                      @if( $i <= $product['item']['quantity'] )
+                        @if( $i == $product['qty'] )
+                        <option selected value="{{ $product['item']['id'] }}-{{ $i }}">{{ $i }}</option>
+                        @else
+                        <option value="{{ $product['item']['id'] }}-{{ $i }}">{{ $i }}</option>   
+                        @endif
+                      @endif                        
+                    @endfor
+                    @for ($i = 40; $i <= 100; $i = $i+10)
+                      @if( $i <= $product['item']['quantity'] )
+                        <option value="{{ $product['item']['id'] }}-{{ $i }}">{{ $i }}</option> 
+                      @endif                        
+                    @endfor
                   </select>
 
                   {{-- <!--
+                  {{ Session::has('cart') ? Session::get('cart')->totalQty : '' }}
+                    @foreach($products as $product)
+                      <option value="{{ $product['item']['id'] }}-1">1</option> 
+                      <option value="{{ $product['item']['id'] }}-2">2</option>
+                      <option value="{{ $product['item']['id'] }}-3">3</option>
+                      <option value="{{ $product['item']['id'] }}-4">4</option>
+                      <option value="{{ $product['item']['id'] }}-5">5</option>
+                    @endforeach                  
                   <a class="cart_quantity_down" href="{{ route('product.reduceByOne', ['id' => $product['item']['id']]) }}"> - </a>                    
                     <input class="cart_quantity_input" type="text" name="quantity" value="{{ $product['qty'] }}" autocomplete="off" size="2" readonly>
                   <a class="cart_quantity_up" href="{{ route('product.addByOne', ['id' => $product['item']['id']]) }}"> + </a>
@@ -82,7 +99,9 @@
                 </div>
               </td>
               <td class="cart_total">
-                <p class="cart_total_price" name="cart_total_price">${{ $product['item']['price']*$product['qty'] }}</p>
+                <p class="cart_total_price" id="item_total_price_{{$product['item']['id']}}" name="cart_total_price">
+                  ${{ $product['item']['price']*$product['qty'] }}
+                </p>
               </td>
              <td class="cart_price" align="center">
                 <a class="cart_quantity_delete" href="{{ route('product.removeItem', ['id' => $product['item']['id']]) }}"><i class="fa fa-times fa-2x"></i></a>
@@ -170,17 +189,23 @@ $(document).ready(function(){
         var token = $("input[name='_token']").val();
 
         $.ajax({
-            method: "POST",
+            method: "post",
             url: url,
             data: { id_qty: id_qty, _token:token},
             success: function(data) {
               console.log(data);
                 //$('#post').html(data.responseText);
-                $("p.cart_total_price").html('');
+                //$("p.cart_total_price").html('');
                 //$("p.cart_total_price").html('$ VERGA');
-                $("p.cart_total_price").html('$ '+data.totalprice);
+                //$("p.cart_total_price").html('$ '+data.totalprice);
                 $("span.totalPrice").html('');
                 $("span.totalPrice").html('$ '+data.totalprice);
+                //$("#item_total_price_"+data.id").html('');
+                $("#item_total_price_"+data.id).html('$ '+data.itemqtyprice);
+                $("span.badge").html(data.totalQty);
+                
+                //$("p.item_total_price_"+data.id).html('$ '+data.itemqtyprice);
+                
 
             },
             error: function (jqXHR, exception) {

@@ -148,8 +148,8 @@ $cart->addShippingCost($totalprice, $shippingCost);
 
 
       $input = $request->all();
-      $id_qty = "6-2";
-      //$id_qty= $input['id_qty'];
+      //$id_qty = "2-2";
+      $id_qty= $input['id_qty'];
 
       list($id, $qty) = explode("-", $id_qty);
 
@@ -163,8 +163,11 @@ $cart->addShippingCost($totalprice, $shippingCost);
       $cart->setQtyItem($product, $product->id, $qty);
 
       Session::put('cart', $cart);
+
+      $itemqtyprice = $qty*$product->price;
         //return response()->json(['totalprice' => $cart->totalPrice]);
-      return response()->json(['totalprice' => $cart->totalPrice], 200);
+      return response()->json(['totalprice' => $cart->totalPrice, 'totalQty' => $cart->totalQty, 'id' => $product->id, 
+        'itemqtyprice' => $itemqtyprice], 200);
    }
 
 }
