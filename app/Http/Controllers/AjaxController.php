@@ -30,7 +30,12 @@ class AjaxController extends Controller
       $input = $request->all();
       
       $shipping_id= $input['id'];
-      $totalprice= $input['_totalprice'];
+
+      $oldCart = Session::get('cart');
+      $cart = new Cart($oldCart);
+
+        
+      $totalprice = $cart->totalPrice;
       $state= $input['state'];
 
       $shippingCost = 0;
@@ -58,8 +63,6 @@ class AjaxController extends Controller
       	
       }
 
-        $oldCart = Session::get('cart');
-        $cart = new Cart($oldCart);
 
         // Get Tax Cost
         $taxcost = $state;
@@ -151,6 +154,7 @@ $cart->addShippingCost($totalprice, $shippingCost);
       //$id_qty = "2-2";
       $id_qty= $input['id_qty'];
 
+
       list($id, $qty) = explode("-", $id_qty);
 
 
@@ -169,6 +173,95 @@ $cart->addShippingCost($totalprice, $shippingCost);
       return response()->json(['totalprice' => $cart->totalPrice, 'totalQty' => $cart->totalQty, 'id' => $product->id, 
         'itemqtyprice' => $itemqtyprice], 200);
    }
+
+
+   public function changeQtyItemCheckout(Request $request){
+
+
+      $input = $request->all();
+      //$id_qty = "17-2";
+      //$state= "AL";
+      //$shipping_id= "0";
+      $id_qty= $input['id_qty'];
+      $state= $input['state'];
+      $shipping_id= $input['id'];
+      
+      list($id, $qty) = explode("-", $id_qty);
+
+
+      $product = Product::find($id);
+      $oldCart = Session::has('cart') ? Session::get('cart') : null;
+      $cart = new Cart($oldCart);
+      
+      //$cart->add($product, $product->id);
+
+      $cart->setQtyItem($product, $product->id, $qty);
+
+      Session::put('cart', $cart);
+     
+      $shippingCost = 0;
+      $taxcost = 0;
+      
+
+
+      $totalprice = $cart->totalPrice;
+      $shipcosts = ShippingCost::all(); 
+
+
+      foreach ($shipcosts as $shipcost) {
+        # code...
+        if ($totalprice >= $shipcost->range_value_min and $totalprice <= $shipcost->range_value_max) {
+          # '1pickup', '2ground','3second_day','4next_day'
+          if ($shipping_id == '2') {
+            # 1pickup...
+            $shippingCost = $shipcost->ground;
+
+          }elseif($shipping_id == '3'){
+            $shippingCost = $shipcost->second_day;
+          }elseif($shipping_id == '4'){
+            $shippingCost = $shipcost->next_day;            
+          }else {
+            $shippingCost = 0;
+          }
+          break;            
+        }
+        
+      }
+
+
+
+        $oldCart = Session::get('cart');
+        $cart = new Cart($oldCart);
+
+        // Get Tax Cost
+        $taxcost = $state;
+        $state_code = States::where('code',$state)->first();
+        $taxcost = ($state_code->tax * $totalprice) / 100;
+        $taxcost = round($taxcost, 2);
+
+
+        // Get Total + Tax
+        $subtotalwtax = round($totalprice + $taxcost, 2);
+        $cart->addTaxCost($totalprice, $taxcost);
+
+
+        $totalcost = round($totalprice + $shippingCost + $taxcost, 2);
+        $cart->addShippingCost($subtotalwtax, $shippingCost);
+
+
+      Session::put('cart', $cart);
+
+      $itemqtyprice = $qty*$product->price;
+/*
+      return response()->json(['totalprice' => $cart->totalPrice, 'totalQty' => $cart->totalQty, 'id' => $product->id, 
+        'itemqtyprice' => $itemqtyprice], 200);
+
+      */
+      return response()->json(['totalprice' => $cart->totalPrice, 'totalQty' => $cart->totalQty, 'id' => $product->id, 
+        'itemqtyprice' => $itemqtyprice, 'taxcost' => $taxcost, 'subtotalwtax' => $subtotalwtax, 'shippingcost' => $shippingCost, 'totalcost' => $totalcost], 200);
+
+      
+   }   
 
 }
 

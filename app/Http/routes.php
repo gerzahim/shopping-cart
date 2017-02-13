@@ -85,6 +85,11 @@ Route::post('/changeqtyitemcart', [
 ]);
 
 
+Route::post('/changeqtyitemcheckout', [
+	'uses' => 'AjaxController@changeQtyItemCheckout',
+	'as' => 'changeqtyitemcheckout'
+]);
+
 Route::post('/setmodalask', [
 	'uses' => 'AjaxController@setModalask',
 	'as' => 'setmodalask'

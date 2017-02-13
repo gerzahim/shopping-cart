@@ -140,11 +140,11 @@
               <a class="btn btn-default check_out" href="{{ route('checkout') }}">Check Out</a>
           </div>
 
-           
+  {{-- <!-- 
               <div class='wrapper'>
                   <ul id='post'>Please make an ajax call by clicking above...</ul>
               </div>
-               {{-- <!--
+             
             --> --}}
         </div>
       </div>
@@ -192,6 +192,7 @@ $(document).ready(function(){
             method: "post",
             url: url,
             data: { id_qty: id_qty, _token:token},
+            data: { id: $('#shipping_id').val(),  state: $('#state').val(), _token: token, _totalprice: totalprice},
             success: function(data) {
               console.log(data);
                 //$('#post').html(data.responseText);

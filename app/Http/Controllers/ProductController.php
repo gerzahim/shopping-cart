@@ -105,7 +105,7 @@ class ProductController extends Controller
 
         $search=$input['search'];
 
-        $search = explode(" ", $search);
+        $searche = explode(" ", $search);
 
         //dd($pieces_search);
 
@@ -113,12 +113,11 @@ class ProductController extends Controller
 
         $products = DB::Table('products')
         ->select('*')                
-        ->Where(function ($query) use($search) {
-             for ($i = 0; $i < count($search); $i++){
-                $searche = $search[$i];
-                $query->orwhere('title', 'like',  '%' . $searche .'%');
-                $query->orwhere('description', 'like',  '%' . $searche .'%');
-                $query->orwhere('sku', 'like',  '%' . $searche .'%');
+        ->Where(function ($query) use($searche) {
+             for ($i = 0; $i < count($searche); $i++){
+                $query->orwhere('title', 'like',  '%' . $searche[$i] .'%');
+                $query->orwhere('description', 'like',  '%' . $searche[$i] .'%');
+                $query->orwhere('sku', 'like',  '%' . $searche[$i] .'%');
              }      
         })->where('status', '=', 1)->paginate($setting->pagination_shop);
 

@@ -44,10 +44,10 @@
             @foreach($users as $user)
             <tr>
               <td class="cart_description">
-                <h4><a href="">{{ $user['email'] }}</a></h4>
+                <h4>{{ $user['email'] }}</h4>
               </td>
               <td class="cart_description">
-                <h4><a href="">{{ $user['name'] }}</a></h4>
+                <h4>{{ $user['name'] }}</h4>
               </td>
               <td class="cart_price">
                 <p>{{ $user['phone'] }}</p>

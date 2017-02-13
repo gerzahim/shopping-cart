@@ -204,9 +204,12 @@ class UserController extends Controller
 
     public function getRemoveUser($id)
     {
-        $user->find($id)->delete();
+        $user = User::find($id)->delete();
+        //$user->find($id)->delete();
         Session::flash('message', 'User successfully Deleted!');
-        return redirect()->route('categories.index');
+        
+        $users = User::paginate(20);
+        return view('admin.users', ['users' => $users]);
         
     }
 

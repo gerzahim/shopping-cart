@@ -95,7 +95,7 @@
                       <label for="country">Please Select Delivery Option:</label>
                       <select id="shipping_id" name="shipping_id" required>
                           <option value="0">Select Shipping...</option>
-                          <option value="5">Local Free Delivery Over $300 Order</option>
+                          <option value="5">Local Free Delivery</option>
                           <option value="1">Pick up Store</option>
                           <option value="2">Ground Shipping</option>
                           <option value="3">2nd-Day Shipping</option>
@@ -182,15 +182,6 @@
         <table class="table table-condensed" border="0">
           <thead>
             <tr class="cart_menu">
-              <td class="image" width="10%">Product</td>
-              <td class="description" width="55%">Item</td>
-              <td class="price" width="10%">Price</td>
-              <td class="total" width="5%">Quantity</td>
-              <td class="description" width="10%">Total</td>
-              <td class="description" align="center" width="10%">Delete</td>
-            </tr>
-{{-- <!--
-            <tr class="cart_menu">
               <td class="image">Product</td>
               <td class="description">Item</td>
               <td class="price">Price</td>
@@ -198,9 +189,6 @@
               <td class="total" align="center">Total</td>
               <td class="total" align="center">Delete</td>
             </tr>
-            -->
-
-            --}}
           </thead>
           <tbody>
             @foreach($products as $product)
@@ -215,7 +203,6 @@
               <td class="cart_price">
                 <p>${{ $product['item']['price'] }}</p>
               </td>
-              {{-- <!--
               <td class="cart_quantity" align="center">
                 <div class="cart_quantity_button">
                   <a class="cart_quantity_down" href="{{ route('product.reduceByOne', ['id' => $product['item']['id']]) }}"> - </a>
@@ -223,33 +210,8 @@
                   <a class="cart_quantity_up" href="{{ route('product.addByOne', ['id' => $product['item']['id']]) }}"> + </a>
                 </div>
               </td>
---> --}}
-              <td class="cart_quantity" >
-                <div class="cart_quantity_button">
-                  <select name="quantity" id="quantity">
-                    @for ($i = 1; $i <= 30; $i++)
-                      @if( $i <= $product['item']['quantity'] )
-                        @if( $i == $product['qty'] )
-                        <option selected value="{{ $product['item']['id'] }}-{{ $i }}">{{ $i }}</option>
-                        @else
-                        <option value="{{ $product['item']['id'] }}-{{ $i }}">{{ $i }}</option>   
-                        @endif
-                      @endif                        
-                    @endfor
-                    @for ($i = 40; $i <= 100; $i = $i+10)
-                      @if( $i <= $product['item']['quantity'] )
-                        <option value="{{ $product['item']['id'] }}-{{ $i }}">{{ $i }}</option> 
-                      @endif                        
-                    @endfor
-                  </select>
-
-                </div>
-              </td>
-
-              <td class="cart_total">
-                <p class="cart_total_price" id="item_total_price_{{$product['item']['id']}}" name="cart_total_price">
-                  ${{ $product['item']['price']*$product['qty'] }}
-                </p>
+              <td class="cart_price" align="center">
+                <p class="cart_total_price">${{ $product['item']['price']*$product['qty'] }}</p>
               </td>
               <td class="cart_price" align="center">
                 <a class="cart_quantity_delete" href="{{ route('product.removeItem', ['id' => $product['item']['id']]) }}"><i class="fa fa-times fa-2x"></i></a>
@@ -280,7 +242,7 @@
         <div class="col-sm-6">
           <div class="total_area">
             <ul>
-              <li>SubTotal : <span id="totalprice">${{ $totalPrice }}</span></li>
+              <li>SubTotal : <span>${{ $totalPrice }}</span></li>
               <li>State Tax to be Collected : <span id="taxcost">Please Select State</span></li>
               <li>SubTotal + Tax : <span id="subtotalwtax">${{ $totalPrice }}</span></li>
               <li>Shipping Cost : <span id="shippingcost">Please Select Delivery Option</span></li>
@@ -320,7 +282,6 @@
 <script type="text/javascript">
 var token = '{{ Session::token() }}';
 var url = '{{ route('getshippingcost') }}';
-var urlitem = '{{ route('changeqtyitemcheckout') }}';
 var totalprice = '{{ $totalPrice }}';
 </script>
 
@@ -426,74 +387,6 @@ $(document).ready(function(){
 
         }         
     });
-
-
-    $("select[name='quantity']").change(function(){
-
-        var id_qty = $(this).val();
-        var token = $("input[name='_token']").val();
-
-        var shipping_id = $('#shipping_id').val();
-        var state = $('#state').val();
-        var dataString = "id="+shipping_id;        
-
-        $.ajax({
-            method: "post",
-            url: urlitem,
-            data: { id_qty: id_qty, id: $('#shipping_id').val(),  state: $('#state').val(), _token: token},
-            success: function(data) {
-              console.log(data);
-                //$('#post').html(data.responseText);
-                //$("p.cart_total_price").html('');
-                //$("p.cart_total_price").html('$ VERGA');
-                //$("p.cart_total_price").html('$ '+data.totalprice);
-                $("span.totalPrice").html('');
-                $("span.totalPrice").html('$ '+data.totalprice);                   
-                $('#totalprice').html('$ '+data.totalprice);             
-                $("#item_total_price_"+data.id).html('$ '+data.itemqtyprice);
-                $("span.badge").html(data.totalQty);
-                $('#shippingcost').html('$ '+data.shippingcost);
-                $('#subtotalwtax').html('$ '+data.subtotalwtax);
-                $('#taxcost').html('$ '+data.taxcost);
-                $('#totalcost').html('$ '+data.totalcost);          
-                //$("p.item_total_price_"+data.id).html('$ '+data.itemqtyprice);
-                
-
-            },
-            error: function (jqXHR, exception) {
-                console.log(jqXHR);
-                getErrorMessage(jqXHR, exception);
-            },
-        });
-
-
-
-    
-    });
-
-    // This function is used to get error message for all ajax calls
-    function getErrorMessage(jqXHR, exception) {
-        var msg = '';
-        if (jqXHR.status === 0) {
-            msg = 'Not connect.\n Verify Network.';
-        } else if (jqXHR.status == 404) {
-            msg = 'Requested page not found. [404]';
-        } else if (jqXHR.status == 500) {
-            msg = 'Internal Server Error [500].';
-            //alert('Internal error: ' + jqXHR.responseText);
-
-        } else if (exception === 'parsererror') {
-            msg = 'Requested JSON parse failed.';
-        } else if (exception === 'timeout') {
-            msg = 'Time out error.';
-        } else if (exception === 'abort') {
-            msg = 'Ajax request aborted.';
-        } else {
-            msg = 'Uncaught Error.\n' + jqXHR.responseText;
-        }
-        $('#post').html(msg);
-    }
-
 
 });
 
