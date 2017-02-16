@@ -3,7 +3,7 @@
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
 
-                <h3>Order Update</h3>
+                <h3>User Update</h3>
                 <p>Hello {{ $costumer }},</p>
                 <p>Thank you for Join us. You info Account has been Updated.</p>
                 <strong>                

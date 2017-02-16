@@ -81,7 +81,7 @@
           <div class="row">
             <div class="col-xs-12">
               <div class="form-group">
-                <label for="card-name">Image Category</label>
+                <label for="card-name">Image Products</label>
                 <input type="file" id="imagepath" name="imagepath" accept="image/*">
               </div>              
             </div>            

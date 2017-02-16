@@ -377,6 +377,8 @@ class ProductController extends Controller
         
         //get original path
         $url = str_replace('filterProducts', 'product', $request->url());
+        $url = str_replace('searchProducts', 'product', $request->url());
+        
         
 
         $categories = Categories::all();
@@ -440,6 +442,7 @@ class ProductController extends Controller
                 $tree.='<td class="cart_description"> Inactive </td>';                }
             
             $tree.='<td class="cart_description">';
+
             $tree.='<a class="cart_quantity_delete" href="'.$url.'/'.$product->id.'/edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>';
             $tree.='</td>';
             $tree.='<td class="cart_description">';

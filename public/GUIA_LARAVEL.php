@@ -563,6 +563,19 @@ example:
     @endsection
 
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+breadcrumbs tittle web page    
+davejamesmiller/laravel-breadcrumbs
+
+
+https://laravel-breadcrumbs.readthedocs.io/en/latest/start.html#install-laravel-breadcrumbs
+
+
+https://github.com/davejamesmiller/laravel-breadcrumbs
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 11) para la Validaciones 
 
 usamos Request
@@ -1361,3 +1374,9 @@ if ($storedItem['avail'] < 0) {
 
 - add unique name class to line 85
 <p class="cart_total_price"
+
+
+
+http://www.thehookahexpress.com/public/product/1/edit
+
+http://www.thehookahexpress.com/public/searchProducts/252/edit 
