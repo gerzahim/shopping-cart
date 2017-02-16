@@ -102,6 +102,7 @@
               <div class="product-information"><!--/product-information-->
                 <img src="{{ URL::to('images/new.jpg') }}" class="newarrival" alt="" />
                 <h2>{{ $product->title}}</h2>
+                <p><b>Category:</b> {{ $categoryName}}</p>
                 <p><b>Sku:</b> {{ $product->sku}}</p>
                 <!-- 
                 <img src="{{ URL::to('images/rating.png') }}" alt="" />

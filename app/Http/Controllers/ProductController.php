@@ -877,6 +877,9 @@ $tree='';
 
         $attributesproducts = ProductAttributeValues::where('product_id', '=', $id)->get();
 
+        $categories = Categories::Find($product->categories_id);
+        $categoryName = $categories['name']; 
+
         //$imgproducts = ImagesProduct::where('product_id', '=', $id)->get();
         $attributesvalues = AttributesValues::all();
         $attributeId = array();
@@ -942,7 +945,7 @@ $tree='';
 
 
 
-        return view('shop.product_details', compact('product', 'categories', 'brands', 'tree', 'tree1', 'imgproducts', 'attributesproducts', 'productAttributeValues', 'id', 'attributeName', 'attributeId', 'attributeValueName', 'listassociates'));        
+        return view('shop.product_details', compact('product', 'categories', 'brands', 'tree', 'tree1', 'imgproducts', 'categoryName', 'attributesproducts', 'productAttributeValues', 'id', 'attributeName', 'attributeId', 'attributeValueName', 'listassociates'));        
     }
 
     public function getContact(){

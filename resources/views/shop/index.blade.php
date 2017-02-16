@@ -65,14 +65,21 @@
                               <h2>${{ $product->price}}</h2>
                             @endif                            
                           @endif
-                          <p>{!!html_entity_decode($product->title)!!}</p>
+                          <p>{{ $product->title}}<br>
+                          <b>SKU:</b> {{ $product->sku }}</p>
+
+                          
                           <a href="{{ route('product.addToCart', ['id' => $product->id]) }}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                         </div>
                         {{-- 
+
+                        <p align="left">{!!html_entity_decode($product->title)!!}
+                        <b>SKU:</b> {{ $product->sku}}</p>
+
                         <div class="product-overlay">
                           <div class="overlay-content">
                             <h2>${{ $product->price}}</h2>
-                            <p>{{ $product->title}}</p>
+                            <p align="left">{{ $product->title}}</p>
                             <a href="{{ route('product.addToCart', ['id' => $product->id]) }}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                           </div>
                         </div>

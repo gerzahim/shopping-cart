@@ -67,9 +67,14 @@
    </header><!--/header-->
 <!-- END MENUTOP -->
 
+{{-- 
+<!--  Modal ask - windows confirm over 18+ 
+
 @if(Session::has('modal_ask'))
       {{ Session::get('modal_ask') }}
 @endif
+-->
+--}}
 
 @if(Session::has('message'))
 

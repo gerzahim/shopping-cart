@@ -142,8 +142,8 @@
                 <label><input type="checkbox" id="checkAll"/> Check all</label>
               </td>
               <td class="image">Image</td>
-              <td class="description">Sku</td>
-              <td class="quantity">Name</td>
+              <td class="quantity">Sku</td>
+              <td class="description">Product</td>
               <td class="quantity">Price</td>
               <td class="quantity">Stock</td>
               <td class="quantity">Brand</td>

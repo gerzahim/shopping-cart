@@ -31,8 +31,14 @@
                             <label for="card-number">Category</label>
                             <select id="categories_id" name="categories_id">
                               <option value="0">All Categories</option>
-                              @foreach($categories1 as $category)                     
-                                <option value="{{ $category['id'] }}">{{ $category['name'] }}</option>
+                              @foreach($categories1 as $category) 
+
+                                @if($categories_id == $category['id'])
+                                  <option selected="selected" value="{{ $category['id'] }}">{{ $category['name'] }}</option>
+                                @else
+                                  <option value="{{ $category['id'] }}">{{ $category['name'] }}</option>
+                                @endif                                                  
+
                               @endforeach
                             </select>                
                             </div>              
@@ -40,11 +46,15 @@
 
                           <div class="col-md-2">
                             <div class="form-group">
-                            <label for="card-number">Brand</label>
+                            <label for="card-number">Brand</label><br>
                             <select id="brand_id" name="brand_id">
                               <option value="0">All Brands</option>
-                              @foreach($brands1 as $brand)              
-                                <option value="{{ $brand['id'] }}">{{ $brand['name'] }}</option>
+                              @foreach($brands1 as $brand)    
+                                @if($brand_id == $brand['id'])
+                                  <option selected="selected" value="{{ $brand['id'] }}">{{ $brand['name'] }}</option>
+                                @else
+                                  <option value="{{ $brand['id'] }}">{{ $brand['name'] }}</option>
+                                @endif                                          
                               @endforeach
                             </select>                
                             </div>              
@@ -52,7 +62,7 @@
 
                           <div class="col-md-2">
                             <div class="form-group">
-                            <label for="card-number">Show Entries</label>
+                            <label for="card-number">Show Entries</label><br>
                             <select id="ShowEntries" name="ShowEntries">
                               <option value="10">10</option>
                               <option value="25">25</option>
@@ -104,8 +114,8 @@
                 <label><input type="checkbox" id="checkAll"/> Check all</label>
               </td>
               <td class="image">Image</td>
-              <td class="description">Name</td>
               <td class="quantity">Sku</td>
+              <td class="description">Product</td>
               <td class="quantity">Price</td>
               <td class="quantity">Stock</td>
               <td class="quantity">Brand</td>

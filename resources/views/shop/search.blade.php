@@ -22,7 +22,7 @@
     </div> 
   <div class="col-sm-9 padding-right">       
     <div class="features_items"><!--features_items-->
-      <h2 class="title text-center">Features Items</h2>
+      <h2 class="title text-center">Searched Items</h2>
         @if (count($products) > 0)
             @foreach( $products as $product)
                 <div class="col-sm-4">
@@ -47,14 +47,18 @@
                               <h2>${{ $product->price}}</h2>
                             @endif                            
                           @endif
-                          <p>{{ $product->title}}</p>
+                          <p>{{ $product->title}}<br>
+                          <b>SKU:</b> {{ $product->sku }}</p>
                           <a href="{{ route('product.addToCart', ['id' => $product->id]) }}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                         </div>
                         {{-- 
                         <div class="product-overlay">
                           <div class="overlay-content">
                             <h2>${{ $product->price}}</h2>
-                            <p>{{ $product->title}}</p>
+                            <p>{{ $product->title}}
+                            <b>SKU:</b> {{ $product->sku }}</p>
+
+                          </p>
                             <a href="{{ route('product.addToCart', ['id' => $product->id]) }}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                           </div>
                         </div>
