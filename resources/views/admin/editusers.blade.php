@@ -5,7 +5,7 @@
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                     <h2>Edit Banner </h2>   
+                     <h2>Edit User </h2>   
                     </div>
                 </div>              
                  <!-- /. ROW  -->

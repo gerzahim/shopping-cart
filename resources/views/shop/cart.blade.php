@@ -18,7 +18,7 @@
         <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }}</p>
         @endif
       @endforeach
-    </div>
+    </div> 
    </div>
 
     <div class="container">
@@ -192,7 +192,6 @@ $(document).ready(function(){
             method: "post",
             url: url,
             data: { id_qty: id_qty, _token:token},
-            data: { id: $('#shipping_id').val(),  state: $('#state').val(), _token: token, _totalprice: totalprice},
             success: function(data) {
               console.log(data);
                 //$('#post').html(data.responseText);

@@ -728,6 +728,24 @@ php artisan migrate:refresh --seed
 //////////////////////////////////////////////////////
 
 
+
+Delete Cascade 
+integrity constraint violation 1451 Laravel
+
+
+
+$product = new Product();
+WishList::where("product_id", $id)->delete();
+$product->find($id)->delete();
+return redirect()->route('product.index');
+
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////
 composer update 
 
 
@@ -1376,7 +1394,5 @@ if ($storedItem['avail'] < 0) {
 <p class="cart_total_price"
 
 
-
 http://www.thehookahexpress.com/public/product/1/edit
-
 http://www.thehookahexpress.com/public/searchProducts/252/edit 

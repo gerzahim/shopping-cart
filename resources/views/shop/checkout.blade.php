@@ -10,7 +10,7 @@
               <h2 class="title text-center">Checkout </h2>
               <br>                             
             </div>          
-          </div>
+          </div>   
 
 
 

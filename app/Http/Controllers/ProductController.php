@@ -152,6 +152,11 @@ class ProductController extends Controller
         // Get info for Banner Section
         $categories = Categories::all();
 
+        
+        $breadcrumbs = Categories::where('id', '=', $categories_id)->first();
+        $breadcrumb = $breadcrumbs['name'];
+        //dd($breadcrumbs['name']);
+
         $id=1;
         $setting = Settings::find($id);
         //dd($setting->pagination_shop);            
@@ -165,7 +170,7 @@ class ProductController extends Controller
 
         $products =$this->getSortTitle($products);
         
-        return view('shop.index', compact('products', 'categories', 'tree', 'tree1'));
+        return view('shop.index', compact('products', 'categories', 'breadcrumb', 'tree', 'tree1'));
     }  
 
     public function getByBrand(Request $request, $brand_id)
@@ -1827,7 +1832,8 @@ $tree='';
 
 
         //$user = User::create($request->all());
-        Session::flash('message', 'Thank you for registering, We will Notify by email Authorization to Login.!');
+        Session::flash('alert-success', 'Thank you for registering, We will Notify by email Authorization to Login.!');
+        //Session::flash('message', 'Thank you for registering, We will Notify by email Authorization to Login.!');
         return redirect('principal');
 
 

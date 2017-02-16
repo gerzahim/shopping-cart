@@ -21,8 +21,18 @@
     </div>  
     </div> 
   <div class="col-sm-9 padding-right">       
-    <div class="features_items"><!--features_items-->
-      <h2 class="title text-center">Features Items</h2>
+    <div class="features_items">
+
+      <!--features_items-->
+      <h2 class="title text-center">
+            @if(! empty($breadcrumb) )
+                {{ $breadcrumb }}
+            @else
+              Features Items
+            @endif
+       </h2>
+
+
         @if (count($products) > 0)
             @foreach( $products as $product)
                 <div class="col-sm-4">
