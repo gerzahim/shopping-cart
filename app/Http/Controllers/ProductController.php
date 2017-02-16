@@ -21,6 +21,7 @@ use ShopCart\AttributesValues;
 use ShopCart\ProductAttributeValues;
 use ShopCart\AssociatesAttributes;
 use ShopCart\AssociateProductsAttributes;
+use ShopCart\WishList;
 use DB;
 use Session;
 use Auth;
@@ -1590,7 +1591,9 @@ $tree='';
 
     public function getRemoveProduct($id)
     {
+
         $product = new Product();
+        WishList::where("product_id", $id)->delete();
         $product->find($id)->delete();
         return redirect()->route('product.index');
         
