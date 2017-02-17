@@ -69,7 +69,7 @@
                     </div>
                     <div class="form-group col-md-6">
                     <label for="zip">Zip Code:</label>
-                    <input type="text" id="zip" class="form-control" name="zip" placeholder="{{ $user['zip'] }}">             
+                    <input type="number" id="zip" class="form-control" name="zip" placeholder="{{ $user['zip'] }}">             
                     </div>
                     <div class="form-group col-md-6">
                     <label for="country">Country:</label>
@@ -77,7 +77,7 @@
                     </div>
                     <div class="form-group col-md-6">
                     <label for="phone">Telephone:</label>
-                    <input type="text" id="phone" class="form-control" name="phone" placeholder="{{ $user['phone'] }}">       
+                    <input type="number" id="phone" class="form-control" name="phone" placeholder="{{ $user['phone'] }}">       
                     </div>
                      <div class="form-group col-md-12">
                         <label for="phone">Current -  Sales Tax*:</label>   <br>

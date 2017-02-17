@@ -65,7 +65,7 @@
                               <h2>${{ $product->price}}</h2>
                             @endif                            
                           @endif
-                          <p>{{ $product->title}}<br>
+                          <p>{!!html_entity_decode($product->title)!!}
                           <b>SKU:</b> {{ $product->sku }}</p>
 
                           

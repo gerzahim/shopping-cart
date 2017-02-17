@@ -1589,7 +1589,8 @@ $tree='';
         }else{
             $input['imagepath'] = Null;    
         }
-         
+        
+        $input['status'] = '1';
 
         $products->fill($input)->save();
 
@@ -1603,6 +1604,7 @@ $tree='';
         $product = new Product();
         WishList::where("product_id", $id)->delete();
         $product->find($id)->delete();
+        Session::flash('message', 'Product successfully Deleted!');
         return redirect()->route('product.index');
         
     }       

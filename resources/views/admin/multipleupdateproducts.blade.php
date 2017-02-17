@@ -84,13 +84,13 @@
                     <div class="col-xs-4">                   
                     <div class="form-group">
                       <label for="name">Price $</label>
-                      <input type="text" id="price" class="form-control" name="price" placeholder="---NO CHANGE---">
+                      <input type="number" step="0.01" id="price" class="form-control" name="price" placeholder="---NO CHANGE---">
                     </div></div></div>
                     <div class="row">
                     <div class="col-xs-4">                   
                     <div class="form-group">
                       <label for="name">Stock #</label>
-                      <input type="text" id="quantity" class="form-control" name="quantity" placeholder="---NO CHANGE---">
+                      <input type="number" min="0" id="quantity" class="form-control" name="quantity" placeholder="---NO CHANGE---">
                     </div> 
                     {{ csrf_field() }}   
                 <button type="submit" class="btn btn-success">Update Products</button>                                            

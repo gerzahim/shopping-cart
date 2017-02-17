@@ -47,7 +47,7 @@
                               <h2>${{ $product->price}}</h2>
                             @endif                            
                           @endif
-                          <p>{{ $product->title}}<br>
+                          <p>{!!html_entity_decode($product->title)!!}
                           <b>SKU:</b> {{ $product->sku }}</p>
                           <a href="{{ route('product.addToCart', ['id' => $product->id]) }}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                         </div>

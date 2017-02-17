@@ -18,7 +18,7 @@
             <div class="col-xs-4">
               <div class="form-group">
                 <label for="name">Tax State</label>
-                <input type="text" id="tax" class="form-control" name="tax" value="{{ $state['tax'] }}" required>
+                <input type="number" id="tax" class="form-control" name="tax" value="{{ $state['tax'] }}" required>
               </div>              
             </div>            
           </div>

@@ -42,7 +42,7 @@
             <div class="col-xs-4">
               <div class="form-group">
                 <label for="name">Price</label>
-                <input type="text" id="price" class="form-control" required name="price">
+                <input type="number"  step="0.5" min="0" id="price" class="form-control" required name="price">
               </div>              
             </div>            
           </div>
@@ -50,7 +50,7 @@
             <div class="col-xs-4">
               <div class="form-group">
                 <label for="name">Stock</label>
-                <input type="text" id="quantity" class="form-control" required name="quantity">
+                <input type="number" min="0" id="quantity" class="form-control" required name="quantity">
               </div>              
             </div>            
           </div>
